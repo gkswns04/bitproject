@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>main</title>
+<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+<style>
+#nav:hover a {
+   color: white;
+}
+#logodiv {
+   position: absolute;
+   width: 240px;
+   margin: 0 -120px 0 0;
+   right: 50%;
+   top: 27%;
+}
+#searchdiv {
+   position: absolute;
+   height: 45px;
+   width: 500px;
+   top: 450px;
+   right: 50%;
+   margin: 0 -250px 0 0;
+   z-index: 2;
+}
+#search {
+   width: 400px;
+   height: 41px;
+   border: 2px black solid;
+   background-color: transparent;
+   background-image: url( "../images/searchbtn.png" );
+   background-position: 99% 2px;
+   background-repeat: no-repeat;
+   font-size: 16px;
+   font-weight: bold;
+   text-align: center;
+}
+video#bgvid {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   z-index: -100;
+   -ms-transform: translateX(-50%) translateY(-50%);
+   -moz-transform: translateX(-50%) translateY(-50%);
+   -webkit-transform: translateX(-50%) translateY(-50%);
+   transform: translateX(-50%) translateY(-50%);
+   background: url(polina.jpg) no-repeat;
+   background-size: cover;
+}
+#signindiv {
+   cursor:pointer;
+}
+#signinpop {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin: -300px 0 0 -370px;
+}
+body {
+   min-width: 1024px;
+}   
+</style>
+</head>
+<body>
+  <span id="threediv">
+      <nav>
+              <ul>
+               <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br>연상법 등록</a></li>
+          <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br>연상법 학습</a></li>
+          <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br>마이 페이지</a></li>
+              </ul>
+         </nav>
+  </span>
+  <span id="logodiv" align="center">
+      <img  src="../images/logo.png" alt="logo"/>
+  </span>
+  <span id="signindiv">
+     <img data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
+  </span>
+
+  <div id="searchdiv" align="center">
+  <form method="get" action="../list/list.html">
+    <input id="search" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
+  </form>
+  <br>
+ <!-- ajax test -->
+  <button id="btn1" type="button">ajax test<br> 
+  </button>
+ <table id="list" border="1">
+<thead>
+<tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script>
+
+$("#btn1").click(function(event) {
+   $.getJSON("js7-ajax03.jsp", function(result) {
+       var tbody = $("#list tbody");
+       
+       for (var i in result) {
+         $("<tr>")
+             .html("<td>" + result[i].no + "</td>" +
+             "<td><a href='#' onclick='onclickDetail(event)' data-no='" + result[i].no + "'>" + result[i].title + "</a></td>" +
+             "<td>" + result[i].createdDate + "</td>" +
+             "<td>" + result[i].views + "</td>").appendTo(tbody);
+       }
+     });
+   });
+
+   </script>
+  
+  </div>
+  <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
+     <source src="../images/background.mp4" type="video/mp4">
+   </video>
+   
+      <div class="modal" id="myModal" aria-hidden="true" style="display: none; z-index: 1050;">
+      <span id="signinpop">   
+          <div class="modal-dialog modal-lg">
+               <div class="modal-body">
+               <section>
+            <div id="container_demo">
+               <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+               <a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+                  id="tologin"></a>
+               <div id="wrapper">
+                  <div id="login" class="animate form">
+                     <form action="mysuperscript.php" autocomplete="on">
+                        <h1>Log in</h1>
+                        <p>
+                           <label for="username" class="uname" data-icon="u">Your email</label> <input id="username" name="username"
+                              required="required" type="text"
+                              placeholder="mymail@mail.com"/>
+                        </p>
+                        <p>
+                           <label for="password" class="youpasswd" data-icon="p">
+                              Your password</label> <input id="password" name="password"
+                              required="required" type="password" placeholder="eg. X8df!90EO" />
+                        </p>
+                        <p class="keeplogin">
+                           <input type="checkbox" name="loginkeeping" id="loginkeeping"
+                              value="loginkeeping" /> <label for="loginkeeping">Keep
+                              me logged in</label>
+                        </p>
+                        <p class="login button">
+                           <input type="submit" value="Login" />
+                        </p>
+                        <p class="change_link">
+                           Not a member yet ? <a href="#toregister" class="to_register">Join
+                              us</a>
+                        </p>
+                     </form>
+                  </div>
+   
+                  <div id="register" class="animate form">
+                     <form action="mysuperscript.php" autocomplete="on">
+                        <h1>Sign up</h1>
+                        <p>
+                           <label for="usernamesignup" class="uname" data-icon="u">Your
+                              username</label> <input id="usernamesignup" name="usernamesignup"
+                              required="required" type="text"
+                              placeholder="mysuperusername690" />
+                        </p>
+                        <p>
+                           <label for="emailsignup" class="youmail" data-icon="e">
+                              Your email</label> <input id="emailsignup" name="emailsignup"
+                              required="required" type="email"
+                              placeholder="mysupermail@mail.com" />
+                        </p>
+                        <p>
+                           <label for="passwordsignup" class="youpasswd" data-icon="p">Your
+                              password </label> <input id="passwordsignup" name="passwordsignup"
+                              required="required" type="password" placeholder="eg. X8df!90EO" />
+                        </p>
+                        <p>
+                           <label for="passwordsignup_confirm" class="youpasswd"
+                              data-icon="p">Please confirm your password </label> <input
+                              id="passwordsignup_confirm" name="passwordsignup_confirm"
+                              required="required" type="password" placeholder="eg. X8df!90EO" />
+                        </p>
+                        <p class="signin button">
+                           <input type="submit" value="Sign up" />
+                        </p>
+                        <p class="change_link">
+                           Already a member ? <a href="#tologin" class="to_register">
+                              Go and log in </a>
+                        </p>
+                     </form>
+                  </div>
+   
+               </div>
+            </div>
+         </section>
+               </div>           
+             </div>
+        </span>    
+           </div>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
