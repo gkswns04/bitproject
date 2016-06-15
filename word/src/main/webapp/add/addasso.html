@@ -9,35 +9,123 @@
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
-#logodiv {
-	top : 30%;
-}
-
+  #logodiv {
+    top: 30%;
+  }
+  
+  .modal-header {
+    font-family: monospace;
+  }
+  
+  .means {
+    top: 70%
+  }
+  
+  .searchdiv {
+    top: 60% 
+  }
+  
+  #imgPreview {
+  border: 1px solid red;
+    width: 150px; 
+   height: 130px;
+  }
+  
+  .imgPreviewdiv {
+     top: 50%;
+     width: 150px;
+     border: 1px solid red;
+  }
 </style>
 </head>
 <body>
 <div id="d1">
    <span id="threediv">
    <nav>
-		 <ul>
-			 <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
+     <ul>
+       <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
        <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br><font size='3'>연상법 학습</font></a></li>
        <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br><font size='3'>마이 페이지</font></a></li>
-		 </ul>
-	 </nav>
-	 </span>
+     </ul>
+   </nav>
+   </span>
    <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
-<!--    <div id="searchdiv" align="center"><input id="search" type="text"
-                                      value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/></div> -->
+   
    <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
-	 </video>
+   </video>
 </div>
 
+<div class="title" align="center">
+   <h4>연상법 등록하기</h4>
+</div>
+
+  <form action="" method="post" enctype="multipart/form-data" name="">
+      <div class="form-group">
+        <div class="searchdiv" align="center"><input id="search" type="text"
+                                      value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/></div>
+                                      
+  <div class="means"  align="center">                                       
+            <select name="Means" id="Means">
+               <option selected="selected">뜻</option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+            </select>
+  </div>            
+</div>
+
+ <div class="asso" align="center">
+         <textarea placeholder="연상법"></textarea>
+   </div>
+
+
+ <div class="image" align="center">       
+        <input id="inputFile" type="file"></input>
+    </div>    
+    
+ <div id="imgPreviewdiv" >
+        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+    </div>
+    
+      
+      <script>
+
+       $(document).ready(function () {
+           function readURL(input) {
+               if (input.files && input.files[0]) {
+                   var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                   reader.onload = function (e) {
+                       //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                       $('#imgPreview').attr('src', e.target.result);
+                       //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
+                       //(아래 코드에서 읽어들인 dataURL형식)
+                   }
+                   reader.readAsDataURL(input.files[0]);
+                   //File내용을 읽어 dataURL형식의 문자열로 저장
+               }
+           } //readURL()--
+
+           //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
+           $("#inputFile").change(function () {
+               //alert(this.value); //선택한 이미지 경로 표시
+               readURL(this);
+           });
+       });
+  
+  </script>
+      
+      
+</form> 
+   
+ <div class="addbtndiv" align="center">
+   <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
+ </div>
+   
 </body>
 </html>
