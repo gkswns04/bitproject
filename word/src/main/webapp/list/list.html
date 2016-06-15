@@ -11,9 +11,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="../bower_components/bootstrap/dist/bootstrap.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
 
 #d2 {
@@ -48,13 +47,6 @@
 }
 
 </style>
-<script type="text/javascript">
-$(function(){
-    $("#popbutton").click(function(){
-        $('div.modal').modal({remote : 'addpopupbox.html'});
-    })
-})
-</script>
 </head>
 <body>
 <div id="d1">
@@ -95,7 +87,7 @@ $(function(){
 		<div id="line" align="center"><img  src="../images/line.jpg" alt="line" /></div>
 	</ul>
 </div>
-</div>
+
 <script>
 $("#btn1").click(function(event) {
 	$.getJSON("testajax.jsp", function (result) {
@@ -118,6 +110,12 @@ $("#btn1").click(function(event) {
 	  }
 	});
 });
+</script>
+<script type="text/javascript">
+$("#popbutton").click(function(){
+    $('div.modal').modal({remote : 'addpopupbox.html'});
+    async:false;
+})
 </script>
 </body>
 </html>
