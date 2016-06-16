@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/common2.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/list.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -13,6 +13,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
+
+  body > div {
+    min-width: 0; height:90px;
+    position: relative;
+  }
+
   #logodiv {
     top: 30%;
   }
@@ -20,25 +26,23 @@
   .searchdiv {
     position: absolute;
     top: 40%;
-    right: 50%;
-    margin: 0 -210px 0 0;
+    left: 45%;
   }
   
   .means {
     position: absolute;
-    top: 46%;
+    top: -15%;
     height: 40px;
-    right: 50%;
+    left: 40.2%;
     width: 400px;
     border: 1px solid gray;
-    margin: 0 -210px 0 0;
   }
   
   .asso {
     position: absolute;
-    top: 52%;
+    top: -50%;
     height: 110px;
-    right: 50%;
+    left: 40.2%;
     width: 400px;
     border: 1px solid gray;
     margin: 0 -210px 0 0;
@@ -46,7 +50,7 @@
   
   #imgPreview {
     position: absolute;
-    right: 50%;
+    left: -13%;
     top: 80%;
     height: 130px;
     width: 150px; 
@@ -55,7 +59,7 @@
   
   #imgPreviewdiv {
     position: absolute;
-    right: 90%;
+    right: 50%;
     top: 5%;
     width: 150px;
     margin: 0 -210px 0 0;
@@ -63,9 +67,9 @@
   
   .box {
     position: absolute;
-    top: 65.5%;
+    top: -5%;
     height: 147px;
-    right: 50%;
+    left: 40.2%;
     width: 400px;
     border: 1px solid gray;
     margin: 0 -210px 0 0;
@@ -74,38 +78,37 @@
   .image {
     position: absolute;
     top: 5%;
-    right: 82%;
+    right: 83%;
     margin: 0 -210px 0 0;
   }
   
   .addbtndiv {
     position: absolute;
-    bottom: 13.5%;
-    right: 44%;
+    bottom: -60%;
+    left: 75%;
   }
   
-   #search {
-  position: absolute;
-  right: 50%;
-  width: 400px;
-  height: 41px;
-  top: 40%;
-  border: 1px gray solid;
-  background-image: url( "../images/addsearch.png" );
-  background-position: 99% 2px;
-  background-repeat: no-repeat;
-  font-size: 14px;
-  font-weight: normal;
-  text-align: left;
-  margin: 0 -210px 0 0;
+  #search {
+    position: absolute;
+    left: 40.2%;
+    width: 400px;
+    height: 41px;
+    top: 20%;
+    border: 1px gray solid;
+    background-image: url( "../images/addsearch.png" );
+    background-position: 99% 2px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: left;
+    margin: 0 -210px 0 0;
  }
- 
+  
  #threediv {
  z-index : 100;
  }
  
  #addbtn {
-    position: absolute;
     cursor: pointer;
     background: #242b33;
     padding: 8px 5px;
@@ -134,12 +137,25 @@
 }
 
 
-h2:after {
-content: ' ';
+
+.title {
+  position: absolute;
+  top: 10%;
+  left: 44%;
+  height: 147px;
+  width: 230px;
+   margin: 0 310px 0 0;
+ }
+   
+ .line {
+   position: absolute;
+   right: 50%;
+   margin: 0 -125px 0 0;
+   content: ' ';
    display: block;
-   width: 35%;
+   width: 105%;
    height: 2px;
-   margin-top: 30px;
+   margin-top: 45px;
    background: -moz-linear-gradient(left, rgba(36,43,51,0) 0%, rgba(36,43,51,0.8) 20%, rgba(36,43,51,1) 53%, rgba(36,43,51,0.8) 79%, rgba(36,43,51,0) 100%); 
    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(36,43,51,0)), color-stop(20%,rgba(36,43,51,0.8)), color-stop(53%,rgba(36,43,51,1)), color-stop(79%,rgba(36,43,51,0.8)), color-stop(100%,rgba(36,43,51,0))); 
    background: -webkit-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
@@ -147,6 +163,9 @@ content: ' ';
    background: -ms-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
    background: linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
   }
+ 
+ 
+
 
 </style>
 
@@ -170,14 +189,22 @@ content: ' ';
      </video>
   </div>
 
-  <div class="title" align="center">
-     <h2>연상법 등록하기</h2>
-  </div>
-
-  <form action="" method="post" enctype="multipart/form-data" name="">
-      <div class="form-group">
-        <input id="search" type="text"
-               value="단어 검색"  onfocus="this.value=''" onblur="if(this.value =='') this.value=' 단어 검색';"/></div>
+  <div>
+   <div class="title" >
+       <h2>연상법 등록하기</h2>
+      <div class="line" >
+    </div>
+   </div>
+   </div>
+   
+ 
+   <div>
+    <form action="" method="post" enctype="multipart/form-data" name="">
+        <div class="form-group">
+          <input id="search" type="text"
+                 value="단어 검색"  onfocus="this.value=''" onblur="if(this.value =='') this.value=' 단어 검색';"/></div>
+    </form>
+   </div> 
   
  <div>
    <select class="means" >
@@ -193,22 +220,25 @@ content: ' ';
     <textarea class="asso"  placeholder="연상법"></textarea>
  </div>
 
-<div class="box">
- <div class="image" align="center">       
-    <input id="inputFile" type="file"></input>
- </div>    
-    
- <div id="imgPreviewdiv" align="center" >
-    <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
- </div>
-</div>    
-    
- <div class="addbtndiv" align="center">
-    <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
- </div>
-   
+ <div>
+  <div class="box">
+   <div class="image" align="center">       
+      <input id="inputFile" type="file"></input>
+   </div>
+   <div> 
+   <div id="imgPreviewdiv" align="center" >
+      <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+   </div>
+  </div>    
       
-      
+   <div>
+    <div class="addbtndiv" >
+        <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ 
   <script>
 
     $(document).ready(function () {
@@ -236,7 +266,5 @@ content: ' ';
   </script>
       
       
-</form> 
-   
 </body>
 </html>
