@@ -26,7 +26,7 @@
   
   .means {
     position: absolute;
-    top: 48%;
+    top: 46%;
     height: 40px;
     right: 50%;
     width: 400px;
@@ -36,7 +36,7 @@
   
   .asso {
     position: absolute;
-    top: 56%;
+    top: 52%;
     height: 110px;
     right: 50%;
     width: 400px;
@@ -49,29 +49,38 @@
     right: 50%;
     top: 80%;
     height: 130px;
-    border: 1px solid gray;
     width: 150px; 
     margin: 0 -210px 0 0;
   }
   
   #imgPreviewdiv {
-     position: absolute;
-     right: 0%;
-     top: 80%;
-     width: 150px;
-     border: 1px solid gray;
-     margin: 0 -210px 0 0;
+    position: absolute;
+    right: 90%;
+    top: 5%;
+    width: 150px;
+    margin: 0 -210px 0 0;
+  }
+  
+  .box {
+    position: absolute;
+    top: 65.5%;
+    height: 147px;
+    right: 50%;
+    width: 400px;
+    border: 1px solid gray;
+    margin: 0 -210px 0 0;
   }
   
   .image {
     position: absolute;
-    top: 80%;
-    right: 45%;
+    top: 5%;
+    right: 82%;
+    margin: 0 -210px 0 0;
   }
   
   .addbtndiv {
     position: absolute;
-    top: 90%;
+    bottom: 12%;
     right: 37%;
   }
   
@@ -86,16 +95,58 @@
   background-position: 99% 2px;
   background-repeat: no-repeat;
   font-size: 16px;
-  font-weight: bold;
-  text-align: center;
+  font-weight: normal;
+  text-align: left;
   margin: 0 -210px 0 0;
  }
  
  #threediv {
  z-index : 100;
  }
-  
-  
+ 
+ #addbtn {
+    cursor: pointer;
+    background: #242b33;
+    padding: 8px 5px;
+    font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid rgb(28, 108, 122);
+    margin-top: -25px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+ 0px 0px 0px 3px rgb(254, 254, 254),
+ 0px 5px 3px 3px rgb(210, 210, 210);
+    -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+ 0px 0px 0px 3px rgb(254, 254, 254),
+ 0px 5px 3px 3px rgb(210, 210, 210);
+    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+ 0px 0px 0px 3px rgb(254, 254, 254),
+ 0px 5px 3px 3px rgb(210, 210, 210);
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear; 
+}
+
+
+h2:after {
+content: ' ';
+   display: block;
+   width: 35%;
+   height: 2px;
+   margin-top: 30px;
+   background: -moz-linear-gradient(left, rgba(36,43,51,0) 0%, rgba(36,43,51,0.8) 20%, rgba(36,43,51,1) 53%, rgba(36,43,51,0.8) 79%, rgba(36,43,51,0) 100%); 
+   background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(36,43,51,0)), color-stop(20%,rgba(36,43,51,0.8)), color-stop(53%,rgba(36,43,51,1)), color-stop(79%,rgba(36,43,51,0.8)), color-stop(100%,rgba(36,43,51,0))); 
+   background: -webkit-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+   background: -o-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+   background: -ms-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+   background: linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+  }
+
 </style>
 
 </head>
@@ -129,7 +180,7 @@
   
  <div>
    <select class="means" >
-      <option selected="selected" >뜻</option>
+      <option selected="selected" >뜻 선택</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -141,6 +192,7 @@
     <textarea class="asso"  placeholder="연상법"></textarea>
  </div>
 
+<div class="box">
  <div class="image" align="center">       
     <input id="inputFile" type="file"></input>
  </div>    
@@ -148,6 +200,7 @@
  <div id="imgPreviewdiv" align="center" >
     <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
  </div>
+</div>    
     
  <div class="addbtndiv" align="center">
     <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
