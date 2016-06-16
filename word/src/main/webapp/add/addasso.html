@@ -17,129 +17,172 @@
     top: 30%;
   }
   
-  .modal-header {
-    font-family: monospace;
+  .searchdiv {
+    position: absolute;
+    top: 40%;
+    right: 50%;
+    margin: 0 -210px 0 0;
   }
   
   .means {
-    top: 70%
+    position: absolute;
+    top: 48%;
+    height: 40px;
+    right: 50%;
+    width: 400px;
+    border: 1px solid gray;
+    margin: 0 -210px 0 0;
   }
   
-  .searchdiv {
-    top: 60% 
+  .asso {
+    position: absolute;
+    top: 56%;
+    height: 110px;
+    right: 50%;
+    width: 400px;
+    border: 1px solid gray;
+    margin: 0 -210px 0 0;
   }
   
   #imgPreview {
-  border: 1px solid red;
+    position: absolute;
+    right: 50%;
+    top: 80%;
+    height: 130px;
+    border: 1px solid gray;
     width: 150px; 
-   height: 130px;
+    margin: 0 -210px 0 0;
   }
   
-  .imgPreviewdiv {
-     top: 50%;
+  #imgPreviewdiv {
+     position: absolute;
+     right: 0%;
+     top: 80%;
      width: 150px;
-     border: 1px solid red;
+     border: 1px solid gray;
+     margin: 0 -210px 0 0;
   }
   
- #search {
-	width: 400px;
-	height: 41px;
-	border: 1px gray solid;
-	background-image: url( "../images/addsearch.png" );
-	background-position: 99% 2px;
-	background-repeat: no-repeat;
-	font-size: 16px;
-	font-weight: bold;
-	text-align: center;
+  .image {
+    position: absolute;
+    top: 80%;
+    right: 45%;
+  }
+  
+  .addbtndiv {
+    position: absolute;
+    top: 90%;
+    right: 37%;
+  }
+  
+   #search {
+  position: absolute;
+  right: 50%;
+  width: 400px;
+  height: 41px;
+  top: 40%;
+  border: 1px gray solid;
+  background-image: url( "../images/addsearch.png" );
+  background-position: 99% 2px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 -210px 0 0;
  }
  
  #threediv {
  z-index : 100;
  }
- 
+  
+  
 </style>
+
 </head>
 <body>
-<div id="d1">
-   <span id="threediv">
-   <nav>
-     <ul>
-       <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
-       <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br><font size='3'>연상법 학습</font></a></li>
-       <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br><font size='3'>마이 페이지</font></a></li>
-     </ul>
-   </nav>
-   </span>
-   <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
-   
-   <video autoplay loop poster="../images/strip.jpg" id="bgvid">
-     <source src="../images/search_back.mp4" type="video/mp4">
-   </video>
-</div>
+  <div id="d1">
+     <span id="threediv">
+     <nav>
+       <ul>
+         <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
+         <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br><font size='3'>연상법 학습</font></a></li>
+         <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br><font size='3'>마이 페이지</font></a></li>
+       </ul>
+     </nav>
+     </span>
+     
+     <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
+     
+     <video autoplay loop poster="../images/strip.jpg" id="bgvid">
+       <source src="../images/search_back.mp4" type="video/mp4">
+     </video>
+  </div>
 
-<div class="title" align="center">
-   <h2>연상법 등록하기</h2>
-</div>
+  <div class="title" align="center">
+     <h2>연상법 등록하기</h2>
+  </div>
 
-        <div class="searchdiv" align="center">
+  <form action="" method="post" enctype="multipart/form-data" name="">
+      <div class="form-group">
         <input id="search" type="text"
                value="단어 검색"  onfocus="this.value=''" onblur="if(this.value =='') this.value=' 단어 검색';"/></div>
-                                      
-  <div class="means"  align="center">                                       
-            <select name="Means" id="Means">
-               <option selected="selected">뜻 선택</option>
-               <option>1</option>
-               <option>2</option>
-               <option>3</option>
-               <option>4</option>
-            </select>
-  </div>            
-
- <div class="asso" align="center">
-         <textarea placeholder="연상법"></textarea>
-   </div>
-
+  
+ <div>
+   <select class="means" >
+      <option selected="selected" >뜻</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+   </select>
+ </div>
+  
+ <div>
+    <textarea class="asso"  placeholder="연상법"></textarea>
+ </div>
 
  <div class="image" align="center">       
-        <input id="inputFile" type="file"></input>
-    </div>    
+    <input id="inputFile" type="file"></input>
+ </div>    
     
- <div id="imgPreviewdiv" >
-        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
-    </div>
+ <div id="imgPreviewdiv" align="center" >
+    <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+ </div>
     
+ <div class="addbtndiv" align="center">
+    <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
+ </div>
+   
       
-      <script>
+      
+  <script>
 
-       $(document).ready(function () {
-           function readURL(input) {
-               if (input.files && input.files[0]) {
-                   var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
-                   reader.onload = function (e) {
-                       //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
-                       $('#imgPreview').attr('src', e.target.result);
-                       //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
-                       //(아래 코드에서 읽어들인 dataURL형식)
-                   }
-                   reader.readAsDataURL(input.files[0]);
-                   //File내용을 읽어 dataURL형식의 문자열로 저장
-               }
-           } //readURL()--
+    $(document).ready(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                reader.onload = function (e) {
+                    //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                    $('#imgPreview').attr('src', e.target.result);
+                    //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
+                    //(아래 코드에서 읽어들인 dataURL형식)
+                }
+                reader.readAsDataURL(input.files[0]);
+                //File내용을 읽어 dataURL형식의 문자열로 저장
+            }
+        } //readURL()--
 
-           //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
-           $("#inputFile").change(function () {
-               //alert(this.value); //선택한 이미지 경로 표시
-               readURL(this);
-           });
-       });
-  
+        //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
+        $("#inputFile").change(function () {
+            //alert(this.value); //선택한 이미지 경로 표시
+            readURL(this);
+        });
+    });
+ 
   </script>
       
       
-   
- <div class="addbtndiv" align="center">
-   <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
- </div>
+</form> 
    
 </body>
 </html>
