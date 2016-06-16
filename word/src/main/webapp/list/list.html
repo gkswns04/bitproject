@@ -206,7 +206,12 @@ div.modal-dialog.modal-lg {
 	right: 7%;
 	top: -30px;
 }
-
+.textcolor {
+color: black;
+}
+.selecttext {
+color: red;
+}
 
 </style>
   </head>
@@ -280,7 +285,7 @@ div.modal-dialog.modal-lg {
             <div class="modal-footer">
               <wrapper id="wrapper">
               <p class="change_link">
-              	<a data-toggle="modal" href="#myModal2" class="to_register">다음</a>
+              	<a data-toggle="modal" href="#myModal2" class="to_register" onClick="changeValue()">다음</a>
               </p>
               </wrapper>
             </div>
@@ -297,7 +302,7 @@ div.modal-dialog.modal-lg {
               <h4 class="modal-title" id="exampleModalLabel"><font size="6">힌트가 되는 뜻 부분 체크</font></h4>
             </div><div class="container"></div>
             <div class="modal-body">
-            	크래커가 갈라지다
+            	<div id="test"></div>
             </div>
             <div class="modal-footer">
               <wrapper id=wrapper class="second-wrapper">
@@ -326,7 +331,26 @@ div.modal-dialog.modal-lg {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
+    <script type= "text/javascript">
+		function changeValue(){
+			var divTest = document.getElementById("test");
+			var divTest2 = document.getElementById("message-text").value.split(" ");
+			var test3 = ""; 
+			for (var i = 0; i < divTest2.length; i++) {
+				test3 += "<a href='#' id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
+				test3 += divTest2[i];  
+				test3 += "</a>";
+				test3 += " ";				
+			};
+			divTest.innerHTML = test3;
+		}
+	</script>
+	<script type= "text/javascript">
+		function changeValue2(index){
+			document.getElementById("text"+index).setAttribute( 'class', 'selecttext');
+			/* divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
+		}
+	</script>
     <script>
 $("#btn1").click(function(event) {
 	$.getJSON("testajax.jsp", function (result) {
