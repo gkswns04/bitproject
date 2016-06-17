@@ -1,4 +1,4 @@
-<%@page import="wordstudy.domain.TestData"%>
+<%@page import="wordstudy.vo.TestData"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" 

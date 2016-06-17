@@ -5,26 +5,28 @@
   
 <mapper namespace="wordstudy.dao.MemberDao">
   <sql id="select01">
-    select MNO, MNAME, EMAIL, PWD, TEL 
+    select NIC, EMAIL, PHOT 
     from MEMBERS
   </sql>
 
   <resultMap type="Member" id="MemberMap">
     <id     column="MNO"    property="no"/>
-    <result column="NIC"  property="name"/>
+    <result column="NIC"  property="nick"/>
+    <result column="EMAIL"  property="email"/>
     <result column="PW"    property="password"/>
   </resultMap>
   
   <insert id="insert" parameterType="Member">
-    insert into MEMBERS(NIC,EMAIL,PW,PHOT)
-    values(#{name},#{email},#{password},#{phot})
+    insert into MEMBERS(NIC,EMAIL,PW)
+    values(#{nick},#{email},#{password})
   </insert>
   
   <update id="update" parameterType="Member">
     update MEMBERS set
-      MNAME=#{name},
+      NIC=#{nick},
       EMAIL=#{email},
-      PHOT=#{phot}
+      PW=#{password},
+      PHOT=#{photo}
     where MNO=#{no}
   </update>
   
@@ -35,13 +37,13 @@
 
   <select id="selectList" resultMap="MemberMap">
     <include refid="select01"/>
-    order by MNAME asc
+    order by NIC asc
     limit #{startIndex}, #{length}
   </select>
   
   <select id="selectOne" parameterType="map" resultMap="MemberMap">
     <include refid="select01"/>
-    where 
+      where 
     <if test="no != null">
       MNO=#{no}
     </if>
@@ -59,7 +61,7 @@
   <select id="countAll" resultType="int">
     select count(*) 
     from MEMBERS
-  </select>
+  </select> 
 </mapper>
 
 
