@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="wordstudy.dao.SearchListDao">
+  <resultMap type="SearchList" id="SearchListMap">
+    <result column="NIC"    property="nick"/>
+    <result column="LIKES"  property="likeNo"/>
+    <result column="HATES"    property="hateNo"/>
+    <result column="A_PHOT"    property="assophotPath"/>
+    <result column="PHOT"    property="prophotPath"/>
+  </resultMap>
+  
+  <!-- <insert id="insert" parameterType="SearchList">
+    insert into BOARDS(TITLE,CONTS,PWD,CDT)
+    values(#{title},#{content},#{password},now())
+  </insert>
+  
+  <update id="update" parameterType="SearchList">
+    update BOARDS set
+      TITLE=#{title}, 
+      CONTS=#{content}, 
+      CDT=now() 
+    where BNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from BOARDS 
+    where BNO=#{no}
+  </delete> -->
+
+  <select id="selectList" resultMap="SearchListMap" parameterType="map">
+    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR 
+		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
+		WHERE W.WORD = M.WORD
+		AND M.MENO = A.MENO
+		AND A.MNO = R.MNO
+    order by A.LIKES DESC
+    limit #{startIndex}, #{length}
+  </select>
+  
+  <!-- <select id="selectOne" resultMap="SearchListMap" parameterType="int">
+    select BNO, TITLE, CONTS, VWCNT, CDT 
+    from BOARDS
+    where BNO=#{no}
+  </select> -->
+  
+  <select id="countAll" resultType="int">
+    select count(*) 
+    from ASSOS;
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

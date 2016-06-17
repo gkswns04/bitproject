@@ -1,6 +1,5 @@
 package wordstudy.vo;
 
-import java.io.File;
 import java.sql.Date;
 
 public class SearchList {
@@ -11,18 +10,19 @@ public class SearchList {
   String asso;
   int likeNo;
   int hateNo;
-  File prophot;
-  File assophot;
+  String prophotPath;
+  String assophotPath;
   String hint;
   int best;
+  boolean favor;
   
   public SearchList() {
     super();
     // TODO Auto-generated constructor stub
   }
 
-  public SearchList(String nick, Date date, String word, String mean, String asso, int likeNo, int hateNo, File prophot,
-      File assophot, String hint, int best) {
+  public SearchList(String nick, Date date, String word, String mean, String asso, int likeNo, int hateNo,
+      String prophotPath, String assophotPath, String hint, int best, boolean favor) {
     super();
     this.nick = nick;
     this.date = date;
@@ -31,10 +31,11 @@ public class SearchList {
     this.asso = asso;
     this.likeNo = likeNo;
     this.hateNo = hateNo;
-    this.prophot = prophot;
-    this.assophot = assophot;
+    this.prophotPath = prophotPath;
+    this.assophotPath = assophotPath;
     this.hint = hint;
     this.best = best;
+    this.favor = favor;
   }
 
   public String getNick() {
@@ -93,20 +94,20 @@ public class SearchList {
     this.hateNo = hateNo;
   }
 
-  public File getProphot() {
-    return prophot;
+  public String getProphotPath() {
+    return prophotPath;
   }
 
-  public void setProphot(File prophot) {
-    this.prophot = prophot;
+  public void setProphotPath(String prophotPath) {
+    this.prophotPath = prophotPath;
   }
 
-  public File getAssophot() {
-    return assophot;
+  public String getAssophotPath() {
+    return assophotPath;
   }
 
-  public void setAssophot(File assophot) {
-    this.assophot = assophot;
+  public void setAssophotPath(String assophotPath) {
+    this.assophotPath = assophotPath;
   }
 
   public String getHint() {
@@ -125,13 +126,20 @@ public class SearchList {
     this.best = best;
   }
 
+  public boolean isFavor() {
+    return favor;
+  }
+
+  public void setFavor(boolean favor) {
+    this.favor = favor;
+  }
+
   @Override
   public String toString() {
     return "SearchList [nick=" + nick + ", date=" + date + ", word=" + word + ", mean=" + mean + ", asso=" + asso
-        + ", likeNo=" + likeNo + ", hateNo=" + hateNo + ", prophot=" + prophot + ", assophot=" + assophot + ", hint="
-        + hint + ", best=" + best + "]";
+        + ", likeNo=" + likeNo + ", hateNo=" + hateNo + ", prophotPath=" + prophotPath + ", assophotPath="
+        + assophotPath + ", hint=" + hint + ", best=" + best + ", favor=" + favor + "]";
   }
 
-  
-  
+
 }
