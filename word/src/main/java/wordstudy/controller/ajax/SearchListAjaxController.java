@@ -88,7 +88,7 @@ public class SearchListAjaxController {
     }
     
     List<SearchList> list = searchListService.list(pageNo, pageSize);
-    
+    System.out.println(list.size());
     HashMap<String,Object> result = new HashMap<>();
     result.put("pageNo", pageNo);
     result.put("pageSize", pageSize);

@@ -28,7 +28,12 @@ public class DefaultSearchListService implements SearchListService {
   
   public List<SearchList> list(int pageNo, int pageSize) {
     HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    int startIndex = (pageNo - 1) * pageSize;
+    if (startIndex < 0) {
+      startIndex = 0;
+    }
+    
+    paramMap.put("startIndex", startIndex);
     paramMap.put("length", pageSize);
     
     return searchListDao.selectList(paramMap);

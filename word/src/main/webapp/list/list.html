@@ -8,9 +8,9 @@
     <title>list</title>
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom Style -->
     <link href="../css/style.css" rel="stylesheet">
 
@@ -22,7 +22,7 @@
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
-<link rel="stylesheet" type="text/css" href="../css/list.css">
+<link rel="stylesheet" type="text/css" href="../css/list2.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -206,12 +206,7 @@ div.modal-dialog.modal-lg {
 	right: 7%;
 	top: -30px;
 }
-.textcolor {
-color: black;
-}
-.selecttext {
-color: red;
-}
+
 
 </style>
   </head>
@@ -285,7 +280,7 @@ color: red;
             <div class="modal-footer">
               <wrapper id="wrapper">
               <p class="change_link">
-              	<a data-toggle="modal" href="#myModal2" class="to_register" onClick="changeValue()">다음</a>
+              	<a data-toggle="modal" href="#myModal2" class="to_register">다음</a>
               </p>
               </wrapper>
             </div>
@@ -302,7 +297,7 @@ color: red;
               <h4 class="modal-title" id="exampleModalLabel"><font size="6">힌트가 되는 뜻 부분 체크</font></h4>
             </div><div class="container"></div>
             <div class="modal-body">
-            	<div id="test"></div>
+            	크래커가 갈라지다
             </div>
             <div class="modal-footer">
               <wrapper id=wrapper class="second-wrapper">
@@ -331,38 +326,20 @@ color: red;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script type= "text/javascript">
-		function changeValue(){
-			var divTest = document.getElementById("test");
-			var divTest2 = document.getElementById("message-text").value.split(" ");
-			var test3 = ""; 
-			for (var i = 0; i < divTest2.length; i++) {
-				test3 += "<a href='#' id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
-				test3 += divTest2[i];  
-				test3 += "</a>";
-				test3 += " ";				
-			};
-			divTest.innerHTML = test3;
-		}
-	</script>
-	<script type= "text/javascript">
-		function changeValue2(index){
-			document.getElementById("text"+index).setAttribute( 'class', 'selecttext');
-			/* divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
-		}
-	</script>
+    
     <script>
 $("#btn1").click(function(event) {
-	$.getJSON("testajax.jsp", function (result) {
+	$.getJSON("../ajax/searchList/list.do", function (result) {
 		var ul = $("#list");
-	  for (var i in result) {
-		  $("<li>").html("<span class='nic' align='left'><strong>" + result[i].nick + "</strong></span>" +
-			"<span class='date'>" + result[i].date + "</span>" +
-			"<span class='word'><h3><strong>" + result[i].word + "</strong></h3></span>" +
-			"<span class='mean'>" + result[i].mean + "</span>" +
-			"<span class='weeks'><h4><strong>" + result[i].weeks + "</strong></h4></span>" +
-			"<span class='num'><h4>" + result[i].likeNo + "</h4></span>" +
-			"<span class='num2'><h4>" + result[i].hateNo + "</h4></span>" +
+		var list = result.list;
+	  for (var i in list) {
+		  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
+			"<span class='date'>" + list[i].date + "</span>" +
+			"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
+			"<span class='mean'>" + list[i].mean + "</span>" +
+			"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
+			"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
+			"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
 			"<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
 			"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
 			"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
