@@ -110,23 +110,7 @@ body {
 </table> -->
 
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-<script>
 
-$("#btn1").click(function(event) {
-   $.getJSON("js7-ajax03.jsp", function(result) {
-       var tbody = $("#list tbody");
-       
-       for (var i in result) {
-         $("<tr>")
-             .html("<td>" + result[i].no + "</td>" +
-             "<td><a href='#' onclick='onclickDetail(event)' data-no='" + result[i].no + "'>" + result[i].title + "</a></td>" +
-             "<td>" + result[i].createdDate + "</td>" +
-             "<td>" + result[i].views + "</td>").appendTo(tbody);
-       }
-     });
-   });
-
-   </script>
   
   </div>
   <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
@@ -144,7 +128,7 @@ $("#btn1").click(function(event) {
                   id="tologin"></a>
                <div id="wrapper">
                   <div id="login" class="animate form">
-                     <form action="mysuperscript.php" autocomplete="on">
+                     <form action="main.html" autocomplete="on">
                         <h1>Log in</h1>
                         <p>
                            <label for="username" class="uname" data-icon="u">Your email</label> <input id="username" name="username"
@@ -172,7 +156,7 @@ $("#btn1").click(function(event) {
                   </div>
    
                   <div id="register" class="animate form">
-                     <form action="mysuperscript.php" autocomplete="on">
+                     <form action="main.html" autocomplete="on">
                         <h1>Sign up</h1>
                         <p>
                            <label for="usernamesignup" class="uname" data-icon="u">Your
@@ -197,8 +181,8 @@ $("#btn1").click(function(event) {
                               id="passwordsignup_confirm" name="passwordsignup_confirm"
                               required="required" type="password" placeholder="eg. X8df!90EO" />
                         </p>
-                        <p class="signin button">
-                           <input type="submit" value="Sign up" />
+                       <p class="signin button">
+                           <input id="signinbtn" type="submit" value="Sign up" />
                         </p>
                         <p class="change_link">
                            Already a member ? <a href="#tologin" class="to_register">
@@ -218,5 +202,23 @@ $("#btn1").click(function(event) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+  
+  $("#signinbtn").click(function(event) {
+	  $.post("../ajax/member/add.do", {
+	      nick: $("#usernamesignup").val(),
+	      email: $("#emailsignup").val(),
+	      password: $("#passwordsignup").val()
+	    }, function(result) {
+	      if (result.status == "success") {
+	        location.href = "main.html";
+	      } else {
+	        window.alert("회원 등록 실패입니다!");
+	      }
+	    }, "json"
+	  );
+	});
+
+   </script>
 </body>
 </html>
