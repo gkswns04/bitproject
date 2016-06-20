@@ -3,6 +3,7 @@ package wordstudy.vo;
 import java.sql.Date;
 
 public class SearchList {
+  int ano;
   String nick;
   Date date;
   String word;
@@ -21,21 +22,12 @@ public class SearchList {
     // TODO Auto-generated constructor stub
   }
 
-  public SearchList(String nick, Date date, String word, String mean, String asso, int likeNo, int hateNo,
-      String prophotPath, String assophotPath, String hint, int best, boolean favor) {
-    super();
-    this.nick = nick;
-    this.date = date;
-    this.word = word;
-    this.mean = mean;
-    this.asso = asso;
-    this.likeNo = likeNo;
-    this.hateNo = hateNo;
-    this.prophotPath = prophotPath;
-    this.assophotPath = assophotPath;
-    this.hint = hint;
-    this.best = best;
-    this.favor = favor;
+  public int getAno() {
+    return ano;
+  }
+
+  public void setAno(int ano) {
+    this.ano = ano;
   }
 
   public String getNick() {
@@ -133,13 +125,6 @@ public class SearchList {
   public void setFavor(boolean favor) {
     this.favor = favor;
   }
-
-  @Override
-  public String toString() {
-    return "SearchList [nick=" + nick + ", date=" + date + ", word=" + word + ", mean=" + mean + ", asso=" + asso
-        + ", likeNo=" + likeNo + ", hateNo=" + hateNo + ", prophotPath=" + prophotPath + ", assophotPath="
-        + assophotPath + ", hint=" + hint + ", best=" + best + ", favor=" + favor + "]";
-  }
-
-
+  
+  
 }
