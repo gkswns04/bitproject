@@ -257,15 +257,13 @@ div.modal-dialog.modal-lg {
   						<h4 class="modal-title" id="exampleModalLabel">연상법 등록하기</h4>
             </div><div class="container"></div>
             <div class="modal-body">
-              <form action="" method="post" enctype="multipart/form-data" name="">
+              <form action="" enctype="multipart/form-data" method="post" name="">
 					      <div class="form-group">
 					         <fieldset>
 					            <select name="Means" id="Means">
 					               <option selected="selected">뜻</option>
-					               <option>1</option>
-					               <option>2</option>
-					               <option>3</option>
-					               <option>4</option>
+					               <option>갈라지다</option>
+					               <option>깨지다</option>					               
 					            </select>
 					      </div>
 					      <div class="form-group">
@@ -275,12 +273,12 @@ div.modal-dialog.modal-lg {
 					        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
 					        <input id="inputFile" type="file"></input>
 					      </div>
-					   </form> 
+			</form> 		   
             </div>
             <div class="modal-footer">
               <wrapper id="wrapper">
               <p class="change_link">
-              	<a data-toggle="modal" href="#myModal2" class="to_register">다음</a>
+              	<a data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
               </p>
               </wrapper>
             </div>
@@ -297,12 +295,17 @@ div.modal-dialog.modal-lg {
               <h4 class="modal-title" id="exampleModalLabel"><font size="6">힌트가 되는 뜻 부분 체크</font></h4>
             </div><div class="container"></div>
             <div class="modal-body">
-            	크래커가 갈라지다
+            <form action="" enctype="multipart/form-data" method="post" name="">
+            <div id="test">
+            	
+            </div>
+            </form>            
             </div>
             <div class="modal-footer">
               <wrapper id=wrapper class="second-wrapper">
+              
 	              <p class="login button">
-	              	<input type="submit" class="submitbtn" value="확인" onclick="window.location.reload()"/>
+	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인" onclick="window.location.reload()"/>
 	              </p>
               <wrapper>
             </div>
@@ -326,8 +329,50 @@ div.modal-dialog.modal-lg {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+     <script>
+  
+  $("#assoaddbtn").click(function(event) {
+	 $.get("../ajax/word/add.do", {
+	      mean: $("#Means").val(),
+	      asso: $("#message-text").val(),
+	      aphoto: $("#inputFile").val(),
+	      hint : $("#assohint").val()
+	    }, function(result) {
+	      if (result.status == "success") {
+	        location.href = "list.html";
+	      } else {
+	        window.alert("연상법 등록 실패입니다!");
+	      }
+	    }, "json"
+	  );
+	});
+ 
+   </script>
+    <script type= "text/javascript">
+       function changeValue(){
+         var divTest = document.getElementById("test");
+         var divTest2 = document.getElementById("message-text").value.split(" ");
+         var test3 = ""; 
+         for (var i = 0; i < divTest2.length; i++) {
+           test3 += "<a href='#' id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
+           test3 += divTest2[i];  
+           test3 += "</a>";
+           test3 += " ";       
+         };
+         divTest.innerHTML = test3;
+       }
+  </script>
+  
+  <script type= "text/javascript">
+    function changeValue2(index){
+      document.getElementById("text"+index).setAttribute( 'id', 'assohint');
+      console.log($("#assohint").val());
+      /* divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
+    }
+  </script>
     
     <script>
+    
 $("#btn1").click(function(event) {
 	$.getJSON("../ajax/searchList/list.do", function (result) {
 		var ul = $("#list");
