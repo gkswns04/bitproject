@@ -13,45 +13,54 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
+  
+  .d1 {
+    min-width: 0; height:150px; right: 100px;
+    position: relative;
+  }
 
-  body > div {
-    min-width: 0; height:90px;
+  .d2 {
+    min-width: 0; height:150px; right: 100px;
+    position: relative;
+  }
+
+  .d3 {
+    min-width: 0; height:150px; width:400px; left: 50%;
+    position: relative;
+    margin: -153px 0 0 -250px;
+    border: 1px solid gray;
+  }
+  
+  .d4 {
+    min-width: 0; height: 150px; right: 100px;
+    position: relative;
+  }
+  
+  .d5 {
+    min-width: 0; height: 150px; right: 100px;
+    position: relative;
+  }
+  
+  .d6 {
+    min-width: 0; height: 150px; right: 100px;
+    position: relative;
+  }
+  
+  .d7 {
+    min-width: 0; height: 150px; right: 100px;
     position: relative;
   }
 
   #logodiv {
     top: 30%;
+    left: 50%;
+    margin: 0 0 0 -250px;
   }
   
-  .searchdiv {
+   #imgPreview {
     position: absolute;
-    top: 40%;
-    left: 45%;
-  }
-  
-  .means {
-    position: absolute;
-    top: -15%;
-    height: 40px;
-    left: 40.2%;
-    width: 400px;
-    border: 1px solid gray;
-  }
-  
-  .asso {
-    position: absolute;
-    top: -50%;
-    height: 110px;
-    left: 40.2%;
-    width: 400px;
-    border: 1px solid gray;
-    margin: 0 -210px 0 0;
-  }
-  
-  #imgPreview {
-    position: absolute;
-    left: -13%;
-    top: 80%;
+    left: 50%;
+    top: 50%;
     height: 130px;
     width: 150px; 
     margin: 0 -210px 0 0;
@@ -62,35 +71,12 @@
     right: 50%;
     top: 5%;
     width: 150px;
-    margin: 0 -210px 0 0;
+    margin: 0 -112px 0 0;
   }
   
-  .box {
+   #search {
     position: absolute;
-    top: -5%;
-    height: 147px;
-    left: 40.2%;
-    width: 400px;
-    border: 1px solid gray;
-    margin: 0 -210px 0 0;
-  }
-  
-  .image {
-    position: absolute;
-    top: 5%;
-    right: 83%;
-    margin: 0 -210px 0 0;
-  }
-  
-  .addbtndiv {
-    position: absolute;
-    bottom: -60%;
-    left: 75%;
-  }
-  
-  #search {
-    position: absolute;
-    left: 40.2%;
+    left: 50%;
     width: 400px;
     height: 41px;
     top: 20%;
@@ -101,59 +87,97 @@
     font-size: 16px;
     font-weight: normal;
     text-align: left;
-    margin: 0 -210px 0 0;
- }
+    margin: 0 0 0 -150px;
+  }
   
- #threediv {
- z-index : 100;
- }
+  .image {
+    position: absolute;
+    top: 5%;
+    right: 50%;
+    margin: 0 -80px 0 0;
+  }
+  
+  .means {
+    position: absolute;
+    top: -45%;
+    height: 40px;
+    left: 50%;
+    width: 400px;
+    border: 1px solid gray;
+     margin: 0 0 0 -150px;
+  }
+  
+  .searchdiv {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+  }
+  
+  .asso {
+    position: absolute;
+    top: -110%;
+    right: 50%;
+    width: 400px;
+    height: 150px;
+    border: 1px solid gray;
+    margin: 0 -250px 0 0;
+  }
+  
+  .addbtndiv {
+    position: absolute;
+    left: 50%;
+    margin: 0 0 0 160px;
+    bottom: 90px;
+  }
+  
+   #threediv {
+   z-index : 100;
+   }
  
- #addbtn {
-    cursor: pointer;
-    background: #242b33;
-    padding: 8px 5px;
-    font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
-    color: #fff;
-    font-size: 20px;
-    border: 1px solid rgb(28, 108, 122);
-    margin-top: -25px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
- 0px 0px 0px 3px rgb(254, 254, 254),
- 0px 5px 3px 3px rgb(210, 210, 210);
-    -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
- 0px 0px 0px 3px rgb(254, 254, 254),
- 0px 5px 3px 3px rgb(210, 210, 210);
-    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
- 0px 0px 0px 3px rgb(254, 254, 254),
- 0px 5px 3px 3px rgb(210, 210, 210);
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear; 
-}
+   #addbtn {
+      cursor: pointer;
+      background: #242b33;
+      padding: 8px 5px;
+      font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+      color: #fff;
+      font-size: 20px;
+      border: 1px solid rgb(28, 108, 122);
+      margin-top: -25px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+   0px 0px 0px 3px rgb(254, 254, 254),
+   0px 5px 3px 3px rgb(210, 210, 210);
+      -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+   0px 0px 0px 3px rgb(254, 254, 254),
+   0px 5px 3px 3px rgb(210, 210, 210);
+      box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+   0px 0px 0px 3px rgb(254, 254, 254),
+   0px 5px 3px 3px rgb(210, 210, 210);
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+      transition: all 0.2s linear; 
+   }
 
-
-
-.title {
-  position: absolute;
-  top: 10%;
-  left: 44%;
-  height: 147px;
-  width: 230px;
-   margin: 0 310px 0 0;
- }
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 147px;
+    width: 230px;
+    margin: 0 0 0 -60px;
+   }
    
  .line {
    position: absolute;
    right: 50%;
-   margin: 0 -125px 0 0;
+   margin: 0 -110px 0 0;
    content: ' ';
    display: block;
-   width: 105%;
+   width: 101%;
    height: 2px;
    margin-top: 45px;
    background: -moz-linear-gradient(left, rgba(36,43,51,0) 0%, rgba(36,43,51,0.8) 20%, rgba(36,43,51,1) 53%, rgba(36,43,51,0.8) 79%, rgba(36,43,51,0) 100%); 
@@ -163,9 +187,6 @@
    background: -ms-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
    background: linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
   }
- 
- 
-
 
 </style>
 
@@ -184,12 +205,14 @@
      
      <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
      
-     <video autoplay loop poster="../images/strip.jpg" id="bgvid">
+     <video id="Video1" autoplay loop poster="../images/strip.jpg" id="bgvid">
        <source src="../images/search_back.mp4" type="video/mp4">
      </video>
-  </div>
+     
+     </div>
+     
 
-  <div>
+  <div class="d7">
    <div class="title" >
        <h2>연상법 등록하기</h2>
       <div class="line" >
@@ -197,48 +220,49 @@
    </div>
    </div>
    
- 
-   <div>
-    <form action="" method="post" enctype="multipart/form-data" name="">
-        <div class="form-group">
-          <input id="search" type="text"
-                 value="단어 검색"  onfocus="this.value=''" onblur="if(this.value =='') this.value=' 단어 검색';"/></div>
-    </form>
-   </div> 
-  
- <div>
-   <select class="means" >
-      <option selected="selected" >뜻 선택</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-   </select>
- </div>
-  
- <div>
-    <textarea class="asso"  placeholder="연상법"></textarea>
- </div>
-
- <div>
-  <div class="box">
-   <div class="image" align="center">       
-      <input id="inputFile" type="file"></input>
-   </div>
-   <div> 
-   <div id="imgPreviewdiv" align="center" >
-      <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
-   </div>
-  </div>    
-      
-   <div>
-    <div class="addbtndiv" >
-        <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
-    </div>
-   </div>
+   
+  <div class="d6">
+     <div>
+      <form action="" method="post" enctype="multipart/form-data" name="">
+          <div class="form-group">
+            <input id="search" type="text"
+                   value="단어 검색"  onfocus="this.value=''" onblur="if(this.value =='') this.value=' 단어 검색';"/></div>
+      </form>
+     </div> 
   </div>
- </div>
- 
+        
+  <div class="d4">
+     <div>
+       <select class="means" >
+          <option selected="selected" >뜻 선택</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+       </select>
+     </div>
+  </div>
+     
+  <div class="d2">    
+     <div>
+        <textarea class="asso"  align="center"  placeholder="연상법"></textarea>
+     </div>
+  </div>
+  
+  <div class="d3">
+     <div class="image" align="center">       
+        <input id="inputFile" type="file"></input>
+     </div>
+     <div id="imgPreviewdiv" align="center" >
+        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+     </div>
+  </div>
+  
+  <div class="d5">
+      <div class="addbtndiv" >
+            <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
+      </div>
+  </div> 
   <script>
 
     $(document).ready(function () {
