@@ -29,7 +29,14 @@
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+<style>
+#assohint {
+	color: red;
+}
+.assotext{
+	cursor: pointer;
+}
+</style>
   </head>
   <body>
 <div id="d1">
@@ -154,7 +161,7 @@
 	      mean: $("#Means").val(),
 	      asso: $("#message-text").val(),
 	      aphoto: $("#inputFile").val(),
-	      hint : $("#assohint").text()
+	      hint : $("span[id='assohint']").text()
 	    }, function(result) {
 	      if (result.status == "success") {
 	        location.href = "list.html";
@@ -172,7 +179,7 @@
          var divAssos2 = document.getElementById("message-text").value.split(" ");
          var asso = ""; 
          for (var i = 0; i < divAssos2.length; i++) {
-           asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
+           asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='assotext' data-index='" + i + "'>";
            asso += divAssos2[i];  
            asso += "</span>";
            asso += " ";       
@@ -182,24 +189,17 @@
   </script>
   
 <script type= "text/javascript">
-  function changeValue2(index){
-	  document.getElementById("text"+index).setAttribute( 'id', 'assohint');
+  function changeValue2(index){   
 	  $(document).ready(function () {      	
-          var text = $("#assohint").text();
-          console.log(text);
+	  	document.getElementById("text"+index).setAttribute( 'id', 'assohint');	  		
+	  	/* document.getElementById("assohint").setAttribute( 'id', "text"+index); */	  	 
       });
 	  
      /* console.log($("#assohint").val()); 
       divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
     }
   </script>
-  <script type="text/javascript">
-        
-  </script>
-  
-  
   <script>
-    
 $("#btn1").click(function(event) {
 	$.getJSON("../ajax/searchList/list.do", function (result) {
 		var ul = $("#list");
