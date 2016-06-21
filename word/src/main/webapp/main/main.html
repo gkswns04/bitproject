@@ -93,8 +93,10 @@ body {
       <img  src="../images/logo.png" alt="logo"/>
   </span>
   <span id="signindiv">
-     <img data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
+	  <img id="sign" data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
+	  <img id="logout" href="#logout" src="../images/logout.png" alt="logout" />
   </span>
+  
 
   <div id="searchdiv" align="center">
   <form method="get" action="../list/list.html">
@@ -146,6 +148,7 @@ body {
 											<label for="password" class="youpasswd" data-icon="p"> Your password</label>
 											<input id="password" name="password" required="required" type="password"
 											    placeholder="eg. X8df!90EO" />
+											    
 										</p>
 										<p class="keeplogin">
 											<input type="checkbox" name="loginkeeping" id="loginkeeping"
@@ -160,9 +163,13 @@ body {
 											us</a>
 									</p>
 									</form>
+							</div>
 
 
-								</div>
+
+
+
+
 
 								<div id="register" class="animate form">
 									<form name="regi" autocomplete="on">
@@ -177,14 +184,14 @@ body {
 											<label for="emailsignup" class="youmail" data-icon="e">
 												Your email</label> <input id="emailsignup" name="emailsignup"
 												required="required" type="email"
-												placeholder="mysupermail@mail.com" onblur=checkvalue();/>
+												placeholder="mysupermail@mail.com" />
 										</p>
 										<p>
 											<label for="passwordsignup" class="youpasswd" data-icon="p">Your
 												password </label> 
 												<input id="passwordsignup" name="passwordsignup"
 												required="required" type="password"
-												placeholder="eg. X8df!90EO" onblur=checkvalue();/>
+												placeholder="eg. X8df!90EO" />
 										</p>
 										<p>
 											<label for="passwordsignup_confirm" class="youpasswd"
@@ -228,16 +235,30 @@ body {
   $('#passwordsignup_confirm').keyup(function(){
    if($('#passwordsignup').val()!=$('#passwordsignup_confirm').val()){
     $('font[name=check]').text('');
-    $('font[name=check]').html("암호틀림");
+    $('font[name=check]').html("암호가 일치하지 않습니다.");
    }else {
     $('font[name=check]').text('');
-    $('font[name=check]').html("암호맞음");
+    $('font[name=check]').html("암호가 일치합니다.");
    }
   }); //#chpass.keyup
  });
 </script>
 
-
+<script>
+$.post("../auth/log.do", {
+	nick : $("#usernamesignup").val(),
+	email : $("#emailsignup").val(),
+	password : $("#passwordsignup").val()
+}, function(result) {
+	if (result.status == "success") {
+		$('#sign').css("display", "none");
+		$('#logout').css("display", "");
+	} else if (result.status == "failure"){
+		$('#sign').css("display", "");
+		$('#logout').css("display", "none");
+	}
+}, "json");
+</script>
 
 
 	<script>
@@ -254,6 +275,8 @@ body {
 				}
 			}, "json");
 		});
+		
+		$("#logout").click(function(event) {location.href = "../auth/logout.do";});
 	</script>
 </body>
 </html>

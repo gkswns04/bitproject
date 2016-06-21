@@ -1,5 +1,9 @@
 package wordstudy.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
 /*import org.springframework.web.util.WebUtils;
 */
 import javax.servlet.http.Cookie;
@@ -13,7 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+
+import com.google.gson.Gson;
 
 import wordstudy.service.MemberService;
 import wordstudy.vo.Member;
@@ -74,7 +81,24 @@ public class AuthController {
                           //    관리하는 값을 제거하지 못한다.
     return "redirect:login.do";
   }
-}
+  
+  @RequestMapping(value="/log", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String log(HttpSession session)throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+    	if(session.getAttribute("loginUser") != null) {
+    		result.put("status", "success");
+    	}else if (session.getAttribute("loginUser") == null) {
+    		result.put("status", "failure");
+    	}
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+}//
 
 
 
