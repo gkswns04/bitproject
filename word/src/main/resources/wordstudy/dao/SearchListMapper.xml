@@ -36,6 +36,7 @@
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO
 		AND A.MNO = R.MNO
+		AND W.WORD = #{word}
     order by A.LIKES DESC
     limit #{startIndex}, #{length}
   </select>
@@ -51,7 +52,6 @@
     from ASSOS;
   </select>
 </mapper>
-
 
 
 

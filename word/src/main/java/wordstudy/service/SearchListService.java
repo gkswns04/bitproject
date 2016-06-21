@@ -8,7 +8,7 @@ public interface SearchListService {
   void add(SearchList searchList);
   void delete(int no);
   SearchList retrieve(int no);
-  List<SearchList> list(int pageNo, int pageSize);
+  List<SearchList> list(int pageNo, int pageSize, String word);
   void change(SearchList searchList);
   int countPage(int pageSize);
 }

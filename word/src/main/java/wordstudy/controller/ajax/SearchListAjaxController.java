@@ -68,7 +68,8 @@ public class SearchListAjaxController {
   @ResponseBody
   public String list(
       @RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="3") int pageSize) 
+      @RequestParam(defaultValue="3") int pageSize,
+      @RequestParam String word)
       throws ServletException, IOException {
     
     // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
@@ -87,7 +88,7 @@ public class SearchListAjaxController {
       pageSize = 50;
     }
     
-    List<SearchList> list = searchListService.list(pageNo, pageSize);
+    List<SearchList> list = searchListService.list(pageNo, pageSize, word);
     System.out.println(list.size());
     HashMap<String,Object> result = new HashMap<>();
     result.put("pageNo", pageNo);

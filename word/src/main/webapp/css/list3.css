@@ -1,12 +1,12 @@
 #list {
 	position: relative;
 	height: auto;
-	top: -25px;
+	margin-top: 15px;
 }
 
 #list li {
 	position: relative;
-	height: 250px;
+	height: 230px;
 }
 #search {
    width: 400px;
