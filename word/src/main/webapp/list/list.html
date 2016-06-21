@@ -21,8 +21,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></scri.row>.containerpt>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/list3.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -51,19 +51,21 @@
 	 </nav>
 	 </span>
    <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
-   <div id="searchdiv" align="center"><input id="search" type="text"
-                                      value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/></div>
+   <div id="searchdiv" align="center">
+   <form method="get" action="../list/list.html">
+   <input id="search" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
+   </form>
+   </div>
    <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
 	 </video>
 </div>
 <div id="d2" class="container">
-	<div id="resultword" align="right"><font size="15">Crack</font></div>
-	<div id="resultmean" align="left">1) 갈라지다<br>2) 깨지다</div>
+	<div id="resultword" align="right"></div>
+	<div id="resultmean" align="left"></div>
 	<div id="enrolldiv" align="center">
 		<img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" />
 	</div>
-	<div id="noword" align="center"><font face='나눔스퀘어'><h3>에 해당하는 연상법이 없습니다.</h3></div>
 	<div class="contain_box">
       <div class="container">
         <div class="row">
@@ -86,13 +88,13 @@
   						<h4 class="modal-title" id="exampleModalLabel">연상법 등록하기</h4>
             </div><div class="container"></div>
             <div class="modal-body">
-              <form action="" enctype="multipart/form-data" method="post" name="">
+              <form action="" method="post" enctype="multipart/form-data" name="">
 					      <div class="form-group">
 					         <fieldset>
 					            <select name="Means" id="Means">
 					               <option selected="selected">뜻</option>
 					               <option>갈라지다</option>
-					               <option>깨지다</option>					               
+					               <option>깨지다</option>
 					            </select>
 					      </div>
 					      <div class="form-group">
@@ -102,7 +104,7 @@
 					        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
 					        <input id="inputFile" type="file"></input>
 					      </div>
-			</form> 		   
+					   </form> 
             </div>
             <div class="modal-footer">
               <wrapper id="wrapper">
@@ -132,7 +134,6 @@
             </div>
             <div class="modal-footer">
               <wrapper id=wrapper class="second-wrapper">
-              
 	              <p class="login button">
 	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인" onclick="window.location.reload()"/>
 	              </p>
@@ -144,17 +145,16 @@
 </div>
 </div>
 <div id="d3">
-  <div align="center"><button id="btn1" type="button">데이터 가져오기</button></div>
-	<div id="line" align="center"><img src="../images/line.jpg" alt="line" /></div>
+	<div class="line" align="center"><img src="../images/line.jpg" alt="line" /></div>
 	<ul id="list">
 	</ul>
 </div>
-   
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-     <script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script>
   
   $("#assoaddbtn").click(function(event) {	     
 	  $(document).ready(function () {
@@ -205,29 +205,68 @@
       });	  
     }
   </script>
-  <script>
-$("#btn1").click(function(event) {
-	$.getJSON("../ajax/searchList/list.do", function (result) {
+    
+<script>
+var getParameter = function (param) {
+	var returnValue;
+	var url = location.href;
+	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+	for (var i = 0; i < parameters.length; i++) {
+		var varName = parameters[i].split('=')[0];
+		if (varName.toUpperCase() == param.toUpperCase()) {
+			returnValue = parameters[i].split('=')[1];
+			return decodeURIComponent(returnValue);
+		}
+	}
+};
+</script>
+<script>
+loadAsso();
+/* $("#btn1").click(function(event) { */
+function loadAsso() {
+	$.getJSON("../ajax/searchList/list.do?word=" + getParameter('word'), function (result) {
 		var ul = $("#list");
 		var list = result.list;
-	  for (var i in list) {
-		  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
-			"<span class='date'>" + list[i].date + "</span>" +
-			"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
-			"<span class='mean'>" + list[i].mean + "</span>" +
-			"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
-			"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
-			"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
-			"<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
-			"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
-			"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
-			"<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
-			"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
-			"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
-			.appendTo(ul);
-	  }
+		if (list[0] == null) {
+			$("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
+		} else {
+		  for (var i in list) {
+			  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
+				"<span class='date'>" + list[i].date + "</span>" +
+				"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
+				"<span class='mean'>" + list[i].mean + "</span>" +
+				"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
+				"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
+				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
+				"<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
+				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
+				"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
+				"<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
+				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
+				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
+				.appendTo(ul);
+		  }
+		}
 	});
-});
+}
 </script>
+
+
+<script>
+loadMean();
+
+function loadMean() {
+	$("<font size='15'>").html(getParameter('word')).appendTo("#resultword");
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+		console.log(result[0].mean);
+		for (var i in result) {
+			$("<font>").html(result[i].mean + "<br>").appendTo("#resultmean");
+		}
+	});
+}
+</script>
+
+
+
   </body>
   </html>
