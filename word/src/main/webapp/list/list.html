@@ -117,7 +117,7 @@
             </div><div class="container"></div>
             <div class="modal-body">
             <form action="" enctype="multipart/form-data" method="post" name="">
-            <div id="test">
+            <div id="assos">
             	
             </div>
             </form>            
@@ -148,47 +148,57 @@
     <script src="js/bootstrap.min.js"></script>
      <script>
   
-  $("#assoaddbtn").click(function(event) {
-	 $.get("../ajax/word/add.do", {
+  $("#assoaddbtn").click(function(event) {	     
+	  $(document).ready(function () {
+	  $.get("../ajax/word/add.do", {
 	      mean: $("#Means").val(),
 	      asso: $("#message-text").val(),
 	      aphoto: $("#inputFile").val(),
-	      hint : $("#assohint").val()
+	      hint : $("#assohint").text()
 	    }, function(result) {
 	      if (result.status == "success") {
 	        location.href = "list.html";
 	      } else {
 	        window.alert("연상법 등록 실패입니다!");
 	      }
-	    }, "json"
-	  );
+	    }, "json"	  
+	  );});
 	});
  
    </script>
     <script type= "text/javascript">
        function changeValue(){
-         var divTest = document.getElementById("test");
-         var divTest2 = document.getElementById("message-text").value.split(" ");
-         var test3 = ""; 
-         for (var i = 0; i < divTest2.length; i++) {
-           test3 += "<a href='#' id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
-           test3 += divTest2[i];  
-           test3 += "</a>";
-           test3 += " ";       
+         var divAssos = document.getElementById("assos");
+         var divAssos2 = document.getElementById("message-text").value.split(" ");
+         var asso = ""; 
+         for (var i = 0; i < divAssos2.length; i++) {
+           asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='textcolor' data-index='" + i + "'>";
+           asso += divAssos2[i];  
+           asso += "</span>";
+           asso += " ";       
          };
-         divTest.innerHTML = test3;
+         divAssos.innerHTML = asso;
        }
   </script>
   
-  <script type= "text/javascript">
-    function changeValue2(index){
-      document.getElementById("text"+index).setAttribute( 'id', 'assohint');
-      console.log($("#assohint").val());
-      /* divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
+<script type= "text/javascript">
+  function changeValue2(index){
+	  document.getElementById("text"+index).setAttribute( 'id', 'assohint');
+	  $(document).ready(function () {      	
+          var text = $("#assohint").text();
+          console.log(text);
+      });
+	  
+     /* console.log($("#assohint").val()); 
+      divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
     }
   </script>
-    
-    <script>
+  <script type="text/javascript">
+        
+  </script>
+  
+  
+  <script>
     
 $("#btn1").click(function(event) {
 	$.getJSON("../ajax/searchList/list.do", function (result) {
