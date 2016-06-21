@@ -30,8 +30,9 @@
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
-#assohint {
-	color: red;
+.assohint {
+	cursor: pointer;
+	color: red;	
 }
 .assotext{
 	cursor: pointer;
@@ -161,7 +162,7 @@
 	      mean: $("#Means").val(),
 	      asso: $("#message-text").val(),
 	      aphoto: $("#inputFile").val(),
-	      hint : $("span[id='assohint']").text()
+	      hint : $("span[class='assohint']").text()
 	    }, function(result) {
 	      if (result.status == "success") {
 	        location.href = "list.html";
@@ -189,14 +190,19 @@
   </script>
   
 <script type= "text/javascript">
-  function changeValue2(index){   
-	  $(document).ready(function () {      	
-	  	document.getElementById("text"+index).setAttribute( 'id', 'assohint');	  		
-	  	/* document.getElementById("assohint").setAttribute( 'id', "text"+index); */	  	 
-      });
-	  
-     /* console.log($("#assohint").val()); 
-      divTest.innerHTML = "<b><font color='red'>" + divTest2[0].value + "</font></b>"; */
+  function changeValue2(index){		
+	  $(document).ready(function () {	  	
+			document.getElementById("text"+index).setAttribute( 'class', 'assohint');
+			document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');	  	
+      });	  
+    }
+  </script>
+  <script type= "text/javascript">
+  function changeValue3(index){		
+	  $(document).ready(function () {	  	
+			document.getElementById("text"+index).setAttribute( 'class', 'assotext');
+			document.getElementById("text"+index).setAttribute( 'onClick','changeValue2(' + index + ')');	  	
+      });	  
     }
   </script>
   <script>
