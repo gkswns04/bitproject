@@ -23,15 +23,78 @@ import wordstudy.vo.SearchList;
 public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
   
-  /*@RequestMapping(value="add", produces="application/json;charset=UTF-8")
+  @RequestMapping(value="wordList", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String add(String title, String content) throws ServletException, IOException {
+  public String wordList(String word) throws ServletException, IOException {
 
     SearchList searchList = new SearchList();
-    searchList.setTitle(title);
-    searchList.setContent(content);
+    searchList.setWord(word);
+   
     
     HashMap<String,Object> result = new HashMap<>();
+    if(searchListService.wordList(searchList) != null) {
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="wordMeanAdd", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String add(String word, String mean) throws ServletException, IOException {
+
+    SearchList searchList = new SearchList();
+    searchList.setWord(word);
+    searchList.setMean(mean);
+    
+    
+    HashMap<String,Object> result = new HashMap<>();
+    
+    try {
+      searchListService.wordMeanAdd(searchList);
+      result.put("status", "success");
+    } catch (Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="wordAdd", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String wordAdd(String word) throws ServletException, IOException {
+
+    SearchList searchList = new SearchList();
+    searchList.setWord(word);    
+    
+    
+    HashMap<String,Object> result = new HashMap<>();
+    
+    try {
+      searchListService.wordAdd(searchList);
+      result.put("status", "success");
+    } catch (Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  @RequestMapping(value="add", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String add(String word, String mean, String asso, String assophotPath, String hint) throws ServletException, IOException {
+
+    SearchList searchList = new SearchList();
+    searchList.setWord(word);
+    searchList.setMean(mean);
+    searchList.setAsso(asso);
+    searchList.setAssophotPath(assophotPath);
+    searchList.setHint(hint);
+    
+    HashMap<String,Object> result = new HashMap<>();
+    
     try {
       searchListService.add(searchList);
       result.put("status", "success");
@@ -62,7 +125,7 @@ public class SearchListAjaxController {
   public String detail(int no) throws ServletException, IOException {
     SearchList searchList = searchListService.retrieve(no);
     return new Gson().toJson(searchList);
-  }*/
+  }
   
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody

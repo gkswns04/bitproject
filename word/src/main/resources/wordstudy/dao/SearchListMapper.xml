@@ -5,19 +5,40 @@
   
 <mapper namespace="wordstudy.dao.SearchListDao">
   <resultMap type="SearchList" id="SearchListMap">
+    <id     column="ANO"    property="no"/>
+    <result column="Mean"  property="mean"/>
+    <result column="Word"  property="word"/>
+    <result column="Asso"  property="asso"/>
+    <result column="A_phot"    property="assophotPath"/>
+    <result column="HINT"    property="hint"/>    
     <result column="NIC"    property="nick"/>
     <result column="LIKES"  property="likeNo"/>
     <result column="HATES"    property="hateNo"/>
-    <result column="A_PHOT"    property="assophotPath"/>
     <result column="PHOT"    property="prophotPath"/>
   </resultMap>
+    
+  <insert id="insert" parameterType="SearchList">
+    insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR) 
+    values((select MENO from MEANS where mean=#{mean}), 10, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N');    
   
-  <!-- <insert id="insert" parameterType="SearchList">
-    insert into BOARDS(TITLE,CONTS,PWD,CDT)
-    values(#{title},#{content},#{password},now())
   </insert>
   
-  <update id="update" parameterType="SearchList">
+  <insert id="wordAdd" parameterType="SearchList">
+    insert into WORDS(word) 
+    values(#{word});
+  </insert>
+  
+  <insert id="wordMeanAdd" parameterType="SearchList">        
+    insert into MEANS(word,mean) 
+    values(#{word},#{mean});
+  </insert>
+  
+  <select id="wordList" resultType="SearchList" parameterType="SearchList">
+    select * from words where word=#{word}  
+  
+  </select>
+  
+<!--   <update id="update" parameterType="SearchList">
     update BOARDS set
       TITLE=#{title}, 
       CONTS=#{content}, 
@@ -29,7 +50,7 @@
     delete from BOARDS 
     where BNO=#{no}
   </delete> -->
-
+ 
   <select id="selectList" resultMap="SearchListMap" parameterType="map">
     SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR 
 		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
