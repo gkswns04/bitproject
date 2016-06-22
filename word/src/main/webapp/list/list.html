@@ -233,10 +233,23 @@ var getParameter = function (param) {
 };
 </script>
 <script>
-loadAsso();
-/* $("#btn1").click(function(event) { */
-function loadAsso() {
-	$.getJSON("../ajax/searchList/list.do?word=" + getParameter('word'), function (result) {
+loadMean();
+
+function loadMean() {
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
+	for (i=1; i < result.length; i++) {
+		$("<font size='4'>").html(result[i].mean + " &nbsp").appendTo("#resultmean");
+	}
+	loadAsso(result[0].word);
+	});	
+}
+</script>
+
+<script>
+
+function loadAsso(word) {
+	$.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
 		var ul = $("#list");
 		var list = result.list;
 		if (list[0] == null) {
@@ -262,23 +275,5 @@ function loadAsso() {
 	});
 }
 </script>
-
-
-<script>
-loadMean();
-
-function loadMean() {
-	$("<font size='15'>").html(getParameter('word')).appendTo("#resultword");
-	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
-		console.log(result[0].mean);
-		for (var i in result) {
-			$("<font>").html(result[i].mean + " <br>").appendTo("#resultmean");
-		}
-	});
-}
-</script>
-
-
-
   </body>
   </html>

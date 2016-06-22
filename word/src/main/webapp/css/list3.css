@@ -1,7 +1,7 @@
 #list {
 	position: relative;
 	height: auto;
-	margin-top: 15px;
+	margin-top: 12px;
 }
 
 #list li {
@@ -73,18 +73,20 @@ video#bgvid {
 }
 #resultword {
 	position: absolute;
-   width: 100px;
+   width: auto;
    height: 100px;
    top: 50px;
-   right: 50%;
+   left: 50%;
+   margin: 0 0 0 -180px;
 }
 #resultmean {
    position: absolute;
-   width: 100px;
-   height: 100px;
-   top: 80px;
+   width: 490px;
+   height: auto;
+   top: 140px;
    left: 50%;
-   margin: 0 0 0 30px;
+   margin: 0 0 0 -180px;
+   padding-left: 5px;
 }
 .nic {
        position: absolute;
