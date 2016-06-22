@@ -64,7 +64,7 @@
 	<div id="resultword" align="right"></div>
 	<div id="resultmean" align="left"></div>
 	<div id="enrolldiv" align="center">
-		<img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" />
+		<img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" onclick="meansValue()"/>
 	</div>
 	<div class="contain_box">
       <div class="container">
@@ -92,9 +92,8 @@
 					      <div class="form-group">
 					         <fieldset>
 					            <select name="Means" id="Means">
-					               <option selected="selected">뜻</option>
-					               <option>갈라지다</option>
-					               <option>깨지다</option>
+					               
+					               
 					            </select>
 					      </div>
 					      <div class="form-group">
@@ -174,7 +173,20 @@
 	});
  
    </script>
-    <script type= "text/javascript">
+<script type= "text/javascript">
+  function meansValue(){
+     $(document).ready(function () {      
+      var divMeans1 = document.getElementById("Means");
+      var divMeans2 = $("div[id='resultmean']").text().split(" ");      
+      var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>"; 
+         for (var i = 0; i < divMeans2.length; i++) {        	 
+        	 divMeans3 += "<option>" + divMeans2[i].substring(2, divMeans2[i].length) + "</option>";        	        
+         };
+         divMeans1.innerHTML = divMeans3;
+    	 }); 	  
+     }
+</script>
+<script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
          var divAssos2 = document.getElementById("message-text").value.split(" ");
@@ -187,7 +199,7 @@
          };
          divAssos.innerHTML = asso;
        }
-  </script>
+</script>
   
 <script type= "text/javascript">
   function changeValue2(index){		
@@ -260,7 +272,7 @@ function loadMean() {
 	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
 		console.log(result[0].mean);
 		for (var i in result) {
-			$("<font>").html(result[i].mean + "<br>").appendTo("#resultmean");
+			$("<font>").html(result[i].mean + " <br>").appendTo("#resultmean");
 		}
 	});
 }
