@@ -14,4 +14,5 @@ public interface SearchListService {
   int countPage(int pageSize);
   void wordMeanAdd(SearchList searchList);
   void wordAdd(SearchList searchList);
+  void likesUpdate(SearchList searchList);
 }

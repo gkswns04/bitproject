@@ -38,14 +38,10 @@
   
   </select>
   
-<!--   <update id="update" parameterType="SearchList">
-    update BOARDS set
-      TITLE=#{title}, 
-      CONTS=#{content}, 
-      CDT=now() 
-    where BNO=#{no}
+  <update id="likesUpdate" parameterType="SearchList">
+    update assos set likes=likes+1 where asso=#{asso};    
   </update>
-  
+  <!--   
   <delete id="delete" parameterType="int">
     delete from BOARDS 
     where BNO=#{no}

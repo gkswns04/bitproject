@@ -186,6 +186,24 @@ public class SearchListAjaxController {
     return new Gson().toJson(result);
   }
   
+ @RequestMapping(value="likesUpdate",    
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String likesUpdate(String asso) throws ServletException, IOException {
+    
+    SearchList searchList = new SearchList();    
+    searchList.setAsso(asso);    
+    
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      searchListService.likesUpdate(searchList);
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
   /*@RequestMapping(value="update",
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")

@@ -18,6 +18,10 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.insert(searchList);
   }
   
+  public void likesUpdate(SearchList searchList) {
+    searchListDao.likesUpdate(searchList);
+  }
+  
   public void wordAdd(SearchList searchList) {
     searchListDao.wordAdd(searchList);
   }

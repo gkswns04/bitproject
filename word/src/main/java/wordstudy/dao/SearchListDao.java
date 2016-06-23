@@ -18,6 +18,7 @@ public interface SearchListDao {
   SearchList wordList(SearchList searchList);
   void wordMeanAdd(SearchList searchList);
   void wordAdd(SearchList searchList);
+  void likesUpdate(SearchList searchList);
   
 }
 
