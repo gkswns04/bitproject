@@ -31,11 +31,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
 .assohint {
-	cursor: pointer;
-	color: red;	
+   cursor: pointer;
+   color: red;   
 }
 .assotext {
-	cursor: pointer;
+   cursor: pointer;
 }
 </style>
   </head>
@@ -43,13 +43,13 @@
 <div id="d1">
    <span id="threediv">
    <nav>
-		 <ul>
-			 <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
+       <ul>
+          <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
        <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br><font size='3'>연상법 학습</font></a></li>
        <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br><font size='3'>마이 페이지</font></a></li>
-		 </ul>
-	 </nav>
-	 </span>
+       </ul>
+    </nav>
+    </span>
    <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
    <div id="searchdiv" align="center">
    <form method="get" action="../list/list.html">
@@ -58,15 +58,15 @@
    </div>
    <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
-	 </video>
+    </video>
 </div>
 <div id="d2" class="container">
-	<div id="resultword" align="right"></div>
-	<div id="resultmean" align="left"></div>
-	<div id="enrolldiv" align="center">
-		<img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" onclick="meansValue()"/>
-	</div>
-	<div class="contain_box">
+   <div id="resultword" align="right"></div>
+   <div id="resultmean" align="left"></div>
+   <div id="enrolldiv" align="center">
+      <img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" onclick="meansValue()"/>
+   </div>
+   <div class="contain_box">
       <div class="container">
         <div class="row">
         </div>
@@ -78,37 +78,37 @@
     </div>
     <!-- first modal -->
     <div class="modal" id="myModal" aria-hidden="true" style="display: none; z-index: 1050;">
-    	
-    	<div class="modal-dialog modal-lg">
+       
+       <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      					<span aria-hidden="true">&times;</span>
-   						</button>
-  						<h4 class="modal-title" id="exampleModalLabel">연상법 등록하기</h4>
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                    <h4 class="modal-title" id="exampleModalLabel">연상법 등록하기</h4>
             </div><div class="container"></div>
             <div class="modal-body">
               <form action="" method="post" enctype="multipart/form-data" name="">
-					      <div class="form-group">
-					         <fieldset>
-					            <select name="Means" id="Means">
-					               
-					               
-					            </select>
-					      </div>
-					      <div class="form-group">
-					         <textarea class="form-control" id="message-text" placeholder="연상법"></textarea>
-					      </div>
-					      <div class="form-group" id="imgArea">       
-					        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
-					        <input id="inputFile" type="file"></input>
-					      </div>
-					   </form> 
+                     <div class="form-group">
+                        <fieldset>
+                           <select name="Means" id="Means">
+                              
+                              
+                           </select>
+                     </div>
+                     <div class="form-group">
+                        <textarea class="form-control" id="message-text" placeholder="연상법"></textarea>
+                     </div>
+                     <div class="form-group" id="imgArea">       
+                       <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+                       <input id="inputFile" type="file"></input>
+                     </div>
+                  </form> 
             </div>
             <div class="modal-footer">
-              <wrapper id="wrapper">
+              <wrapper id="wrapper" >
               <p class="change_link">
-              	<a data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
+                 <a data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
               </p>
               </wrapper>
             </div>
@@ -117,8 +117,8 @@
     </div>
     <!-- second modal -->
     <div class="modal" id="myModal2" aria-hidden="true" style="display: none; z-index: 1060;">
-    	<div class="popup">
-    	<div class="modal-dialog modal-lg">
+       <div class="popup">
+       <div class="modal-dialog modal-lg">
           <div class="modal-content second-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -127,15 +127,15 @@
             <div class="modal-body">
             <form action="" enctype="multipart/form-data" method="post" name="">
             <div id="assos">
-            	
+               
             </div>
             </form>            
             </div>
             <div class="modal-footer">
-              <wrapper id=wrapper class="second-wrapper">
-	              <p class="login button">
-	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인" onclick="window.location.reload()"/>
-	              </p>
+              <wrapper id=wrapper class="second-wrapper" style="top:270px">
+                 <p class="login button">
+                    <input type="submit" class="submitbtn" id="assoaddbtn" value="확인" onclick="window.location.reload()"/>
+                 </p>
               <wrapper>
             </div>
           </div>
@@ -144,9 +144,9 @@
 </div>
 </div>
 <div id="d3">
-	<div class="line" align="center"><img src="../images/line.jpg" alt="line" /></div>
-	<ul id="list">
-	</ul>
+   <div class="line" align="center"><img src="../images/line.jpg" alt="line" /></div>
+   <ul id="list">
+   </ul>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -155,22 +155,22 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
   
-  $("#assoaddbtn").click(function(event) {	     
-	  $(document).ready(function () {
-	  $.get("../ajax/searchList/add.do", {
-	      mean: $("#Means").val(),
-	      asso: $("#message-text").val(),
-	      aphoto: $("#inputFile").val(),
-	      hint : $("span[class='assohint']").text()
-	    }, function(result) {
-	      if (result.status == "success") {
-	        location.href = "list.html";
-	      } else {
-	        window.alert("연상법 등록 실패입니다!");
-	      }
-	    }, "json"	  
-	  );});
-	});
+  $("#assoaddbtn").click(function(event) {        
+     $(document).ready(function () {
+     $.get("../ajax/searchList/add.do", {
+         mean: $("#Means").val(),
+         asso: $("#message-text").val(),
+         aphoto: $("#inputFile").val(),
+         hint : $("span[class='assohint']").text()
+       }, function(result) {
+         if (result.status == "success") {
+           location.href = "list.html";
+         } else {
+           window.alert("연상법 등록 실패입니다!");
+         }
+       }, "json"     
+     );});
+   });
  
    </script>
 <script type= "text/javascript">
@@ -179,11 +179,11 @@
       var divMeans1 = document.getElementById("Means");
       var divMeans2 = $("div[id='resultmean']").text().split(" ");      
       var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>"; 
-         for (var i = 0; i < divMeans2.length; i++) {        	 
-        	 divMeans3 += "<option>" + divMeans2[i].substring(2, divMeans2[i].length) + "</option>";        	        
+         for (var i = 0; i < divMeans2.length; i++) {            
+            divMeans3 += "<option>" + divMeans2[i].substring(2, divMeans2[i].length) + "</option>";                   
          };
          divMeans1.innerHTML = divMeans3;
-    	 }); 	  
+        });      
      }
 </script>
 <script type= "text/javascript">
@@ -202,93 +202,93 @@
 </script>
   
 <script type= "text/javascript">
-  function changeValue2(index){		
-	  $(document).ready(function () {	  	
-			document.getElementById("text"+index).setAttribute( 'class', 'assohint');
-			document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');	  	
-      });	  
+  function changeValue2(index){      
+     $(document).ready(function () {        
+         document.getElementById("text"+index).setAttribute( 'class', 'assohint');
+         document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');        
+      });     
     }
   </script>
   <script type= "text/javascript">
-  function changeValue3(index){		
-	  $(document).ready(function () {	  	
-			document.getElementById("text"+index).setAttribute( 'class', 'assotext');
-			document.getElementById("text"+index).setAttribute( 'onClick','changeValue2(' + index + ')');	  	
-      });	  
+  function changeValue3(index){      
+     $(document).ready(function () {        
+         document.getElementById("text"+index).setAttribute( 'class', 'assotext');
+         document.getElementById("text"+index).setAttribute( 'onClick','changeValue2(' + index + ')');        
+      });     
     }
   </script>
     
 <script>
 var getParameter = function (param) {
-	var returnValue;
-	var url = location.href;
-	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
-	for (var i = 0; i < parameters.length; i++) {
-		var varName = parameters[i].split('=')[0];
-		if (varName.toUpperCase() == param.toUpperCase()) {
-			returnValue = parameters[i].split('=')[1];
-			return decodeURIComponent(returnValue);
-		}
-	}
+   var returnValue;
+   var url = location.href;
+   var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+   for (var i = 0; i < parameters.length; i++) {
+      var varName = parameters[i].split('=')[0];
+      if (varName.toUpperCase() == param.toUpperCase()) {
+         returnValue = parameters[i].split('=')[1];
+         return decodeURIComponent(returnValue);
+      }
+   }
 };
 </script>
 <script>
 loadMean();
 
 function loadMean() {
-	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
-	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
-	for (i=1; i < result.length; i++) {
-		$("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
-	}
-	  $.get("../ajax/searchList/wordList.do", {
-			      word: result[0].word			      
-			    }, function(results) {
-			      if (results.status == "success") {
-			    	  console.log(result[0].word + "는 DB에 있다");			    	  
-			      } else {
-			    	  console.log(result[0].word + "는 DB에 없다");
-			    	  wordAdd(result[0].word);
-			    	  wordMeanAdd(result[0].word);
-			      }
-			    }, "json"	  
-			  );
-	
-	loadAsso(result[0].word);
-	});	
+   $.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+   $("<font size='15'>").html(result[0].word).appendTo("#resultword");
+   for (i=1; i < result.length; i++) {
+      $("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
+   }
+     $.get("../ajax/searchList/wordList.do", {
+               word: result[0].word               
+             }, function(results) {
+               if (results.status == "success") {
+                  console.log(result[0].word + "는 DB에 있다");                  
+               } else {
+                  console.log(result[0].word + "는 DB에 없다");
+                  wordAdd(result[0].word);
+                  wordMeanAdd(result[0].word);
+               }
+             }, "json"     
+           );
+   
+   loadAsso(result[0].word);
+   });   
 }
 </script>
 <script>
 function wordAdd(word) {
-	 $(document).ready(function () {
-		  $.get("../ajax/searchList/wordAdd.do", {
-		      word: word
-		    }, function(result) {
-		      if (result.status == "success") {
-		    	 console.log(word);
-		      } else {
-		        window.alert("단어 등록 실패입니다!");
-		      }
-		    }, "json"	  
-		  );});
-		}
+    $(document).ready(function () {
+        $.get("../ajax/searchList/wordAdd.do", {
+            word: word
+          }, function(result) {
+            if (result.status == "success") {
+              console.log(word);
+            } else {
+              window.alert("단어 등록 실패입니다!");
+            }
+          }, "json"     
+        );});
+      }
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
-		for (i=1; i < result.length; i++) {			
-			 $.get("../ajax/searchList/wordMeanAdd.do", {
-		      word: word,
-		      mean: result[i].mean.substring(2, result[i].mean.length)		      
-		    }, function(result) {
-		      if (result.status == "success") {		    	  
-		    	  window.alert("단어뜻 등록 성공입니다!");		    	  
-		      } else {
-		        window.alert("단어뜻 등록 실패입니다!");
-		      }
-		    }, "json"	  
-		  );}});
-		}
+      $.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+      for (i=1; i < result.length; i++) {         
+          $.get("../ajax/searchList/wordMeanAdd.do", {
+            word: word,
+            mean: result[i].mean.substring(2, result[i].mean.length)            
+          }, function(result) {
+            if (result.status == "success") {               
+               window.alert("단어뜻 등록 성공입니다!");               
+            } else {
+              window.alert("단어뜻 등록 실패입니다!");
+            }
+          }, "json"     
+        );}});
+      }
 </script>
 
 
@@ -296,30 +296,30 @@ function wordMeanAdd(word) {
 <script>
 
 function loadAsso(word) {
-	$.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
-		var ul = $("#list");
-		var list = result.list;
-		if (list[0] == null) {
-			$("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
-		} else {
-		  for (var i in list) {
-			  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
-				"<span class='date'>" + list[i].date + "</span>" +
-				"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
-				"<span class='mean'>" + list[i].mean + "</span>" +
-				"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
-				"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
-				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
-				"<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
-				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
-				"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
-				"<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
-				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
-				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
-				.appendTo(ul);
-		  }
-		}
-	});
+   $.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
+      var ul = $("#list");
+      var list = result.list;
+      if (list[0] == null) {
+         $("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
+      } else {
+        for (var i in list) {
+           $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
+            "<span class='date'>" + list[i].date + "</span>" +
+            "<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
+            "<span class='mean'>" + list[i].mean + "</span>" +
+            "<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
+            "<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
+            "<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
+            "<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
+            "<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
+            "<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
+            "<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
+            "<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
+            "<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
+            .appendTo(ul);
+        }
+      }
+   });
 }
 </script>
   </body>
