@@ -41,6 +41,7 @@ public class AuthController {
   }
   
   @RequestMapping(value="/login", method=RequestMethod.POST)
+  @ResponseBody
   public String login(
       String email,
       String password,
@@ -57,17 +58,18 @@ public class AuthController {
       cookie.setMaxAge(0);
       response.addCookie(cookie);
     }
+    HashMap<String,Object> result = new HashMap<>();
     if (memberService.exist(email, password)) {
       Member member = memberService.retrieveByEmail(email);
-      
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", member);
       
+      result.put("status", "success");
       //model.addAttribute("loginUser", member); 
-      return "redirect:../main/main.html";
     } else { // 로그인 실패!
-    	return "redirect:login.do";
+    	result.put("status", "fail");
     }
+    return new Gson().toJson(result);
   }
   /*WebUtils.setSessionAttribute(request,"고유명", userVo 유저정보 Vo);*/
   

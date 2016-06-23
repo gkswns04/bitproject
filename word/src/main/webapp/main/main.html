@@ -137,11 +137,11 @@ body {
 							<div id="wrapper">
 								<div id="login" class="animate form">
 									
-									<form action="../auth/login.do" autocomplete="on" method='post'>
+									<form autocomplete="on" method='post'>
 										<h1>Log in</h1>
 										<p>
 											<label for="username" class="uname" data-icon="u">Your email</label>
-											<input id="username" name="email" required="required" type="text"
+											<input id="email" name="email" required="required" type="text"
 												placeholder="mymail@mail.com" />
 										</p>
 										<p>
@@ -156,7 +156,7 @@ body {
 										    <label for="loginkeeping">Keep me logged in</label>
 										</p>
 									<p class="login button">
-										<input type="submit" id="loginbtn" value="LOGIN" style="text-align:center;" />
+										<input  id="loginbtn" name="loginbtn" value="LOGIN" style="text-align:center;" readonly />
 									</p>
 									<p class="change_link">
 										Not a member yet ? <a href="#toregister" class="to_register">Join
@@ -202,7 +202,7 @@ body {
 												<font name="check" size="2" color="red"></font> 
 										</p>
 										<p class="signin button">
-											<input id="signinbtn" value="Sign up" style="text-align:center;" />
+											<input id="signinbtn" value="Sign up" style="text-align:center;" readonly/>
 										</p>
 										<p class="change_link">
 											Already a member ? <a href="#tologin" class="to_register">
@@ -226,24 +226,52 @@ body {
     
    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
    
+   
+
 <script>
+ <!-- 로그인!!! -->
+$("#loginbtn").click(function(event) {
+	$.post("../auth/login.do", {
+		email : $("#email").val(),
+		password : $("#password").val()
+	}, function(result) {
+		if (result.status == "success") {
+			location.href = "main.html";
+		} else if (result.status == "fail"){
+			window.alert("아이디와 비밀번호가 맞지 않습니다.");
+			setTimeout(function(){$("#email").focus();}, 1);
+		}
+	}, "json")
+});
+ 
+ 
+ 
+ 
+ 
+<!-- 회원가입시 pw / pw확인 일치하는지 스크립트 -->
  $(function(){
   $('#passwordsignup').keyup(function(){
    $('font[name=check]').text('');
-  }); //#user_pass.keyup
+  });
 
   $('#passwordsignup_confirm').keyup(function(){
    if($('#passwordsignup').val()!=$('#passwordsignup_confirm').val()){
     $('font[name=check]').text('');
     $('font[name=check]').html("암호가 일치하지 않습니다.");
+    return;
    }else {
     $('font[name=check]').text('');
     $('font[name=check]').html("암호가 일치합니다.");
    }
-  }); //#chpass.keyup
+  });
  });
+ 
+
 </script>
 
+
+
+<!-- 로그인 하면 로그아웃 버튼 나타나게! -->
 <script>
 $.post("../auth/log.do", {
 	nick : $("#usernamesignup").val(),
@@ -260,23 +288,68 @@ $.post("../auth/log.do", {
 }, "json");
 </script>
 
-
-	<script>
-		$("#signinbtn").click(function(event) {
-			$.post("../ajax/member/add.do", {
-				nick : $("#usernamesignup").val(),
-				email : $("#emailsignup").val(),
-				password : $("#passwordsignup").val()
-			}, function(result) {
-				if (result.status == "success") {
-					location.href = "main.html";
-				} else {
-					window.alert("회원 등록 실패입니다!");
-				}
-			}, "json");
-		});
+<script>
+<!-- 회원가입 -->
+	$("#signinbtn").click(function(event) {
+		var member;
 		
-		$("#logout").click(function(event) {location.href = "../auth/logout.do";});
-	</script>
+		var theForm = document.regi;
+		$.post("../ajax/member/detailByEmail.do", {
+			email : $("#emailsignup").val()
+		}, function(result) {
+				member = result;
+			}, "json");
+		
+		console.log(member);
+		
+		if(member != null) {
+			window.alert("이메일 중복입니다.");
+		}else {
+			if(theForm.usernamesignup.value!="" && theForm.emailsignup.value!="" && theForm.passwordsignup.value!="" && theForm.passwordsignup_confirm.value!="" ){
+					if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
+							$.post("../ajax/member/add.do", {
+								nick : $("#usernamesignup").val(),
+								email : $("#emailsignup").val(),
+								password : $("#passwordsignup").val()
+							}, function(result) {
+								if (result.status == "success") {
+									location.href = "main.html";
+								} else {
+									 window.alert("회원 등록 실패입니다!"); 
+									}
+								}, "json");
+					}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
+					window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+				}
+			} else if(theForm.usernamesignup.value=="" || theForm.emailsignup.value=="" || theForm.passwordsignup.value=="" || theForm.passwordsignup_confirm.value=="" ){
+				if(theForm.usernamesignup.value==""){
+					window.alert("닉네임을 입력해 주시기 바랍니다.");
+					theForm.usernamesignup.focus();
+				}else if(theForm.emailsignup.value==""){
+					window.alert("이메일을 입력해 주시기 바랍니다.");
+					theForm.emailsignup.focus();
+				}else if(theForm.passwordsignup.value==""){
+					window.alert("비밀번호를 입력해 주시기 바랍니다.");
+					theForm.passwordsignup.focus();
+				}else {
+					window.alert("비밀번호를 확인해 주시기 바랍니다.");
+					theForm.passwordsignup_confirm.focus();
+				}
+			}
+		}
+	});
+	
+	$("#logout").click(function(event) {location.href = "../auth/logout.do";});
+
+</script>
+
+
+<script>
+
+</script>
+
+
+
+
 </body>
 </html>
