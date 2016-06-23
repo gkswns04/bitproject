@@ -1,16 +1,23 @@
 package wordstudy.controller.ajax;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
 
@@ -22,6 +29,7 @@ import wordstudy.vo.SearchList;
 @RequestMapping("/ajax/searchList/")
 public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
+  @Autowired ServletContext servletContext;
   
   @RequestMapping(value="wordList", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -84,26 +92,42 @@ public class SearchListAjaxController {
   }
   @RequestMapping(value="add", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String add(String word, String mean, String asso, String assophotPath, String hint) throws ServletException, IOException {
+  public String add(MultipartHttpServletRequest request, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
 
     SearchList searchList = new SearchList();
     searchList.setWord(word);
     searchList.setMean(mean);
     searchList.setAsso(asso);
-    searchList.setAssophotPath(assophotPath);
     searchList.setHint(hint);
+    System.out.println(mean);
     
-    HashMap<String,Object> result = new HashMap<>();
+    Map<String, MultipartFile> files = request.getFileMap();
+    CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
+    System.out.println(cmf.getOriginalFilename());
     
-    try {
-      searchListService.add(searchList);
-      result.put("status", "success");
-    } catch (Exception e) {
-      e.printStackTrace();
-      result.put("status", "failure");
+    int extPoint = cmf.getOriginalFilename().lastIndexOf(".");
+    if (extPoint > 0) {
+      String filename = System.currentTimeMillis() + "-" + count()
+                         + cmf.getOriginalFilename().substring(extPoint);
+      System.out.printf("새파일명=%s\n", filename);
+      String realPath = servletContext.getRealPath("/upload/" + filename);
+      System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
+      try {
+        cmf.transferTo(new File(realPath));
+        searchList.setAssophotPath("../upload/" + filename);
+        searchListService.add(searchList);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
     
-    return new Gson().toJson(result);
+    return "redirect:../list/list.html?word=" + word;
+  }
+  
+  int no = 0;
+  synchronized private int count() {
+    if (++no == 100) no = 1;
+    return no;
   }
   
   @RequestMapping(value="delete", produces="application/json;charset=UTF-8")

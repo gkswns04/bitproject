@@ -8,9 +8,9 @@
     <title>list</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom Style -->
     <link href="../css/style.css" rel="stylesheet">
 
@@ -77,6 +77,7 @@
       </div>
     </div>
     <!-- first modal -->
+    <form method="post" name="modalForm" id="modalForm" >
     <div class="modal" id="myModal" aria-hidden="true" style="display: none; z-index: 1050;">
        
        <div class="modal-dialog modal-lg">
@@ -88,27 +89,29 @@
                     <h4 class="modal-title" id="exampleModalLabel">연상법 등록하기</h4>
             </div><div class="container"></div>
             <div class="modal-body">
-              <form action="" method="post" enctype="multipart/form-data" name="">
-                     <div class="form-group">
-                        <fieldset>
-                           <select name="Means" id="Means">
-                              
-                              
-                           </select>
-                     </div>
-                     <div class="form-group">
-                        <textarea class="form-control" id="message-text" placeholder="연상법"></textarea>
-                     </div>
-                     <div class="form-group" id="imgArea">       
-                       <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
-                       <input id="inputFile" type="file"></input>
-                     </div>
-                  </form> 
+              
+					      <div class="form-group">
+					         <fieldset>
+					            <select name="mean" id="Means">
+					               
+					              
+					            </select>
+					         </fieldset>
+					      </div>
+					      
+					      <div class="form-group">
+					         <textarea class="form-control" id="message-text" placeholder="연상법" name="asso"></textarea>
+					      </div>
+					      <div class="form-group" id="imgArea">       
+					        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+					        <input id="inputFile" type="file" name="photo"></input>
+					      </div>
             </div>
+            
             <div class="modal-footer">
-              <wrapper id="wrapper" >
+              <wrapper id="wrapper">
               <p class="change_link">
-                 <a data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
+              	<a id="btn_submit" data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
               </p>
               </wrapper>
             </div>
@@ -125,23 +128,23 @@
               <h4 class="modal-title" id="exampleModalLabel"><font size="6">힌트가 되는 뜻 부분 체크</font></h4>
             </div><div class="container"></div>
             <div class="modal-body">
-            <form action="" enctype="multipart/form-data" method="post" name="">
             <div id="assos">
-               
+            
             </div>
-            </form>            
+            
             </div>
             <div class="modal-footer">
               <wrapper id=wrapper class="second-wrapper" style="top:270px">
-                 <p class="login button">
-                    <input type="submit" class="submitbtn" id="assoaddbtn" value="확인" onclick="window.location.reload()"/>
-                 </p>
+	              <p class="login button">
+	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인"/>
+	              </p>
               <wrapper>
             </div>
           </div>
         </div>
     </div>
 </div>
+</form>
 </div>
 <div id="d3">
    <div class="line" align="center"><img src="../images/line.jpg" alt="line" /></div>
@@ -153,26 +156,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+
 <script>
-  
-  $("#assoaddbtn").click(function(event) {        
-     $(document).ready(function () {
-     $.get("../ajax/searchList/add.do", {
+  $("#assoaddbtn").submit(function(event) {   
+	   event.preventDefault();
+	  
+	   var fd = new FormData($(this)[0]);
+     $.ajax({
+    	 	 url:"../ajax/searchList/add.do",
+    	 	 type:"POST",
+    	 	 data: fd,
+    	 	 async:false,
+    	 	 cache:false,
+    	 	 contentType:false,
+    	 	 processData:false,
+    	 	 word: $("#wordTo").val(),
          mean: $("#Means").val(),
          asso: $("#message-text").val(),
          aphoto: $("#inputFile").val(),
-         hint : $("span[class='assohint']").text()
-       }, function(result) {
-         if (result.status == "success") {
-           location.href = "list.html";
-         } else {
-           window.alert("연상법 등록 실패입니다!");
+         hint : $("span[class='assohint']").text(),
+         success: function(data) {
          }
-       }, "json"     
-     );});
-   });
- 
-   </script>
+       });
+     return false;
+  	 });
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btn_submit").on("click", function(){
+    $("#myform").submit();
+  });
+});
+
+</script>
 <script type= "text/javascript">
   function meansValue(){
      $(document).ready(function () {      
@@ -202,93 +219,96 @@
 </script>
   
 <script type= "text/javascript">
-  function changeValue2(index){      
-     $(document).ready(function () {        
-         document.getElementById("text"+index).setAttribute( 'class', 'assohint');
-         document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');        
-      });     
+  function changeValue2(index){		
+	  $(document).ready(function () {	  	
+			document.getElementById("text"+index).setAttribute( 'class', 'assohint');
+			document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');
+			$("<input type='hidden' name='hint' value=" + "$('span[class='assohint']').text()'>").html("").appendTo("#assos");
+			
+      });	  
     }
   </script>
   <script type= "text/javascript">
-  function changeValue3(index){      
-     $(document).ready(function () {        
-         document.getElementById("text"+index).setAttribute( 'class', 'assotext');
-         document.getElementById("text"+index).setAttribute( 'onClick','changeValue2(' + index + ')');        
-      });     
+  function changeValue3(index){		
+	  $(document).ready(function () {	  	
+			document.getElementById("text"+index).setAttribute( 'class', 'assotext');
+			document.getElementById("text"+index).setAttribute( 'onClick','changeValue2(' + index + ')');	  	
+      });	  
     }
   </script>
     
 <script>
 var getParameter = function (param) {
-   var returnValue;
-   var url = location.href;
-   var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
-   for (var i = 0; i < parameters.length; i++) {
-      var varName = parameters[i].split('=')[0];
-      if (varName.toUpperCase() == param.toUpperCase()) {
-         returnValue = parameters[i].split('=')[1];
-         return decodeURIComponent(returnValue);
-      }
-   }
+	var returnValue;
+	var url = location.href;
+	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+	for (var i = 0; i < parameters.length; i++) {
+		var varName = parameters[i].split('=')[0];
+		if (varName.toUpperCase() == param.toUpperCase()) {
+			returnValue = parameters[i].split('=')[1];
+			return decodeURIComponent(returnValue);
+		}
+	}
 };
 </script>
 <script>
 loadMean();
 
 function loadMean() {
-   $.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
-   $("<font size='15'>").html(result[0].word).appendTo("#resultword");
-   for (i=1; i < result.length; i++) {
-      $("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
-   }
-     $.get("../ajax/searchList/wordList.do", {
-               word: result[0].word               
-             }, function(results) {
-               if (results.status == "success") {
-                  console.log(result[0].word + "는 DB에 있다");                  
-               } else {
-                  console.log(result[0].word + "는 DB에 없다");
-                  wordAdd(result[0].word);
-                  wordMeanAdd(result[0].word);
-               }
-             }, "json"     
-           );
-   
-   loadAsso(result[0].word);
-   });   
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
+	for (i=1; i < result.length; i++) {
+		$("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
+	}
+	  $.get("../ajax/searchList/wordList.do", {
+			      word: result[0].word			      
+			    }, function(results) {
+			      if (results.status == "success") {
+			    	  console.log(result[0].word + "는 DB에 있다");			    	  
+			      } else {
+			    	  console.log(result[0].word + "는 DB에 없다");
+			    	  wordAdd(result[0].word);
+			    	  wordMeanAdd(result[0].word);
+			      }
+			    }, "json"	  
+			  );
+	loadAsso(result[0].word);
+	});	
 }
 </script>
 <script>
 function wordAdd(word) {
-    $(document).ready(function () {
-        $.get("../ajax/searchList/wordAdd.do", {
-            word: word
-          }, function(result) {
-            if (result.status == "success") {
-              console.log(word);
-            } else {
-              window.alert("단어 등록 실패입니다!");
-            }
-          }, "json"     
-        );});
-      }
+	 $(document).ready(function () {
+		  $.get("../ajax/searchList/wordAdd.do", {
+		      word: word
+		    }, function(result) {
+		      if (result.status == "success") {
+		    	 console.log(word);
+		      } else {
+		        /* window.alert("단어 등록 실패입니다!"); */
+		      }
+		      $("<input type='hidden' id='wordTo' name='word' value='" + word + "'>").html("").appendTo("#myModal");
+		    }, "json"	  
+		  );
+	 		});
+		}
 </script>
 <script>
 function wordMeanAdd(word) {
-      $.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
-      for (i=1; i < result.length; i++) {         
-          $.get("../ajax/searchList/wordMeanAdd.do", {
-            word: word,
-            mean: result[i].mean.substring(2, result[i].mean.length)            
-          }, function(result) {
-            if (result.status == "success") {               
-               window.alert("단어뜻 등록 성공입니다!");               
-            } else {
-              window.alert("단어뜻 등록 실패입니다!");
-            }
-          }, "json"     
-        );}});
-      }
+		$.getJSON("http://192.168.0.61:3000/parseword?word=" + getParameter('word'), function (result) {
+		for (i=1; i < result.length; i++) {			
+			 $.get("../ajax/searchList/wordMeanAdd.do", {
+		      word: word,
+		      mean: result[i].mean.substring(2, result[i].mean.length)		      
+		    }, function(result) {
+		      if (result.status == "success") {		    	  
+		    	  /* window.alert("단어뜻 등록 성공입니다!"); */		    	  
+		      } else {
+		        /* window.alert("단어뜻 등록 실패입니다!"); */
+		      }
+		    }, "json"	  
+		  );}});
+		}
 </script>
 
 
@@ -296,30 +316,30 @@ function wordMeanAdd(word) {
 <script>
 
 function loadAsso(word) {
-   $.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
-      var ul = $("#list");
-      var list = result.list;
-      if (list[0] == null) {
-         $("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
-      } else {
-        for (var i in list) {
-           $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
-            "<span class='date'>" + list[i].date + "</span>" +
-            "<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
-            "<span class='mean'>" + list[i].mean + "</span>" +
-            "<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
-            "<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
-            "<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
-            "<span class='cracker'><img src='../images/cracker.png' alt='cracker' width='165px'/></span>" +
-            "<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
-            "<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
-            "<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
-            "<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
-            "<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
-            .appendTo(ul);
-        }
-      }
-   });
+	$.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
+		var ul = $("#list");
+		var list = result.list;
+		if (list[0] == null) {
+			$("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
+		} else {
+		  for (var i in list) {
+			  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
+				"<span class='date'>" + list[i].date + "</span>" +
+				"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
+				"<span class='mean'>" + list[i].mean + "</span>" +
+				"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
+				"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
+				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
+				"<span class='cracker'><img src='" + list[i].assophotPath + "' alt='' width='165px'/></span>" +
+				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
+				"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
+				"<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
+				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
+				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
+				.appendTo(ul);
+		  }
+		}
+	});
 }
 </script>
   </body>
