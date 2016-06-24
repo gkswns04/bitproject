@@ -1,11 +1,14 @@
 package wordstudy.controller.ajax;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -100,7 +103,8 @@ public class SearchListAjaxController {
     searchList.setMean(mean);
     searchList.setAsso(asso);
     searchList.setHint(hint);
-
+    System.out.println(word);
+    System.out.println(mean);
     
     Map<String, MultipartFile> files = request.getFileMap();
     CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
@@ -114,9 +118,28 @@ public class SearchListAjaxController {
       String realPath = servletContext.getRealPath("/upload/" + filename);
       System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
       try {
-        cmf.transferTo(new File(realPath));
+        File realFile = new File(realPath);
+        cmf.transferTo(realFile);
+        String subs = filename.substring(filename.lastIndexOf("."));
+        String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
+        String realThumbnailPath = servletContext.getRealPath("/upload/" + thumbnailFileNm);
+        File thumbnailFile = new File(realThumbnailPath);
+   
+        int width = 160;
+        int height = 110;
+        // 썸네일 이미지 생성
+        BufferedImage originalImg = ImageIO.read(realFile);
+        BufferedImage thumbnailImg = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+        // 썸네일 그리기 
+        Graphics2D g = thumbnailImg.createGraphics();
+        g.drawImage(originalImg, 0, 0, width, height, null);
+        // 파일생성
+        ImageIO.write(thumbnailImg, "jpg", thumbnailFile);  
+        
         searchList.setAssophotPath("../upload/" + filename);
+        searchList.setAssothumPath("../upload/" + thumbnailFileNm);
         searchListService.add(searchList);
+        
       } catch (Exception e) {
         e.printStackTrace();
       }

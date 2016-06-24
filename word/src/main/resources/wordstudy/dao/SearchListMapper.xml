@@ -10,6 +10,7 @@
     <result column="Word"  property="word"/>
     <result column="Asso"  property="asso"/>
     <result column="A_phot"    property="assophotPath"/>
+    <result column="A_THUM"    property="assothumPath"/>
     <result column="HINT"    property="hint"/>    
     <result column="NIC"    property="nick"/>
     <result column="LIKES"  property="likeNo"/>
@@ -18,8 +19,8 @@
   </resultMap>
     
   <insert id="insert" parameterType="SearchList">
-    insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR) 
-    values((select MENO from MEANS where mean=#{mean}), 10, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N');    
+    insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR, A_THUM) 
+    values((select MENO from MEANS where mean=#{mean}), 10, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
   
   </insert>
   
@@ -48,7 +49,7 @@
   </delete> -->
  
   <select id="selectList" resultMap="SearchListMap" parameterType="map">
-    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE 
+    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM 
 		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO

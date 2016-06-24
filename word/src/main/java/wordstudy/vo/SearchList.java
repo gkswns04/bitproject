@@ -13,6 +13,7 @@ public class SearchList {
   int hateNo;
   String prophotPath;
   String assophotPath;
+  String assothumPath;
   String hint;
   int best;
   boolean favor;
@@ -20,6 +21,25 @@ public class SearchList {
   public SearchList() {
     super();
     // TODO Auto-generated constructor stub
+  }
+
+  public SearchList(int ano, String nick, Date date, String word, String mean, String asso, int likeNo, int hateNo,
+      String prophotPath, String assophotPath, String assothumPath, String hint, int best, boolean favor) {
+    super();
+    this.ano = ano;
+    this.nick = nick;
+    this.date = date;
+    this.word = word;
+    this.mean = mean;
+    this.asso = asso;
+    this.likeNo = likeNo;
+    this.hateNo = hateNo;
+    this.prophotPath = prophotPath;
+    this.assophotPath = assophotPath;
+    this.assothumPath = assothumPath;
+    this.hint = hint;
+    this.best = best;
+    this.favor = favor;
   }
 
   public int getAno() {
@@ -102,6 +122,14 @@ public class SearchList {
     this.assophotPath = assophotPath;
   }
 
+  public String getAssothumPath() {
+    return assothumPath;
+  }
+
+  public void setAssothumPath(String assothumPath) {
+    this.assothumPath = assothumPath;
+  }
+
   public String getHint() {
     return hint;
   }
@@ -125,6 +153,13 @@ public class SearchList {
   public void setFavor(boolean favor) {
     this.favor = favor;
   }
-  
-  
+
+  @Override
+  public String toString() {
+    return "SearchList [ano=" + ano + ", nick=" + nick + ", date=" + date + ", word=" + word + ", mean=" + mean
+        + ", asso=" + asso + ", likeNo=" + likeNo + ", hateNo=" + hateNo + ", prophotPath=" + prophotPath
+        + ", assophotPath=" + assophotPath + ", assothumPath=" + assothumPath + ", hint=" + hint + ", best=" + best
+        + ", favor=" + favor + "]";
+  }
+
 }
