@@ -9,7 +9,7 @@ public interface SearchListService {
   SearchList wordList(SearchList searchList);
   void delete(int no);
   SearchList retrieve(int no);
-  List<SearchList> list(int pageNo, int pageSize, String word);
+  List<SearchList> list(String word);
   void change(SearchList searchList);
   int countPage(int pageSize);
   void wordMeanAdd(SearchList searchList);

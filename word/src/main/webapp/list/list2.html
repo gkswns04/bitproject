@@ -158,7 +158,7 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
-  $("#modalForm").submit(function(event) {   
+  $("#assoaddbtn").submit(function(event) {   
 	   event.preventDefault();
 	  
 	   var fd = new FormData($(this)[0]);
@@ -170,8 +170,12 @@
     	 	 cache:false,
     	 	 contentType:false,
     	 	 processData:false,
+    	 	 word: $("#wordTo").val(),
+         mean: $("#Means").val(),
+         asso: $("#message-text").val(),
+         aphoto: $("#inputFile").val(),
+         hint : $("span[class='assohint']").text(),
          success: function(data) {
-     			 window.location.reload();
          }
        });
      return false;
@@ -179,11 +183,11 @@
 </script>
 
 <script>
-/* $(document).ready(function(){
+$(document).ready(function(){
   $("#btn_submit").on("click", function(){
     $("#myform").submit();
   });
-}); */
+});
 
 </script>
 <script type= "text/javascript">
@@ -219,8 +223,7 @@
 	  $(document).ready(function () {	  	
 			document.getElementById("text"+index).setAttribute( 'class', 'assohint');
 			document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');
-			var hint = $("span[class='assohint']").text();
-			$("<input type='hidden' name='hint' value='" + hint + "'>").html("").appendTo("#assos");
+			$("<input type='hidden' name='hint' value=" + "$('span[class='assohint']').text()'>").html("").appendTo("#assos");
 			
       });	  
     }
@@ -252,7 +255,7 @@ var getParameter = function (param) {
 loadMean();
 
 function loadMean() {
-	$.getJSON("http://192.168.0.61:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
 	for (i=1; i < result.length; i++) {
 		$("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
@@ -284,7 +287,7 @@ function wordAdd(word) {
 		      } else {
 		        /* window.alert("단어 등록 실패입니다!"); */
 		      }
-		      
+		      $("<input type='hidden' id='wordTo' name='word' value='" + word + "'>").html("").appendTo("#myModal");
 		    }, "json"	  
 		  );
 	 		});
@@ -313,7 +316,6 @@ function wordMeanAdd(word) {
 <script>
 
 function loadAsso(word) {
-	$("<input type='hidden' id='wordTo' name='word' value='" + word + "'>").html("").appendTo("#myModal");
 	$.getJSON("../ajax/searchList/list.do?word=" + word, function (result) {
 		var ul = $("#list");
 		var list = result.list;

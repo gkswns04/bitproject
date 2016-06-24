@@ -38,15 +38,8 @@ public class DefaultSearchListService implements SearchListService {
     return searchListDao.wordList(searchList);
   }
   
-  public List<SearchList> list(int pageNo, int pageSize, String word) {
+  public List<SearchList> list(String word) {
     HashMap<String,Object> paramMap = new HashMap<>();
-    int startIndex = (pageNo - 1) * pageSize;
-    if (startIndex < 0) {
-      startIndex = 0;
-    }
-    
-    paramMap.put("startIndex", startIndex);
-    paramMap.put("length", pageSize);
     paramMap.put("word", word);
     return searchListDao.selectList(paramMap);
   }

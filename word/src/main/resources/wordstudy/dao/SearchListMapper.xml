@@ -55,7 +55,6 @@
 		AND A.MNO = R.MNO
 		AND W.WORD = #{word}
     order by A.LIKES DESC
-    limit #{startIndex}, #{length}
   </select>
   
   <!-- <select id="selectOne" resultMap="SearchListMap" parameterType="int">
