@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -64,7 +65,7 @@
    <div id="resultword" align="right"></div>
    <div id="resultmean" align="left"></div>
    <div id="enrolldiv" align="center">
-      <img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" onclick="meansValue()"/>
+      <img data-toggle="modal" href="#myModal" src="../images/enroll.jpg" alt="signin" />
    </div>
    <div class="contain_box">
       <div class="container">
@@ -211,7 +212,7 @@
 }); */
 
 </script>
-<script type= "text/javascript">
+<!-- <script type= "text/javascript">
   function meansValue(){
      $(document).ready(function () {      
       var divMeans1 = document.getElementById("Means");
@@ -223,7 +224,7 @@
          divMeans1.innerHTML = divMeans3;
         });      
      }
-</script>
+</script> -->
 <script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
@@ -277,10 +278,14 @@ var getParameter = function (param) {
 loadMean();
 
 function loadMean() {
-	$.getJSON("http://192.168.0.61:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
+     var divMeans1 = document.getElementById("Means");
+     var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>"; 
 	for (i=1; i < result.length; i++) {
-		$("<font size='4'>").html(result[i].mean + " ").appendTo("#resultmean");
+		$("<font size='4'>").html(result[i].mean + " &nbsp").appendTo("#resultmean");
+         divMeans3 += "<option>" + result[i].mean.substring(2, result[i].mean.length) + "</option>";                   
+         divMeans1.innerHTML = divMeans3;
 	}
 	  $.get("../ajax/searchList/wordList.do", {
 			      word: result[0].word			      
@@ -295,7 +300,7 @@ function loadMean() {
 			    }, "json"	  
 			  );
 	loadAsso(result[0].word);
-	});	
+	});
 }
 </script>
 <script>
@@ -332,7 +337,27 @@ function wordMeanAdd(word) {
 		  );}});
 		}
 </script>
-
+<script>
+function likePlus(index) {	
+	$(document).ready(function () {		
+		/* var test = document.getElementById("asso"+index).text; */
+		var test = $("#asso"+index).text();
+		console.log(test);
+	$.get("../ajax/searchList/likesUpdate.do", {
+			      asso: $("#asso"+index).text()			      
+			    }, function(results) {
+			      if (results.status == "success") {			    	  
+			    	  console.log("좋아요++");
+			    	  var like = $("#likeNo"+index);
+			    	  like.html($("#likeNo"+index).text() * 1  + 1).appendTo(like);
+			    	  
+			      } else {
+			    	  console.log("실패다");
+			      }
+			    }, "json"	  
+			  );});
+	}
+</script>
 
 
 <script>
@@ -350,13 +375,13 @@ function loadAsso(word) {
 				"<span class='date'>" + list[i].date + "</span>" +
 				"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
 				"<span class='mean'>" + list[i].mean + "</span>" +
-				"<span class='weeks'><h4><strong>" + list[i].asso + "</strong></h4></span>" +
-				"<span class='num'><h4>" + list[i].likeNo + "</h4></span>" +
+				"<span class='weeks'><h4><strong id='asso" + i + "'>" + list[i].asso + "</strong></h4></span>" +
+				"<span class='num'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
 				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
 				"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
 				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
 				"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
-				"<span class='like'><img  src='../images/like.png' alt='like' width='30px'/></span>" +
+				"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
 				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 				.appendTo(ul);
