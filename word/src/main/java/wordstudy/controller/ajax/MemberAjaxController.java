@@ -73,6 +73,13 @@ public class MemberAjaxController {
     return new Gson().toJson(member);
   }
   
+  @RequestMapping(value="detailByNick", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String detailByNick(String nick) throws ServletException, IOException {
+    Member member = memberService.retrieveByNick(nick);
+    return new Gson().toJson(member);
+  }
+  
   
   @RequestMapping(value="update",
       method=RequestMethod.POST,

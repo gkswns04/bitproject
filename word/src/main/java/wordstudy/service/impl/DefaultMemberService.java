@@ -37,6 +37,13 @@ public class DefaultMemberService implements MemberService {
     return memberDao.selectOne(paramMap);
   }
   
+  public Member retrieveByNick(String nick) {
+    Map<String,Object> paramMap = new HashMap<>();
+    paramMap.put("nick", nick);
+    
+    return memberDao.selectOne(paramMap);
+  }
+  
   
   public void change(Member member) {
     memberDao.update(member);

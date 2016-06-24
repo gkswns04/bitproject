@@ -50,6 +50,9 @@
     <if test="email != null">
       EMAIL=#{email}
     </if>
+    <if test="nick != null">
+      NIC=#{nick}
+    </if>
   </select>
   
   <select id="isMember" parameterType="map" resultType="int">

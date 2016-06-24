@@ -290,65 +290,90 @@ $.post("../auth/log.do", {
 
 <script>
 <!-- 회원가입 -->
+
 	$("#signinbtn").click(function(event) {
-		var member;
 		
 		var theForm = document.regi;
-		$.post("../ajax/member/detailByEmail.do", {
-			email : $("#emailsignup").val()
-		}, function(result) {
-				member = result;
-			}, "json");
 		
-		console.log(member);
+		var member={"email":"", "nick":""};
 		
-		if(member != null) {
-			window.alert("이메일 중복입니다.");
-		}else {
-			if(theForm.usernamesignup.value!="" && theForm.emailsignup.value!="" && theForm.passwordsignup.value!="" && theForm.passwordsignup_confirm.value!="" ){
-					if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
-							$.post("../ajax/member/add.do", {
-								nick : $("#usernamesignup").val(),
-								email : $("#emailsignup").val(),
-								password : $("#passwordsignup").val()
-							}, function(result) {
-								if (result.status == "success") {
-									location.href = "main.html";
-								} else {
-									 window.alert("회원 등록 실패입니다!"); 
-									}
-								}, "json");
-					}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
-					window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-				}
-			} else if(theForm.usernamesignup.value=="" || theForm.emailsignup.value=="" || theForm.passwordsignup.value=="" || theForm.passwordsignup_confirm.value=="" ){
-				if(theForm.usernamesignup.value==""){
-					window.alert("닉네임을 입력해 주시기 바랍니다.");
+		 $.ajax({
+			  type: 'POST',
+			  url: "../ajax/member/detailByNick.do",
+			  data:  {
+					nick : $("#usernamesignup").val()
+				},
+			  success: function(result) {
+				  if (result != null) {
+						member.nick = result.nick;
+				  }
+				},
+			  dataType: "json",
+			  async:false
+			});
+	
+	 	$.ajax({
+		  type: 'POST',
+		  url: "../ajax/member/detailByEmail.do",
+		  data:  {
+				email : $("#emailsignup").val()
+			},
+		  success: function(result) {
+			  if (result != null) {
+				member.email = result.email;
+			  }
+			},
+		  dataType: "json",
+		  async:false
+		});
+			
+			if(member.nick != "" || member.email !="") {	
+				if(member.nick != "") {
+					window.alert("이미 존재하는 닉네임 입니다.");
 					theForm.usernamesignup.focus();
-				}else if(theForm.emailsignup.value==""){
-					window.alert("이메일을 입력해 주시기 바랍니다.");
+				} else if (member.email != "") {
+					window.alert("이미 존재하는 이메일 입니다.");
 					theForm.emailsignup.focus();
-				}else if(theForm.passwordsignup.value==""){
-					window.alert("비밀번호를 입력해 주시기 바랍니다.");
-					theForm.passwordsignup.focus();
-				}else {
-					window.alert("비밀번호를 확인해 주시기 바랍니다.");
-					theForm.passwordsignup_confirm.focus();
+				}
+			} else {
+				if(theForm.usernamesignup.value!="" && theForm.emailsignup.value!="" && theForm.passwordsignup.value!="" && theForm.passwordsignup_confirm.value!="" ){
+						if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
+								$.post("../ajax/member/add.do", {
+									nick : $("#usernamesignup").val(),
+									email : $("#emailsignup").val(),
+									password : $("#passwordsignup").val()
+								}, function(result) {
+									if (result.status == "success") {
+										location.href = "main.html";
+									} else {
+										 window.alert("회원 등록 실패입니다!"); 
+										}
+									}, "json");
+						}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
+						window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+					}
+				} else if(theForm.usernamesignup.value=="" || theForm.emailsignup.value=="" || theForm.passwordsignup.value=="" || theForm.passwordsignup_confirm.value=="" ){
+					if(theForm.usernamesignup.value==""){
+						window.alert("닉네임을 입력해 주시기 바랍니다.");
+						theForm.usernamesignup.focus();
+					}else if(theForm.emailsignup.value==""){
+						window.alert("이메일을 입력해 주시기 바랍니다.");
+						theForm.emailsignup.focus();
+					}else if(theForm.passwordsignup.value==""){
+						window.alert("비밀번호를 입력해 주시기 바랍니다.");
+						theForm.passwordsignup.focus();
+					}else {
+						window.alert("비밀번호를 확인해 주시기 바랍니다.");
+						theForm.passwordsignup_confirm.focus();
+					}
 				}
 			}
-		}
+		
 	});
 	
 	$("#logout").click(function(event) {location.href = "../auth/logout.do";});
 
 </script>
-
-
-<script>
-
-</script>
-
-
 
 
 </body>

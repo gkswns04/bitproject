@@ -9,6 +9,7 @@ public interface MemberService {
   void delete(int no);
   Member retrieveByNo(int no);
   Member retrieveByEmail(String email);
+  Member retrieveByNick(String nick);
   void change(Member member);
   boolean exist(String email, String password);
   List<Member> list(int pageNo, int pageSize);
