@@ -103,20 +103,10 @@ body {
     <input id="search" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
   </form>
   <br>
- <!-- ajax test -->
-<!--   <button id="btn1" type="button">ajax test<br> 
-  </button>
- <table id="list" border="1">
-<thead>
-<tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
-</thead>
-<tbody></tbody>
-</table> -->
+
 
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 
-  
-  
   
   </div>
   <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
@@ -169,8 +159,6 @@ body {
 
 
 
-
-
 								<div id="register" class="animate form">
 									<form name="regi" autocomplete="on">
 										<h1>Sign up</h1>
@@ -185,6 +173,8 @@ body {
 												Your email</label> <input id="emailsignup" name="emailsignup"
 												required="required" type="email"
 												placeholder="mysupermail@mail.com" />
+												<font name="mcheck" size="2" color="red"></font> 
+												<font name="mchecked" size="2" color="blue"></font> 
 										</p>
 										<p>
 											<label for="passwordsignup" class="youpasswd" data-icon="p">Your
@@ -192,6 +182,8 @@ body {
 												<input id="passwordsignup" name="passwordsignup"
 												required="required" type="password"
 												placeholder="eg. X8df!90EO" />
+												<font name="pcheck" size="2" color="red"></font> 
+												<font name="pchecked" size="2" color="blue"></font> 
 										</p>
 										<p>
 											<label for="passwordsignup_confirm" class="youpasswd"
@@ -200,6 +192,7 @@ body {
 												required="required" type="password"
 												placeholder="eg. X8df!90EO" />
 												<font name="check" size="2" color="red"></font> 
+												<font name="checked" size="2" color="blue"></font> 
 										</p>
 										<p class="signin button">
 											<input id="signinbtn" value="Sign up" style="text-align:center;" readonly/>
@@ -244,29 +237,56 @@ $("#loginbtn").click(function(event) {
 	}, "json")
 });
  
- 
- 
- 
- 
-<!-- 회원가입시 pw / pw확인 일치하는지 스크립트 -->
+
+<!-- 이메일/비밀번호 정규식!!!!! -->
+var regexEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
+<!-- 비밀번호 정규식 적용!!! -->
  $(function(){
   $('#passwordsignup').keyup(function(){
    $('font[name=check]').text('');
+   	 if(!$('#passwordsignup').val().match(regexPassword)) {
+   		 $('font[name=pcheck]').text('');
+		 $('font[name=pcheck]').html("비밀번호는 숫자와 영문자 조합으로 6~16자리를 사용해 주세요");
+		 $('font[name=pchecked]').text('');
+   	 } else {
+   		 $('font[name=pchecked]').text('');
+		 $('font[name=pcheck]').text('');
+   	 }
   });
 
+  <!-- 회원가입시 pw / pw확인 일치하는지 스크립트 -->
   $('#passwordsignup_confirm').keyup(function(){
    if($('#passwordsignup').val()!=$('#passwordsignup_confirm').val()){
     $('font[name=check]').text('');
     $('font[name=check]').html("암호가 일치하지 않습니다.");
+    $('font[name=checked]').text('');
     return;
    }else {
+    $('font[name=checked]').text('');
+    $('font[name=checked]').html("암호가 일치합니다.");
     $('font[name=check]').text('');
-    $('font[name=check]').html("암호가 일치합니다.");
    }
   });
  });
  
-
+<!-- 이메일 정규식 적용 -->
+	$(function(){
+		  $('#emailsignup').keyup(function(){
+		   $('font[name=mcheck]').text('');
+			   if(!$('#emailsignup').val().match(regexEmail)){
+				    $('font[name=mcheck]').text('');
+				    $('font[name=mcheck]').html("이메일은 test@test.com 형식으로 작성해 주세요.");
+				    $('font[name=mchecked]').text('');
+				    return;
+				   }else {
+				    $('font[name=mchecked]').text('');
+				    $('font[name=mcheck]').text('');
+				   }
+			   
+		  });
+	 });
+ 
 </script>
 
 
@@ -296,7 +316,7 @@ $.post("../auth/log.do", {
 		var theForm = document.regi;
 		
 		var member={"email":"", "nick":""};
-		
+				
 		 $.ajax({
 			  type: 'POST',
 			  url: "../ajax/member/detailByNick.do",
@@ -326,6 +346,7 @@ $.post("../auth/log.do", {
 		  dataType: "json",
 		  async:false
 		});
+	 	
 			
 			if(member.nick != "" || member.email !="") {	
 				if(member.nick != "") {
@@ -337,20 +358,29 @@ $.post("../auth/log.do", {
 				}
 			} else {
 				if(theForm.usernamesignup.value!="" && theForm.emailsignup.value!="" && theForm.passwordsignup.value!="" && theForm.passwordsignup_confirm.value!="" ){
-						if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
-								$.post("../ajax/member/add.do", {
-									nick : $("#usernamesignup").val(),
-									email : $("#emailsignup").val(),
-									password : $("#passwordsignup").val()
-								}, function(result) {
-									if (result.status == "success") {
-										location.href = "main.html";
-									} else {
-										 window.alert("회원 등록 실패입니다!"); 
-										}
-									}, "json");
-						}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
-						window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+				   
+					if(!$('#emailsignup').val().match(regexEmail)) {
+						window.alert("이메일 형식에 맞지 않습니다.");
+						theForm.emailsignup.focus();
+					}else if(!$('#passwordsignup').val().match(regexPassword)) {
+						window.alert("비밀번호 형식에 맞지 않습니다.");
+						theForm.passwordsignup.focus();
+					}else {
+							if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
+										$.post("../ajax/member/add.do", {
+											nick : $("#usernamesignup").val(),
+											email : $("#emailsignup").val(),
+											password : $("#passwordsignup").val()
+										}, function(result) {
+											if (result.status == "success") {
+												location.href = "main.html";
+											} else {
+												 window.alert("회원 등록 실패입니다!"); 
+												}
+											}, "json");
+								}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
+								window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+								}
 					}
 				} else if(theForm.usernamesignup.value=="" || theForm.emailsignup.value=="" || theForm.passwordsignup.value=="" || theForm.passwordsignup_confirm.value=="" ){
 					if(theForm.usernamesignup.value==""){
