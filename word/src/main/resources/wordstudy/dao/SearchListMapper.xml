@@ -48,7 +48,7 @@
   </delete> -->
  
   <select id="selectList" resultMap="SearchListMap" parameterType="map">
-    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR 
+    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE 
 		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO

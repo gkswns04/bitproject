@@ -157,6 +157,31 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 
+
+
+
+<script type="text/javascript">
+        $(function() {
+            $("#inputFile").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#imgPreview').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+    </script>
+
 <script>
   $("#modalForm").submit(function(event) {   
 	   event.preventDefault();
@@ -166,7 +191,7 @@
     	 	 url:"../ajax/searchList/add.do",
     	 	 type:"POST",
     	 	 data: fd,
-    	 	 async:false,
+    	 	 async:true,
     	 	 cache:false,
     	 	 contentType:false,
     	 	 processData:false,
