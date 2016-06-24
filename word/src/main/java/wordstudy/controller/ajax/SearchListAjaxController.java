@@ -1,7 +1,9 @@
 package wordstudy.controller.ajax;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +37,9 @@ import wordstudy.vo.SearchList;
 public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
   @Autowired ServletContext servletContext;
+  
+  public static final int RATIO = 0;
+  public static final int SAME = -1;
   
   @RequestMapping(value="wordList", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -103,8 +109,6 @@ public class SearchListAjaxController {
     searchList.setMean(mean);
     searchList.setAsso(asso);
     searchList.setHint(hint);
-    System.out.println(word);
-    System.out.println(mean);
     
     Map<String, MultipartFile> files = request.getFileMap();
     CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
