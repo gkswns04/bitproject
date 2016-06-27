@@ -38,9 +38,6 @@ public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
   @Autowired ServletContext servletContext;
   
-  public static final int RATIO = 0;
-  public static final int SAME = -1;
-  
   @RequestMapping(value="wordList", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String wordList(String word) throws ServletException, IOException {

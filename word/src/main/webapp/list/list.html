@@ -38,6 +38,35 @@
 .assotext {
    cursor: pointer;
 }
+
+.star {
+	width: 50px;
+	height: 50px;
+}
+.favorOn {
+	display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px!important;
+  margin: -1px 0 1px;
+  background: url("../images/favorite.jpg") no-repeat -210px -42px;
+  font-size: 0;
+  line-height: 0!important;
+  text-indent: -9000px;
+}
+.favorOff {
+	display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px!important;
+  margin: -1px 0 1px;
+  background: url("../images/favorite.jpg") no-repeat -290px -42px;
+  font-size: 0;
+  line-height: 0!important;
+  text-indent: -9000px;
+}
+
+
 </style>
   </head>
   <body>
@@ -225,6 +254,11 @@
         });      
      }
 </script> -->
+<script>
+		
+
+</script>
+
 <script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
@@ -380,15 +414,42 @@ function loadAsso(word) {
 				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
 				"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
 				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
-				"<span class='star'><img src='../images/star.png' alt='star' width='40px'/></span>" +
+				"<span class='star'><a href='javascript:;' class='favorOff favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 				"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
 				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 				.appendTo(ul);
 		  }
+		  
+		  
+		  
 		}
 	});
 }
+function favorChange(index) {
+	$(document).ready(function () {
+	 if($("a.favor" + index).hasClass("favorOff")) {
+			$("a.favor" + index).removeClass("favorOff");
+			$("a.favor" + index).addClass("favorOn");
+		} else {
+			$("a.favor" + index).removeClass("favorOn");
+			$("a.favor" + index).addClass("favorOff");
+		} 
+	});
+}
+	
+/* $("a.favor").click(function(){
+		alert("hi");
+		return false;
+		if($("#favor").hasClass("favorOff")) {
+			$("#favor").removeClass("favorOff");
+			$("#favor").addClass("favorOn");
+		} else {
+			$("#favor").removeClass("favorOn");
+			$("#favor").addClass("favorOff");
+		}  
+	}); */
+
 </script>
   </body>
   </html>
