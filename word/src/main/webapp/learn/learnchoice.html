@@ -24,28 +24,22 @@
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
-  #logodiv {
-    top: 30%;
-    left: 50%;
-    margin: 0 0 0 -250px;
-  }
-  
-  body {
-	font-family: sans-serif;
-	font-weight: normal;
-	margin: 10px;
-	color: #999;
-	background-color: #eee;
+body {
+  color: #BAB0A7;
+  text-align: center;
 }
+
+#logodiv {
+  top: 30%;
+  left: 50%;
+  margin: 0 0 0 -250px;
+}
+  
 
 form {
-	margin: 40px 0;
+  margin: 40px 0;
 }
 
-div {
-	clear: both;
-	margin: 0 50px;
-}
 
 label {
   width: 200px;
@@ -53,69 +47,96 @@ label {
   border: 1px solid #D1D3D4
 }
 
-/* hide input */
 input.radio:empty {
-	margin-left: -999px;
+  margin-left: -999px;
 }
 
-/* style label */
 input.radio:empty ~ label {
-	position: relative;
-	float: left;
-	line-height: 2.5em;
-	text-indent: 3.25em;
-	margin-top: 2em;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  position: relative;
+  float: left;
+  line-height: 8.5em;
+  width: 25.5em;
+  text-indent: 2.0em;
+  margin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  size: 200px;
 }
 
 input.radio:empty ~ label:before {
-	position: absolute;
-	display: block;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	content: '';
-	width: 2.5em;
-	background: #D1D3D4;
-	border-radius: 3px 0 0 3px;
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #F6EEEA;
+  border-radius: 3px 0 0 3px;
 }
 
-/* toggle hover */
 input.radio:hover:not(:checked) ~ label:before {
-	content:'\2714';
-	text-indent: .9em;
-	color: #C2C2C2;
+  content:'\2714';
+  text-indent: .1em;
+  color: #F0C2AE;
 }
 
 input.radio:hover:not(:checked) ~ label {
-	color: #888;
+  color: #EFB79F;
 }
 
-/* toggle on */
 input.radio:checked ~ label:before {
-	content:'\2714';
-	text-indent: .9em;
-	color: #9CE2AE;
-	background-color: #4DCB6D;
+  content:'\2714';
+  text-indent: .1em;
+  color: #4A4847;
+  background-color: #F0C2AE;
 }
 
 input.radio:checked ~ label {
-	color: #777;
+  color: #333231;
 }
 
-/* radio focus */
 input.radio:focus ~ label:before {
-	box-shadow: 0 0 0 3px #999;
+  box-shadow: 0 0 0 3px #4A4847;
 }
   
 .choice {
-	position : absolute;
-	left : 50%;
+  position : absolute;
+  left : 50%;
 }  
+
+.ra1 {
+  position : absolute;
+  margin: 20px 0 0 -450px;
+}
+
+.ra2 {
+  position : absolute;
+  margin: 20px 0 0 -10px;
+}
+
+.ra3 {
+  position : absolute;
+  margin: 200px 0 0 -450px;
+}
+
+.ra4 {
+  position : absolute;
+  margin: 200px 0 0 -10px;
+}
+
+.inset {display:block;width:100px;height:100px;border-radius:50px;font-size:20px;color:black;
+       line-height:100px;text-shadow:0 1px 0 black;text-align:center;text-decoration:none;box-shadow:1px 1px 2px black;background:#EFB79F;opacity:0.95}
+       .inset:hover{color:white;text-shadow:0 0 1px #666;text-decoration:none;box-shadow:0 0 4px black inset;opacity:1}
+
+.button {
+  position : absolute;
+  left: 50%;
+  margin: 450px 0 0 -100px;
+}
   
 </style>
   </head>
@@ -143,30 +164,33 @@ input.radio:focus ~ label:before {
 <script src="js/bootstrap.min.js"></script>
 
 
-<div class="choice">
+<div class="choice" >
 
-<div>
-<input type="radio" name="radio" id="radio1" class="radio" checked/>
-<label for="radio1">단어</label>
+  <div class="ra1" >
+  <input type="radio" name="radio" id="radio1" class="radio"  checked/>
+  <label for="radio1"><font size="6">단어</font></label>
+  </div>
+  
+  <div class="ra2" >
+  <input type="radio" name="radio" id="radio2" class="radio"/>
+  <label for="radio2"><font size="6">뜻</font></label>
+  </div>
+  
+  <div class="ra3"> 
+  <input type="radio" name="radio2" id="radio3" class="radio" checked/>
+  <label for="radio3"><font size="6">전체 단어장</font></label>
+  </div>
+  
+  <div class="ra4"> 
+  <input type="radio" name="radio2" id="radio4" class="radio"/>
+  <label for="radio4"><font size="6">나의 단어장</font></label>
+  </div>
+
 </div>
 
-<div>
-<input type="radio" name="radio" id="radio2" class="radio"/>
-<label for="radio2">뜻</label>
+<div class="button">
+  <a href="../main/main.html" class="inset">START</a>
 </div>
-
-<div>	
-<input type="radio" name="radio2" id="radio3" class="radio"/>
-<label for="radio3">전체 단어장</label>
-</div>
-
-<div>	
-<input type="radio" name="radio2" id="radio4" class="radio"/>
-<label for="radio4">나의 단어장</label>
-</div>
-
-</div>
-
 
   </body>
   </html>
