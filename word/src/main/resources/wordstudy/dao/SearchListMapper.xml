@@ -6,6 +6,7 @@
 <mapper namespace="wordstudy.dao.SearchListDao">
   <resultMap type="SearchList" id="SearchListMap">
     <id     column="ANO"    property="ano"/>
+    <id     column="MNO"    property="mno"/>
     <result column="Mean"  property="mean"/>
     <result column="Word"  property="word"/>
     <result column="Asso"  property="asso"/>
@@ -20,7 +21,7 @@
     
   <insert id="insert" parameterType="SearchList">
     insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR, A_THUM) 
-    values((select MENO from MEANS where mean=#{mean}), 10, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
+    values((select MENO from MEANS where mean=#{mean}), #{mno}, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
   
   </insert>
   
@@ -37,7 +38,7 @@
   <insert id="myLOHAdd" parameterType="SearchList">        
     insert into my_loh(ano, mno) 
     values((select ano from assos where asso=#{asso}), 
-    	  (select mno from assos where asso=#{asso}));
+    	  #{mno});
     	  
   </insert>
   
@@ -46,12 +47,12 @@
   </select>
   
   <select id="assoList" resultType="SearchList" parameterType="SearchList">
-    select * from my_LOH where mno=(select mno from assos where asso=#{asso})
+    select * from my_LOH where mno=#{mno}
     and ano=(select ano from assos where asso=#{asso})   
   </select>
   
   <select id="likeOrHate" resultType="int" parameterType="SearchList">
-    select likes from my_LOH where mno=(select mno from assos where asso=#{asso})
+    select likes from my_LOH where mno=#{mno}
     and ano=(select ano from assos where asso=#{asso})   
         
   </select>
@@ -61,7 +62,7 @@
     update assos set likes=likes+1 where asso=#{asso};
   </update>
   <update id="likesUpdateAdd" parameterType="SearchList">
-    update my_loh set likes=1 where mno=(select mno from assos where asso=#{asso})
+    update my_loh set likes=1 where mno=#{mno}
     and ano=(select ano from assos where asso=#{asso})
   </update>
   <!--   
