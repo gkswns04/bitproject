@@ -5,7 +5,7 @@
   
 <mapper namespace="wordstudy.dao.SearchListDao">
   <resultMap type="SearchList" id="SearchListMap">
-    <id     column="ANO"    property="no"/>
+    <id     column="ANO"    property="ano"/>
     <result column="Mean"  property="mean"/>
     <result column="Word"  property="word"/>
     <result column="Asso"  property="asso"/>
@@ -71,7 +71,7 @@
   </delete> -->
  
   <select id="selectList" resultMap="SearchListMap" parameterType="map">
-    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM 
+    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM, A.ANO 
 		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO
