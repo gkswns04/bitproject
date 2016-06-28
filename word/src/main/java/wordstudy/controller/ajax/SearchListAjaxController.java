@@ -1,9 +1,7 @@
 package wordstudy.controller.ajax;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,8 +11,9 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.ImageIcon;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.google.gson.Gson;
 
 import wordstudy.service.SearchListService;
+import wordstudy.vo.Member;
 import wordstudy.vo.SearchList;
 
 
@@ -40,10 +40,13 @@ public class SearchListAjaxController {
   
   @RequestMapping(value="likeOrHate", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String likeOrHate(String asso) throws ServletException, IOException {
+  public String likeOrHate(HttpSession session, String asso) throws ServletException, IOException {
     
+    Member member = (Member)session.getAttribute("loginUser");
+    System.out.println(member.getNo());
     SearchList searchList = new SearchList();
     searchList.setAsso(asso);
+    searchList.setMno(member.getNo());
     
     if (searchListService.assoList(searchList) == null) {
       searchListService.myLOHAdd(searchList);      
@@ -124,13 +127,15 @@ public class SearchListAjaxController {
   }
   @RequestMapping(value="add", method=RequestMethod.POST)
   @ResponseBody
-  public String add(MultipartHttpServletRequest request, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
-    
+  public String add(HttpSession session, MultipartHttpServletRequest request, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    System.out.println("member:" + member.getNo());
     SearchList searchList = new SearchList();
     searchList.setWord(word);
     searchList.setMean(mean);
     searchList.setAsso(asso);
     searchList.setHint(hint);
+    searchList.setMno(member.getNo());
     
     Map<String, MultipartFile> files = request.getFileMap();
     CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
@@ -217,10 +222,12 @@ public class SearchListAjaxController {
  @RequestMapping(value="likesUpdate",    
       produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String likesUpdate(String asso) throws ServletException, IOException {
-    
+  public String likesUpdate(HttpSession session, String asso) throws ServletException, IOException {
+   Member member = (Member)session.getAttribute("loginUser");
+   
     SearchList searchList = new SearchList();    
     searchList.setAsso(asso);    
+    searchList.setMno(member.getNo());
     
     HashMap<String,Object> result = new HashMap<>();
     try {
