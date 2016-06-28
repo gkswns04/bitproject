@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class SearchList {
   int ano;
+  int mno;
   String nick;
   Date date;
   String word;
@@ -17,11 +18,39 @@ public class SearchList {
   String hint;
   int best;
   boolean favor;
-  
+  int likes;
+  int hates;
+      
+  public int getLikes() {
+    return likes;
+  }
+
+  public void setLikes(int likes) {
+    this.likes = likes;
+  }
+
+  public int getHates() {
+    return hates;
+  }
+
+  public void setHates(int hates) {
+    this.hates = hates;
+  }
+
   public SearchList() {
     super();
     // TODO Auto-generated constructor stub
   }
+  
+  public int getMno() {
+    return mno;
+  }
+
+
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+  
 
   public SearchList(int ano, String nick, Date date, String word, String mean, String asso, int likeNo, int hateNo,
       String prophotPath, String assophotPath, String assothumPath, String hint, int best, boolean favor) {
@@ -41,6 +70,7 @@ public class SearchList {
     this.best = best;
     this.favor = favor;
   }
+
 
   public int getAno() {
     return ano;

@@ -38,6 +38,31 @@ public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
   @Autowired ServletContext servletContext;
   
+  @RequestMapping(value="likeOrHate", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String likeOrHate(String asso) throws ServletException, IOException {
+    
+    SearchList searchList = new SearchList();
+    searchList.setAsso(asso);
+    
+    if (searchListService.assoList(searchList) == null) {
+      searchListService.myLOHAdd(searchList);      
+    }
+      
+    HashMap<String,Object> result = new HashMap<>();  
+    int likes = searchListService.likeOrHate(searchList);
+    if(likes == 0) { 
+      searchListService.likesUpdateAdd(searchList);
+      
+      result.put("status", "success");
+    } else {
+      System.out.println("실패");
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+   
+  
   @RequestMapping(value="wordList", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String wordList(String word) throws ServletException, IOException {
@@ -202,11 +227,12 @@ public class SearchListAjaxController {
       searchListService.likesUpdate(searchList);
       result.put("status", "success");
     } catch (Exception e) {
+      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
   }
-  
+
   /*@RequestMapping(value="update",
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")

@@ -34,13 +34,35 @@
     values(#{word},#{mean});
   </insert>
   
-  <select id="wordList" resultType="SearchList" parameterType="SearchList">
-    select * from words where word=#{word}  
+  <insert id="myLOHAdd" parameterType="SearchList">        
+    insert into my_loh(ano, mno) 
+    values((select ano from assos where asso=#{asso}), 
+    	  (select mno from assos where asso=#{asso}));
+    	  
+  </insert>
   
+  <select id="wordList" resultType="SearchList" parameterType="SearchList">
+    select * from words where word=#{word}    
   </select>
   
+  <select id="assoList" resultType="SearchList" parameterType="SearchList">
+    select * from my_LOH where mno=(select mno from assos where asso=#{asso})
+    and ano=(select ano from assos where asso=#{asso})   
+  </select>
+  
+  <select id="likeOrHate" resultType="int" parameterType="SearchList">
+    select likes from my_LOH where mno=(select mno from assos where asso=#{asso})
+    and ano=(select ano from assos where asso=#{asso})   
+        
+  </select>
+  
+  
   <update id="likesUpdate" parameterType="SearchList">
-    update assos set likes=likes+1 where asso=#{asso};    
+    update assos set likes=likes+1 where asso=#{asso};
+  </update>
+  <update id="likesUpdateAdd" parameterType="SearchList">
+    update my_loh set likes=1 where mno=(select mno from assos where asso=#{asso})
+    and ano=(select ano from assos where asso=#{asso})
   </update>
   <!--   
   <delete id="delete" parameterType="int">
