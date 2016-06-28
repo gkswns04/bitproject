@@ -22,8 +22,15 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.likesUpdate(searchList);
   }
   
+  public void likesUpdateAdd(SearchList searchList) {
+    searchListDao.likesUpdateAdd(searchList);
+  }
+  
   public void wordAdd(SearchList searchList) {
     searchListDao.wordAdd(searchList);
+  }
+  public void myLOHAdd(SearchList searchList) {
+    searchListDao.myLOHAdd(searchList);
   }
   
   public void wordMeanAdd(SearchList searchList) {
@@ -34,10 +41,19 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.delete(no);
   } */
   
+  public int likeOrHate(SearchList searchList) {    
+    return searchListDao.likeOrHate(searchList);
+  }
   public SearchList wordList(SearchList searchList) {    
     return searchListDao.wordList(searchList);
   }
   
+
+  public SearchList assoList(SearchList searchList) {  
+    return searchListDao.assoList(searchList);
+  }
+  
+
   public List<SearchList> list(String word) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("word", word);
