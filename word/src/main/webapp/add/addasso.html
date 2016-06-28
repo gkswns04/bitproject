@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/common3.css">
 <link rel="stylesheet" type="text/css" href="../css/list.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -13,11 +13,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
-  
-  .d1 {
-    min-width: 0; height:150px; right: 100px;
-    position: relative;
-  }
+
+	#d1 {
+	   position: relative;
+	   min-width: 960px;
+	   width: 100%;
+	   height: 246px;
+	   padding-bottom: 13%;
+	   overflow: hidden;
+	}
+	#logodiv {
+	   position: absolute;
+	   top: 80px;
+	   width: 400px;
+	   height: 100px;
+	   z-index: 2;
+	   right: 50%;
+	   margin: 0 -200px 0 0;
+	}
 
   .d2 {
     min-width: 0; height:150px; right: 100px;
@@ -51,13 +64,6 @@
     position: relative;
   }
 
-  #logodiv {
-    top: 30%;
-    left: 50%;
-    width: 485px;
-    margin: 0 0 0 -242px;
-  }
-  
   
    #imgPreview {
     position: absolute;
@@ -128,7 +134,7 @@
   .addbtndiv {
     position: absolute;
     left: 50%;
-    margin: 0 0 0 198px;
+    margin: 0 0 0 210px;
     bottom: 16px;
     height: 100px;
   }
@@ -138,6 +144,7 @@
    }
  
    #addbtn {
+   		width: 80px;
       cursor: pointer;
       background: #242b33;
       padding: 8px 5px;
@@ -208,9 +215,9 @@
      
      <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
      
-     <video id="Video1" autoplay loop poster="../images/strip.jpg" id="bgvid">
-       <source src="../images/search_back.mp4" type="video/mp4">
-     </video>
+     <video autoplay loop poster="../images/strip.jpg" id="bgvid">
+     <source src="../images/search_back.mp4" type="video/mp4">
+    </video>
      
      </div>
      
@@ -263,7 +270,7 @@
   
   <div class="d5">
       <div class="addbtndiv" >
-            <button type="button" class="btn btn-default" id="addbtn" >등록하기</button>
+            <button type="button" class="btn btn-default" id="addbtn" >확인</button>
       </div>
   </div> 
   <script>
