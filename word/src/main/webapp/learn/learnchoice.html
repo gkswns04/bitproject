@@ -154,27 +154,61 @@ input.radio:focus ~ label:before {
   color: black;
 }
 
-.thumbnail {
-  border-radius : 50%;
-  
+.mypage {
+  position: relative;
+  left: 50%;
+  width: 20%;
+  height: 50%;
+  margin: -10px 0 0 300px;
 }
+
+.thumbnail {
+  position: absolute;
+  border-radius : 50%;
+  left:50%;
+  margin: 50px 0 0 -100px;
+}
+
 .namediv{
-position: relative;
+position: absolute;
 left: 87%; 
 width: 100px;
 margin: -230px 0 0 0px;
 color: black;
-border : 1px solid red;
-}
-.thumbnail {
-position: relative;
-left: 85%;
-margin: -230px 0 0 0px;
-border : 1px solid red;
-z-index: 100;
 }
 
+.name {
+  position: absolute;
+  margin: 63px 50px 0 0px;
+}
+
+#received-likes {
+  position: relative;
+  left: 50%;
+  margin: 0 150px 0 0;
+}
+
+.mainicon {
+  position: absolute;
+  left: 50%;
+  margin: 100px 0 0 -65px;
+}
+
+.likecount {
+  position: absolute;
+  left: 50%;
+  margin: 125px 0 0 -78px;
+}
+
+.statcount {
+   position: absolute;
+  left: 50%;
+  margin: 101px 0 0 -35px;
+}
+
+
 </style>
+
   </head>
   <body>
 <div id="d1">
@@ -235,11 +269,18 @@ z-index: 100;
 </div>
 
 <div class="mypage">
+
 	<div class="namediv">
-		<h4>김현지</h4>
-	<img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45">
+	  <img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45">
+		<div class="name"><font size="3">김현지</font></div>
+		<div class="mainicon"><img src="../images/mainlike.png" width="20" height="20"></div>
+  <!-- <strong class="statcount"><font size="3">0</font></strong>
+  <span class="likecount">받은 좋아요</span> -->
 	</div>
+	
 </div>
+
+
 
   </body>
   </html>
