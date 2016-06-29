@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/common3.css">
+<link rel="stylesheet" type="text/css" href="../css/list.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<style>
+	body {
+	background-color: #F0E9DF;
+	}
+	
+	#d1 {
+	   position: relative;
+	   min-width: 960px;
+	   width: 100%;
+	   height: 246px;
+	   padding-bottom: 13%;
+ 	   overflow: hidden; 
+	}
+	#logodiv {
+	   position: absolute;
+	   top: 80px;
+	   width: 400px;
+	   height: 100px;
+	   z-index: 2;
+	   right: 50%;
+	   margin: 0 -200px 0 0;
+	}
+
+  .searchdiv {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+  }
+  
+  
+   #threediv {
+   z-index : 1000;
+   }
+	
+   .onecard {
+   	   position: absolute;
+	   background-color: white;
+   	   /* left : 30%; */
+   	   padding: 28px;
+  	   margin: 0 0 0 500px;
+  	   width: 350px;
+  	   height: 220px;
+  	   box-shadow: none;
+  	   padding: 2em;
+       border: 3px solid #F1F4F9;
+       outline: none;
+	}
+	
+	.onecard body {
+	    line-height: 1.2;
+	}
+   	
+ 
+   	.cardimg {
+   	   position: absolute;
+   	   float : left;
+   	   margin: 0 -200px 0 0;
+   	}
+   	.association {
+   	   position: absolute;
+   	   left: 45%;
+   	   margin: 0 0 0 0;
+   	}
+
+
+</style>
+
+</head>
+<body>
+  <div id="d1">
+     <span id="threediv">
+     <nav>
+       <ul>
+         <li><a href="#" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br><font size='3'>연상법 등록</font></a></li>
+         <li><a href="#" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br><font size='3'>연상법 학습</font></a></li>
+         <li><a href="#" class="profile-btn"><i></i><img src="../images/pro.png" width="70"/><br></br><font size='3'>마이 페이지</font></a></li>
+       </ul>
+     </nav>
+     </span>
+     
+     <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
+     
+     <video autoplay loop poster="../images/strip.jpg" id="bgvid">
+     <source src="../images/search_back.mp4" type="video/mp4">
+    </video>
+     
+   </div>
+     
+     
+     <div class="alldiv"> <!-- 카드 + 밑에 1234 까지 포함한 div -->
+       <div class="cardcontainer"></div> <!-- 카드만 다 포함한 div -->
+          <div class="cardrow">
+	       	 <div class="onecard"> <!-- 한개의 카드 div(단어+뜻+사진+연상법 포함한카드) -->
+	       	 	<h3> crack </h3>
+	       	 	<p>갈라지다</p>
+	       	 	<div class="cardimg"><img src="../images/cracker.png" width="100" height="100"></div>
+	       	 	<p class="association">크래커가 바스락바스락 갈라지려다 말려다 결국 갈라졌다</p>
+	       	 </div>
+	     
+       <div class="numbercontainer"></div> <!-- 밑에 페이지넘버 다포함한 div -->
+       
+     
+     
+     </div>
+    </div>
+     
+
+
+</body>
+</html>
