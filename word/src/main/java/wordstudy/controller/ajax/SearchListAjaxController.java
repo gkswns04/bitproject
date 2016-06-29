@@ -206,6 +206,15 @@ public class SearchListAjaxController {
     return new Gson().toJson(searchList);
   }
   
+  @RequestMapping(value="word", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String retrieveWord(String word) throws ServletException, IOException {
+    SearchList searchList = searchListService.retrieveWord(word);
+    return new Gson().toJson(searchList);
+  }
+  
+  
+  
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String list(

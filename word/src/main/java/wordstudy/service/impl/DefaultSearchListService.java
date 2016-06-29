@@ -2,6 +2,7 @@ package wordstudy.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,7 @@ public class DefaultSearchListService implements SearchListService {
 
   @Override
   public SearchList retrieve(int no) {
-    // TODO Auto-generated method stub
+    
     return null;
   }
 
@@ -83,6 +84,13 @@ public class DefaultSearchListService implements SearchListService {
   public int countPage(int pageSize) {
     // TODO Auto-generated method stub
     return 0;
+  }
+
+  @Override
+  public SearchList retrieveWord(String word) {
+    Map<String,Object> paramMap = new HashMap<>();
+    paramMap.put("word", word);
+    return null;
   }
   
   /*public void change(SearchList searchList) {
