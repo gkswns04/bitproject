@@ -81,7 +81,8 @@ public class AuthController {
     session.invalidate(); // HttpSession 객체 무효화시킨다.
                           // => invalidate()는 스프링에서 @SessionAttributes로
                           //    관리하는 값을 제거하지 못한다.
-    return "redirect:login.do";
+    /*return "redirect:login.do";*/
+    return "redirect:../main/main.html";
   }
   
   @RequestMapping(value="/log", produces="application/json;charset=UTF-8")

@@ -31,7 +31,7 @@
    position: absolute;
    height: 45px;
    width: 500px;
-   top: 450px;
+   top: 48%;
    right: 50%;
    margin: 0 -250px 0 0;
    z-index: 2;
@@ -76,10 +76,183 @@ video#bgvid {
 
 body {
    min-width: 1024px;
+   min-height: 600px;
 }   
+
+
+/*log icon*/
+.menubar{
+ position: absolute;
+  right: 1%;
+  top: 30px;
+  width: auto;
+  height: auto;
+border:none;
+border:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+z-index: 9999;
+}
+
+.menubar ul{
+/* background: rgb(109,109,109); */
+height: 50px;
+width: auto;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+border:0px;
+/* margin: 50px 0 0 0; */
+position:absolute;
+width:170px;
+z-index:9999; 
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:170px;
+z-index:9999;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+
+#current {
+background-color: transparent;
+}
+
+
+.mypage {
+/*   
+  left: 50%;
+  width: 20%;
+  height: 50%;
+  position: relative;
+  margin: -10px 0 0 300px; */
+  width: 150px;
+  height: 50px;
+}
+
+.thumbnail {
+  position: absolute;
+  border-radius : 50%;
+ /*
+  left:50%;
+  margin: -170px -200px 0 200px; */
+}
+
+.imgdiv {
+  position: absolute;
+/*   left:50%;
+  margin: -170px 50px 100px 150px; */
+}
+
+.name {
+  position: absolute;
+/*   left: 50%; */
+  margin: 0 0 0 40px; 
+  width: 80px;
+  color : black;
+}
+
+#received-likes {
+  position: relative;
+  left: 50%;
+  margin: 0 150px 0 0;
+}
+
+.mainicon {
+  position: absolute;
+  left: 50%;
+  margin: 100px 0 0 -65px;
+}
+
+.likecount {
+  position: absolute;
+  left: 50%;
+  margin: 125px 0 0 -78px;
+}
+
+.statcount {
+   position: absolute;
+  left: 50%;
+  margin: 101px 0 0 -35px;
+}
+.headerdiv {
+	width: 100%;
+	height: 150px;
+}
+
+
 </style>
 </head>
 <body>
+<div class="container">
+	<div class="headerdiv">
   <span id="threediv">
       <nav>
               <ul>
@@ -89,26 +262,45 @@ body {
               </ul>
          </nav>
   </span>
+  <span id="signindiv">
+	  <img id="sign" data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
+	  <!-- <img id="logout" href="#logout" src="../images/logout.png" alt="logout" /> -->
+  </span>
+  
+  
+  <!-- 
+		 <ul>
+		   <li><a href="#" id="current">
+		     <div class="mypage">
+	    	   <div class="imgdiv"><img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45"></div>
+	   	     <div class="name"><font size="3">김현지</font></div>
+	       </div>
+	   	    </a>
+	        <ul>
+		     <li><a href="location:;">받은좋아요 <img src="../images/mainlike.png" width="20px" height="20px"><font align="right"> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>
+		     <li><a href="#">설정</a></li>
+		     <li><a href="../auth/logout.do">로그아웃</a></li>
+		    </ul>
+	      </li>
+	   </ul>
+	 </div> -->
+  </div>
+  
+  
   <span id="logodiv" align="center">
      <a href="../main/main.html"><img  src="../images/logo.png" alt="logo"/></a> 
   </span>
-  <span id="signindiv">
-	  <img id="sign" data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
-	  <img id="logout" href="#logout" src="../images/logout.png" alt="logout" />
-  </span>
-  
 
   <div id="searchdiv" align="center">
   <form method="get" action="../list/list.html">
     <input id="search" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
   </form>
   <br>
-
+</div>
 
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 
-  
-  </div>
+</div>
   <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
      <source src="../images/background.mp4" type="video/mp4">
    </video>
@@ -299,11 +491,19 @@ $.post("../auth/log.do", {
 	password : $("#passwordsignup").val()
 }, function(result) {
 	if (result.status == "success") {
+		
+		var headerdiv = $('.headerdiv');
+		
+		$("<div class='menubar'>").html("<ul>" + 
+				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg' width='45' height='45'></div><div class='name'><font size='3'>김현지</font></div></div></a>" + 
+				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlike.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
+				"<li><a href='#'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
+				"</li></ul>").appendTo(headerdiv);
 		$('#sign').css("display", "none");
-		$('#logout').css("display", "");
 	} else if (result.status == "failure"){
-		$('#sign').css("display", "");
-		$('#logout').css("display", "none");
+		/* $('#sign').css("display", "");
+		$('#logout').css("display", "none"); */
+		console.log("로그인에 실패하셨습니다.");
 	}
 }, "json");
 </script>
