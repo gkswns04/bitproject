@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
 
@@ -124,7 +123,7 @@
     left: 50%;
     width: 400px;
     border: 1px solid gray;
-     margin: 0 0 0 -109px;
+    margin: 0 0 0 -109px;
   }
   
   .searchdiv {
@@ -156,7 +155,7 @@
    }
  
    #addbtn {
-   		width: 80px;
+   	  width: 200px;
       cursor: pointer;
       background: #242b33;
       padding: 8px 5px;
@@ -223,16 +222,9 @@
 	.thumbnail {
 	  position: absolute;
 	  border-radius : 50%;
-	 /*
-	  left:50%;
-	  margin: -170px -200px 0 200px; */
+	 
 	}
    
-   .backimg {
-   position:absolute;
-   left:50%;
-   margin: -50px 0 0 -300px;
-   }
 	
 </style>
 
@@ -295,7 +287,7 @@
         
   <div class="d4">
      <div>
-       <select name="mean" id="Mean" class="means" >
+       <select name="mean" id="Mean" class="mean" >
           
        </select>
      </div>
@@ -350,7 +342,7 @@
 </div>
 </form>
 <script>
-  <script>
+ 
     $(document).ready(function () {
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -446,7 +438,7 @@
 	        // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
 	        success: function (data) {
 	        	
-	        	$.getJSON("http://localhost:3000/parseword?word=" + $("#search").val(), function (result) {
+	        	$.getJSON("http://192.168.0.61:3000/parseword?word=" + $("#search").val(), function (result) {
 	        	
 	             var divMeans1 = document.getElementById("Mean");
 	             var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>";
@@ -496,7 +488,7 @@ function wordAdd(word) {
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://localhost:3000/parseword?word=" + word, function (result) {
+		$.getJSON("http://192.168.0.61:3000/parseword?word=" + word, function (result) {
 		for (i=1; i < result.length; i++) {			
 			 $.get("../ajax/searchList/wordMeanAdd.do", {
 		      word: word,
