@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common3.css">
-<link rel="stylesheet" type="text/css" href="../css/list.css">
+<link rel="stylesheet" type="text/css" href="../css/list3.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -66,7 +66,7 @@
   }
 
   
-   #imgPreview {
+   #imgPreviews {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -106,7 +106,7 @@
     margin: 0 -80px 0 0;
   }
   
-  .means {
+  .mean {
     position: absolute;
     top: -60%;
     height: 40px;
@@ -199,6 +199,14 @@
    background: linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
   }
 
+	.thumbnail {
+	  position: absolute;
+	  border-radius : 50%;
+	 /*
+	  left:50%;
+	  margin: -170px -200px 0 200px; */
+	}
+	
 </style>
 
 </head>
@@ -215,6 +223,23 @@
      </span>
      
      <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"/></div>
+     
+     <div class="menubar">
+		 <ul>
+		   <li><a href="#" id="current">
+		     <div class="mypage">
+	    	   <div class="imgdiv"><img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45"></div>
+	   	     <div class="name"><font size="3">김현지</font></div>
+	       </div>
+	   	    </a>
+	        <ul>
+			     <li><a href="location:;">받은좋아요 <img src="../images/mainlike.png" width="20px" height="20px"><font align="right"> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>
+			     <li><a href="#">설정</a></li>
+			     <li><a href="#">로그아웃</a></li>
+		    </ul>
+	      </li>
+	   </ul>
+		 </div>
      
      <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
@@ -244,7 +269,7 @@
         
   <div class="d4">
      <div>
-       <select id="Means" class="means" >
+       <select id="Mean" class="mean" >
           
        </select>
      </div>
@@ -258,10 +283,10 @@
   
   <div class="d3">
      <div class="image" align="center">       
-        <input id="inputFile" type="file"></input>
+        <input id="inputFiles" type="file"></input>
      </div>
      <div id="imgPreviewdiv" align="center" >
-        <img id="imgPreview" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
+        <img id="imgPreviews" src="" alt="이곳에 선택된 이미지가 표시됩니다."> 
      </div>
   </div>
   
@@ -278,7 +303,7 @@
                 var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
                 reader.onload = function (e) {
                     //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
-                    $('#imgPreview').attr('src', e.target.result);
+                    $('#imgPreviews').attr('src', e.target.result);
                     //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
                     //(아래 코드에서 읽어들인 dataURL형식)
                 }
@@ -288,7 +313,7 @@
         } //readURL()--
 
         //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
-        $("#inputFile").change(function () {
+        $("#inputFiles").change(function () {
             //alert(this.value); //선택한 이미지 경로 표시
             readURL(this);
         });
@@ -314,7 +339,7 @@
 	        	
 	        	$.getJSON("http://localhost:3000/parseword?word=" + $("#search").val(), function (result) {
 	        	
-	             var divMeans1 = document.getElementById("Means");
+	             var divMeans1 = document.getElementById("Mean");
 	             var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>";
 	             divMeans1.innerHTML = divMeans3;
 	             console.log(result)

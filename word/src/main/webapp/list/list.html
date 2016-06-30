@@ -22,7 +22,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></scri.row>.containerpt>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/list4.css">
+<link rel="stylesheet" type="text/css" href="../css/list3.css">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -31,6 +31,9 @@
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
+body {
+	background-color: #F5F0E6;
+}
 .assohint {
    cursor: pointer;
    color: red;   
@@ -61,7 +64,18 @@
   line-height: 0!important;
   text-indent: -9000px;
 }
-
+.card1 {
+	background-color: white;
+	width: 200px;
+	height: 200px;
+}
+.thumbnail {
+  position: absolute;
+  border-radius : 50%;
+ /*
+  left:50%;
+  margin: -170px -200px 0 200px; */
+}
 
 </style>
   </head>
@@ -82,10 +96,29 @@
    <input id="search" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
    </form>
    </div>
+   
+   <div class="menubar">
+		 <ul>
+		   <li><a href="#" id="current">
+		     <div class="mypage">
+	    	   <div class="imgdiv"><img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45"></div>
+	   	     <div class="name"><font size="3">김현지</font></div>
+	       </div>
+	   	    </a>
+	        <ul>
+		     <li><a href="location:;">받은좋아요 <img src="../images/mainlike.png" width="20px" height="20px"><font align="right"> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>
+		     <li><a href="#">설정</a></li>
+		     <li><a href="#">로그아웃</a></li>
+		    </ul>
+	      </li>
+	   </ul>
+	 </div>
+   
    <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
     </video>
 </div>
+
 <div id="d2" class="container">
    <div id="resultword" align="right"></div>
    <div id="resultmean" align="left"></div>
@@ -269,6 +302,7 @@
 			document.getElementById("text"+index).setAttribute( 'class', 'assohint');
 			document.getElementById("text"+index).setAttribute( 'onClick', 'changeValue3(' + index + ')');
 			var hint = $("span[class='assohint']").text();
+			
 			$("<input type='hidden' name='hint' value='" + hint + "'>").html("").appendTo("#assos");
 			
       });	  
@@ -412,17 +446,19 @@ function loadAsso(word) {
 				"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
 				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
 				"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
-				"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/mainlike.png' alt='like' width='30px'/></span>" +
+				"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
 				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 				.appendTo(ul);
 			 	
 			  setFavor(i);
+
 		  }
 		}
 	});
 }
-	
+
+
 
 function setFavor(index) {
 	$(document).ready(function () {
@@ -465,6 +501,7 @@ function favorChange(index) {
 	 	});
 	});
 }
+
 </script>
   </body>
   </html>
