@@ -295,7 +295,7 @@
      
   <div class="d2">    
      <div>
-        <textarea id="message-text" name="asso" class="asso"  align="center"  placeholder="연상법"></textarea>
+        <textarea class="asso" name="asso"  id="assobox" align="center"  placeholder="연상법"></textarea>
      </div>
   </div>
   
@@ -390,7 +390,7 @@
   <script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
-         var divAssos2 = document.getElementById("message-text").value.split(" ");
+         var divAssos2 = document.getElementById("assobox").value.split(" ");
          var asso = ""; 
          for (var i = 0; i < divAssos2.length; i++) {
            asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='assotext' data-index='" + i + "'>";
