@@ -29,7 +29,7 @@ body {
 
 .thumbnail {
   position: absolute;
-  border-radius : 50%;
+  border-radius : 50% !important;
  /*
   left:50%;
   margin: -170px -200px 0 200px; */
