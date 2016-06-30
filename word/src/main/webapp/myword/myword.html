@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 단어장</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common3.css">
 <link rel="stylesheet" type="text/css" href="../css/list.css">
@@ -10,13 +10,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="css/component.css" />
+
+		<meta name="description" content="Loading Effects for Grid Items with CSS Animations" />
+		<meta name="keywords" content="css animation, loading effect, google plus, grid items, masonry" />
+	 	<meta name="author" content="Codrops" /> 
+
+
+<script src="js/modernizr.custom.js"></script>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		
 <style>
    body {
-   background-color: #F7F4EF;
+   background-color: #F9F6F1;
    margin: 0 auto;
    }
    
@@ -62,13 +69,13 @@
 /*basic layout*/
 .material-contact {
     width:320px;
-    max-width:90%;
+    max-width:100%;
     height:auto;
-    padding:50px 50px 30px 50px;
+    padding: 50px 25px 30px 25px;
     box-sizing:border-box;
     display:block;
     position:relative;
-    margin:50px auto;
+    margin:0px auto;
     overflow:hidden;
     
     background:#fff;
@@ -272,29 +279,17 @@
     -webkit-animation:animateIn .7s ease;
 }
 
-.cardrow {
-/*    position: relative; */
-}
-/* 
-.card1 {
-  position: absolute;
-  left: 50%;
-  margin: 60px 0 0 -530px;
-}
-
-.card2 {
-  position: absolute;
-  left: 50%;
-  margin: 60px 0 0 -200px;
+.line {
+    position: absolute;
+    right: 50%;
+    margin: 0 -110px 0 0;
+    content: ' ';
+    display: block;
+    width: 101%;
+    height: 2px;
+    margin-top: 45px;
 }
 
-.card3 {
-  position: absolute;
-  left: 50%;
-  margin: 60px 0 0 130px;
-}
- */
-   
 </style>
 
 </head>
@@ -318,18 +313,48 @@
      
    </div>
 
+    <div class="mywordtext">
+    	<p><font size="6">
+    	나의 단어장
+    	</font>
+    	</p>
+    <div class="line">
+    </div>
+    
+    </div>
 
 
 
-
-
-
-
-	<div class="clearfix">
-		<!-- grid 에서 제공해주는 효과때문에 넣는 div -->
-		<div class="cardrow">
+	<div class="container">
+			<!-- Top Navigation -->
 			<ul class="grid effect-2" id="grid">
 				<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
 					<div class="material-contact animate-in-card">
 
 						<!-- card1 -->
@@ -351,64 +376,58 @@
 							<font size=3><strong>크래커가 갈라지다</strong></font>
 						</p>
 					</div>
-				</li>
-				
-				
-				<li>
-					<div class="material-contact animate-in-card">
-						<!-- card2 -->
-						<!-- image -->
-						<img class="animate-in-image" src="../images/cracker.png">
-						<!-- name -->
-						<h1 class="animate-in-01">
-							<font size=4><strong>Crack</strong></font>
-						</h1>
-						<!-- title -->
-						<h2 class="animate-in-02">
-							<font size=3 color="black">갈라지다</font>
-						</h2>
-
-						<hr class="animate-in-03">
-
-						<!-- bio -->
-						<p class="animate-in-04">
-							<font size=3><strong>크래커가 갈라지다</strong></font>
-						</p>
-
-					</div>
-				</li>
-
-
-				<li>
-					<div class="material-contact animate-in-card">
-						<!-- card3 -->
-						<!-- image -->
-						<img class="animate-in-image" src="../images/cracker.png">
-						<!-- name -->
-						<h1 class="animate-in-01">
-							<font size=4><strong>Crack</strong></font>
-						</h1>
-						<!-- title -->
-						<h2 class="animate-in-02">
-							<font size=3 color="black">갈라지다</font>
-						</h2>
-
-						<hr class="animate-in-03">
-
-						<!-- bio -->
-						<p class="animate-in-04">
-							<font size=3><strong>크래커가 갈라지다</strong></font>
-						</p>
-					</div>
+					
 					</li>
-				</ul>
-				
-				
-				
-				
-		<div class="cardrow">
-			<ul class="grid effect-2" id="grid">
 				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다 크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+						<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
 					<div class="material-contact animate-in-card">
 
 						<!-- card1 -->
@@ -430,65 +449,692 @@
 							<font size=3><strong>크래커가 갈라지다</strong></font>
 						</p>
 					</div>
-				</li>
-				<li>
-					<div class="material-contact animate-in-card">
-						<!-- card2 -->
-						<!-- image -->
-						<img class="animate-in-image" src="../images/cracker.png">
-						<!-- name -->
-						<h1 class="animate-in-01">
-							<font size=4><strong>Crack</strong></font>
-						</h1>
-						<!-- title -->
-						<h2 class="animate-in-02">
-							<font size=3 color="black">갈라지다</font>
-						</h2>
-
-						<hr class="animate-in-03">
-
-						<!-- bio -->
-						<p class="animate-in-04">
-							<font size=3><strong>크래커가 갈라지다</strong></font>
-						</p>
-
-					</div>
-				</li>
-
-
-				<li>
-					<div class="material-contact animate-in-card">
-						<!-- card3 -->
-						<!-- image -->
-						<img class="animate-in-image" src="../images/cracker.png">
-						<!-- name -->
-						<h1 class="animate-in-01">
-							<font size=4><strong>Crack</strong></font>
-						</h1>
-						<!-- title -->
-						<h2 class="animate-in-02">
-							<font size=3 color="black">갈라지다</font>
-						</h2>
-
-						<hr class="animate-in-03">
-
-						<!-- bio -->
-						<p class="animate-in-04">
-							<font size=3><strong>크래커가 갈라지다</strong></font>
-						</p>
-					</div>
+					
 					</li>
-				</ul>
-				
-				
-				
-				
-				
-				
-			</div>
-</div>			
+				<li>
+				<div class="material-contact animate-in-card">
 
-	<script src="js/masonry.pkgd.min.js"></script>
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+					<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+						<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+							<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+						<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+							<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+						<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+							<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+							<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+							<li>
+				
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				
+				
+				</li>
+				<li>	
+					<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+					
+					</li>
+				<li>
+				<div class="material-contact animate-in-card">
+
+						<!-- card1 -->
+						<!-- image -->
+						<img class="animate-in-image" src="../images/cracker.png">
+						<!-- name -->
+						<h1 class="animate-in-01">
+							<font size=4><strong>Crack</strong></font>
+						</h1>
+						<!-- title -->
+						<h2 class="animate-in-02">
+							<font size=3 color="black">갈라지다</font>
+						</h2>
+
+						<hr class="animate-in-03">
+
+						<!-- bio -->
+						<p class="animate-in-04">
+							<font size=3><strong>크래커가 갈라지다</strong></font>
+						</p>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+		<script src="js/masonry.pkgd.min.js"></script>
 		<script src="js/imagesloaded.js"></script>
 		<script src="js/classie.js"></script>
 		<script src="js/AnimOnScroll.js"></script>
@@ -499,7 +1145,6 @@
 				viewportFactor : 0.2
 			} );
 		</script>
-
 
 
 </body>
