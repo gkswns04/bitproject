@@ -279,15 +279,37 @@
     -webkit-animation:animateIn .7s ease;
 }
 
+
+.textbox {
+  position: relative;
+  left: 50%;
+  width: 200px;
+  margin: 130px 0 0 -300px;
+}
+
+.mywordtext {
+  position: absolute;
+  left: 50%;
+  margin: -80px 0 0 45px;
+  width: 300px;
+}
+
+
 .line {
-    position: absolute;
-    right: 50%;
-    margin: 0 -110px 0 0;
+  position: absolute;
+    left: 50%;
+    margin: 340px 0 0 -410px;
     content: ' ';
     display: block;
-    width: 101%;
+    width: 800px;
     height: 2px;
-    margin-top: 45px;
+         background: -moz-linear-gradient(left, rgba(36,43,51,0) 0%, rgba(36,43,51,0.8) 20%, rgba(36,43,51,1) 53%, rgba(36,43,51,0.8) 79%, rgba(36,43,51,0) 100%); 
+         background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(36,43,51,0)), color-stop(20%,rgba(36,43,51,0.8)), color-stop(53%,rgba(36,43,51,1)), color-stop(79%,rgba(36,43,51,0.8)), color-stop(100%,rgba(36,43,51,0))); 
+         background: -webkit-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+         background: -o-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+         background: -ms-linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+         background: linear-gradient(left, rgba(36,43,51,0) 0%,rgba(36,43,51,0.8) 20%,rgba(36,43,51,1) 53%,rgba(36,43,51,0.8) 79%,rgba(36,43,51,0) 100%); 
+         }
 }
 
 
@@ -339,17 +361,13 @@
      
    </div>
 
+   <div class="textbox">
     <div class="mywordtext">
-    	<p><font size="6">
-    	나의 단어장
-    	</font>
-    	</p>
-    <div class="line">
+      <h2>나의 단어장</h2>
     </div>
-    
-    </div>
-
-
+  </div>
+  
+ <div class="line" align="center"> </div>
 
 	<div class="container">
 			<!-- Top Navigation -->
