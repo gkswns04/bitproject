@@ -302,6 +302,7 @@ loadMean();
 
 function loadMean() {
 	$.getJSON("http://192.168.0.61:3000/parseword?word=" + getParameter('word'), function (result) {
+
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
      var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>"; 
