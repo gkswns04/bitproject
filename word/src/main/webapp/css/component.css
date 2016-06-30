@@ -4,7 +4,7 @@ Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-h
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; } 
 
-
+ 
 .grid {
 	max-width: 69em;
 	list-style: none;
