@@ -419,28 +419,45 @@ background-color: transparent;
 							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
 							<a class="hiddenanchor" id="tologin"></a>
 							<div id="wrapper">
-								<div id="login" class="animate form">
+								<div id="settings" class="animate form">
 									
 									<form autocomplete="on" method='post'>
-										<h1>Log in</h1>
+										<img src="../images/profile.png" class="settingpro">
+										<h3 align="center">김현지  <img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br>
+										<h1></h1>
+										
+									     	<p>
+											<label for="useremail" class="youmail" data-icon="e">이메일</label>
+											<input id="setemail" name="email" required="required" type="text" readonly="readonly"/>
+										</p>
+										
 										<p>
-											<label for="username" class="uname" data-icon="u">Your email</label>
-											<input id="email" name="email" required="required" type="text"
-												placeholder="mymail@mail.com" />
+											<label for="username" class="uname" data-icon="u">닉네임 변경</label>
+											<input id="setnick" name="nick" required="required" type="text"/>
+											    <font name="ncheck" size="2" color="red"></font> <br>
 										</p>
+										
 										<p>
-											<label for="password" class="youpasswd" data-icon="p"> Your password</label>
-											<input id="password" name="password" required="required" type="password"
-											    placeholder="eg. X8df!90EO" />
-											    
+											<label for="password" class="youpasswd" data-icon="p">비밀번호 변경</label>
+											<input id="localpassword" name="password" required="required" type="password"
+											    placeholder="기존 비밀번호" />
+											
 										</p>
-										<p class="keeplogin">
-											<input type="checkbox" name="loginkeeping" id="loginkeeping"
-												value="loginkeeping" />
-										    <label for="loginkeeping">Keep me logged in</label>
+										
+										<p>
+											<input id="setpassword" name="password"  required="required" type="password"
+											    placeholder="새 비밀번호" />
+											<font name="prcheck" size="2" color="red"></font> <br>
 										</p>
-									<p class="login button">
-										<input  id="loginbtn" name="loginbtn" value="LOGIN" style="text-align:center;" readonly />
+										
+										<p>
+											<input id="setpassword_confirm" name="password" required="required" type="password"
+											    placeholder="새 비밀번호 확인" />
+											    <font name="pcheck" size="2" color="red"></font> 
+										</p>
+									
+									<p class="change button">
+										<input  id="change" name="changebtn" value="변경" style="text-align:center;" readonly />
 									</p>
 									
 									</form>
@@ -463,6 +480,56 @@ background-color: transparent;
     
     
    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+   
+
+<!--  설정 팝업 -->
+<script>
+
+$.getJSON("../auth/log.do", function(result) {
+		if (result.status == "success"){
+			var member = result.member;
+			console.log(member.email);
+			$("#setemail").val(member.email);
+			$("#setnick").val(member.nick);
+		} else if (result.status == "failure"){
+			
+		}
+	});
+	</script>
+<!-- 닉네임 실시간으로 중복체크 해주기 -->	
+<script>
+$(function(){
+	$('#setnick').keyup(function() {
+	
+	var member={"nick":""};
+
+	 $.ajax({
+		  type: 'POST',
+		  url: "../ajax/member/detailByNick.do",
+		  data:  {
+				nick : $("#setnick").val()
+			},
+		  success: function(result) {
+			  if (result.nick != null) {
+					member.nick = result.nick;
+			  }
+			},
+		  dataType: "json",
+		  async:false
+		});
+	 
+    
+    if(member.nick != "") {	
+			$('font[name=ncheck]').html("중복된 아이디 입니다.");
+			$('font[name=ncheck]').css("color","red");
+	} else if (member.nick == "") {
+			$('font[name=ncheck]').html("사용 가능한 아이디입니다.");
+			$('font[name=ncheck]').css("color","blue");
+	}
+	});
+});  
+</script>
+   
    
    
 
@@ -499,7 +566,21 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 		 $('font[name=pcheck]').text('');
    	 }
   });
-
+ });
+ 
+  <!-- 설정 팝업 정규식 -->
+  $(function(){
+	  $('#setpassword').keyup(function(){
+	   $('font[name=prcheck]').text('');
+	   	 if(!$('#setpassword').val().match(regexPassword)) {
+			 $('font[name=prcheck]').html("비밀번호는 숫자와 영문자 조합으로 6~16자리를 사용해 주세요");
+			 $('font[name=prcheck]').css("color","red");
+	   	 } else {
+			 $('font[name=prcheck]').text('');
+	   	 }
+	  });
+  });
+  
   <!-- 회원가입시 pw / pw확인 일치하는지 스크립트 -->
   $('#passwordsignup_confirm').keyup(function(){
    if($('#passwordsignup').val()!=$('#passwordsignup_confirm').val()){
@@ -513,7 +594,20 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
     $('font[name=check]').text('');
    }
   });
- });
+  
+  
+  $('#setpassword_confirm').keyup(function(){
+	   if($('#setpassword').val()!=$('#setpassword_confirm').val()){
+		$('font[name=pcheck]').text('');
+	    $('font[name=pcheck]').html("암호가 일치하지 않습니다.");
+	    $('font[name=pcheck]').css("color","red");
+	    return;
+	   }else {
+	    $('font[name=pcheck]').html("암호가 일치합니다.");
+	    $('font[name=pcheck]').css("color","blue");
+	   }
+	  });
+
  
 <!-- 이메일 정규식 적용 -->
 	$(function(){
@@ -532,6 +626,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 		  });
 	 });
  
+	
+	
+	
 </script>
 
 

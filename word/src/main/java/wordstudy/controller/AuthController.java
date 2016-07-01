@@ -89,8 +89,11 @@ public class AuthController {
   @ResponseBody
   public String log(HttpSession session)throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
+    Member member = (Member) session.getAttribute("loginUser");
+    System.out.println(member);
     try {
     	if(session.getAttribute("loginUser") != null) {
+    		result.put("member", member);
     		result.put("status", "success");
     	}else if (session.getAttribute("loginUser") == null) {
     		result.put("status", "failure");

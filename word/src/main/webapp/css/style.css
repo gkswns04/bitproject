@@ -167,6 +167,7 @@ input {
 	   -moz-transition: all 0.2s linear;
 	     -o-transition: all 0.2s linear;
 	        transition: all 0.2s linear;
+	 margin-left: 260px;
 }
 #wrapper p.button input:hover{
 	background: rgba(36, 43, 51, 0.6);
@@ -182,6 +183,7 @@ input {
 	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
 }
 p.login.button,
+p. change.button,
 p.signin.button{
 	text-align: right;
 	margin: 5px 0;
@@ -295,6 +297,15 @@ p.change_link{
 	-moz-border-radius: 5px;
 		 border-radius: 5px;
 }
+#settings{
+	position: absolute;
+    top: 0px;
+    width: 88%;
+    padding: 30px 6% 10px 6%;
+    margin: 0 0 35px 0;
+    background: rgb(247, 247, 247);
+    border: 1px solid rgba(147, 184, 189,0.8);
+}
 
 #register{	
 	z-index: 21;
@@ -348,6 +359,14 @@ p.change_link{
 	animation-duration: 0.5s;
 	animation-timing-function: ease;
 	animation-fill-mode: both;
+}
+.cameraimg {
+	margin: 0 0 -8px 2px;
+}
+.settingpro {
+	width: 100px;
+	height: 100px;
+	margin: 0 0 -2px 140px;
 }
 
 /** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */

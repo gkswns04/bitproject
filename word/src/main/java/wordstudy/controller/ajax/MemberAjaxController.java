@@ -77,6 +77,7 @@ public class MemberAjaxController {
   @ResponseBody
   public String detailByNick(String nick) throws ServletException, IOException {
     Member member = memberService.retrieveByNick(nick);
+    System.out.println(member.getNick());
     return new Gson().toJson(member);
   }
   
