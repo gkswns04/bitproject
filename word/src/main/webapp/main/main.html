@@ -314,8 +314,8 @@ background-color: transparent;
 					<section>
 						<div id="container_demo">
 							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-							<a class="hiddenanchor" id="toregister"></a> <a
-								class="hiddenanchor" id="tologin"></a>
+							<a class="hiddenanchor" id="toregister"></a> 
+							<a class="hiddenanchor" id="tologin"></a>
 							<div id="wrapper">
 								<div id="login" class="animate form">
 									
@@ -341,8 +341,7 @@ background-color: transparent;
 										<input  id="loginbtn" name="loginbtn" value="LOGIN" style="text-align:center;" readonly />
 									</p>
 									<p class="change_link">
-										Not a member yet ? <a href="#toregister" class="to_register">Join
-											us</a>
+										Not a member yet ? <a href="#toregister" class="to_register">Join us</a>
 									</p>
 									</form>
 							</div>
@@ -390,8 +389,7 @@ background-color: transparent;
 											<input id="signinbtn" value="Sign up" style="text-align:center;" readonly/>
 										</p>
 										<p class="change_link">
-											Already a member ? <a href="#tologin" class="to_register">
-												Go and log in </a>
+											Already a member ? <a href="#tologin" class="to_register">Go and log in </a>
 										</p>
 									</form>
 								</div>
@@ -403,6 +401,64 @@ background-color: transparent;
 			</div>
 		</span>
 	</div>
+	
+	
+	
+	
+	<!-- 설정 팝업! -->
+	
+	
+	<div class="modal" id="setting" aria-hidden="true"
+		style="display: none; z-index: 1050;">
+		<span id="signinpop">
+			<div class="modal-dialog modal-lg">
+
+				<div class="modal-body">
+					<section>
+						<div id="container_demo">
+							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+							<div id="wrapper">
+								<div id="setting" class="animate form">
+									
+									<form autocomplete="on" method='post'>
+										<h1>프로필사진 넣을거임</h1>
+										<p>
+											<label for="username" class="uname" data-icon="u">이메일</label>
+											<input id="email" name="email" required="required" type="text"
+												placeholder="mymail@mail.com" />
+										</p>
+										<p>
+											<label for="password" class="youpasswd" data-icon="p"> Your password</label>
+											<input id="password" name="password" required="required" type="password"
+											    placeholder="eg. X8df!90EO" />
+											    
+										</p>
+										<p class="keeplogin">
+											<input type="checkbox" name="loginkeeping" id="loginkeeping"
+												value="loginkeeping" />
+										    <label for="loginkeeping">Keep me logged in</label>
+										</p>
+									<p class="login button">
+										<input  id="loginbtn" name="loginbtn" value="LOGIN" style="text-align:center;" readonly />
+									</p>
+									</form>
+							</div>
+
+
+
+
+
+					
+
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</span>
+	</div>
+	
+	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -497,7 +553,7 @@ $.post("../auth/log.do", {
 		$("<div class='menubar'>").html("<ul>" + 
 				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg' width='45' height='45'></div><div class='name'><font size='3'>김현지</font></div></div></a>" + 
 				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
-				"<li><a href='#'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
+				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
 				"</li></ul>").appendTo(headerdiv);
 		$('#sign').css("display", "none");
 	} else if (result.status == "failure"){
