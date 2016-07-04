@@ -11,18 +11,8 @@ public interface MemberDao {
   Member selectOne(Map<String,Object> paramMap);
   int insert(Member member);
   int update(Member member);
+  int pwdChange(Member member);
   int delete(int no);
   int isMember(Map<String,Object> paramMap);
   int countAll();
 }
-
-
-
-
-
-
-
-
-
-
-

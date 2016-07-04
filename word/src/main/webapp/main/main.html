@@ -421,7 +421,7 @@ background-color: transparent;
 							<div id="wrapper">
 								<div id="settings" class="animate form">
 									
-									<form autocomplete="on" method='post'>
+									<form name="mysetting" autocomplete="on" method='post'>
 										<img src="../images/profile.png" class="settingpro">
 										<h3 align="center">김현지  <img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br>
 										<h1></h1>
@@ -433,6 +433,9 @@ background-color: transparent;
 										
 										<p>
 											<label for="username" class="uname" data-icon="u">닉네임 변경</label>
+											<input id="nickCheck" name="nickCheck" type="hidden"/>
+											<input id="nickBefore" name="nickBefore" type="hidden"/>
+											
 											<input id="setnick" name="nick" required="required" type="text"/>
 											    <font name="ncheck" size="2" color="red"></font> <br>
 										</p>
@@ -517,20 +520,181 @@ $(function(){
 		  dataType: "json",
 		  async:false
 		});
-	 
-    
+
     if(member.nick != "") {	
-			$('font[name=ncheck]').html("중복된 아이디 입니다.");
+    		$("#nickCheck").val(1);
+			$('font[name=ncheck]').html("중복된 닉네임 입니다.");
 			$('font[name=ncheck]').css("color","red");
 	} else if (member.nick == "") {
-			$('font[name=ncheck]').html("사용 가능한 아이디입니다.");
+			$("#nickCheck").val(0);
+			$('font[name=ncheck]').html("사용 가능한 닉네임 입니다.");
 			$('font[name=ncheck]').css("color","blue");
 	}
 	});
 });  
 </script>
    
+<!-- 설정 팝업에서 변경하는 과정!!! -->
+<script>
+var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
+
+	$("#change").click(function(event) {
+		
+		
+		 var checkValue = $("#nickCheck").val();
+		 var nickBefore = $("#nickBefore").val();
+
+		 console.log('2'); 
+		 if((checkValue == 1) && (nickBefore != $("#setnick").val())){
+			window.alert("닉네임이 중복 되었습니다."); 
+		}else if((checkValue == 0) && (nickBefore != $("#setnick").val())){
+			
+			console.log('3');
+			$.ajax({
+				  type: 'POST',
+				  url: "../ajax/member/nickupdate.do",
+				  data:  {
+						nick : $("#setnick").val(),
+						email : $("#setemail").val()
+					},
+				  success: function(result) {
+					   if (result.status == "success") {
+							
+						   $("#setnick").val(result.nick);
+						   //member.nick = result.nick;
+						   window.alert("닉네임이 변경되었습니다."); 
+					   }else{
+						   window.alert("설정이 변경되지 않았습니다.");
+						   $("#setnick").val(result.nick);
+					   }
+					  
+					},
+				  dataType: "json",
+				  async:false
+				});
+		} 
+			
+		 if($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != ""){
+			
+			if($("#setpassword").val() != $("#setpassword_confirm").val()) {
+				window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+			}else if(!$('#setpassword').val().match(regexPassword)) {
+				window.alert("비밀번호 형식에 맞지 않습니다.");
+			}else{
+				 $.ajax({
+					  type: 'POST',
+					  url: "../ajax/member/pwdupdate.do",
+					  data:  {
+							email : $("#setemail").val(),
+							localpassword : $("#localpassword").val(),
+							newPass  : $("#setpassword").val()
+						},
+					  success: function(result) {
+						   if (result.status == "success") {
+							
+							   $("#setpassword").val(result.password);
+							   window.alert("설정이 적용되었습니다."); 
+						   }else{
+							   window.alert("비밀번호가 일치 하지 않습니다."); 
+						   }
+						  
+						},
+					  dataType: "json",
+					  async:false
+					});
+
+				}
+			
+		} 
+		
+
+		
+		/*  
+		 
+		$.post("../ajax/member/update.do", {
+			nick : $("#setnick").val(),
+			email : $("#setemail").val(),
+			password : $("#setpassword").val(),
+			photo	 : "",
+			newPass  : ""
+		}, function(result) {
+			if (result.status == "success") {
+				//location.href = "main.html";
+				window.alert("회원 정보 변경 성공"); 
+			} else {
+				 window.alert("회원 정보 변경 실패입니다!"); 
+				}
+			}, "json");
+ */
+	
+		/*  $.ajax({
+			  type: 'POST',
+			  //url: "../ajax/member/detailByNick.do",
+			  url: "../ajax/member/update.do",
+			  data:  {
+					nick : $("#setnick").val()
+				},
+			  success: function(result) {
+				  if (result != null) {
+						member.nick = result.nick;
+				  }
+				},
+			  dataType: "json",
+			  async:false
+			}); */
+	
+	 //	$.ajax({
+	//	  type: 'POST',
+	//	  url: "../ajax/member/detailByEmail.do",
+	//	  data:  {
+	//			email : $("#setemail").val()
+	//		},
+	//	  success: function(result) {
+	//		  if (result != null) {
+	//			member.email = result.email;
+	//		  }
+	//		},
+	//	  dataType: "json",
+	//	  async:false
+	//	});
+	 	/* 
+			if(theForm.setnick.value!="" && theForm.setpassword.value!="" && theForm.setpassword_confirm.value!="" ){
+				    if(!$('#setpassword').val().match(regexPassword)) {
+						window.alert("비밀번호 형식에 맞지 않습니다.");
+						theForm.passwordsignup.focus();
+					}else {
+							if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
+										$.post("../ajax/member/update.do", {
+											nick : $("#setnick").val(),
+											email : $("#setemail").val(),
+											password : $("#setpassword").val()
+										}, function(result) {
+											if (result.status == "success") {
+												location.href = "main.html";
+											} else {
+												 window.alert("회원 정보 변경 실패입니다!"); 
+												}
+											}, "json");
+								}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
+								window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+								}
+					}
+				} else if(theForm.setnick.value=="" || theForm.setpassword.value=="" || theForm.setpassword_confirm.value=="" ){
+					if(theForm.setnick.value==""){
+						window.alert("닉네임을 입력해 주시기 바랍니다.");
+						theForm.setnick.focus();
+					}else if(theForm.setpassword.value==""){
+						window.alert("비밀번호를 입력해 주시기 바랍니다.");
+						theForm.setpassword.focus();
+					}else {
+						window.alert("비밀번호를 확인해 주시기 바랍니다.");
+						theForm.setpassword_confirm.focus();
+					}
+				}	 */
+	});   
    
+   
+</script>   
    
 
 <script>

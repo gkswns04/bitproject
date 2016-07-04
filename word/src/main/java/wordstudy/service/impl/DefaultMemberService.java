@@ -44,9 +44,12 @@ public class DefaultMemberService implements MemberService {
     return memberDao.selectOne(paramMap);
   }
   
-  
   public void change(Member member) {
     memberDao.update(member);
+  }
+  
+  public void pwdChange(Member member) {
+    memberDao.pwdChange(member);
   }
   
   public boolean exist(String email, String password) {

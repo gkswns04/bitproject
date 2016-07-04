@@ -64,6 +64,11 @@ public class AuthController {
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", member);
       
+      System.out.println("로그인 정보");
+      System.out.println(member.getNick());
+      System.out.println("로그인 정보");
+      
+      
       result.put("status", "success");
       //model.addAttribute("loginUser", member); 
     } else { // 로그인 실패!

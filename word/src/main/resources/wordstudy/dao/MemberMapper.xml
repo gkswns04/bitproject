@@ -22,13 +22,20 @@
   </insert>
   
   <update id="update" parameterType="Member">
-    update MEMBERS set
-      NIC=#{nick},
-      EMAIL=#{email},
-      PW=#{password},
-      PHOT=#{photo}
-    where MNO=#{no}
+    update MEMBERS 
+       set NIC	=#{nick}
+     where EMAIL 	= #{email}
+       
+    <!-- MNO=#{no}  -->
   </update>
+
+ <update id="pwdChange" parameterType="Member">
+    update MEMBERS 
+       set PW	    =#{password}
+     where EMAIL 	= #{email}
+  </update>
+
+
   
   <delete id="delete" parameterType="int">
     delete from MEMBERS

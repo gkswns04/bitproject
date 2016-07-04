@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,24 +81,37 @@ public class MemberAjaxController {
     System.out.println(member.getNick());
     return new Gson().toJson(member);
   }
-  
-  
-  @RequestMapping(value="update",
+
+  @RequestMapping(value="nickupdate",
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String update(int no, String nick, String password, String photo) throws ServletException, IOException {
+  public String nickupdate(HttpSession session, String nick, String email ) throws ServletException, IOException {
     
-    Member member = new Member();
-    member.setNo(no);
-    member.setNick(nick);
-    member.setEmail(password);
-    member.setPhoto(photo);
-    
+  	//결과 반환 result
     HashMap<String,Object> result = new HashMap<>();
     try {
-      memberService.change(member);
-      result.put("status", "success");
+
+			    	 Member member = new Member();
+			     	 member.setEmail(email);
+			       member.setNick(nick);
+		       
+			       Member resultMember = memberService.retrieveByEmail(email);
+			      
+			      //닉네임변경
+			      if(!resultMember.getNick().equals(nick)){
+			      
+					     //닉네임 변경
+				    	 memberService.change(member);
+				    	 session.setAttribute("loginUser", member);
+				    	 result.put("nick", member.getNick());
+			  	  	 result.put("status", "success");
+			  	  	 
+			      }else{
+			      	 result.put("nick", resultMember.getNick());
+			  	  	 result.put("status", "failure");
+			      }
+    	
     } catch (Exception e) {
       result.put("status", "failure");
     }
@@ -105,6 +119,41 @@ public class MemberAjaxController {
   }
   
 
+  
+  @RequestMapping(value="pwdupdate",
+      method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String pwdupdate(String email, String localpassword, String newPass) throws ServletException, IOException {
+    
+  	//결과 반환 result
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+            System.out.println(localpassword);
+			      System.out.println(newPass);
+			      
+			    	 Member member = new Member();
+			     	 member.setEmail(email);
+			       
+			       Member resultMember = memberService.retrieveByEmail(email);
+			      			      
+			       	//기존 비밀번호 체크 후 진행
+			       	if(resultMember.getPassword().equals(localpassword)){
+			       	   //비밀번호 변경
+			       		 member.setPassword(newPass);
+			       		 memberService.pwdChange(member);
+			       		 result.put("status", "success");
+			       	}else{
+			       		result.put("status", "failure");
+			       
+			        }    
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String list(
