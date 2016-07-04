@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import wordstudy.vo.MyWord;
+import wordstudy.vo.SearchList;
 
 
 public interface MyWordDao {
-	List<MyWord> selectList(Map<String, Object> paramMap);
+	List<SearchList> selectList(int no);
   int insert(MyWord myWord);
   int update(MyWord myWord);
   int delete(MyWord myWord);

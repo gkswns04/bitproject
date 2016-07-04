@@ -1,15 +1,15 @@
 package wordstudy.service;
 
 import java.util.List;
-import java.util.Map;
 
 import wordstudy.vo.MyWord;
+import wordstudy.vo.SearchList;
 
 public interface MyWordService {
   void add(MyWord myWord);
   void delete(MyWord myWord);
   void change(MyWord myWord);
-  List<MyWord> list(Map<String, Object> paramMap);
+  List<SearchList> list(int no);
   boolean exist(int mno, int ano);
 }
 

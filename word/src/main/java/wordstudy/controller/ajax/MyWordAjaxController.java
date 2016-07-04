@@ -2,6 +2,7 @@ package wordstudy.controller.ajax;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -17,6 +19,7 @@ import com.google.gson.Gson;
 import wordstudy.service.MyWordService;
 import wordstudy.vo.Member;
 import wordstudy.vo.MyWord;
+import wordstudy.vo.SearchList;
 
 @Controller
 @RequestMapping("/ajax/myWord/")
@@ -68,6 +71,21 @@ public class MyWordAjaxController {
     return new Gson().toJson(result);
   }
 
+  @RequestMapping(value="list", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String list(
+      HttpServletRequest request)
+      throws ServletException, IOException {
+    
+    HttpSession session = request.getSession();
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    List<SearchList> list = myWordService.list(member.getNo());
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }
+  
 /*  @RequestMapping(value="update",
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")

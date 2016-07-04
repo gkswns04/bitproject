@@ -2,7 +2,6 @@ package wordstudy.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import wordstudy.dao.MyWordDao;
 import wordstudy.service.MyWordService;
 import wordstudy.vo.MyWord;
+import wordstudy.vo.SearchList;
 
 @Service
 public class DefaultMyWordService implements MyWordService {
@@ -27,8 +27,8 @@ public class DefaultMyWordService implements MyWordService {
     myWordDao.update(myWord);
   }
   
-  public List<MyWord> list(Map<String, Object> paramMap) {
-    return myWordDao.selectList(paramMap);
+  public List<SearchList> list(int no) {
+    return myWordDao.selectList(no);
   }
 
   public boolean exist(int mno, int ano) {

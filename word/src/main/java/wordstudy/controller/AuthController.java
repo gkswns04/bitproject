@@ -109,6 +109,13 @@ public class AuthController {
     return new Gson().toJson(result);
   }
   
+  @RequestMapping(value="/toMain")
+  @ResponseBody
+  public String toMain()throws ServletException, IOException {
+    System.out.println("kkkk!");
+    return "redirect:../main/main.html";
+  }
+  
 }//
 
 

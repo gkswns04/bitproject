@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common3.css">
-<link rel="stylesheet" type="text/css" href="../css/list3.css">
+<link rel="stylesheet" type="text/css" href="../css/list7.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -32,7 +32,7 @@
       padding-bottom: 13%;
       overflow: hidden;
    }
-   #logodiv {
+/*    #logodiv {
       position: absolute;
       top: 80px;
       width: 400px;
@@ -40,12 +40,13 @@
       z-index: 2;
       right: 50%;
       margin: 0 -200px 0 0;
-   }
+   } */
 
   .d2 {
     min-width: 0; height:150px; right: 100px;
     position: relative;
   }
+
 
   .d3 {
     min-width: 0; height:150px; width:400px; left: 50%;
@@ -102,7 +103,6 @@
     height: 41px;
     top: 5%;
     border: 1px gray solid;
-    background-image: url( "../images/addsearch.png" );
     background-position: 99% 2px;
     background-repeat: no-repeat;
     background-color: white;
@@ -253,7 +253,11 @@
      </span>
      
      <div id="logodiv" align="center"><img src="../images/logo.png" id="logo"></div>
-     
+     <div id="topsearchdiv" align="center">
+	   <form method="get" action="../list/list.html">
+	   <input id="topsearch" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
+	   </form>
+	   </div>
      <div class="menubar">
        <ul>
          <li><a href="#" id="current">
