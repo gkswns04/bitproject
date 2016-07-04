@@ -329,7 +329,7 @@ background-color: transparent;
 										<p>
 											<label for="password" class="youpasswd" data-icon="p"> Your password</label>
 											<input id="password" name="password" required="required" type="password"
-											    placeholder="eg. X8df!90EO" />
+											    placeholder="eg. X8df!90EO" onKeyPress="if (event.keyCode==13){$('#loginbtn').click();event.returnValue=false}" />
 											    
 										</p>
 										<p class="keeplogin">
@@ -338,7 +338,7 @@ background-color: transparent;
 										    <label for="loginkeeping">Keep me logged in</label>
 										</p>
 									<p class="login button">
-										<input  id="loginbtn" name="loginbtn" value="LOGIN" style="text-align:center;" readonly />
+										<input  id="loginbtn" name="loginbtn"  value="LOGIN" style="text-align:center;" readonly />
 									</p>
 									<p class="change_link">
 										Not a member yet ? <a href="#toregister" class="to_register">Join us</a>
@@ -534,6 +534,7 @@ $(function(){
    
 
 <script>
+
  <!-- 로그인!!! -->
 $("#loginbtn").click(function(event) {
 	$.post("../auth/login.do", {
