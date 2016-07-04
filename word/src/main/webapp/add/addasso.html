@@ -50,7 +50,8 @@
   .d3 {
     min-width: 0; height:150px; width:400px; left: 50%;
     position: relative;
-    margin: -178px 0 0 -209px;
+    left: 50%;
+    margin: -177px 0 0 -209px;
     background-color: white;
     border: 1px solid gray;
   }
@@ -155,7 +156,7 @@
   .addbtndiv2 {
     position: absolute;
     right: -20%;
-    margin: 35px 0 0 500px;
+    margin: 35px 0 0 0px;
     height: 100px;
   }
   
@@ -231,7 +232,13 @@
 	.thumbnail {
 	  position: absolute;
 	  border-radius : 50%;
-	 
+	}
+	
+	.divbox {
+	  position: relative;
+	  width: 0px;
+	  left: 50%; 
+	  margin: 0 0 0 12px;
 	}
    
 	
@@ -284,8 +291,9 @@
    </div>
    </div>
    
-   
+
    <form method="post" name="modalForm" id="assoDataForm" >
+<div class="divbox">   
    <div class="d6">
      <div>
           <div class="form-group">
@@ -351,6 +359,7 @@
           </div>
         </div>
     </div>
+  </div>
 </div>
 </form>
 <script>
