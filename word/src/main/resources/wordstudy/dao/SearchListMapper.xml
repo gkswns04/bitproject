@@ -21,7 +21,7 @@
     
   <insert id="insert" parameterType="SearchList">
     insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR, A_THUM) 
-    values((select MENO from MEANS where mean=#{mean}), #{mno}, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
+    values((select MENO from MEANS where mean=#{mean} and word=#{word}), #{mno}, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
   
   </insert>
   
