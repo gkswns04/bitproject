@@ -5,12 +5,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>main</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  
+   <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
 <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom Style -->
-    <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<!--     <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
     <link rel="stylesheet" type="text/css" href="../css/style2.css" />
     <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
@@ -298,7 +303,7 @@ background-color: transparent;
   <br>
 </div>
 
-<script src="../bower_components/jquery/dist/jquery.js"></script>
+<!-- <script src="../bower_components/jquery/dist/jquery.js"></script> -->
 
 </div>
   <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
@@ -474,19 +479,26 @@ background-color: transparent;
 		</span>
 	</div>
 	
-	
+<div id="dialog-confirm2" title="회원 정보 변경">
+    <p>로그인 실패임</p>
+  </div>
+
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     
     
-   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <!--  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
    
 
 <!--  설정 팝업 -->
 <script>
+ $( document ).ready(function() {
+}); 
 
 $.getJSON("../auth/log.do", function(result) {
 		if (result.status == "success"){
@@ -534,6 +546,7 @@ $(function(){
 	});
 });  
 </script>
+
    
 <!-- 설정 팝업에서 변경하는 과정!!! -->
 <script>
@@ -622,19 +635,32 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 
 <script>
 
- <!-- 로그인!!! -->
+
+<!-- 로그인!!! -->
 $("#loginbtn").click(function(event) {
-	$.post("../auth/login.do", {
-		email : $("#email").val(),
-		password : $("#password").val()
-	}, function(result) {
-		if (result.status == "success") {
-			location.href = "main.html";
-		} else if (result.status == "fail"){
-			window.alert("아이디와 비밀번호가 맞지 않습니다.");
-			setTimeout(function(){$("#email").focus();}, 1);
-		}
-	}, "json")
+  $.post("../auth/login.do", {
+    email : $("#email").val(),
+    password : $("#password").val()
+  }, function(result) {
+    if (result.status == "success") {
+      location.href = "main.html";
+    } else if (result.status == "fail"){
+       $(function() {
+          $( "#dialog-confirm2" ).dialog({
+                resizable: false,
+                height:180,
+                width:300,
+                modal: true,
+                buttons: {"확인": function() {
+                   $( this ).dialog( "close" );
+                   location.href = "main.html"
+                   }}
+              });
+          });
+      //window.alert("아이디와 비밀번호가 맞지 않습니다.");
+      setTimeout(function(){$("#email").focus();}, 1);
+    }
+  }, "json")
 });
  
 
@@ -741,7 +767,7 @@ $.post("../auth/log.do", {
 	} else if (result.status == "failure"){
 		/* $('#sign').css("display", "");
 		$('#logout').css("display", "none"); */
-		console.log("로그인에 실패하셨습니다.");
+
 	}
 }, "json");
 </script>
