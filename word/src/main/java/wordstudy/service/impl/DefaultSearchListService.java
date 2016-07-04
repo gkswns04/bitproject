@@ -19,6 +19,15 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.insert(searchList);
   }
   
+  public void hatesUpdate(SearchList searchList) {
+    searchListDao.hatesUpdate(searchList);
+  }
+  
+  public void hatesUpdateAdd(SearchList searchList) {
+    searchListDao.hatesUpdateAdd(searchList);
+  }
+  
+  
   public void likesUpdate(SearchList searchList) {
     searchListDao.likesUpdate(searchList);
   }
@@ -42,9 +51,14 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.delete(no);
   } */
   
-  public int likeOrHate(SearchList searchList) {    
-    return searchListDao.likeOrHate(searchList);
+  public int likes(SearchList searchList) {    
+    return searchListDao.likes(searchList);
   }
+  
+  public int hates(SearchList searchList) {    
+    return searchListDao.hates(searchList);
+  }
+  
   public SearchList wordList(SearchList searchList) {    
     return searchListDao.wordList(searchList);
   }

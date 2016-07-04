@@ -51,18 +51,28 @@
     and ano=(select ano from assos where asso=#{asso})   
   </select>
   
-  <select id="likeOrHate" resultType="int" parameterType="SearchList">
+  <select id="likes" resultType="int" parameterType="SearchList">
     select likes from my_LOH where mno=#{mno}
     and ano=(select ano from assos where asso=#{asso})   
-        
+  </select>
+  <select id="hates" resultType="int" parameterType="SearchList">
+    select hates from my_LOH where mno=#{mno}
+    and ano=(select ano from assos where asso=#{asso})   
   </select>
   
+  <update id="hatesUpdate" parameterType="SearchList">
+    update assos set hates=hates+1 where asso=#{asso};
+  </update>
   
   <update id="likesUpdate" parameterType="SearchList">
     update assos set likes=likes+1 where asso=#{asso};
   </update>
   <update id="likesUpdateAdd" parameterType="SearchList">
     update my_loh set likes=1 where mno=#{mno}
+    and ano=(select ano from assos where asso=#{asso})
+  </update>
+  <update id="hatesUpdateAdd" parameterType="SearchList">
+    update my_loh set hates=1 where mno=#{mno}
     and ano=(select ano from assos where asso=#{asso})
   </update>
   <!--   

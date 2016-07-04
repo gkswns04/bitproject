@@ -15,10 +15,13 @@ public interface SearchListService {
   void wordMeanAdd(SearchList searchList);
   void wordAdd(SearchList searchList);
   void likesUpdate(SearchList searchList);
-  int likeOrHate(SearchList searchList);
+  int likes(SearchList searchList);
+  int hates(SearchList searchList);
   SearchList assoList(SearchList searchList);
   void myLOHAdd(SearchList searchList);
   void likesUpdateAdd(SearchList searchList);
   SearchList retrieve(int no);
   SearchList retrieveWord(String word);
+  void hatesUpdate(SearchList searchList);
+  void hatesUpdateAdd(SearchList searchList);
 }

@@ -53,15 +53,18 @@ public class SearchListAjaxController {
     }
       
     HashMap<String,Object> result = new HashMap<>();  
-    int likes = searchListService.likeOrHate(searchList);
-    if(likes == 0) { 
+    int likes = searchListService.likes(searchList);
+    int hates = searchListService.hates(searchList);
+    
+    if(likes == 0 && hates == 0) { 
       searchListService.likesUpdateAdd(searchList);
       
       result.put("status", "success");
     } else {
-      System.out.println("실패");
+      System.out.println("이미 좋아/싫어 누름");
       result.put("status", "failure");
     }
+    
     return new Gson().toJson(result);
   }
    
@@ -248,7 +251,27 @@ public class SearchListAjaxController {
     }
     return new Gson().toJson(result);
   }
-
+ 
+ @RequestMapping(value="hatesUpdate",    
+     produces="application/json;charset=UTF-8")
+ @ResponseBody
+ public String hatesUpdate(HttpSession session, String asso) throws ServletException, IOException {
+  Member member = (Member)session.getAttribute("loginUser");
+  
+   SearchList searchList = new SearchList();    
+   searchList.setAsso(asso);    
+   searchList.setMno(member.getNo());
+   
+   HashMap<String,Object> result = new HashMap<>();
+   try {
+     searchListService.hatesUpdate(searchList);
+     result.put("status", "success");
+   } catch (Exception e) {
+     e.printStackTrace();
+     result.put("status", "failure");
+   }
+   return new Gson().toJson(result);
+ }
   /*@RequestMapping(value="update",
       method=RequestMethod.POST,
       produces="application/json;charset=UTF-8")

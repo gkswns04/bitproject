@@ -424,6 +424,32 @@ function likePlus(index) {
 		    );}
 	 );
 	}
+function hatePlus(index) {	
+	$(document).ready(function () {		
+		 $.get("../ajax/searchList/likeOrHate.do", { 
+			asso: $("#asso"+index).text()		      
+		    }, function(results) {
+		      if (results.status == "success") { 	
+				$.get("../ajax/searchList/hatesUpdate.do", {
+			      asso: $("#asso"+index).text()			      
+			    }, function(results) {
+			      if (results.status == "success") {			    	  
+			    	  console.log("싫어요++");
+			    	  var hate = $("#hateNo"+index);
+			    	  hate.html($("#hateNo"+index).text() * 1  + 1).appendTo(hate);
+			    	  
+			      } else {
+			    	  console.log("실패다");
+			      }
+			    }, "json"	  
+		      );
+				 }		      
+		    else {
+		    	window.alert("이미 '싫어요' 하신 연상법 입니다.");
+		    	}},"json" 
+		    );}
+	 );
+	}	
 </script>
 
 
@@ -444,12 +470,12 @@ function loadAsso(word) {
 				"<span class='mean'>" + list[i].mean + "</span>" +
 				"<span class='weeks'><h4><strong id='asso" + i + "'>" + list[i].asso + "</strong></h4></span>" +
 				"<span class='num'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
-				"<span class='num2'><h4>" + list[i].hateNo + "</h4></span>" +
+				"<span class='num2'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span>" +
 				"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
 				"<span class='profile'><img src='../images/profile.png' alt='profile' width='85px'/></span>" +
 				"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 				"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
-				"<span class='hate'><img  src='../images/hate.png' alt='hate' width='30px' /></span>" +
+				"<span class='hate'><img onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
 				"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 				.appendTo(ul);
 			 	
