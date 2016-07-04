@@ -585,7 +585,13 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 							   window.alert("설정이 변경되지 않았습니다.");
 							   $("#setnick").val(result.nick);
 						   }
-						  
+						   
+						if(result.nick != "") {	
+								$('font[name=ncheck]').html("");
+						} else if (result.nick == "") {
+								$('font[name=ncheck]').html("");
+						}
+						
 						},
 					  dataType: "json",
 					  async:false
@@ -618,6 +624,12 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 						   }else if(result.status == "failure"){
 							   window.alert("비밀번호가 일치 하지 않습니다."); 
 						   }
+						   
+						if(result.password != "") {	
+								$('font[name=pcheck]').html("");
+						} else if (result.newPass == "") {
+								$('font[name=pcheck]').html("");
+						}
 						  
 						},
 					  dataType: "json",
@@ -627,6 +639,10 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 				}
 			
 		}
+		 
+		
+		
+		 
 	});
 		
 
