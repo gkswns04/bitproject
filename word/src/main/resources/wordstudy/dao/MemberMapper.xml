@@ -37,9 +37,9 @@
 
 
   
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="string">
     delete from MEMBERS
-    where MNO=#{no}
+    where EMAIL=#{email}
   </delete>
 
   <select id="selectList" resultMap="MemberMap">

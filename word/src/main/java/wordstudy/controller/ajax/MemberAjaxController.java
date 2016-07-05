@@ -48,17 +48,25 @@ public class MemberAjaxController {
   
   @RequestMapping(value="delete", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String delete(int no) 
+  public String delete(String email, String password) 
       throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      memberService.delete(no);
-      result.put("status", "success");
-    } catch (Exception e) {
-      result.put("status", "failure");
+		      Member resultMember = memberService.retrieveByEmail(email);
+		      	//기존 비밀번호 체크 후 진행
+		      	if(resultMember.getPassword().equals(password)){
+		      		 memberService.delete(email);
+		      		 result.put("status", "success");
+		      	}else{
+		      		result.put("status", "failure");
+		       }    
+    }catch (Exception e) {
+    	result.put("status", "failure");
     }
-    return new Gson().toJson(result);
+    return new Gson().toJson(result);   
   }
+  
+  
   
   @RequestMapping(value="detail", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -129,9 +137,6 @@ public class MemberAjaxController {
   	//결과 반환 result
     HashMap<String,Object> result = new HashMap<>();
     try {
-            System.out.println(localpassword);
-			      System.out.println(newPass);
-			      
 			    	 Member member = new Member();
 			     	 member.setEmail(email);
 			       

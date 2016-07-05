@@ -44,8 +44,7 @@ a.hiddenanchor{
 
 /**** general text styling ****/
 #wrapper a{
-	color: rgb(95, 155, 198);
-	text-decoration: underline;
+	color: #555;
 }
 
 #wrapper h1{
@@ -183,8 +182,9 @@ input {
 	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
 }
 p.login.button,
-p. change.button,
-p.signin.button{
+p.change.button,
+p.signin.button,
+p.delete.button{
 	text-align: right;
 	margin: 5px 0;
 }
@@ -282,9 +282,9 @@ p.change_link{
 }
 /** Styling both forms **/
 #register, 
-#login{
+#login,#settings,#delete{
 	position: absolute;
-	top: 0px;
+	top : -110px;
 	width: 88%;	
 	padding: 18px 6% 60px 6%;
 	margin: 0 0 35px 0;
@@ -297,7 +297,7 @@ p.change_link{
 	-moz-border-radius: 5px;
 		 border-radius: 5px;
 }
-#settings{
+/* #settings,#delete{
 	position: absolute;
     top: 0px;
     width: 88%;
@@ -305,18 +305,21 @@ p.change_link{
     margin: 0 0 35px 0;
     background: rgb(247, 247, 247);
     border: 1px solid rgba(147, 184, 189,0.8);
-}
+} */
 
-#register{	
+#register,#delete{	
 	z-index: 21;
 	opacity: 0;
 }
-#login{
+#login,#settings{
 	z-index: 22;
 }
 
 #toregister:target ~ #wrapper #register,
-#tologin:target ~ #wrapper #login{
+#tologin:target ~ #wrapper #login,
+#tosettings:target ~ #wrapper #settings,
+#todelete:target ~ #wrapper #delete
+{
 	z-index: 22;
 	-webkit-animation-name: fadeInLeft;
 	-moz-animation-name: fadeInLeft;
@@ -330,7 +333,9 @@ p.change_link{
 	animation-delay: .1s;
 }
 #toregister:target ~ #wrapper #login,
-#tologin:target ~ #wrapper #register{
+#tologin:target ~ #wrapper #register,
+#tosettings:target ~ #wrapper #delete,
+#todelete:target ~ #wrapper #settings{
 	-webkit-animation-name: fadeOutLeft;
 	-moz-animation-name: fadeOutLeft;
 	-ms-animation-name: fadeOutLeft;
@@ -382,7 +387,7 @@ p.change_link{
 .lt8 #wrapper h1{
 	color: #066A75;
 }
-.lt8 #register{	
+.lt8 #register, .lt8 #settings{	
 	display: none;
 }
 .lt8 p.change_link,

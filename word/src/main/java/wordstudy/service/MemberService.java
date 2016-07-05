@@ -6,7 +6,7 @@ import wordstudy.vo.Member;
 
 public interface MemberService {
   void add(Member member);
-  void delete(int no);
+  void delete(String email);
   Member retrieveByNo(int no);
   Member retrieveByEmail(String email);
   Member retrieveByNick(String nick);

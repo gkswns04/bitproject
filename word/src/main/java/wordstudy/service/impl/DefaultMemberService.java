@@ -19,8 +19,8 @@ public class DefaultMemberService implements MemberService {
     memberDao.insert(member);
   }
   
-  public void delete(int no) {
-    memberDao.delete(no);
+  public void delete(String email) {
+    memberDao.delete(email);
   }
   
   public Member retrieveByNo(int no) {
