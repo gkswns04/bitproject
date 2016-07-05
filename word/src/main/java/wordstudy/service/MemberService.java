@@ -12,8 +12,9 @@ public interface MemberService {
   Member retrieveByNick(String nick);
   void change(Member member);
   void pwdChange(Member member);
+  void photChange(Member member);
   boolean exist(String email, String password);
-  List<Member> list(int pageNo, int pageSize);
+  List<Member> list(Member member);
   int countPage(int pageSize);
 }
 

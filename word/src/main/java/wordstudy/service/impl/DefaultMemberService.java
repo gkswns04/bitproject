@@ -52,6 +52,10 @@ public class DefaultMemberService implements MemberService {
     memberDao.pwdChange(member);
   }
   
+  public void photChange(Member member) {
+    memberDao.photChange(member);
+  }
+  
   public boolean exist(String email, String password) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
@@ -64,10 +68,9 @@ public class DefaultMemberService implements MemberService {
     return false;
   }
   
-  public List<Member> list(int pageNo, int pageSize) {
+  public List<Member> list(Member member) {
     HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", (pageNo - 1) * pageSize);
-    paramMap.put("length", pageSize);
+    paramMap.put("email", member.getEmail());
     
     return memberDao.selectList(paramMap);
   }

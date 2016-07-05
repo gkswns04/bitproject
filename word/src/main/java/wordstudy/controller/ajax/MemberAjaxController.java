@@ -1,9 +1,12 @@
 package wordstudy.controller.ajax;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
 
@@ -23,6 +29,7 @@ import wordstudy.vo.Member;
 @RequestMapping("/ajax/member/")
 public class MemberAjaxController {
   @Autowired MemberService memberService;
+  @Autowired ServletContext servletContext;
   
   @RequestMapping(value="add", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -63,10 +70,8 @@ public class MemberAjaxController {
     }catch (Exception e) {
     	result.put("status", "failure");
     }
-    return new Gson().toJson(result);   
+    return new Gson().toJson(result);
   }
-  
-  
   
   @RequestMapping(value="detail", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -158,36 +163,57 @@ public class MemberAjaxController {
     return new Gson().toJson(result);
   }
   
+  @RequestMapping(value="photupdate",
+      method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String photupdate(MultipartHttpServletRequest request, String email) throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    System.out.println(email);
+    Member member = new Member();
+    member.setEmail(email);
+    Map<String, MultipartFile> files = request.getFileMap();
+    CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
+    System.out.println(cmf.getOriginalFilename());
+    
+    if (cmf.getSize() == 0) {
+      result.put("status", "noChange");
+      return new Gson().toJson(result);
+    }
+    
+    int extPoint = cmf.getOriginalFilename().lastIndexOf(".");
+    if (extPoint > 0) {
+      String filename = System.currentTimeMillis() + "-" + "p" + count()
+                         + cmf.getOriginalFilename().substring(extPoint);
+      System.out.printf("새파일명=%s\n", filename);
+      String realPath = servletContext.getRealPath("/upload/" + filename);
+      System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
+      try {
+        cmf.transferTo(new File(realPath));
+        member.setPhoto("../upload/" + filename);
+        memberService.photChange(member);
+        result.put("status", "success");
+      } catch (Exception e) {
+        result.put("status", "failure");
+      }
+    }
+    return new Gson().toJson(result);
+  }
+  
+  int no = 0;
+  synchronized private int count() {
+    if (++no == 100) no = 1;
+    return no;
+  }
   
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String list(
-      @RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="3") int pageSize) 
+  public String list(HttpSession session) 
       throws ServletException, IOException {
-    
-    // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
-    if (pageNo < 0) { // 1페이지 부터 시작
-      pageNo = 1;
-    }
-    
-    int totalPage = memberService.countPage(pageSize);
-    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
-      pageNo = totalPage;
-    }
-    
-    if (pageSize < 3) { // 최소 3개
-      pageSize = 3; 
-    } else if (pageSize > 50) { // 최대 50개 
-      pageSize = 50;
-    }
-    
-    List<Member> list = memberService.list(pageNo, pageSize);
+    Member member = (Member)session.getAttribute("loginUser");
+    List<Member> list = memberService.list(member);
     
     HashMap<String,Object> result = new HashMap<>();
-    result.put("pageNo", pageNo);
-    result.put("pageSize", pageSize);
-    result.put("totalPage", totalPage);
     result.put("list", list);
     
     return new Gson().toJson(result);

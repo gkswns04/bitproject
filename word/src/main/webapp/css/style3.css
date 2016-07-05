@@ -396,9 +396,3 @@ p.change_link{
 	height: 90px;
 	background: transparent;
 }
-
-a.to_register {
-    position: absolute;
-    bottom: 6px;
-    right: 23px;
-}

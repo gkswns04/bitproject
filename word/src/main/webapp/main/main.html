@@ -16,7 +16,7 @@
     <!-- Custom Style -->
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
 <!--     <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
-    <link rel="stylesheet" type="text/css" href="../css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style3.css" />
     <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
@@ -66,7 +66,6 @@ video#bgvid {
    -moz-transform: translateX(-50%) translateY(-50%);
    -webkit-transform: translateX(-50%) translateY(-50%);
    transform: translateX(-50%) translateY(-50%);
-   background: url(polina.jpg) no-repeat;
    background-size: cover;
 }
 #signindiv {
@@ -262,6 +261,22 @@ background-color: transparent;
 #dialog {
   z-index: 9999;
 }
+.settingpro {
+	border-radius: 100%;
+}
+
+
+#inputfiles {
+	position: absolute;
+	top: 130px;
+	left: 225px;
+	width: 1px !important;
+	height: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	cursor: pointer;
+}
 
 </style>
 </head>
@@ -362,9 +377,6 @@ background-color: transparent;
 								</div>
 
 
-
-
-
 								<div id="register" class="animate form">
 									<form name="regi" autocomplete="on">
 										<h1>Sign up</h1>
@@ -438,9 +450,11 @@ background-color: transparent;
 								
 								<div id="settings" class="animate form">
 									
-									<form name="mysetting" autocomplete="on" method='post'>
-										<img src="../images/profile.png" class="settingpro">
-										<h3 align="center">김현지  <img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br>
+									<form id="settingForm" name="mysetting" autocomplete="on" method='post'>
+									<div id=pAndndiv>
+										<!-- <img src="../images/profile.png" id="imgPreview" class="settingpro" width="100" height="100">
+										<h3 align="center">김현지  <input id="inputfiles" type="file" name="photo"></input><img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br> -->
+									</div>
 										<h1></h1>
 										
 									     	<p>
@@ -475,7 +489,7 @@ background-color: transparent;
 											    placeholder="새 비밀번호 확인" />
 											    <font name="pcheck" size="2" color="red"></font> 
 										</p>
-									<p class="change_link" style="margin-top: 99px;">
+									<p class="change_link" style="margin-top: 80px;">
 										<a href="#todelete" class="to_register" style="width:78px;">회원탈퇴 </a>
 									</p>
 									<p class="change button">
@@ -522,13 +536,56 @@ background-color: transparent;
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     
     
   <!--  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
    
+
+
+
+
+<script type="text/javascript">
+$(function() {
+    $(document).on('change','#inputfiles', function(){
+        readURL(this);
+    });
+});
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#imgPreview').attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
+<script>
+function loadPhoto() {	
+	$.getJSON("../ajax/member/list.do", function(result) {
+		var headerdiv = $('.headerdiv');
+		var pAndndiv = $('#pAndndiv');
+		var list = result.list;
+		
+		$("<div class='menubar'>").html("<ul>" + 
+				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
+				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
+				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
+				"</li></ul>").appendTo(headerdiv);
+		$('#sign').css("display", "none");
+		
+		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
+			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
+	})
+}
+</script>
 
 <!--  설정 팝업 -->
 <script>
@@ -591,7 +648,6 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 
 	$("#change").click(function(event) {
 		
-		
 		 var checkValue = $("#nickCheck").val();
 		 var nickBefore = $("#nickBefore").val();
 
@@ -617,7 +673,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 							   $("#nickBefore").val("result.nick");
 							   //member.nick = result.nick;
 							   if(!($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != "")){
-							   		window.alert("닉네임이 변경되었습니다."); 
+							   		window.alert("설정을 변경하였습니다."); 
 							   }
 						   }else if(result.status == "failure"){
 							   window.alert("설정이 변경되지 않았습니다.");
@@ -636,7 +692,6 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 					});
 			} 
 		 }	
-		 
 		 
 		 if($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != ""){
 			
@@ -663,7 +718,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 							   $("#localpassword").val("");
 							   $("#setpassword").val("");
 							   $("#setpassword_confirm").val("");
-							   window.alert("설정이 적용되었습니다."); 
+							   window.alert("설정을 변경하였습니다."); 
 						   }else if(result.status == "failure"){
 							   $("#localpassword").val("");
 							   $("#setpassword").val("");
@@ -686,8 +741,27 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 				}
 			
 		}
-		 	
-	
+
+		 var fd = new FormData($("#settingForm")[0]);
+     $.ajax({
+    	 	 url:"../ajax/member/photupdate.do",
+    	 	 type:"POST",
+    	 	 data: fd,
+    	 	 async:true,
+    	 	 cache:false,
+    	 	 contentType:false,
+    	 	 processData:false,
+         success: function(result) {
+     			 if (result.status == "success") {
+     				 window.location.reload(); 
+     			 } else if (result.status == "failure") {
+     				 window.alert("설정 변경에 실패하였습니다.");
+     				 window.location.reload();
+     			 } else if (result.status == "noChange") {
+     				window.location.reload();
+     			 }
+         }
+       });
 	});
 	
 	<!-- 설정팝업에서 회원 탈퇴 -->
@@ -838,15 +912,7 @@ $.post("../auth/log.do", {
 	password : $("#passwordsignup").val()
 }, function(result) {
 	if (result.status == "success") {
-		
-		var headerdiv = $('.headerdiv');
-		
-		$("<div class='menubar'>").html("<ul>" + 
-				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg' width='45' height='45'></div><div class='name'><font size='3'>김현지</font></div></div></a>" + 
-				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
-				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
-				"</li></ul>").appendTo(headerdiv);
-		$('#sign').css("display", "none");
+		loadPhoto();
 	} else if (result.status == "failure"){
 		/* $('#sign').css("display", "");
 		$('#logout').css("display", "none"); */
