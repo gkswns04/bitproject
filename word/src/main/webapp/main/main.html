@@ -252,6 +252,9 @@ background-color: transparent;
 	height: 150px;
 }
 
+#dialog {
+  z-index: 9999;
+}
 
 </style>
 </head>
@@ -479,10 +482,9 @@ background-color: transparent;
 		</span>
 	</div>
 	
-<div id="dialog-confirm2" title="회원 정보 변경">
-    <p>로그인 실패임</p>
-  </div>
-
+<div id="dialog" title="회원정보변경"> <img src="../images/ㅋㅋㅋ.jpg" width="180" height="100"/>
+  <p>로그인 실패다</p>
+</div>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
@@ -661,18 +663,12 @@ $("#loginbtn").click(function(event) {
     if (result.status == "success") {
       location.href = "main.html";
     } else if (result.status == "fail"){
-       $(function() {
-          $( "#dialog-confirm2" ).dialog({
-                resizable: false,
-                height:180,
-                width:300,
-                modal: true,
-                buttons: {"확인": function() {
-                   $( this ).dialog( "close" );
-                   location.href = "main.html"
-                   }}
-              });
-          });
+    	$(function() {
+    	    $( "#dialog" ).dialog({
+    	    	position: { my: "center", at: "top", of: window },
+    	    	show: "slide",
+    	    	hide: "slide"});
+    	  });
       //window.alert("아이디와 비밀번호가 맞지 않습니다.");
       setTimeout(function(){$("#email").focus();}, 1);
     }
