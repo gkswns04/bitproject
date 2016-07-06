@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import wordstudy.service.MyWordService;
 import wordstudy.vo.Member;
 import wordstudy.vo.MyWord;
+import wordstudy.vo.Paging;
 import wordstudy.vo.SearchList;
 
 @Controller
@@ -74,11 +75,15 @@ public class MyWordAjaxController {
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String list(
-      HttpServletRequest request)
+      HttpSession session, int totalCount)
       throws ServletException, IOException {
     
-    HttpSession session = request.getSession();
     Member member = (Member)session.getAttribute("loginUser");
+    
+    Paging paging = new Paging();
+    paging.setPageNo(1);
+    paging.setPageSize(10);
+    paging.setTotalCount(totalCount);
     
     List<SearchList> list = myWordService.list(member.getNo());
     HashMap<String,Object> result = new HashMap<>();
