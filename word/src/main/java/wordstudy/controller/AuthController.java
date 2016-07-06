@@ -108,7 +108,7 @@ public class AuthController {
   @ResponseBody
   public String toMain()throws ServletException, IOException {
     System.out.println("kkkk!");
-    return "redirect:../main/main.html";
+    return "../main/main.html";
   }
   
 }//
