@@ -374,7 +374,7 @@ font {
    <div class="textbox">
     <div class="mywordtext">
       <h2>나의 단어장</h2>
-      <select id="assosCount" onchange="loadAsso2()">
+      <select id="assosCount" onchange="loadPaging()">
   		<option selected='selected'>3</option>
   		<option>5</option>
   		<option>10</option>
@@ -388,6 +388,9 @@ font {
 			<!-- Top Navigation -->
 			<ul class="grid effect-2" id="grid">
 			</ul>
+			<div class="paginate">
+   
+			</div>
 	</div>
 		<script src="../bower_components/masonry/dist/masonry.pkgd.js"></script>
 		<script src="../bower_components/imagesloaded/imagesloaded.js"></script>
@@ -397,8 +400,9 @@ font {
 	loadAsso();
 	
 	function loadAsso() {
-		$.getJSON("../ajax/myWord/list.do", {pageSize:$("#assosCount").val()}, function (result) {
+		$.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
 			var ul = $("#grid");
+			var pagingTag = $(".paginate");	
 			var list = result.list;
 			var paging = result.paging;
 			console.log($("#assosCount").val());
@@ -418,6 +422,12 @@ font {
 				"<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
 				.appendTo(ul);
 		  }
+		  $("<div>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀◀</a>" + 
+				  "<a href='javascript:goPage(" + paging.prevPageNo + ")' class='prev'>              ◀          </a>" +
+				  "<span class='pageNo'>" + 
+			    "<a href='javascript:goPage(" + paging.nextPageNo + ")' class='next'>               ▶         </a>" +
+			    "<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>▶▶</a>")
+			    .appendTo(pagingTag);
 		  new AnimOnScroll( document.getElementById('grid'), {
 				minDuration : 0.4,
 				maxDuration : 0.7,
@@ -428,37 +438,94 @@ font {
 	
 	</script>
 <script>
-	function loadAsso2() {
-		$.getJSON("../ajax/myWord/list.do", {pageSize:$("#assosCount").val()}, function (result) {
-			$("#grid").empty();
-			var ul = $("#grid");
-			var list = result.list;
-			var paging = result.paging;
-			console.log($("#assosCount").val());
-			console.log("firstPageNo : " + paging.firstPageNo);
-			console.log("prevPageNo  : " + paging.prevPageNo);
-			console.log("startPageNo  : " + paging.startPageNo);
-			console.log("endPageNo  : " + paging.endPageNo);
-			console.log("pageNo  : " + paging.pageNo);
-			console.log("nextPageNo  : " + paging.nextPageNo);
-			console.log("finalPageNo  : " + paging.finalPageNo);
-		  for (var i in list) {
-			  $("<li>").html("<div class='material-contact animate-in-card'>" + 
-				"<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
-				"<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
-				"<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
-				"<hr class='animate-in-03'>" +
-				"<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
-				.appendTo(ul);
-		  }
-		  new AnimOnScroll( document.getElementById('grid'), {
-				minDuration : 0.4,
-				maxDuration : 0.7,
-				viewportFactor : 0.2
-			} );
-		});
-	}	
-	
-	</script>
+  function goPage(i) {
+    $(document).ready(function () {       
+    // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
+    	$.ajax({
+           // type을 설정합니다.
+           type: 'POST',
+           url: "../ajax/myWord/list.do",
+           data: {
+			   pageNo : i,        	   
+        	   pageSize : $("#assosCount").val()
+              },
+           // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+           success: function (data) {
+        	   $.getJSON("../ajax/myWord/list.do", {pageNo : i, pageSize:$("#assosCount").val()}, function (result) {
+        		$("#grid").empty();
+        		var ul = $("#grid");
+       			var list = result.list;
+       			var paging = result.paging;
+       			console.log($("#assosCount").val());
+       			console.log("firstPageNo : " + paging.firstPageNo);
+       			console.log("prevPageNo  : " + paging.prevPageNo);
+       			console.log("startPageNo  : " + paging.startPageNo);
+       			console.log("endPageNo  : " + paging.endPageNo);
+       			console.log("pageNo  : " + paging.pageNo);
+       			console.log("nextPageNo  : " + paging.nextPageNo);
+       			console.log("finalPageNo  : " + paging.finalPageNo);
+       		  for (var i in list) {
+       			  $("<li>").html("<div class='material-contact animate-in-card'>" + 
+       				"<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
+       				"<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
+       				"<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
+       				"<hr class='animate-in-03'>" +
+       				"<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
+       				.appendTo(ul);
+       		  }
+       		  new AnimOnScroll(document.getElementById('grid'), {
+       				minDuration : 0.4,
+       				maxDuration : 0.7,
+       				viewportFactor : 0.2
+       		});
+       		  });
+        	   }});});
+   }              
+</script>	
+<script>
+  function loadPaging() {
+    $(document).ready(function () {       
+    // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
+    	$.ajax({
+           // type을 설정합니다.
+           type: 'POST',
+           url: "../ajax/myWord/list.do",
+           data: {
+			   pageNo : 1,        	   
+        	   pageSize : $("#assosCount").val()
+              },
+           // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+           success: function (data) {
+        	   $.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
+        		$("#grid").empty();
+        		var ul = $("#grid");
+       			var list = result.list;
+       			var paging = result.paging;
+       			console.log($("#assosCount").val());
+       			console.log("firstPageNo : " + paging.firstPageNo);
+       			console.log("prevPageNo  : " + paging.prevPageNo);
+       			console.log("startPageNo  : " + paging.startPageNo);
+       			console.log("endPageNo  : " + paging.endPageNo);
+       			console.log("pageNo  : " + paging.pageNo);
+       			console.log("nextPageNo  : " + paging.nextPageNo);
+       			console.log("finalPageNo  : " + paging.finalPageNo);
+       		  for (var i in list) {
+       			  $("<li>").html("<div class='material-contact animate-in-card'>" + 
+       				"<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
+       				"<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
+       				"<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
+       				"<hr class='animate-in-03'>" +
+       				"<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
+       				.appendTo(ul);
+       		  }
+       		  new AnimOnScroll(document.getElementById('grid'), {
+       				minDuration : 0.4,
+       				maxDuration : 0.7,
+       				viewportFactor : 0.2
+       		});
+       		  });
+        	   }});});
+   }              
+</script> 
 </body>
 </html>

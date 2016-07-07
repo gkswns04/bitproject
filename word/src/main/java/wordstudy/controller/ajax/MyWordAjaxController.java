@@ -72,13 +72,13 @@ public class MyWordAjaxController {
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String list(
-      HttpSession session, int pageSize)
+      HttpSession session, int pageNo, int pageSize)
       throws ServletException, IOException {
     
     Member member = (Member)session.getAttribute("loginUser");
         
     Paging paging = new Paging();
-    paging.setPageNo(1);
+    paging.setPageNo(pageNo);
     paging.setPageSize(pageSize); // 한 페이지에 나타나는 연상법 갯수
     paging.setTotalCount(myWordService.totalCount(member.getNo()));
     
