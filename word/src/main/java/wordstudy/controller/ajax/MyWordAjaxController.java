@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -29,9 +28,8 @@ public class MyWordAjaxController {
   
   @RequestMapping(value="add", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String add(HttpServletRequest request, int ano) throws ServletException, IOException {
-
-    HttpSession session = request.getSession();
+  public String add(HttpSession session, int ano) throws ServletException, IOException {
+    
     Member member = (Member)session.getAttribute("loginUser");
     MyWord myWord = new MyWord();
     myWord.setMno(member.getNo());
@@ -52,10 +50,9 @@ public class MyWordAjaxController {
   
   @RequestMapping(value="delete", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String delete(HttpServletRequest request, int ano) 
+  public String delete(HttpSession session, int ano) 
       throws ServletException, IOException {
     
-    HttpSession session = request.getSession();
     Member member = (Member)session.getAttribute("loginUser");
     
     MyWord myWord = new MyWord();
@@ -75,19 +72,21 @@ public class MyWordAjaxController {
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String list(
-      HttpSession session, int totalCount)
+      HttpSession session, int pageSize)
       throws ServletException, IOException {
     
     Member member = (Member)session.getAttribute("loginUser");
-    
+        
     Paging paging = new Paging();
     paging.setPageNo(1);
-    paging.setPageSize(10);
-    paging.setTotalCount(totalCount);
+    paging.setPageSize(pageSize); // 한 페이지에 나타나는 연상법 갯수
+    paging.setTotalCount(myWordService.totalCount(member.getNo()));
     
-    List<SearchList> list = myWordService.list(member.getNo());
+    List<SearchList> list = myWordService.list(member.getNo(), paging);
     HashMap<String,Object> result = new HashMap<>();
+    result.put("paging", paging);
     result.put("list", list);
+    
     return new Gson().toJson(result);
   }
   

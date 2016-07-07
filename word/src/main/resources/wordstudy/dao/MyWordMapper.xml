@@ -53,13 +53,20 @@
 		AND Y.ANO = A.ANO
 		AND M.MENO = A.MENO
 		AND A.MNO = R.MNO
-		AND Y.MNO = #{no}
+		AND Y.MNO = #{mno}
+		order by ANO DESC
+    	limit #{startIndex}, #{length}
   </select>
   
-  <select id="isMyWord" parameterType="map" resultType="int">
+  <!-- <select id="isMyWord" parameterType="map" resultType="int">
     select count(*) 
     from my_word
     where MNO=#{mno} and ANO=#{ano}
+  </select> -->
+  <select id="isMyWord" parameterType="map" resultType="int">
+    select count(*) 
+    from my_word
+    where MNO=#{mno}
   </select>
 </mapper>
 
