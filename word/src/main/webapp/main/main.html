@@ -6,265 +6,275 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>main</title>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  
-   <link rel="stylesheet" type="text/css" href="../css/style.css" />
-
-<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom Style -->
-    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-<!--     <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
-    <link rel="stylesheet" type="text/css" href="../css/style3.css" />
-    <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../css/style12.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	
 <style>
 #nav:hover a {
-   color: white;
+	color: white;
 }
+
 #logodiv {
-   position: absolute;
-   width: 240px;
-   margin: 0 -120px 0 0;
-   right: 50%;
-   top: 27%;
+	position: absolute;
+	width: 240px;
+	margin: 0 -120px 0 0;
+	right: 50%;
+	top: 27%;
 }
 
 #searchdiv {
-   position: absolute;
-   height: 45px;
-   width: 500px;
-   top: 48%;
-   right: 50%;
-   margin: 0 -250px 0 0;
-   z-index: 2;
+	position: absolute;
+	height: 45px;
+	width: 500px;
+	top: 48%;
+	right: 50%;
+	margin: 0 -250px 0 0;
+	z-index: 2;
 }
+
 #search {
-   width: 400px;
-   height: 41px;
-   border: 2px black solid;
-   background-color: transparent;
-   background-image: url( "../images/searchbtn.png" );
-   background-position: 99% 2px;
-   background-repeat: no-repeat;
-   font-size: 16px;
-   font-weight: bold;
-   text-align: center;
+	width: 400px;
+	height: 41px;
+	border: 2px black solid;
+	background-color: transparent;
+	background-image: url( "../images/searchbtn.png" );
+	background-position: 99% 2px;
+	background-repeat: no-repeat;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
 }
+
 video#bgvid {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   min-width: 100%;
-   min-height: 100%;
-   width: auto;
-   height: auto;
-   z-index: -100;
-   -ms-transform: translateX(-50%) translateY(-50%);
-   -moz-transform: translateX(-50%) translateY(-50%);
-   -webkit-transform: translateX(-50%) translateY(-50%);
-   transform: translateX(-50%) translateY(-50%);
-   background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	background-size: cover;
 }
+
 #signindiv {
-   cursor:pointer;
+	cursor: pointer;
 }
+
 #signinpop {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   margin: -300px 0 0 -370px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -300px 0 0 -370px;
 }
 
 body {
-   min-width: 1024px;
-   min-height: 600px;
-}   
-
+	min-width: 1024px;
+	min-height: 600px;
+}
 
 /*log icon*/
-.menubar{
- position: absolute;
-  right: 1%;
-  top: 30px;
-  width: auto;
-  height: auto;
-border:none;
-border:0px;
-padding:0px;
-font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
-font-size:14px;
-font-weight:bold;
-z-index: 9999;
+.menubar {
+	position: absolute;
+	right: 1%;
+	top: 30px;
+	width: auto;
+	height: auto;
+	border: none;
+	border: 0px;
+	padding: 0px;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
+		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
+		sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	z-index: 9999;
 }
 
-.menubar ul{
-/* background: rgb(109,109,109); */
-height: 50px;
-width: auto;
-list-style:none;
-margin:0;
-padding:0;
+.menubar ul {
+	/* background: rgb(109,109,109); */
+	height: 50px;
+	width: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-.menubar li{
-float:left;
-padding:0px;
+.menubar li {
+	float: left;
+	padding: 0px;
 }
 
-.menubar li a{
-background: rgb(109,109,109);
-color:#cccccc;
-display:block;
-font-weight:normal;
-line-height:50px;
-margin:0px;
-padding:0px 25px;
-text-align:center;
-text-decoration:none;
+.menubar li a {
+	background: rgb(109, 109, 109);
+	color: #cccccc;
+	display: block;
+	font-weight: normal;
+	line-height: 50px;
+	margin: 0px;
+	padding: 0px 25px;
+	text-align: center;
+	text-decoration: none;
 }
 
-.menubar li a:hover, .menubar ul li:hover a{
-background: rgb(71,71,71);
-color:#FFFFFF;
-text-decoration:none;
+.menubar li a:hover, .menubar ul li:hover a {
+	background: rgb(71, 71, 71);
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
-.menubar li ul{
-background: rgb(109,109,109);
-display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
-height:auto;
-padding:0px;
-border:0px;
-/* margin: 50px 0 0 0; */
-position:absolute;
-width:170px;
-z-index:9999; 
-/*top:1em;
+.menubar li ul {
+	background: rgb(109, 109, 109);
+	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+	height: auto;
+	padding: 0px;
+	border: 0px;
+	/* margin: 50px 0 0 0; */
+	position: absolute;
+	width: 170px;
+	z-index: 9999;
+	/*top:1em;
 /*left:0;*/
 }
 
-.menubar li:hover ul{
-display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+.menubar li:hover ul {
+	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
 }
 
 .menubar li li {
-background: rgb(109,109,109);
-display:block;
-float:none;
-margin:0px;
-padding:0px;
-width:170px;
-z-index:9999;
+	background: rgb(109, 109, 109);
+	display: block;
+	float: none;
+	margin: 0px;
+	padding: 0px;
+	width: 170px;
+	z-index: 9999;
 }
 
-.menubar li:hover li a{
-background:none;
+.menubar li:hover li a {
+	background: none;
 }
 
-.menubar li ul a{
-display:block;
-height:50px;
-font-size:12px;
-font-style:normal;
-margin:0px;
-padding:0px 10px 0px 15px;
-text-align:left;
+.menubar li ul a {
+	display: block;
+	height: 50px;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0px;
+	padding: 0px 10px 0px 15px;
+	text-align: left;
 }
 
-.menubar li ul a:hover, .menubar li ul li:hover a{
-background: rgb(71,71,71);
-border:0px;
-color:#ffffff;
-text-decoration:none;
+.menubar li ul a:hover, .menubar li ul li:hover a {
+	background: rgb(71, 71, 71);
+	border: 0px;
+	color: #ffffff;
+	text-decoration: none;
 }
 
-.menubar p{
-clear:left;
+.menubar p {
+	clear: left;
 }
 
 #current {
-background-color: transparent;
+	background-color: transparent;
 }
 
-
 .mypage {
-/*   
+	/*   
   left: 50%;
   width: 20%;
   height: 50%;
   position: relative;
   margin: -10px 0 0 300px; */
-  width: 150px;
-  height: 50px;
+	width: 150px;
+	height: 50px;
 }
 
 .thumbnail {
-  position: absolute;
-  border-radius : 50%;
- /*
+	position: absolute;
+	border-radius: 50%;
+	/*
   left:50%;
   margin: -170px -200px 0 200px; */
 }
 
 .imgdiv {
-  position: absolute;
-/*   left:50%;
+	position: absolute;
+	/*   left:50%;
   margin: -170px 50px 100px 150px; */
 }
 
 .name {
-  position: absolute;
-/*   left: 50%; */
-  margin: 0 0 0 40px; 
-  width: 80px;
-  color : black;
+	position: absolute;
+	/*   left: 50%; */
+	margin: 0 0 0 40px;
+	width: 80px;
+	color: black;
 }
 
 #received-likes {
-  position: relative;
-  left: 50%;
-  margin: 0 150px 0 0;
+	position: relative;
+	left: 50%;
+	margin: 0 150px 0 0;
 }
 
 .mainicon {
-  position: absolute;
-  left: 50%;
-  margin: 100px 0 0 -65px;
+	position: absolute;
+	left: 50%;
+	margin: 100px 0 0 -65px;
 }
 
 .likecount {
-  position: absolute;
-  left: 50%;
-  margin: 125px 0 0 -78px;
+	position: absolute;
+	left: 50%;
+	margin: 125px 0 0 -78px;
 }
 
 .statcount {
-   position: absolute;
-  left: 50%;
-  margin: 101px 0 0 -35px;
+	position: absolute;
+	left: 50%;
+	margin: 101px 0 0 -35px;
 }
+
 .headerdiv {
 	width: 100%;
 	height: 150px;
 }
+
 .withdrawal {
-  position:absolute;
-  left : 50%;
-  margin: 30px 0 0 -190px;
+	position: absolute;
+	left: 50%;
+	margin: 30px 0 0 -190px;
 }
+
 .change {
-  display: inline-block;
+	display: inline-block;
 }
+
 #dialog {
-  z-index: 9999;
+	z-index: 9999;
 }
+
 .settingpro {
 	border-radius: 100%;
 }
-
 
 #inputfiles {
 	position: absolute;
@@ -277,64 +287,47 @@ background-color: transparent;
 	position: absolute;
 	cursor: pointer;
 }
-
-
 </style>
 </head>
 <body>
-<div class="container">
-	<div class="headerdiv">
-  <span id="threediv">
-      <nav>
-              <ul>
-               <li><a href="../add/addasso.html" class="newfile-btn"><i></i><img src="../images/newfile.png" width="70"/><br></br>연상법 등록</a></li>
-          <li><a href="../learn/learnchoice.html" class="study-btn"><i></i><img src="../images/pencil.png" width="70"/><br></br>연상법 학습</a></li>
-          <li><a href="../myword/myword.html" class="profile-btn"><i></i><img src="../images/bookicon.png" width="80"/><br></br>나의 단어장</a></li>
-              </ul>
-         </nav>
-  </span>
-  <span id="signindiv">
-	  <img id="sign" data-toggle="modal" href="#myModal" src="../images/signin.png" alt="signin" />
-	  <!-- <img id="logout" href="#logout" src="../images/logout.png" alt="logout" /> -->
-  </span>
-  
-  
-  <!-- 
-		 <ul>
-		   <li><a href="#" id="current">
-		     <div class="mypage">
-	    	   <div class="imgdiv"><img class="thumbnail" src="https://d12hfz37g51hrt.cloudfront.net/assets/default/user/photo_small-eb39055bd595b4f8b1a0d54e41ecf088.jpg" width="45" height="45"></div>
-	   	     <div class="name"><font size="3">김현지</font></div>
-	       </div>
-	   	    </a>
-	        <ul>
-		     <li><a href="location:;">받은좋아요 <img src="../images/mainlike.png" width="20px" height="20px"><font align="right"> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>
-		     <li><a href="#">설정</a></li>
-		     <li><a href="../auth/logout.do">로그아웃</a></li>
-		    </ul>
-	      </li>
-	   </ul>
-	 </div> -->
-  </div>
-  
-  
-  <span id="logodiv" align="center">
-     <a href="../main/main.html"><img  src="../images/logo.png" alt="logo"/></a> 
-  </span>
+	<div class="container">
+		<div class="headerdiv">
+			<span id="threediv">
+				<nav>
+					<ul>
+						<li><a href="../add/addasso.html" class="newfile-btn"><i></i><img
+								src="../images/newfile.png" width="70" /><br></br>연상법 등록</a></li>
+						<li><a href="../learn/learnchoice.html" class="study-btn"><i></i><img
+								src="../images/pencil.png" width="70" /><br></br>연상법 학습</a></li>
+						<li><a href="../myword/myword.html" class="profile-btn"><i></i><img
+								src="../images/bookicon.png" width="80" /><br></br>나의 단어장</a></li>
+					</ul>
+				</nav>
+			</span> <span id="signindiv"> <img id="sign" data-toggle="modal"
+				href="#myModal" src="../images/signin.png" alt="signin" /> <!-- <img id="logout" href="#logout" src="../images/logout.png" alt="logout" /> -->
+			</span>
+		</div>
 
-  <div id="searchdiv" align="center">
-  <form method="get" action="../list/list.html">
-    <input id="search" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
-  </form>
-  <br>
-</div>
 
-<!-- <script src="../bower_components/jquery/dist/jquery.js"></script> -->
+		<span id="logodiv" align="center"> <a href="../main/main.html"><img
+				src="../images/logo.png" alt="logo" /></a>
+		</span>
 
-</div>
-  <video autoplay loop poster="../images/mainback.jpg" id="bgvid">
-     <source src="../images/background.mp4" type="video/mp4">
-   </video>
+		<div id="searchdiv" align="center">
+			<form method="get" action="../list/list.html">
+				<input id="search" name="word" type="text" value="search"
+					onfocus="this.value=''"
+					onblur="if(this.value =='') this.value='search';" />
+			</form>
+			<br>
+		</div>
+
+		<!-- <script src="../bower_components/jquery/dist/jquery.js"></script> -->
+
+	</div>
+	<video autoplay loop poster="../images/mainback.jpg" id="bgvid">
+		<source src="../images/background.mp4" type="video/mp4">
+	</video>
 
 	<div class="modal" id="myModal" aria-hidden="true"
 		style="display: none; z-index: 1050;">
@@ -345,35 +338,39 @@ background-color: transparent;
 					<section>
 						<div id="container_demo">
 							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-							<a class="hiddenanchor" id="toregister"></a> 
-							<a class="hiddenanchor" id="tologin"></a>
+							<a class="hiddenanchor" id="toregister"></a> <a
+								class="hiddenanchor" id="tologin"></a>
 							<div id="wrapper">
 								<div id="login" class="animate form">
-									
+
 									<form autocomplete="on" method='post'>
 										<h1>Log in</h1>
 										<p>
-											<label for="username" class="uname" data-icon="u">Your email</label>
-											<input id="email" name="email" required="required" type="text"
-												placeholder="mymail@mail.com" />
+											<label for="username" class="uname" data-icon="u">Your
+												email</label> <input id="email" name="email" required="required"
+												type="text" placeholder="mymail@mail.com" />
 										</p>
 										<p>
-											<label for="password" class="youpasswd" data-icon="p"> Your password</label>
-											<input id="password" name="password" required="required" type="password"
-											    placeholder="eg. X8df!90EO" onKeyPress="if (event.keyCode==13){$('#loginbtn').click();event.returnValue=false}" />
-											    
+											<label for="password" class="youpasswd" data-icon="p">
+												Your password</label> <input id="password" name="password"
+												required="required" type="password"
+												placeholder="eg. X8df!90EO"
+												onKeyPress="if (event.keyCode==13){$('#loginbtn').click();event.returnValue=false}" />
+
 										</p>
 										<p class="keeplogin">
 											<input type="checkbox" name="loginkeeping" id="loginkeeping"
-												value="loginkeeping" />
-										    <label for="loginkeeping">Keep me logged in</label>
+												value="loginkeeping" /> <label for="loginkeeping">Keep
+												me logged in</label>
 										</p>
-									<p class="login button">
-										<input  id="loginbtn" name="loginbtn"  value="LOGIN" style="text-align:center;" readonly />
-									</p>
-									<p class="change_link">
-										Not a member yet ? <a href="#toregister" class="to_register">Join us</a>
-									</p>
+										<p class="login button">
+											<input id="loginbtn" name="loginbtn" value="LOGIN"
+												style="text-align: center;" readonly />
+										</p>
+										<p class="change_link">
+											Not a member yet ? <a href="#toregister" class="to_register">Join
+												us</a>
+										</p>
 									</form>
 								</div>
 
@@ -391,33 +388,34 @@ background-color: transparent;
 											<label for="emailsignup" class="youmail" data-icon="e">
 												Your email</label> <input id="emailsignup" name="emailsignup"
 												required="required" type="email"
-												placeholder="mysupermail@mail.com" />
-												<font name="mcheck" size="2" color="red"></font> 
-												<font name="mchecked" size="2" color="blue"></font> 
+												placeholder="mysupermail@mail.com" /> <font name="mcheck"
+												size="2" color="red"></font> <font name="mchecked" size="2"
+												color="blue"></font>
 										</p>
 										<p>
 											<label for="passwordsignup" class="youpasswd" data-icon="p">Your
-												password </label> 
-												<input id="passwordsignup" name="passwordsignup"
+												password </label> <input id="passwordsignup" name="passwordsignup"
 												required="required" type="password"
-												placeholder="eg. X8df!90EO" />
-												<font name="pcheck" size="2" color="red"></font> 
-												<font name="pchecked" size="2" color="blue"></font> 
+												placeholder="eg. X8df!90EO" /> <font name="pcheck" size="2"
+												color="red"></font> <font name="pchecked" size="2"
+												color="blue"></font>
 										</p>
 										<p>
 											<label for="passwordsignup_confirm" class="youpasswd"
-												data-icon="p">Please confirm your password </label>
-												 <input	id="passwordsignup_confirm" name="passwordsignup_confirm"
+												data-icon="p">Please confirm your password </label> <input
+												id="passwordsignup_confirm" name="passwordsignup_confirm"
 												required="required" type="password"
-												placeholder="eg. X8df!90EO" />
-												<font name="check" size="2" color="red"></font> 
-												<font name="checked" size="2" color="blue"></font> 
+												placeholder="eg. X8df!90EO" /> <font name="check" size="2"
+												color="red"></font> <font name="checked" size="2"
+												color="blue"></font>
 										</p>
 										<p class="signin button">
-											<input id="signinbtn" value="Sign up" style="text-align:center;" readonly/>
+											<input id="signinbtn" value="Sign up"
+												style="text-align: center;" readonly />
 										</p>
 										<p class="change_link">
-											Already a member ? <a href="#tologin" class="to_register">Go and log in </a>
+											Already a member ? <a href="#tologin" class="to_register">Go
+												and log in </a>
 										</p>
 									</form>
 								</div>
@@ -429,13 +427,13 @@ background-color: transparent;
 			</div>
 		</span>
 	</div>
-	
-	
-	
-	
+
+
+
+
 	<!-- 설정 팝업! -->
-	
-	
+
+
 	<div class="modal" id="setting" aria-hidden="true"
 		style="display: none; z-index: 1050;">
 		<span id="signinpop">
@@ -445,83 +443,87 @@ background-color: transparent;
 					<section>
 						<div id="container_demo">
 							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-							<a class="hiddenanchor" id="tosettings"></a>
-							<a class="hiddenanchor" id="todelete"></a>
+							<a class="hiddenanchor" id="tosettings"></a> <a
+								class="hiddenanchor" id="todelete"></a>
 							<div id="wrapper">
-								
+
 								<div id="settings" class="animate form">
-									
-									<form id="settingForm" name="mysetting" autocomplete="on" method='post'>
-									<div id=pAndndiv>
-										<!-- <img src="../images/profile.png" id="imgPreview" class="settingpro" width="100" height="100">
+
+									<form id="settingForm" name="mysetting" autocomplete="on"
+										method='post'>
+										<div id=pAndndiv>
+											<!-- <img src="../images/profile.png" id="imgPreview" class="settingpro" width="100" height="100">
 										<h3 align="center">김현지  <input id="inputfiles" type="file" name="photo"></input><img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br> -->
-									</div>
+										</div>
 										<h1></h1>
-										
-									     	<p>
+
+										<p>
 											<label for="useremail" class="youmail" data-icon="e">이메일</label>
-											<input id="setemail" name="email" required="required" type="text" readonly="readonly"/>
+											<input id="setemail" name="email" required="required"
+												type="text" readonly="readonly" />
 										</p>
-										
+
 										<p>
-											<label for="username" class="uname" data-icon="u">닉네임 변경</label>
-											<input id="nickCheck" name="nickCheck" type="hidden"/>
-											<input id="nickBefore" name="nickBefore" type="hidden"/>
-											
-											<input id="setnick" name="nick" required="required" type="text"/>
-											    <font name="ncheck" size="2" color="red"></font> <br>
+											<label for="username" class="uname" data-icon="u">닉네임
+												변경</label> <input id="nickCheck" name="nickCheck" type="hidden" /> <input
+												id="nickBefore" name="nickBefore" type="hidden" /> <input
+												id="setnick" name="nick" required="required" type="text" />
+											<font name="ncheck" size="2" color="red"></font> <br>
 										</p>
-										
+
 										<p>
-											<label for="password" class="youpasswd" data-icon="p">비밀번호 변경</label>
-											<input id="localpassword" name="password" required="required" type="password"
-											    placeholder="기존 비밀번호" />
-											
+											<label for="password" class="youpasswd" data-icon="p">비밀번호
+												변경</label> <input id="localpassword" name="password"
+												required="required" type="password" placeholder="기존 비밀번호" />
+
 										</p>
-										
+
 										<p>
-											<input id="setpassword" name="password"  required="required" type="password"
-											    placeholder="새 비밀번호" />
-											<font name="prcheck" size="2" color="red"></font> <br>
+											<input id="setpassword" name="password" required="required"
+												type="password" placeholder="새 비밀번호" /> <font
+												name="prcheck" size="2" color="red"></font> <br>
 										</p>
-										
+
 										<p>
-											<input id="setpassword_confirm" name="password" required="required" type="password"
-											    placeholder="새 비밀번호 확인" />
-											    <font name="pcheck" size="2" color="red"></font> 
+											<input id="setpassword_confirm" name="password"
+												required="required" type="password" placeholder="새 비밀번호 확인" />
+											<font name="pcheck" size="2" color="red"></font>
 										</p>
-									<p class="change_link" style="margin-top: 80px;">
-										<a href="#todelete" class="to_register" style="width:78px;">회원탈퇴 </a>
-									</p>
-									<p class="change button">
-										<input  id="change" name="changebtn" value="변경" style="text-align:center;" readonly />
-									</p>
+										<p class="change_link" style="margin-top: 80px;">
+											<a href="#todelete" class="to_register" style="width: 78px;">회원탈퇴
+											</a>
+										</p>
+										<p class="change button">
+											<input id="change" name="changebtn" value="변경"
+												style="text-align: center;" readonly />
+										</p>
 									</form>
-							</div>
-							
-							
-							<div id="delete" class="animate form">
+								</div>
+
+
+								<div id="delete" class="animate form">
 									<form name="deletecheck" autocomplete="on">
 										<h1>회원탈퇴</h1>
 										<p>
-											<label for="deletepassword" class="youpasswd" data-icon="p">본인 확인을 위하여 비밀번호를 입력해 주세요</label> 
-											<input id="mailCheck" name="mailCheck" type="hidden"/>
-												<input id="deletepassword" name="deletepassword"
-												required="required" type="password"/>
+											<label for="deletepassword" class="youpasswd" data-icon="p">본인
+												확인을 위하여 비밀번호를 입력해 주세요</label> <input id="mailCheck" name="mailCheck"
+												type="hidden" /> <input id="deletepassword"
+												name="deletepassword" required="required" type="password" />
 										</p>
 										<p class="delete button">
-											<input id="deletebtn" value="탈퇴" style="text-align:center;" readonly/>
+											<input id="deletebtn" value="탈퇴" style="text-align: center;"
+												readonly />
 										</p>
 										<p class="change_link">
 											<a href="#tosettings" class="to_register">설정</a>
 										</p>
 									</form>
 								</div>
-								
-								
-								
-								
-								
+
+
+
+
+
 							</div>
 						</div>
 					</section>
@@ -529,26 +531,21 @@ background-color: transparent;
 			</div>
 		</span>
 	</div>
-	
-<div id="dialog" title="회원정보변경"> <img src="../images/ㅋㅋㅋ.jpg" width="180" height="100"/>
-  <p>로그인 실패다</p>
-</div>
-	
+
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    
-    
-  <!--  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-   
+	<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+
+
+	<!--  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 
 
 
 
-<script type="text/javascript">
+
+	<script type="text/javascript">
 $(function() {
     $(document).on('change','#inputfiles', function(){
         readURL(this);
@@ -568,7 +565,7 @@ function readURL(input) {
 }
 </script>
 
-<script>
+	<script>
 function loadPhoto() {	
 	$.getJSON("../ajax/member/list.do", function(result) {
 		var headerdiv = $('.headerdiv');
@@ -588,8 +585,8 @@ function loadPhoto() {
 }
 </script>
 
-<!--  설정 팝업 -->
-<script>
+	<!--  설정 팝업 -->
+	<script>
  $( document ).ready(function() {
 }); 
 
@@ -604,11 +601,11 @@ $.getJSON("../auth/log.do", function(result) {
 		}
 	});
 	</script>
-	
-	
-	
-<!-- 닉네임 실시간으로 중복체크 해주기 -->	
-<script>
+
+
+
+	<!-- 닉네임 실시간으로 중복체크 해주기 -->
+	<script>
 $(function(){
 	$('#setnick').keyup(function() {
 	
@@ -642,9 +639,9 @@ $(function(){
 });  
 </script>
 
-   
-<!-- 설정 팝업에서 변경하는 과정!!! -->
-<script>
+
+	<!-- 설정 팝업에서 변경하는 과정!!! -->
+	<script>
 var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 
 	$("#change").click(function(event) {
@@ -794,10 +791,10 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 	
 		
 
-</script>   
-   
+</script>
 
-<script>
+
+	<script>
 
 
 <!-- 로그인!!! -->
@@ -905,8 +902,8 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 
 
 
-<!-- 로그인 하면 로그아웃 버튼 나타나게! -->
-<script>
+	<!-- 로그인 하면 로그아웃 버튼 나타나게! -->
+	<script>
 $.post("../auth/log.do", {
 	nick : $("#usernamesignup").val(),
 	email : $("#emailsignup").val(),
@@ -922,7 +919,7 @@ $.post("../auth/log.do", {
 }, "json");
 </script>
 
-<script>
+	<script>
 <!-- 회원가입 -->
 
 	$("#signinbtn").click(function(event) {
@@ -1018,7 +1015,7 @@ $.post("../auth/log.do", {
 	$("#logout").click(function(event) {location.href = "../auth/logout.do";});
 
 </script>
-                 
+
 
 </body>
 </html>
