@@ -841,20 +841,160 @@ $.post("../auth/log.do", {
 			
 			if(member.nick != "" || member.email !="") {	
 				if(member.nick != "") {
-					window.alert("이미 존재하는 닉네임 입니다.");
+					 $.dialog({
+
+				            // 'alert', 'confirm', 'info' or 'tips'
+				            type : 'alert',     
+				            titleText : '이미 존재하는 닉네임 입니다.',
+				            showTitle : true,
+				            contentHtml : '',
+				            dialogClass : '',
+				            autoClose : 0,
+				            overlayClose : false,
+				            drag : false,
+
+				            buttonText : {
+				                ok : 'OK',
+				                cancel : 'Cancel',
+				                delete : 'Delete'
+				            },
+				            buttonClass : {
+				                ok : '',
+				                cancel : '',
+				                delete : ''
+				            },
+
+				            infoText : '',      // working in info type
+				            infoIcon : '',      // working in info type
+
+				            onClickOk : function(){},
+				            onClickCancel : function(){},
+				            onClickClose : function(){},
+
+				            onBeforeShow : function(){},
+				            onShow : function(){},
+				            onBeforeClosed : function(){},
+				            onClosed : function(){}
+				            
+				          });
 					theForm.usernamesignup.focus();
 				} else if (member.email != "") {
-					window.alert("이미 존재하는 이메일 입니다.");
+					 $.dialog({
+
+				            // 'alert', 'confirm', 'info' or 'tips'
+				            type : 'alert',     
+				            titleText : '이미 존재하는 이메일 입니다.',
+				            showTitle : true,
+				            contentHtml : '',
+				            dialogClass : '',
+				            autoClose : 0,
+				            overlayClose : false,
+				            drag : false,
+
+				            buttonText : {
+				                ok : 'OK',
+				                cancel : 'Cancel',
+				                delete : 'Delete'
+				            },
+				            buttonClass : {
+				                ok : '',
+				                cancel : '',
+				                delete : ''
+				            },
+
+				            infoText : '',      // working in info type
+				            infoIcon : '',      // working in info type
+
+				            onClickOk : function(){},
+				            onClickCancel : function(){},
+				            onClickClose : function(){},
+
+				            onBeforeShow : function(){},
+				            onShow : function(){},
+				            onBeforeClosed : function(){},
+				            onClosed : function(){}
+				            
+				          });
 					theForm.emailsignup.focus();
 				}
 			} else {
 				if(theForm.usernamesignup.value!="" && theForm.emailsignup.value!="" && theForm.passwordsignup.value!="" && theForm.passwordsignup_confirm.value!="" ){
 				   
 					if(!$('#emailsignup').val().match(regexEmail)) {
-						window.alert("이메일 형식에 맞지 않습니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '이메일 형식에 맞지 않습니다',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.emailsignup.focus();
 					}else if(!$('#passwordsignup').val().match(regexPassword)) {
-						window.alert("비밀번호 형식에 맞지 않습니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '비밀번호 형식에 맞지 않습니다',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.passwordsignup.focus();
 					}else {
 							if($("#passwordsignup").val() == $("#passwordsignup_confirm").val()) {
@@ -866,25 +1006,235 @@ $.post("../auth/log.do", {
 											if (result.status == "success") {
 												location.href = "main.html";
 											} else {
-												 window.alert("회원 등록 실패입니다!"); 
+												 $.dialog({
+
+											            // 'alert', 'confirm', 'info' or 'tips'
+											            type : 'alert',     
+											            titleText : '회원 등록 실패입니다.',
+											            showTitle : true,
+											            contentHtml : '',
+											            dialogClass : '',
+											            autoClose : 0,
+											            overlayClose : false,
+											            drag : false,
+
+											            buttonText : {
+											                ok : 'OK',
+											                cancel : 'Cancel',
+											                delete : 'Delete'
+											            },
+											            buttonClass : {
+											                ok : '',
+											                cancel : '',
+											                delete : ''
+											            },
+
+											            infoText : '',      // working in info type
+											            infoIcon : '',      // working in info type
+
+											            onClickOk : function(){},
+											            onClickCancel : function(){},
+											            onClickClose : function(){},
+
+											            onBeforeShow : function(){},
+											            onShow : function(){},
+											            onBeforeClosed : function(){},
+											            onClosed : function(){}
+											            
+											          });
 												}
 											}, "json");
 								}else if($("#passwordsignup").val() != $("#passwordsignup_confirm").val()) {
-								window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+									 $.dialog({
+
+								            // 'alert', 'confirm', 'info' or 'tips'
+								            type : 'alert',     
+								            titleText : '비밀번호를 다시 확인해 주세요',
+								            showTitle : true,
+								            contentHtml : '',
+								            dialogClass : '',
+								            autoClose : 0,
+								            overlayClose : false,
+								            drag : false,
+
+								            buttonText : {
+								                ok : 'OK',
+								                cancel : 'Cancel',
+								                delete : 'Delete'
+								            },
+								            buttonClass : {
+								                ok : '',
+								                cancel : '',
+								                delete : ''
+								            },
+
+								            infoText : '',      // working in info type
+								            infoIcon : '',      // working in info type
+
+								            onClickOk : function(){},
+								            onClickCancel : function(){},
+								            onClickClose : function(){},
+
+								            onBeforeShow : function(){},
+								            onShow : function(){},
+								            onBeforeClosed : function(){},
+								            onClosed : function(){}
+								            
+								          });
 								}
 					}
 				} else if(theForm.usernamesignup.value=="" || theForm.emailsignup.value=="" || theForm.passwordsignup.value=="" || theForm.passwordsignup_confirm.value=="" ){
 					if(theForm.usernamesignup.value==""){
-						window.alert("닉네임을 입력해 주시기 바랍니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '닉네임을 입력해 주시길 바랍니다',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.usernamesignup.focus();
 					}else if(theForm.emailsignup.value==""){
-						window.alert("이메일을 입력해 주시기 바랍니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '이메일을 입력해 주시길 바랍니다.',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.emailsignup.focus();
 					}else if(theForm.passwordsignup.value==""){
-						window.alert("비밀번호를 입력해 주시기 바랍니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '비밀번호를 입력해 주시길 바랍니다',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.passwordsignup.focus();
 					}else {
-						window.alert("비밀번호를 확인해 주시기 바랍니다.");
+						 $.dialog({
+
+					            // 'alert', 'confirm', 'info' or 'tips'
+					            type : 'alert',     
+					            titleText : '비밀번호를 다시 확인 해주시길 바랍니다',
+					            showTitle : true,
+					            contentHtml : '',
+					            dialogClass : '',
+					            autoClose : 0,
+					            overlayClose : false,
+					            drag : false,
+
+					            buttonText : {
+					                ok : 'OK',
+					                cancel : 'Cancel',
+					                delete : 'Delete'
+					            },
+					            buttonClass : {
+					                ok : '',
+					                cancel : '',
+					                delete : ''
+					            },
+
+					            infoText : '',      // working in info type
+					            infoIcon : '',      // working in info type
+
+					            onClickOk : function(){},
+					            onClickCancel : function(){},
+					            onClickClose : function(){},
+
+					            onBeforeShow : function(){},
+					            onShow : function(){},
+					            onBeforeClosed : function(){},
+					            onClosed : function(){}
+					            
+					          });
 						theForm.passwordsignup_confirm.focus();
 					}
 				}
