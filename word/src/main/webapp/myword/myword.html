@@ -4,23 +4,17 @@
 <meta charset="UTF-8">
 <title>나의 단어장</title>
 
-
-
-
-
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css"
    rel="stylesheet">
 <link href="../css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-<link rel="stylesheet" type="text/css" href="../css/style12.css" />
-<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/common3.css">
-<link rel="stylesheet" type="text/css" href="../css/list8.css">
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/list10.css"> 
+<link rel="stylesheet" type="text/css" href="../css/style4.css" />
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -33,13 +27,64 @@
 <script src="../bower_components/classie/classie.js"></script>
 <script src="../js/AnimOnScroll.js"></script>
 <script src="../js/popupsettings.js"></script>
+      <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+ -->
 
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<meta name="description" content="Loading Effects for Grid Items with CSS Animations" />
-<meta name="keywords" content="css animation, loading effect, google plus, grid items, masonry" />
-<meta name="author" content="Codrops" /> 
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../css/common3.css">
+<link rel="stylesheet" type="text/css" href="../css/list12.css">
+<link rel="stylesheet" type="text/css" href="../css/component2.css" />
+<link rel="stylesheet" type="text/css" href="../css/style3.css" />
+		<meta name="description" content="Loading Effects for Grid Items with CSS Animations" />
+		<meta name="keywords" content="css animation, loading effect, google plus, grid items, masonry" />
+	 	<meta name="author" content="Codrops" /> 
+
+
+<script src="../js/modernizr.custom.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
 
 <style>
+.thumbnail {
+  position: absolute;
+  border-radius : 50%;
+ /*
+  left:50%;
+  margin: -170px -200px 0 200px; */
+}
+
+.change {
+  display: inline-block;
+}
+#dialog {
+  z-index: 9999;
+}
+.settingpro {
+	border-radius: 100%;
+}
+
+#inputfiles {
+	position: absolute;
+	top: 130px;
+	left: 225px;
+	width: 1px !important;
+	height: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	cursor: pointer;
+}
+
+
+/**/
+
    body {
    background-color: #F9F6F1;
    margin: 0 auto;
@@ -88,7 +133,6 @@
 .material-contact {
     width:320px;
     max-width:100%;
-    left: 35%;
     height:auto;
     padding: 50px 25px 30px 25px;
     box-sizing:border-box;
@@ -201,6 +245,7 @@
     background:#000;
     color:#fff;
 }
+
 
 .animate-in-01 {
     animation:animateIn 1s ease;
@@ -337,6 +382,12 @@ font {
 }
 
 
+.countspan {
+	  position: absolute;
+    right: -107%;
+    bottom: -243%;
+}
+
 </style>
 
 </head>
@@ -362,6 +413,13 @@ font {
       </div>
      
      
+     
+     
+     
+     
+     
+
+
 
    <div class="modal" id="setting" aria-hidden="true"
       style="display: none; z-index: 1050;">
@@ -375,7 +433,7 @@ font {
                      <a class="hiddenanchor" id="todelete"></a>
                      <div id="wrapper">
 
-                        <div id="settings" class="animate form"  style="top: 11%; left: -20%" > 
+                        <div id="settings" class="animate form" style="top: 11%;">
 
                            <form id="settingForm" name="mysetting" autocomplete="on"
                               method='post'>
@@ -394,7 +452,7 @@ font {
                                     변경</label> <input id="nickCheck" name="nickCheck" type="hidden" /> <input
                                     id="nickBefore" name="nickBefore" type="hidden" /> <input
                                     id="setnick" name="nick" required="required" type="text" />
-
+                                 <font name="ncheck" size="2" color="red"></font> <br>
                               </p>
 
                               <p>
@@ -406,12 +464,14 @@ font {
 
                               <p>
                                  <input id="setpassword" name="password" required="required"
-                                    type="password" placeholder="새 비밀번호" /> 
+                                    type="password" placeholder="새 비밀번호" /> <font
+                                    name="prcheck" size="2" color="red"></font> <br>
                               </p>
 
                               <p>
                                  <input id="setpassword_confirm" name="password"
                                     required="required" type="password" placeholder="새 비밀번호 확인" />
+                                 <font name="pcheck" size="2" color="red"></font>
                               </p>
                               <p class="change_link" style="margin-top: 80px;">
                                  <a href="#todelete" class="to_register" style="width: 78px;">회원탈퇴
@@ -425,7 +485,7 @@ font {
                         </div>
 
 
-                        <div id="delete" class="animate form" style="top: 11%; left: -20%">
+                        <div id="delete" class="animate form">
                            <form name="deletecheck" autocomplete="on">
                               <h1>회원탈퇴</h1>
                               <p>
@@ -471,13 +531,15 @@ font {
    </div>
 
    <div class="textbox">
-    <div class="mywordtext">
-      <h2>나의 단어장</h2>
+    <div class="mywordtext" style="text-align:center;">
+      <font size="6">나의 단어장</font><br>
+      <span class='countspan'>
       <select id="assosCount" onchange="loadPaging()">
-        <option selected='selected'>3</option>
-        <option>5</option>
-        <option>10</option>
+        <option selected='selected' value='3'>3개씩 보기</option>
+        <option value='5'>5개씩 보기</option>
+        <option value='10'>10개씩 보기</option>
        </select>
+       </span>
     </div>
   </div>
   
@@ -492,6 +554,125 @@ font {
          </div>
    </div>
       
+ 
+ <!-- 설정 팝업! -->
+	
+	
+	<div class="modal" id="setting" aria-hidden="true"
+		style="display: none; z-index: 1050;">
+		<span id="signinpop">
+			<div class="modal-dialog modal-lg">
+
+				<div class="modal-body">
+					<section>
+						<div id="container_demo">
+							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+							<a class="hiddenanchor" id="tosettings"></a>
+							<a class="hiddenanchor" id="todelete"></a>
+							<div id="wrapper">
+								
+								<div id="settings" class="animate form">
+									
+									<form id="settingForm" name="mysetting" autocomplete="on" method='post'>
+									<div id=pAndndiv>
+										<!-- <img src="../images/profile.png" id="imgPreview" class="settingpro" width="100" height="100">
+										<h3 align="center">김현지  <input id="inputfiles" type="file" name="photo"></input><img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br> -->
+									</div>
+										<h1></h1>
+										
+									     	<p>
+											<label for="useremail" class="youmail" data-icon="e">이메일</label>
+											<input id="setemail" name="email" required="required" type="text" readonly="readonly"/>
+										</p>
+										
+										<p>
+											<label for="username" class="uname" data-icon="u">닉네임 변경</label>
+											<input id="nickCheck" name="nickCheck" type="hidden"/>
+											<input id="nickBefore" name="nickBefore" type="hidden"/>
+											
+											<input id="setnick" name="nick" required="required" type="text"/>
+											    <font name="ncheck" size="2" color="red"></font> <br>
+										</p>
+										
+										<p>
+											<label for="password" class="youpasswd" data-icon="p">비밀번호 변경</label>
+											<input id="localpassword" name="password" required="required" type="password"
+											    placeholder="기존 비밀번호" />
+											
+										</p>
+										
+										<p>
+											<input id="setpassword" name="password"  required="required" type="password"
+											    placeholder="새 비밀번호" />
+											<font name="prcheck" size="2" color="red"></font> <br>
+										</p>
+										
+										<p>
+											<input id="setpassword_confirm" name="password" required="required" type="password"
+											    placeholder="새 비밀번호 확인" />
+											    <font name="pcheck" size="2" color="red"></font> 
+										</p>
+									<p class="change_link" style="margin-top: 80px;">
+										<a href="#todelete" class="to_register" style="width:78px;">회원탈퇴 </a>
+									</p>
+									<p class="change button">
+										<input  id="change" name="changebtn" value="변경" style="text-align:center;" readonly />
+									</p>
+									</form>
+							</div>
+							
+							
+							<div id="delete" class="animate form">
+									<form name="deletecheck" autocomplete="on">
+										<h1>회원탈퇴</h1>
+										<p>
+											<label for="deletepassword" class="youpasswd" data-icon="p">본인 확인을 위하여 비밀번호를 입력해 주세요</label> 
+											<input id="mailCheck" name="mailCheck" type="hidden"/>
+												<input id="deletepassword" name="deletepassword"
+												required="required" type="password"/>
+										</p>
+										<p class="delete button">
+											<input id="deletebtn" value="탈퇴" style="text-align:center;" readonly/>
+										</p>
+										<p class="change_link">
+											<a href="#tosettings" class="to_register">설정</a>
+										</p>
+									</form>
+								</div>
+								
+								
+								
+								
+								
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</span>
+	</div>
+ 
+ <script>
+loadPhoto();
+function loadPhoto() {	
+	$.getJSON("../ajax/member/list.do", function(result) {
+		var headerdiv = $('#d1');
+		var pAndndiv = $('#pAndndiv');
+		var list = result.list;
+		
+		$("<div class='menubar'>").html("<ul>" + 
+				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
+				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
+				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
+				"</li></ul>").appendTo(headerdiv);
+		$('#sign').css("display", "none");
+		
+		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
+			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
+	})
+}
+</script>
+ 
       
    <script>
       loadPhoto();
@@ -509,14 +690,15 @@ font {
                      + "</li></ul>").appendTo(headerdiv);
                $('#sign').css("display", "none");
 
-               $("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" + "<h3 align='center'>"
-                  + list[0].nick+ "<input id='inputfiles' type='file' name='photo'></input>" +
-                  "<img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
-                     })
         }
    </script>
       
       
+   </div>
+      <script src="../bower_components/masonry/dist/masonry.pkgd.js"></script>
+      <script src="../bower_components/imagesloaded/imagesloaded.js"></script>
+      <script src="../bower_components/classie/classie.js"></script>
+      <script src="../js/AnimOnScroll.js"></script>
    <script>
    loadAsso();
    function loadAsso() {
