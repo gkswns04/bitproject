@@ -284,7 +284,7 @@ p.change_link{
 #register, 
 #login,#settings,#delete{
 	position: absolute;
-	top : -110px;
+	top : -11%;
 	width: 88%;	
 	padding: 18px 6% 60px 6%;
 	margin: 0 0 35px 0;

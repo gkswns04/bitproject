@@ -94,7 +94,7 @@ video#bgvid {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -1000;
+    z-index: -100;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -263,11 +263,11 @@ video#bgvid {
 
 /**/
 
-     html {
-        min-width: 1024px;
-     }
+body {
+padding-right: 0 !important;
+}
 
- #d2 {
+#d2 {
   position: relative;
   min-width: 960px;
   width: 100%;
@@ -299,19 +299,36 @@ video#bgvid {
    left: 50%;
    margin: 0 0 0 -180px;
 } 
-
-body {
-padding-right: 0 !important;
+.change {
+  display: inline-block;
+}
+#dialog {
+  z-index: 9999;
+}
+.settingpro {
+	border-radius: 100%;
 }
 
+
+#inputfiles {
+	position: absolute;
+	top: 130px;
+	left: 225px;
+	width: 1px !important;
+	height: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	cursor: pointer;
+}
 /* 팝업페이지css */
-/*
 
 
 .modal-hedaer .modal-body .modal-footer {
 font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
     font-weight: bold;
 }
+
 #exampleModalLabel {
 font-size: 36px;
     color: #242b33;
@@ -321,7 +338,7 @@ font-size: 36px;
     text-align: center;
 }
 
-#imgPreview {
+#as_imgPreview {
 padding: 10px;
 position: absolute;
 width: 150px;
@@ -395,17 +412,17 @@ content: ' ';
 .modal-header {
 border-bottom: 0px;
 }
-.modal-footer {
+.add-modal-footer {
 border-top: 0px;
 }
 
-.modal-content {
+.add-modal-content {
 width : 450px;
 height: auto;
 left: 75px;
 }
 
-.popup {
+.addpopup {
    position: absolute;
   width: 450px;
   top: 25%;
@@ -413,33 +430,33 @@ left: 75px;
   margin: 0 0 0 -225px;
 }
 
-div.modal-dialog.modal-lg {
+div.add-modal-dialog {
   position: absolute;
   width: 450px;
   top: 15%;
   left: 50%;
   margin: 0 0 0 -300px;
 }
-#wrapper {
+/* #wrapper {
   position: absolute;
   width: auto !important;
   height: auto !important;
   top: 90%;
   left: 1%;
-}
+} */
 
-.second-content {
+.add-second-content {
   height: 350px;
 }
 
-p.login.button {
+p.addbutton {
   position: relative;
   top: -30%;
   left: 20%;
 }
 
  
-#wrapper p.button input {
+#wrapper p.addbutton input {
   position: absolute;
   width: 60px;
   height: 25px;
@@ -447,6 +464,110 @@ p.login.button {
   right: 7%;
 }
 
-*/
+
 
 /*log icon*/
+
+.menubar {
+ position: absolute;
+  right: 1%;
+  top: 30px;
+  width: auto;
+  height: auto;
+border:none;
+border:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+.menubar ul{
+/* background: rgb(109,109,109); */
+height: 50px;
+width: auto;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+border:0px;
+/* margin: 50px 0 0 0; */
+position:absolute;
+width:170px;
+z-index:9999; 
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:170px;
+z-index:9999;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+
+#current {
+background-color: transparent;
+}
+

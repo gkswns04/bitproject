@@ -94,7 +94,7 @@ video#bgvid {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -1000;
+    z-index: -100;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -263,43 +263,6 @@ video#bgvid {
 
 /**/
 
-     html {
-        min-width: 1024px;
-     }
-
- #d2 {
-  position: relative;
-  min-width: 960px;
-  width: 100%;
-  height: 700px;
-  overflow: hidden;
-}
-#d3 {
-  position: absolute;
-  top: 600px;
-  min-width: 960px;
-  width: 100%;
-  height: 100%;
-}
-
-
-#enrolldiv {
-   position: absolute;
-   width: 200px;
-   height: 100px;
-   top: 250px;
-   left: 50%;
-   margin : 0 0 0 -100px ;
-}
-#noword {
-   position: absolute;
-   width: 360px;
-   height: 80px;
-   top: 130px;
-   left: 50%;
-   margin: 0 0 0 -180px;
-} 
-
 body {
 padding-right: 0 !important;
 }
@@ -450,3 +413,107 @@ p.login.button {
 */
 
 /*log icon*/
+
+.menubar{
+ position: absolute;
+  right: 1%;
+  top: 30px;
+  width: auto;
+  height: auto;
+border:none;
+border:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+.menubar ul{
+/* background: rgb(109,109,109); */
+height: 50px;
+width: auto;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+border:0px;
+/* margin: 50px 0 0 0; */
+position:absolute;
+width:170px;
+z-index:9999; 
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:170px;
+z-index:9999;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+
+#current {
+background-color: transparent;
+}
+
