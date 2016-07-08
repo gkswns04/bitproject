@@ -56,7 +56,42 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
        if((checkValue != "") && (nickBefore != "")){
           
           if((checkValue == "1") && (nickBefore != $("#setnick").val())){
-            window.alert("닉네임이 중복 되었습니다."); 
+        	  $.dialog({
+
+                  // 'alert', 'confirm', 'info' or 'tips'
+                  type : 'alert',     
+                  titleText : '닉네임이 중복되었습니다.',
+                  showTitle : true,
+                  contentHtml : '',
+                  dialogClass : '',
+                  autoClose : 0,
+                  overlayClose : false,
+                  drag : false,
+
+                  buttonText : {
+                      ok : 'OK',
+                      cancel : 'Cancel',
+                      delete : 'Delete'
+                  },
+                  buttonClass : {
+                      ok : '',
+                      cancel : '',
+                      delete : ''
+                  },
+
+                  infoText : '',      // working in info type
+                  infoIcon : '',      // working in info type
+
+                  onClickOk : function(){},
+                  onClickCancel : function(){},
+                  onClickClose : function(){},
+
+                  onBeforeShow : function(){},
+                  onShow : function(){},
+                  onBeforeClosed : function(){},
+                  onClosed : function(){}
+                  
+                });
             document.mysetting.setnick.focus();
          }else if((checkValue == "0") && (nickBefore != $("#setnick").val())){
             
@@ -74,10 +109,80 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                         $("#nickBefore").val("result.nick");
                         //member.nick = result.nick;
                         if(!($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != "")){
-                              window.alert("설정을 변경하였습니다."); 
+                        	  $.dialog({
+
+                                  // 'alert', 'confirm', 'info' or 'tips'
+                                  type : 'alert',     
+                                  titleText : '설정을 변경하였습니다.',
+                                  showTitle : true,
+                                  contentHtml : '',
+                                  dialogClass : '',
+                                  autoClose : 0,
+                                  overlayClose : false,
+                                  drag : false,
+
+                                  buttonText : {
+                                      ok : 'OK',
+                                      cancel : 'Cancel',
+                                      delete : 'Delete'
+                                  },
+                                  buttonClass : {
+                                      ok : '',
+                                      cancel : '',
+                                      delete : ''
+                                  },
+
+                                  infoText : '',      // working in info type
+                                  infoIcon : '',      // working in info type
+
+                                  onClickOk : function(){},
+                                  onClickCancel : function(){},
+                                  onClickClose : function(){},
+
+                                  onBeforeShow : function(){},
+                                  onShow : function(){},
+                                  onBeforeClosed : function(){},
+                                  onClosed : function(){}
+                                  
+                                });
                         }
                      }else if(result.status == "failure"){
-                        window.alert("설정이 변경되지 않았습니다.");
+                    	  $.dialog({
+
+                              // 'alert', 'confirm', 'info' or 'tips'
+                              type : 'alert',     
+                              titleText : '설정이 변경되지 않았습니다.',
+                              showTitle : true,
+                              contentHtml : '',
+                              dialogClass : '',
+                              autoClose : 0,
+                              overlayClose : false,
+                              drag : false,
+
+                              buttonText : {
+                                  ok : 'OK',
+                                  cancel : 'Cancel',
+                                  delete : 'Delete'
+                              },
+                              buttonClass : {
+                                  ok : '',
+                                  cancel : '',
+                                  delete : ''
+                              },
+
+                              infoText : '',      // working in info type
+                              infoIcon : '',      // working in info type
+
+                              onClickOk : function(){},
+                              onClickCancel : function(){},
+                              onClickClose : function(){},
+
+                              onBeforeShow : function(){},
+                              onShow : function(){},
+                              onBeforeClosed : function(){},
+                              onClosed : function(){}
+                              
+                            });
                         $("#setnick").val(result.nick);
                      }
                      
@@ -100,10 +205,80 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                $("#localpassword").val("");
                $("#setpassword").val("");
                $("#setpassword_confirm").val("");
-            window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+               $.dialog({
+
+                   // 'alert', 'confirm', 'info' or 'tips'
+                   type : 'alert',     
+                   titleText : '비밀번호가 일치하지 않습니다. 다시 입력해주세요.',
+                   showTitle : true,
+                   contentHtml : '',
+                   dialogClass : '',
+                   autoClose : 0,
+                   overlayClose : false,
+                   drag : false,
+
+                   buttonText : {
+                       ok : 'OK',
+                       cancel : 'Cancel',
+                       delete : 'Delete'
+                   },
+                   buttonClass : {
+                       ok : '',
+                       cancel : '',
+                       delete : ''
+                   },
+
+                   infoText : '',      // working in info type
+                   infoIcon : '',      // working in info type
+
+                   onClickOk : function(){},
+                   onClickCancel : function(){},
+                   onClickClose : function(){},
+
+                   onBeforeShow : function(){},
+                   onShow : function(){},
+                   onBeforeClosed : function(){},
+                   onClosed : function(){}
+                   
+                 });
             document.mysetting.setpassword_confirm.focus();
          }else if(!$('#setpassword').val().match(regexPassword)) {
-            window.alert("비밀번호 형식에 맞지 않습니다.");
+        	  $.dialog({
+
+                  // 'alert', 'confirm', 'info' or 'tips'
+                  type : 'alert',     
+                  titleText : '비밀번호 형식에 맞지 않습니다.',
+                  showTitle : true,
+                  contentHtml : '',
+                  dialogClass : '',
+                  autoClose : 0,
+                  overlayClose : false,
+                  drag : false,
+
+                  buttonText : {
+                      ok : 'OK',
+                      cancel : 'Cancel',
+                      delete : 'Delete'
+                  },
+                  buttonClass : {
+                      ok : '',
+                      cancel : '',
+                      delete : ''
+                  },
+
+                  infoText : '',      // working in info type
+                  infoIcon : '',      // working in info type
+
+                  onClickOk : function(){},
+                  onClickCancel : function(){},
+                  onClickClose : function(){},
+
+                  onBeforeShow : function(){},
+                  onShow : function(){},
+                  onBeforeClosed : function(){},
+                  onClosed : function(){}
+                  
+                });
             document.mysetting.setpassword.focus();
          }else{
              $.ajax({
@@ -119,12 +294,82 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                         $("#localpassword").val("");
                         $("#setpassword").val("");
                         $("#setpassword_confirm").val("");
-                        window.alert("설정을 변경하였습니다."); 
+                        $.dialog({
+
+                            // 'alert', 'confirm', 'info' or 'tips'
+                            type : 'alert',     
+                            titleText : '설정을 변경했습니다.',
+                            showTitle : true,
+                            contentHtml : '',
+                            dialogClass : '',
+                            autoClose : 0,
+                            overlayClose : false,
+                            drag : false,
+
+                            buttonText : {
+                                ok : 'OK',
+                                cancel : 'Cancel',
+                                delete : 'Delete'
+                            },
+                            buttonClass : {
+                                ok : '',
+                                cancel : '',
+                                delete : ''
+                            },
+
+                            infoText : '',      // working in info type
+                            infoIcon : '',      // working in info type
+
+                            onClickOk : function(){},
+                            onClickCancel : function(){},
+                            onClickClose : function(){},
+
+                            onBeforeShow : function(){},
+                            onShow : function(){},
+                            onBeforeClosed : function(){},
+                            onClosed : function(){}
+                            
+                          }); 
                      }else if(result.status == "failure"){
                         $("#localpassword").val("");
                         $("#setpassword").val("");
                         $("#setpassword_confirm").val("");
-                        window.alert("비밀번호가 일치 하지 않습니다."); 
+                        $.dialog({
+
+                            // 'alert', 'confirm', 'info' or 'tips'
+                            type : 'alert',     
+                            titleText : '비밀번호가 일치하지 않습니다.',
+                            showTitle : true,
+                            contentHtml : '',
+                            dialogClass : '',
+                            autoClose : 0,
+                            overlayClose : false,
+                            drag : false,
+
+                            buttonText : {
+                                ok : 'OK',
+                                cancel : 'Cancel',
+                                delete : 'Delete'
+                            },
+                            buttonClass : {
+                                ok : '',
+                                cancel : '',
+                                delete : ''
+                            },
+
+                            infoText : '',      // working in info type
+                            infoIcon : '',      // working in info type
+
+                            onClickOk : function(){},
+                            onClickCancel : function(){},
+                            onClickClose : function(){},
+
+                            onBeforeShow : function(){},
+                            onShow : function(){},
+                            onBeforeClosed : function(){},
+                            onClosed : function(){}
+                            
+                          }); 
                         document.mysetting.setpassword_confirm.focus();
                      }
                      
@@ -156,7 +401,42 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                if (result.status == "success") {
                   window.location.reload(); 
                } else if (result.status == "failure") {
-                  window.alert("설정 변경에 실패하였습니다.");
+            	   $.dialog({
+
+                       // 'alert', 'confirm', 'info' or 'tips'
+                       type : 'alert',     
+                       titleText : '설정 변경에 실패하였습니다.',
+                       showTitle : true,
+                       contentHtml : '',
+                       dialogClass : '',
+                       autoClose : 0,
+                       overlayClose : false,
+                       drag : false,
+
+                       buttonText : {
+                           ok : 'OK',
+                           cancel : 'Cancel',
+                           delete : 'Delete'
+                       },
+                       buttonClass : {
+                           ok : '',
+                           cancel : '',
+                           delete : ''
+                       },
+
+                       infoText : '',      // working in info type
+                       infoIcon : '',      // working in info type
+
+                       onClickOk : function(){},
+                       onClickCancel : function(){},
+                       onClickClose : function(){},
+
+                       onBeforeShow : function(){},
+                       onShow : function(){},
+                       onBeforeClosed : function(){},
+                       onClosed : function(){}
+                       
+                     });
                   window.location.reload();
                } else if (result.status == "noChange") {
                  window.location.reload();
@@ -176,10 +456,80 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
             },
            success: function(result) {
                if (result.status == "success") {
-                  window.alert("회원 탈퇴 되었습니다."); 
+            	   $.dialog({
+
+                       // 'alert', 'confirm', 'info' or 'tips'
+                       type : 'alert',     
+                       titleText : '회원탈퇴 완료되었습니다.',
+                       showTitle : true,
+                       contentHtml : '',
+                       dialogClass : '',
+                       autoClose : 0,
+                       overlayClose : false,
+                       drag : false,
+
+                       buttonText : {
+                           ok : 'OK',
+                           cancel : 'Cancel',
+                           delete : 'Delete'
+                       },
+                       buttonClass : {
+                           ok : '',
+                           cancel : '',
+                           delete : ''
+                       },
+
+                       infoText : '',      // working in info type
+                       infoIcon : '',      // working in info type
+
+                       onClickOk : function(){},
+                       onClickCancel : function(){},
+                       onClickClose : function(){},
+
+                       onBeforeShow : function(){},
+                       onShow : function(){},
+                       onBeforeClosed : function(){},
+                       onClosed : function(){}
+                       
+                     }); 
                   location.href = "../auth/logout.do";
                }else if(result.status == "failure"){
-                  window.alert("비밀번호가 일치 하지 않습니다."); 
+            	   $.dialog({
+
+                       // 'alert', 'confirm', 'info' or 'tips'
+                       type : 'alert',     
+                       titleText : '비밀번호가 일치하지 않습니다.',
+                       showTitle : true,
+                       contentHtml : '',
+                       dialogClass : '',
+                       autoClose : 0,
+                       overlayClose : false,
+                       drag : false,
+
+                       buttonText : {
+                           ok : 'OK',
+                           cancel : 'Cancel',
+                           delete : 'Delete'
+                       },
+                       buttonClass : {
+                           ok : '',
+                           cancel : '',
+                           delete : ''
+                       },
+
+                       infoText : '',      // working in info type
+                       infoIcon : '',      // working in info type
+
+                       onClickOk : function(){},
+                       onClickCancel : function(){},
+                       onClickClose : function(){},
+
+                       onBeforeShow : function(){},
+                       onShow : function(){},
+                       onBeforeClosed : function(){},
+                       onClosed : function(){}
+                       
+                     });
                   $("#deletepassword").val("");
                   document.deletecheck.deletepassword.focus();
                }
