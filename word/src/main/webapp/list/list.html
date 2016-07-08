@@ -419,7 +419,42 @@ function likePlus(index) {
 		      );
 				 }		      
 		    else {
-		    	window.alert("이미 '좋아요' 하신 연상법 입니다.");
+		    	  $.dialog({
+
+                      // 'alert', 'confirm', 'info' or 'tips'
+                      type : 'alert',     
+                      titleText : '이미 "좋아요" 하신 연상법 입니다.',
+                      showTitle : true,
+                      contentHtml : '',
+                      dialogClass : '',
+                      autoClose : 0,
+                      overlayClose : false,
+                      drag : false,
+
+                      buttonText : {
+                          ok : 'OK',
+                          cancel : 'Cancel',
+                          delete : 'Delete'
+                      },
+                      buttonClass : {
+                          ok : '',
+                          cancel : '',
+                          delete : ''
+                      },
+
+                      infoText : '',      // working in info type
+                      infoIcon : '',      // working in info type
+
+                      onClickOk : function(){},
+                      onClickCancel : function(){},
+                      onClickClose : function(){},
+
+                      onBeforeShow : function(){},
+                      onShow : function(){},
+                      onBeforeClosed : function(){},
+                      onClosed : function(){}
+                      
+                    });
 		    	}},"json" 
 		    );}
 	 );
@@ -445,7 +480,42 @@ function hatePlus(index) {
 		      );
 				 }		      
 		    else {
-		    	window.alert("이미 '싫어요' 하신 연상법 입니다.");
+		    	  $.dialog({
+
+                      // 'alert', 'confirm', 'info' or 'tips'
+                      type : 'alert',     
+                      titleText : '이미 "싫어요" 하신 연상법 입니다.',
+                      showTitle : true,
+                      contentHtml : '',
+                      dialogClass : '',
+                      autoClose : 0,
+                      overlayClose : false,
+                      drag : false,
+
+                      buttonText : {
+                          ok : 'OK',
+                          cancel : 'Cancel',
+                          delete : 'Delete'
+                      },
+                      buttonClass : {
+                          ok : '',
+                          cancel : '',
+                          delete : ''
+                      },
+
+                      infoText : '',      // working in info type
+                      infoIcon : '',      // working in info type
+
+                      onClickOk : function(){},
+                      onClickCancel : function(){},
+                      onClickClose : function(){},
+
+                      onBeforeShow : function(){},
+                      onShow : function(){},
+                      onBeforeClosed : function(){},
+                      onClosed : function(){}
+                      
+                    });
 		    	}},"json" 
 		    );}
 	 );
