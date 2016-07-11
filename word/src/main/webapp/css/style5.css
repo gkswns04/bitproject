@@ -37,7 +37,6 @@ a.hiddenanchor{
 	right: 0px;
 	min-height: 560px;	
 	margin: 0px auto !important;	
-	width: 500px;
 	position: relative;	
 }
 /**** Styling the form elements **/
@@ -209,7 +208,7 @@ p.delete.button{
 
 
 /*styling the links to change from one form to another */
- 
+
 p.change_link{
 	position: absolute;
 	color: rgb(127, 124, 124);
@@ -252,7 +251,7 @@ p.change_link{
 	rgb(225, 234, 235) 30px, 
 	rgb(247, 247, 247) 30px
 	);
-} 
+}
 #wrapper p.change_link a {
 	display: inline-block;
 	font-weight: bold;

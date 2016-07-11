@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>list</title>
-
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-<link rel="stylesheet" type="text/css" href="../css/list12.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/style3.css" />
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/style6.css" />
+<!-- <link href="../css/style.css" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/list14.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+<link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css" /> -->
 
@@ -26,10 +26,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/popupsettings.js"></script>
 <style>
-body {
-	background-color: #F5F0E6;
+#wrapper {
+  position: absolute;
+  width: 500px !important;
+  height: auto !important;
+  top: 90%;
+  left: 1%;
 }
+
 .assohint {
    cursor: pointer;
    color: red;   
@@ -71,6 +77,39 @@ body {
  /*
   left:50%;
   margin: -170px -200px 0 200px; */
+}
+.change {
+	right: 5% !important;
+}
+
+#signinpop {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -277px 0 0 75px;
+	line-height: 1;
+}
+
+#settings {
+    height: 690px;
+}
+
+#delete {
+    height: 324px;
+}
+
+.change_link {
+	margin-top: 75px;
+}
+
+h1, .h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+label, .h3 {
+	  font-size: 100%;
+    font: inherit;
 }
 
 </style>
@@ -152,7 +191,7 @@ body {
             </div>
             
             <div class="modal-footer add-modal-footer">
-              <wrapper id="wrapper">
+              <wrapper id="wrapper" class="add-wrapper">
               <p class="change_link">
               	<a id="btn_submit" data-toggle="modal" href="#myModal2" class="to_register" onclick="changeValue()">다음</a>
               </p>
@@ -177,7 +216,7 @@ body {
             
             </div>
             <div class="modal-footer">
-              <wrapper id=wrapper class="second-wrapper" style="top:270px">
+              <wrapper id=wrapper class="add-wrapper" style="top:270px">
 	              <p class="login button addbutton">
 	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인"/>
 	              </p>
@@ -209,14 +248,14 @@ body {
 							<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
 							<a class="hiddenanchor" id="tosettings"></a>
 							<a class="hiddenanchor" id="todelete"></a>
-							<div id="wrapper">
+							<div id="wrapper" class="set-wrapper">
 								
 								<div id="settings" class="animate form">
 									
 									<form id="settingForm" name="mysetting" autocomplete="on" method='post'>
 									<div id=pAndndiv>
 										<!-- <img src="../images/profile.png" id="imgPreview" class="settingpro" width="100" height="100">
-										<h3 align="center">김현지  <input id="inputfiles" type="file" name="photo"></input><img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h3><br> -->
+										<h5 align="center">김현지  <input id="inputfiles" type="file" name="photo"></input><img class="cameraimg" src="../images/cameraicon.png" width="30" height="30"></h5><br> -->
 									</div>
 										<h1></h1>
 										
@@ -252,11 +291,11 @@ body {
 											    placeholder="새 비밀번호 확인" />
 											    <font name="pcheck" size="2" color="red"></font> 
 										</p>
-									<p class="change_link" style="margin-top: 80px;">
+									<p class="change_link delete_link" style="margin-top: 80px;">
 										<a href="#todelete" class="to_register" style="width:78px;">회원탈퇴 </a>
 									</p>
 									<p class="change button">
-										<input  id="change" name="changebtn" value="변경" style="text-align:center;" readonly />
+										<input  id="change" class="change" name="changebtn" value="변경" style="text-align:center;" readonly />
 									</p>
 									</form>
 							</div>
@@ -272,7 +311,7 @@ body {
 												required="required" type="password"/>
 										</p>
 										<p class="delete button">
-											<input id="deletebtn" value="탈퇴" style="text-align:center;" readonly/>
+											<input id="deletebtn" class="change" value="탈퇴" style="text-align:center;" readonly/>
 										</p>
 										<p class="change_link">
 											<a href="#tosettings" class="to_register">설정</a>
@@ -310,7 +349,7 @@ function loadPhoto() {
 		$('#sign').css("display", "none");
 		
 		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
-			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
+			"<h3 class='h3' align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
 	})
 }
 </script>

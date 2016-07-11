@@ -437,13 +437,13 @@ div.add-modal-dialog {
   left: 50%;
   margin: 0 0 0 -300px;
 }
-/* #wrapper {
+.add-wrapper {
   position: absolute;
   width: auto !important;
   height: auto !important;
   top: 90%;
   left: 1%;
-} */
+} 
 
 .add-second-content {
   height: 350px;

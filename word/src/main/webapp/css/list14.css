@@ -321,7 +321,7 @@ video#bgvid {
 
 /* 팝업페이지css */
 body {
-background-color: IVORY;
+background-color: #F5F0E6;
 padding-right: 0 !important;
 }
 
@@ -437,7 +437,7 @@ div.modal-dialog.modal-lg {
   left: 50%;
   margin: 0 0 0 -300px;
 }
-.add-wrapper {
+#wrapper {
   position: absolute;
   width: auto !important;
   height: auto !important;
@@ -458,10 +458,10 @@ div.modal-dialog.modal-lg {
  
 #wrapper p.button input {
   position: absolute;
-  width: 60px;
+  width: 113px;
   height: 25px;
   font-size: 18px;
-  right: 7%;
+  right: 16%;
 }
 
 /* log icon */

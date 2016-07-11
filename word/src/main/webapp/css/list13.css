@@ -263,8 +263,11 @@ video#bgvid {
 
 /**/
 
+body {
+padding-right: 0 !important;
+}
 
- #d2 {
+#d2 {
   position: relative;
   min-width: 960px;
   width: 100%;
@@ -318,18 +321,14 @@ video#bgvid {
 	position: absolute;
 	cursor: pointer;
 }
-
 /* 팝업페이지css */
-body {
-background-color: IVORY;
-padding-right: 0 !important;
-}
 
 
 .modal-hedaer .modal-body .modal-footer {
 font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
     font-weight: bold;
 }
+
 #exampleModalLabel {
 font-size: 36px;
     color: #242b33;
@@ -338,14 +337,15 @@ font-size: 36px;
     font-weight: bold;
     text-align: center;
 }
+
 #as_imgPreview {
-    padding: 10px;
-    position: absolute;
-    width: 160px;
-    height: 110px;
-    margin-left: 256px;
-    margin-top: 14px;
+padding: 10px;
+position: absolute;
+width: 150px;
+height : 130px;
+margin-left: 60px;
 }
+
 #inputFile {
 padding: 5px;
 height: 140px;
@@ -393,7 +393,7 @@ border: 1px solid gray;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear; 
 }
-#as_imgPreview {
+#imgPreview {
 text-align: center;
 }
 .modal-header:after {
@@ -412,17 +412,17 @@ content: ' ';
 .modal-header {
 border-bottom: 0px;
 }
-.modal-footer {
+.add-modal-footer {
 border-top: 0px;
 }
 
-.modal-content {
+.add-modal-content {
 width : 450px;
 height: auto;
 left: 75px;
 }
 
-.popup {
+.addpopup {
    position: absolute;
   width: 450px;
   top: 25%;
@@ -430,33 +430,33 @@ left: 75px;
   margin: 0 0 0 -225px;
 }
 
-div.modal-dialog.modal-lg {
+div.add-modal-dialog {
   position: absolute;
   width: 450px;
   top: 15%;
   left: 50%;
   margin: 0 0 0 -300px;
 }
-.add-wrapper {
+#wrapper {
   position: absolute;
   width: auto !important;
   height: auto !important;
   top: 90%;
   left: 1%;
-}
+} 
 
 .add-second-content {
   height: 350px;
 }
 
-/* p.login.button {
+p.addbutton {
   position: relative;
   top: -30%;
   left: 20%;
 }
-*/
+
  
-#wrapper p.button input {
+#wrapper p.addbutton input {
   position: absolute;
   width: 60px;
   height: 25px;
@@ -464,9 +464,11 @@ div.modal-dialog.modal-lg {
   right: 7%;
 }
 
-/* log icon */
 
-.menubar{
+
+/*log icon*/
+
+.menubar {
  position: absolute;
   right: 1%;
   top: 30px;
