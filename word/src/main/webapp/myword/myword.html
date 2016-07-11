@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <title>나의 단어장</title>
 
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common3.css">
 <link rel="stylesheet" type="text/css" href="../css/list12.css">
 <link rel="stylesheet" type="text/css" href="../css/component2.css" />
 <link rel="stylesheet" type="text/css" href="../css/style8.css" />
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<meta name="description" content="Loading Effects for Grid Items with CSS Animations" />
 		<meta name="keywords" content="css animation, loading effect, google plus, grid items, masonry" />
@@ -19,15 +19,18 @@
 
 <script src="../js/modernizr.custom.js"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../js/popupsettings.js"></script>
-
-
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 
 <style>
+.pagination {
+margin: 0 auto;
+}
 .thumbnail {
   position: absolute;
   border-radius : 50%;
@@ -359,9 +362,9 @@ font {
 
 
 .countspan {
-	  position: absolute;
+	position: absolute;
     right: -107%;
-    bottom: -243%;
+    bottom: -140%;
 }
 
 #signinpop {
@@ -394,9 +397,6 @@ font {
       <input id="topsearch" name="word" type="text" value="search"  onfocus="this.value=''" onblur="if(this.value =='') this.value='search';"/>
       </form>
       </div>
-     
-     
-     
      
      
      
@@ -498,15 +498,7 @@ font {
          </div>
       </span>
    </div>
-     
-     
-     
-     
-     
-     
-     
-     
-        
+
      <video autoplay loop poster="../images/strip.jpg" id="bgvid">
      <source src="../images/search_back.mp4" type="video/mp4">
     </video>
@@ -532,8 +524,10 @@ font {
          <!-- Top Navigation -->
          <ul class="grid effect-2" id="grid">
          </ul>
-         <div class="paginate">
-   
+         <div class="paginate" align="center">
+   		 <ul class="pagination">
+   		 
+   		 </ul>
          </div>
    </div>
       
@@ -545,7 +539,8 @@ font {
 		style="display: none; z-index: 1050;">
 		<span id="signinpop">
 			<div class="modal-dialog modal-lg">
-
+               
+   		
 				<div class="modal-body">
 					<section>
 						<div id="container_demo">
@@ -622,11 +617,6 @@ font {
 										</p>
 									</form>
 								</div>
-								
-								
-								
-								
-								
 							</div>
 						</div>
 					</section>
@@ -648,17 +638,11 @@ function loadPhoto() {
 				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
 				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
 				"</li></ul>").appendTo(headerdiv);
-		$('#sign').css("display", "none");
-		
-		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
-			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
+		$('#sign').css("display", "none");	
 	})
 }
 </script>
- 
-      
-      
-   </div>
+   
       <script src="../bower_components/masonry/dist/masonry.pkgd.js"></script>
       <script src="../bower_components/imagesloaded/imagesloaded.js"></script>
       <script src="../bower_components/classie/classie.js"></script>
@@ -668,17 +652,10 @@ function loadPhoto() {
    function loadAsso() {
       $.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
          var ul = $("#grid");
-         var pagingTag = $(".paginate");   
-         var list = result.list;
+         var pagingTag = $(".pagination");   
          var paging = result.paging;
-         console.log($("#assosCount").val());
-         console.log("firstPageNo : " + paging.firstPageNo);
-         console.log("prevPageNo  : " + paging.prevPageNo);
-         console.log("startPageNo  : " + paging.startPageNo);
-         console.log("endPageNo  : " + paging.endPageNo);
-         console.log("pageNo  : " + paging.pageNo);
-         console.log("nextPageNo  : " + paging.nextPageNo);
-         console.log("finalPageNo  : " + paging.finalPageNo);
+         var list = result.list;
+        
         for (var i in list) {
            $("<li>").html("<div class='material-contact animate-in-card'>" + 
             "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
@@ -688,12 +665,12 @@ function loadPhoto() {
             "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
             .appendTo(ul);
         }
-        $("<div>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀◀</a>" + 
-              "<a href='javascript:goPage(" + paging.prevPageNo + ")' class='prev'>              ◀          </a>" +
-              "<span class='pageNo'>" + 
-             "<a href='javascript:goPage(" + paging.nextPageNo + ")' class='next'>               ▶         </a>" +
-             "<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>▶▶</a>")
-             .appendTo(pagingTag);
+        $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀     </a></li>").appendTo(pagingTag);
+  for (var i = 1; i <= paging.finalPageNo; i++) {
+  	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
+  }
+  $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>  ▶</a></li>").appendTo(pagingTag);
+        
         new AnimOnScroll( document.getElementById('grid'), {
             minDuration : 0.4,
             maxDuration : 0.7,
@@ -703,6 +680,26 @@ function loadPhoto() {
    }   
    
    </script>
+	<script>
+	loadPhoto()
+function loadPhoto() {	
+	$.getJSON("../ajax/member/list.do", function(result) {
+		var headerdiv = $('#d1');
+		var pAndndiv = $('#pAndndiv');
+		var list = result.list;
+		
+		$("<div class='menubar'>").html("<ul>" + 
+				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
+				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
+				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
+				"</li></ul>").appendTo(headerdiv);
+		$('#sign').css("display", "none");
+		
+		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
+			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
+	})
+}
+</script>
 <script>
   function goPage(i) {
     $(document).ready(function () {       
@@ -764,17 +761,11 @@ function loadPhoto() {
            success: function (data) {
               $.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
               $("#grid").empty();
+              $(".pagination").empty();
               var ul = $("#grid");
+              var pagingTag = $(".pagination");  
                 var list = result.list;
-                var paging = result.paging;
-                console.log($("#assosCount").val());
-                console.log("firstPageNo : " + paging.firstPageNo);
-                console.log("prevPageNo  : " + paging.prevPageNo);
-                console.log("startPageNo  : " + paging.startPageNo);
-                console.log("endPageNo  : " + paging.endPageNo);
-                console.log("pageNo  : " + paging.pageNo);
-                console.log("nextPageNo  : " + paging.nextPageNo);
-                console.log("finalPageNo  : " + paging.finalPageNo);
+                var paging = result.paging;                
                for (var i in list) {
                   $("<li>").html("<div class='material-contact animate-in-card'>" + 
                    "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
@@ -784,6 +775,11 @@ function loadPhoto() {
                    "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
                    .appendTo(ul);
                }
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀     </a></li>").appendTo(pagingTag);
+               for (var i = 1; i <= paging.finalPageNo; i++) {
+               	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
+               }
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>  ▶</a></li>").appendTo(pagingTag);
                new AnimOnScroll(document.getElementById('grid'), {
                    minDuration : 0.4,
                    maxDuration : 0.7,
