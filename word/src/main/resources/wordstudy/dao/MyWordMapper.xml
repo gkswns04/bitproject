@@ -58,15 +58,15 @@
     	limit #{startIndex}, #{length}
   </select>
   
-  <!-- <select id="isMyWord" parameterType="map" resultType="int">
-    select count(*) 
-    from my_word
-    where MNO=#{mno} and ANO=#{ano}
-  </select> -->
-  <select id="isMyWord" parameterType="map" resultType="int">
+  <select id="itIsMyWord" parameterType="map" resultType="int">
     select count(*) 
     from my_word
     where MNO=#{mno}
+  </select>
+  <select id="isMyWord" parameterType="map" resultType="int">
+    select count(*) 
+    from my_word
+    where MNO=#{mno} and ANO=#{ano}
   </select>
 </mapper>
 

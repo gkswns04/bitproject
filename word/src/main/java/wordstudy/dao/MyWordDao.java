@@ -14,6 +14,7 @@ public interface MyWordDao {
   int update(MyWord myWord);
   int delete(MyWord myWord);
   int isMyWord(Map<String,Object> paramMap);
+  int itIsMyWord(HashMap<String, Object> paramMap);
 }
 
 

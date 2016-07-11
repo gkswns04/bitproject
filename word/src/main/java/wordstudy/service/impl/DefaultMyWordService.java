@@ -51,12 +51,13 @@ public class DefaultMyWordService implements MyWordService {
     
     return false;
   }
+  
   public int totalCount(int mno) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("mno", mno);
     
-    if (myWordDao.isMyWord(paramMap) > 0) {
-      return myWordDao.isMyWord(paramMap);
+    if (myWordDao.itIsMyWord(paramMap) > 0) {
+      return myWordDao.itIsMyWord(paramMap);
     }
     
     return 0;
