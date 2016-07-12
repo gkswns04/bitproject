@@ -43,7 +43,6 @@ public class SearchListAjaxController {
   public String likeOrHate(HttpSession session, String asso) throws ServletException, IOException {
     
     Member member = (Member)session.getAttribute("loginUser");
-    System.out.println(member.getNo());
     SearchList searchList = new SearchList();
     searchList.setAsso(asso);
     searchList.setMno(member.getNo());
@@ -53,10 +52,17 @@ public class SearchListAjaxController {
     }
       
     HashMap<String,Object> result = new HashMap<>();  
-    int likes = searchListService.likes(searchList);
-    int hates = searchListService.hates(searchList);
+    Integer likes = searchListService.likes(searchList);
+    Integer hates = searchListService.hates(searchList);
     
-    if(likes == 0 && hates == 0) { 
+    if(likes == null){
+    	likes = 0;
+    }
+    if(hates == null){
+    	hates = 0;
+    }
+    
+    if(likes.intValue() == 0 && hates.intValue() == 0) { 
       searchListService.likesUpdateAdd(searchList);
       
       result.put("status", "success");
@@ -85,6 +91,7 @@ public class SearchListAjaxController {
     }
     return new Gson().toJson(result);
   }
+
   
   @RequestMapping(value="wordMeanAdd", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -133,6 +140,7 @@ public class SearchListAjaxController {
   public String add(HttpSession session, MultipartHttpServletRequest request, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     System.out.println("member:" + member.getNo());
+    System.out.println("member:" + member.getEmail());
     SearchList searchList = new SearchList();
     searchList.setWord(word);
     searchList.setMean(mean);
@@ -149,7 +157,7 @@ public class SearchListAjaxController {
       String filename = System.currentTimeMillis() + "-" + count()
                          + cmf.getOriginalFilename().substring(extPoint);
       System.out.printf("새파일명=%s\n", filename);
-      String realPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + filename;
+      String realPath = "C:/Users/bit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/word/upload/" + filename;
       /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
       System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
       try {
@@ -157,7 +165,7 @@ public class SearchListAjaxController {
         cmf.transferTo(realFile);
         String subs = filename.substring(filename.lastIndexOf("."));
         String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
-        String realThumbnailPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + thumbnailFileNm;
+        String realThumbnailPath = "C:/Users/bit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/word/upload/" + thumbnailFileNm;
         File thumbnailFile = new File(realThumbnailPath);
    
         int width = 160;
@@ -222,14 +230,13 @@ public class SearchListAjaxController {
   
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String list(
+  public String list(HttpSession session,
       @RequestParam String word)
       throws ServletException, IOException {
     
     List<SearchList> list = searchListService.list(word);
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
-    
     return new Gson().toJson(result);
   }
   
