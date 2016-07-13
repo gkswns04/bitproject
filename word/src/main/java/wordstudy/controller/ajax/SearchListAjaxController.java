@@ -141,10 +141,34 @@ public class SearchListAjaxController {
     Member member = (Member)session.getAttribute("loginUser");
     System.out.println("member:" + member.getNo());
     System.out.println("member:" + member.getEmail());
+    //asso 태그 변환하여 DB저장
+    String outputAssos = "";
+    asso = asso.replaceAll("id=\"text\\d{1,4}\" onclick=\"changeValue\\d{1,4}\\(\\d{1,4}\\)\"","")
+    .replaceAll("data-index=\"\\d{1,4}\"","")
+    .replaceAll("span  class=\"assohint\" ","red")
+    .replaceAll("span  class=\"assomean\" ","blue")
+    .replaceAll("<span  class=\"assotext\" >","");
+    String assos[] = asso.split("</span>");
+    for (String assoList : assos) {
+      if(assoList.startsWith("<red>")) {
+        assoList += "</red>";
+      } else if (assoList.startsWith("<blue>")) {
+        assoList += "</blue>";
+      }
+      outputAssos += assoList;
+    }
+    System.out.println(outputAssos);
+    //hint 변환하여 DB로 저장
+    hint = hint.replaceAll("id=\"text\\d{1,4}\" onclick=\"changeValue\\d{1,4}\\(\\d{1,4}\\)\"","")
+    .replaceAll("data-index=\"\\d{1,4}\"","")
+    .replaceAll("</span>","")
+    .replaceAll("<span  class=\"assohint\" >","")
+    .replaceAll("<span  class=\"assomean\" >.","__")
+    .replaceAll("<span  class=\"assotext\" >","");
     SearchList searchList = new SearchList();
     searchList.setWord(word);
     searchList.setMean(mean);
-    searchList.setAsso(asso);
+    searchList.setAsso(outputAssos);
     searchList.setHint(hint);
     searchList.setMno(member.getNo());
     
