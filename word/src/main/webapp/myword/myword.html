@@ -748,11 +748,11 @@ function loadPhoto() {
                    "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
                    .appendTo(ul);
                }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀     </a></li>").appendTo(pagingTag);
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀</a></li>").appendTo(pagingTag);
                for (var i = 1; i <= paging.finalPageNo; i++) {
                	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
                }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>  ▶</a></li>").appendTo(pagingTag);
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>▶</a></li>").appendTo(pagingTag);
                new AnimOnScroll(document.getElementById('grid'), {
                    minDuration : 0.4,
                    maxDuration : 0.7,

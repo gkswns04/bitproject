@@ -19,7 +19,6 @@
 <script src="../js/popupsettings.js"></script>
 
 
-
 <!-- <link href="../css/font-awesome.min.css" rel="stylesheet">
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -34,9 +33,6 @@
       <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">  -->
       
 <style>
-
-
-
 /*실험*/
 video#bgvid {
    position: absolute;
@@ -292,7 +288,7 @@ background-color: transparent;
 </style>
 
   </head>
-<body>
+<body id="body">
 <div id="d1">
    <span id="threediv">
    <nav>
@@ -348,14 +344,29 @@ background-color: transparent;
 </div>
 
 <div class="st_button">
-  <a href="../learn/learnmean.html" class="inset">START</a>
+  <a href="../learn/learnmean.html" class="inset">START</a><bl>
+  
 </div>
 </div>
 
 
+
+<div class="modal" id="ChangeEffect" aria-hidden="true"
+		style="display: none; z-index: 1050;">
+			<!-- <div class="modal-dialog modal-lg">
+				<div class="modal-body"> -->
+					<div class="textProgress html">
+						<span class="tp">READY GO! </span><span class="tp">READY
+							GO! </span>
+						<div class="progress">
+							<span class="percent">20%</span>
+			<!-- 		</div>
+				</div> -->
+				
+			</div>
+		</div>
+	</div>
 <!-- 설정 팝업! -->
-	
-	
 	<div class="modal" id="setting" aria-hidden="true"
 		style="display: none; z-index: 1050;">
 		<span id="signinpop">
@@ -437,11 +448,6 @@ background-color: transparent;
 										</p>
 									</form>
 								</div>
-								
-								
-								
-								
-								
 							</div>
 						</div>
 					</section>
@@ -449,6 +455,8 @@ background-color: transparent;
 			</div>
 		</span>
 	</div>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script>
 loadPhoto();
@@ -471,8 +479,7 @@ function loadPhoto() {
 }
 </script>
 
-
-  </body>
+</body>
   </html>
   <!--<div class="mainicon"><img src="../images/mainlike.png" width="20" height="20"></div>
     <strong class="statcount"><font size="3">0</font></strong>

@@ -109,7 +109,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                         $("#nickBefore").val("result.nick");
                         //member.nick = result.nick;
                         if(!($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != "")){
-                        	  $.dialog({
+                        	/*  $.dialog({
 
                                   // 'alert', 'confirm', 'info' or 'tips'
                                   type : 'alert',     
@@ -144,7 +144,8 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                                   onBeforeClosed : function(){},
                                   onClosed : function(){}
                                   
-                                });
+                                });*/
+                        	window.alert("ok");
                         }
                      }else if(result.status == "failure"){
                     	  $.dialog({

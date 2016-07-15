@@ -33,6 +33,11 @@
 	    <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	
+	<mvc:interceptors>
+    <bean class="wordstudy.interceptor.LoggerInterceptor" />
+	</mvc:interceptors>
+	
 	<!-- 인터셉터 등록 -->
 	<!--  
   <mvc:interceptors>
