@@ -80,7 +80,8 @@
   </select> 
   
   <select id="mylikes" resultType="int" parameterType="Member">
-    select SUM(IFNULL(LIKES,0)) from my_LOH where mno=#{no}   
+    <!-- select SUM(IFNULL(LIKES,0)) from my_LOH where mno=#{no} -->
+    select IFNULL(SUM(LIKES),0) from my_LOH where mno=#{no}   
   </select>
   
   

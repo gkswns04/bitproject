@@ -18,6 +18,7 @@
     <result column="HATES"    property="hateNo"/>
     <result column="PHOT"    property="prophotPath"/>
   </resultMap>
+
     
   <insert id="insert" parameterType="SearchList">
     insert into assos(MENO, MNO, ASSO, A_PHOT, HINT, DATE, BEST, LIKES, HATES, FAVOR, A_THUM) 
@@ -91,7 +92,7 @@
 		AND W.WORD = #{word}
     order by A.LIKES DESC
   </select>
-  
+    
   <!-- <select id="selectOne" resultMap="SearchListMap" parameterType="int">
     select BNO, TITLE, CONTS, VWCNT, CDT 
     from BOARDS
