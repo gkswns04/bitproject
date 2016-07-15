@@ -461,10 +461,16 @@ function loadMean() {
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
      var divMeans3 = "<option selected='selected' id='MeansOption'>뜻</option>"; 
-	for (i=1; i < result.length; i++) {
+	
+     for (i=1; i < result.length; i++) {
 		$("<font size='4'>").html(result[i].mean + " &nbsp").appendTo("#resultmean");
+		if(result.length == 2) {
+			divMeans3 += "<option>" + result[i].mean + "</option>";
+			divMeans1.innerHTML = divMeans3;
+		} else {
          divMeans3 += "<option>" + result[i].mean.substring(2, result[i].mean.length) + "</option>";                   
          divMeans1.innerHTML = divMeans3;
+		}
 	}
 	  $.get("../ajax/searchList/wordList.do", {
 			      word: result[0].word			      
