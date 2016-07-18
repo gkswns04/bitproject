@@ -29,8 +29,11 @@ margin-left:40%;
     }
  /*-----------------------------*/   
 body {
-	background-color: #9BC4D5 !important;
-}
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.6) 100%), url(../images/ny.jpg); !important;
+    background-repeat: no-repeat;
+    background-size: 100%;
+        /* background-color: #9BC4D5 !important;  */
+} 
 #headerdiv {
 	width: 100%;
 }
@@ -331,7 +334,7 @@ background-color: transparent;
 </div><!-- /triggers -->
 </div>
 <div id="headerdiv">
-	<div id="springdiv"><img src="../images/spring5.jpg"></div>
+	<div id="springdiv"><img src="../images/spring5.png"></div>
 	<div id="top">
 		<span id="threediv">
 	   <nav>
@@ -418,6 +421,7 @@ function loadQuestion() {
 									"<div id='submitdiv'>" +
 									"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='clickotherbutton()'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 									"</div>" +
+									"<input type='hidden' name='word' value=" + list[i].word + "/>" +
 									"</div>").appendTo(ptmain);
 						  
 						  	PageTransition();
@@ -428,6 +432,21 @@ function loadQuestion() {
 		});
 }
 </script>	
+	
+<script>
+/* $(document).on("click", ".btn", function() {
+	$.get("../ajax/learn/learnResult.do", {
+	      radio: $("input:radio[name=radio]:checked").val(),
+				word: word
+	    }, function(results) {
+	  		
+	    }, "json"	  
+	  );
+}) */
+
+</script>	
+	
+	
 	
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="../js/txtProgress.js"></script>
