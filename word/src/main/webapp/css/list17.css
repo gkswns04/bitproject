@@ -170,7 +170,13 @@ video#bgvid {
       left: 50%;
       margin: 0 0 0 -240px;
     }
-    
+    .assoDelete {
+	cursor: pointer;
+	 position: absolute;
+      top: 75px;
+      right: 10%;
+      margin: 0 0 0 -240px;
+}
     .word {
        position: absolute;
        top: 79px;
