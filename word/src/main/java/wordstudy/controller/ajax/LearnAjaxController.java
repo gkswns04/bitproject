@@ -8,7 +8,6 @@ import java.util.Random;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +87,26 @@ public class LearnAjaxController {
     result.put("list", list);
     return new Gson().toJson(result);
   }
+  
+/*  @RequestMapping(value="learnResult", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String learnResult(String radio, String word)
+      throws ServletException, IOException {
+    
+    List<String> matchwords = learnService.learnmeanResult(radio);
+    HashMap<String, Object> result = new HashMap<>();
+    for (String matchword : matchwords) {
+      if (matchword.equals(word)) {
+        result.put("status", "correct");
+        break;
+      }
+    }
+    
+    
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }*/
+ 
  
 }
 

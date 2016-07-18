@@ -29,6 +29,10 @@
 	<select id="otherHint" parameterType="int" resultMap="LearnMap">
     select hint,A_THUM from assos where meno=#{meno};
   </select>  
+  
+  <select id="learnmeanResult" parameterType="String">
+    select word from assos where mean=#{mean};
+  </select>
 </mapper>
 
 

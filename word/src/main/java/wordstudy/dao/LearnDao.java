@@ -11,6 +11,7 @@ public interface LearnDao {
   List<Learn> hintList();
   List<Learn> correctMean(int meno);
   List<Learn> otherHint(int meno);
+  List<String> learnmeanResult(String mean);
 }
 
 

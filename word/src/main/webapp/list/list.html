@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="../css/list17.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="../css/dialog.css">
 <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css" /> -->
 
@@ -26,6 +27,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/popupsettings.js"></script>
+<script src="../js/dialog.js"></script>
 <style>
 #wrapper {
   position: absolute;
@@ -456,7 +458,7 @@ var getParameter = function (param) {
 <script>
 loadMean();
 function loadMean() {
-	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://192.168.0.61:3000/parseword?word=" + getParameter('word'), function (result) {
 
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");

@@ -30,6 +30,11 @@ public class DefaultLearnService implements LearnService {
     return learnDao.otherHint(meno);
   }
 
+  @Override
+  public List<String> learnmeanResult(String mean) {
+    return learnDao.learnmeanResult(mean);
+  }
+
   
 
 }

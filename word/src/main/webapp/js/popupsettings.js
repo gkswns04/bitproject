@@ -146,6 +146,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                                   
                                 });*/
                         	window.alert("ok");
+                        	
                         }
                      }else if(result.status == "failure"){
                     	  $.dialog({
