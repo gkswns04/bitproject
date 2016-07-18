@@ -30,8 +30,8 @@
     select hint,A_THUM from assos where meno=#{meno};
   </select>  
   
-  <select id="learnmeanResult" parameterType="String">
-    select word from assos where mean=#{mean};
+  <select id="learnmeanResult" parameterType="String" resultMap="LearnMap">
+    select word from means where mean=#{mean};
   </select>
 </mapper>
 

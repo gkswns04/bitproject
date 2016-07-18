@@ -26,6 +26,7 @@ public class LearnAjaxController {
   @Autowired LearnService learnService;
   @Autowired ServletContext servletContext;
   
+  private static int correctCount;
   
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
   @ResponseBody
@@ -88,24 +89,43 @@ public class LearnAjaxController {
     return new Gson().toJson(result);
   }
   
-/*  @RequestMapping(value="learnResult", produces="application/json;charset=UTF-8")
+  @RequestMapping(value="learnResult", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String learnResult(String radio, String word)
+  public String learnResult(String radio, String word, int num)
       throws ServletException, IOException {
     
-    List<String> matchwords = learnService.learnmeanResult(radio);
+    System.out.println(radio);
+    List<Learn> matchwords = learnService.learnmeanResult(radio);
     HashMap<String, Object> result = new HashMap<>();
-    for (String matchword : matchwords) {
-      if (matchword.equals(word)) {
+    for (Learn matchword : matchwords) {
+      if (matchword.getWord().equals(word)) {
         result.put("status", "correct");
         break;
       }
+      result.put("status","wrong");
     }
     
+    if (num < 10) {
+      if (result.get("status").equals("correct")) {
+        correctCount += 1;
+        result.put("correctCount", correctCount);
+      }
+    } else {
+      correctCount = 0;
+    }
     
-    result.put("list", list);
     return new Gson().toJson(result);
-  }*/
+  }
+
+  
+  
+  public int getCorrectCount() {
+    return correctCount;
+  }
+
+  public void setCorrectCount(int correctCount) {
+    this.correctCount = correctCount;
+  }
  
  
 }

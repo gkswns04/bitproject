@@ -31,7 +31,7 @@ public class DefaultLearnService implements LearnService {
   }
 
   @Override
-  public List<String> learnmeanResult(String mean) {
+  public List<Learn> learnmeanResult(String mean) {
     return learnDao.learnmeanResult(mean);
   }
 

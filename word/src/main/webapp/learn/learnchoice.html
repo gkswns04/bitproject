@@ -322,33 +322,54 @@ background-color: transparent;
 <div class="choice" >
 
   <div class="ra1" >
-  <input type="radio" name="radio" id="radio1" class="radio"  checked/>
+  <input type="radio" name="radio" id="radio1" class="radio" value="quiz" checked/>
   <label for="radio1" class="radiolabel"><font size="6"><strong>퀴즈</strong></font></label>
   </div>
   
   <div class="ra2" >
-  <input type="radio" name="radio" id="radio2" class="radio"/>
+  <input type="radio" name="radio" id="radio2" class="radio" value="spelling"/>
   <label for="radio2" class="radiolabel"><font size="6"><strong>빈칸채우기</strong></font></label>
   </div>
   
   <div class="ra3"> 
-  <input type="radio" name="radio2" id="radio3" class="radio" checked/>
+  <input type="radio" name="radio2" id="radio3" class="radio" value="all" checked/>
   <label for="radio3" class="radiolabel"><font size="6"><strong>전체 단어</strong></font></label>
   </div>
   
   <div class="ra4"> 
-  <input type="radio" name="radio2" id="radio4" class="radio"/>
+  <input type="radio" name="radio2" id="radio4" class="radio" value="myword"/>
   <label for="radio4" class="radiolabel"><font size="6"><strong>나의 단어장</strong></font></label>
   </div>
 
 </div>
 
 <div class="st_button">
-  <a href="../learn/learnmean.html" class="inset">START</a><bl>
+  <a href="location:;" class="inset" onclick="wheretogo(event)">START</a><bl>
   
 </div>
 </div>
-
+<script>
+function wheretogo(event) {
+	event.preventDefault();
+	var type = $("input:radio[name='radio']:checked").val();
+	var range = $("input:radio[name='radio2']:checked").val();
+	console.log(type);
+	console.log(range);
+	if (type == "quiz" && range == "all") {
+		console.log("learnmean.html");
+	  location.href = "learnmean.html";
+	} else if (type == "quiz" && range == "myword") {
+		location.href = "learnmean.html";
+	} else if (type == "spelling" && range == "all") {
+		location.href = "learnspelling.html";
+	} else if (type == "spelling" && range == "myword") {
+		location.href = "learnspelling.html";
+	} else {
+		console.log("error");
+	}
+	
+}
+</script>
 
 
 <div class="modal" id="ChangeEffect" aria-hidden="true"
