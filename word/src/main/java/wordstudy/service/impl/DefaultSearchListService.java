@@ -27,6 +27,13 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.hatesUpdateAdd(searchList);
   }
   
+  public void assoListDelete(SearchList searchList) {
+    searchListDao.assoListDelete(searchList);
+  }
+  
+  public void assoDelete(SearchList searchList) {
+    searchListDao.assoDelete(searchList);
+  }
   
   public void likesUpdate(SearchList searchList) {
     searchListDao.likesUpdate(searchList);
@@ -50,6 +57,10 @@ public class DefaultSearchListService implements SearchListService {
   public void delete(int no) {
     searchListDao.delete(no);
   } */
+  
+  public int findAsso(SearchList searchList) {    
+    return searchListDao.findAsso(searchList);
+  }
   
   public Integer likes(SearchList searchList) {    
     return searchListDao.likes(searchList);
