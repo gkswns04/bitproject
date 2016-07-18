@@ -417,8 +417,8 @@ function loadQuestion() {
 									"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 									"</div>" +
 									"</div>" +
-									"<div id='worddiv'><input style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; font-size: 43px; width: 500px; letter-spacing: 8px;  white-space: nowrap; overflow: hidden;\" type='text'> "+ 
-									"<div class='lm_word' align='center'>"+
+									"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; font-size: 43px; width: 500px; letter-spacing: 8px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
+									"<div class='lm_word length" + i + "' align='center'>"+
 									"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
 									
 									"<div id='submitdiv'>" +
@@ -434,6 +434,14 @@ function loadQuestion() {
 		  dataType: "json",
 		  async:false
 		});
+}
+</script>	
+	
+<script>
+function length (i) {
+	var leng = $(".length" + i).text().replace(/[ ]/gi, '').length;
+	 $(".inputlength" + i).attr('maxlength', leng);
+	console.log(leng);
 }
 </script>	
 	
