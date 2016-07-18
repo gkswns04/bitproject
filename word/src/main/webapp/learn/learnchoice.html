@@ -357,13 +357,13 @@ function wheretogo(event) {
 	console.log(range);
 	if (type == "quiz" && range == "all") {
 		console.log("learnmean.html");
-	  location.href = "learnmean.html";
+	  location.href = "learnmean.html?range=all";
 	} else if (type == "quiz" && range == "myword") {
-		location.href = "learnmean.html";
+		location.href = "learnmean.html?range=myword";
 	} else if (type == "spelling" && range == "all") {
-		location.href = "learnspelling.html";
+		location.href = "learnspelling.html?range=all";
 	} else if (type == "spelling" && range == "myword") {
-		location.href = "learnspelling.html";
+		location.href = "learnspelling.html?range=myword";
 	} else {
 		console.log("error");
 	}

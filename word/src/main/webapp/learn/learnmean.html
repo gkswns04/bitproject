@@ -400,9 +400,25 @@ function loadPhoto() {
 </script>	
 	
 <script>
+var getParameter = function (param) {
+	var returnValue;
+	var url = location.href;
+	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+	for (var i = 0; i < parameters.length; i++) {
+		var varName = parameters[i].split('=')[0];
+		if (varName.toUpperCase() == param.toUpperCase()) {
+			returnValue = parameters[i].split('=')[1];
+			return decodeURIComponent(returnValue);
+		}
+	}
+};
+</script>	
+	
+<script>
 	  
 loadQuestion();
 function loadQuestion() {
+	if (getParameter('range') == "all") {
 	$.ajax({
 		  type: 'POST',
 		  url: "../ajax/learn/list.do",
@@ -438,6 +454,43 @@ function loadQuestion() {
 		  dataType: "json",
 		  async:false
 		});
+	} else if (getParameter('range') == "myword") {
+		$.ajax({
+			  type: 'POST',
+			  url: "../ajax/learn/mywordlist.do",
+			  success: function(result) {
+				  var ptmain = $("#pt-main");
+					var list = result.list;
+						  for (i = 0; i < 10; i++) {
+							  $("<div class='pt-page'>").html(
+										"<div id='bodydiv' class='result" + i + "'><div id='bodywrapper'>" +
+										"<div id='hintdiv'>" +
+										"<div id='worddiv'><div class='lm_word' align='center'><font size='7'><strong>" + list[i].word + "</strong></font></div></div>" +
+										"<div id='assodiv'>" +
+										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
+										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>" +
+										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
+										"</div>" +
+										"</div>" +
+										"<div id='answerdiv'>" +
+										"<div class='radio1'><input class='magic-radio' type='radio' name='radio" + i + "' id='" + i + "1' value='" + list[i].examples[0] + "'><label for='" + i + "1'><font size='4'>1. " + list[i].examples[0] + "</font></label></div>" +
+										"<div class='radio1'><input class='magic-radio' type='radio' name='radio" + i + "' id='" + i + "2' value='" + list[i].examples[1] + "'><label for='" + i + "2'><font size='4'>2. " + list[i].examples[1] + "</font></label></div>" +
+										"<div class='radio1'><input class='magic-radio' type='radio' name='radio" + i + "' id='" + i + "3' value='" + list[i].examples[2] + "'><label for='" + i + "3'><font size='4'>3. " + list[i].examples[2] + "</font></label></div>" +
+										"<div class='radio1'><input class='magic-radio' type='radio' name='radio" + i + "' id='" + i + "4' value='" + list[i].examples[3] + "'><label for='" + i + "4'><font size='4'>4. " + list[i].examples[3] + "</font></label></div>" +
+										"</div>" +
+										"<div id='submitdiv'>" +
+										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
+										"</div>" +
+										"<input type='hidden' id='quesWord" + i + "' name='word' value='" + list[i].word + "'/>" +
+										"</div>").appendTo(ptmain);
+							  
+							  	PageTransition();
+						  }
+				},
+			  dataType: "json",
+			  async:false
+			});
+	}
 }
 
 function submitResult(i) {
