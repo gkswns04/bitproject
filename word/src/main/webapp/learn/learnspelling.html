@@ -217,8 +217,7 @@ background-color: transparent;
 	position: relative;
 	width: 940px;
 	height: 150px;
-	margin: 0 auto;
-	margin-bottom: 5px;
+	margin: 50px auto;
 	padding-top: 25px;
 }
 
@@ -226,8 +225,7 @@ background-color: transparent;
 	position: relative;
 	width: 940px;
 	height: 90px;
-	
-	margin-top: 60px;
+	margin-bottom : 50px;
 }
 .lm_word {
 	padding: 0 15px;
@@ -325,6 +323,12 @@ background-color: transparent;
 .pt-page-1 {
 	height: 491px;
 }
+blue {
+	color: blue;
+}
+red {
+	color: red;
+}
 
 </style>
 </head>
@@ -409,11 +413,14 @@ function loadQuestion() {
 									"<div id='hintdiv'>" +
 									"<div id='assodiv'>" +
 									"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
-									"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>" +
+									"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
 									"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 									"</div>" +
 									"</div>" +
-									"<div id='worddiv'><div class='lm_word' align='center'><font size='7'><strong>" + list[i].word + "</strong></font></div></div>" +
+									"<div id='worddiv'><input style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; font-size: 43px; width: 500px; letter-spacing: 8px;  white-space: nowrap; overflow: hidden;\" type='text'> "+ 
+									"<div class='lm_word' align='center'>"+
+									"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
+									
 									"<div id='submitdiv'>" +
 									"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='clickotherbutton()'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 									"</div>" +
@@ -422,6 +429,7 @@ function loadQuestion() {
 						  
 						  	PageTransition();
 					  }
+					  /* <input style=\"text-align: center; border:0px;  outline: none !important; enableViewSate=true\" type='text' placeholder='" +  */
 			},
 		  dataType: "json",
 		  async:false

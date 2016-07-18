@@ -9,10 +9,11 @@
     <id     column="WORD"    property="word"/>
     <result column="A_THUM"    property="assothumPath"/>
     <result column="HINT"    property="hint"/>    
+    <result column="Asso"  property="asso"/>
   </resultMap>
  
   <select id="hintList" resultMap="LearnMap">
-    select hint,meno,A_THUM from assos order by rand() limit 10;
+    select hint,meno,A_THUM,Asso from assos order by rand() limit 10;
   </select>
   
   <select id="correctMean" parameterType="int" resultMap="LearnMap">
@@ -27,7 +28,7 @@
   </select>
 	
 	<select id="otherHint" parameterType="int" resultMap="LearnMap">
-    select hint,A_THUM from assos where meno=#{meno};
+    select hint,A_THUM,Asso from assos where meno=#{meno};
   </select>  
   
   <select id="learnmeanResult" parameterType="String" resultMap="LearnMap">
