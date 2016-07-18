@@ -27,8 +27,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
 
+import wordstudy.service.MyWordService;
 import wordstudy.service.SearchListService;
 import wordstudy.vo.Member;
+import wordstudy.vo.MyWord;
 import wordstudy.vo.SearchList;
 
 
@@ -36,15 +38,47 @@ import wordstudy.vo.SearchList;
 @RequestMapping("/ajax/searchList/")
 public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
+  @Autowired MyWordService myWordService;
   @Autowired ServletContext servletContext;
-  
-  @RequestMapping(value="likeOrHate", produces="application/json;charset=UTF-8")
+    
+  @RequestMapping(value="assoDelete", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String likeOrHate(HttpSession session, String asso) throws ServletException, IOException {
+  public String assoDelete(HttpSession session, int ano) throws ServletException, IOException {
     
     Member member = (Member)session.getAttribute("loginUser");
     SearchList searchList = new SearchList();
-    searchList.setAsso(asso);
+    searchList.setAno(ano);
+    searchList.setMno(member.getNo());
+    
+    MyWord myWord = new MyWord();
+    myWord.setMno(member.getNo());
+    myWord.setAno(ano);
+    
+    HashMap<String,Object> result = new HashMap<>();  
+    if (searchListService.assoList(searchList) != null) {
+      searchListService.assoListDelete(searchList);
+    }  
+    if (myWordService.exist(member.getNo(), ano) == true) {
+      myWordService.delete(myWord);
+    }
+    if (searchListService.findAsso(searchList) == ano) {
+      searchListService.assoDelete(searchList);
+      result.put("status", "success");
+    } else {      
+      System.out.println("등록자가 다름");
+      result.put("status", "failure");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="likeOrHate", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String likeOrHate(HttpSession session, int ano) throws ServletException, IOException {
+    
+    Member member = (Member)session.getAttribute("loginUser");
+    SearchList searchList = new SearchList();
+    searchList.setAno(ano);
     searchList.setMno(member.getNo());
     
     if (searchListService.assoList(searchList) == null) {
@@ -268,11 +302,11 @@ public class SearchListAjaxController {
  @RequestMapping(value="likesUpdate",    
       produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String likesUpdate(HttpSession session, String asso) throws ServletException, IOException {
+  public String likesUpdate(HttpSession session, int ano) throws ServletException, IOException {
    Member member = (Member)session.getAttribute("loginUser");
    
     SearchList searchList = new SearchList();    
-    searchList.setAsso(asso);    
+    searchList.setAno(ano);
     searchList.setMno(member.getNo());
     
     HashMap<String,Object> result = new HashMap<>();
@@ -289,11 +323,11 @@ public class SearchListAjaxController {
  @RequestMapping(value="hatesUpdate",    
      produces="application/json;charset=UTF-8")
  @ResponseBody
- public String hatesUpdate(HttpSession session, String asso) throws ServletException, IOException {
+ public String hatesUpdate(HttpSession session, int ano) throws ServletException, IOException {
   Member member = (Member)session.getAttribute("loginUser");
   
    SearchList searchList = new SearchList();    
-   searchList.setAsso(asso);    
+   searchList.setAno(ano);
    searchList.setMno(member.getNo());
    
    HashMap<String,Object> result = new HashMap<>();
