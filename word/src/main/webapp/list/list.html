@@ -346,7 +346,7 @@ function loadPhoto() {
 		var list = result.list;
 		
 		$("<div class='menubar'>").html("<ul>" + 
-				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
+				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name' id='memberNick'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
 				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;"+ result.totLikes +"</font></a></li>" + 
 				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
 				"</li></ul>").appendTo(headerdiv);
@@ -541,14 +541,33 @@ function wordMeanAdd(word) {
 		}
 </script>
 <script>
+function assoDelete(index) {	
+	$(document).ready(function () {
+		$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
+			var list = result.list;
+		 $.post("../ajax/searchList/assoDelete.do", { 
+			 ano : list[index].ano	      
+		    }, function(results) {
+		      if (results.status == "success") { 	
+			    	  console.log("삭제성공");
+			    	  window.location.reload();
+			    	  			      } else {
+			    	  			    	console.log("삭제 실패");			    	  
+			    	  			      }
+			    }, "json"	  
+		      );
+				 });		      
+	});}
 function likePlus(index) {	
-	$(document).ready(function () {		
+	$(document).ready(function () {	
+		$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
+			var list = result.list;
 		 $.get("../ajax/searchList/likeOrHate.do", { 
-			asso: document.getElementById("asso"+index).innerHTML		      
+			 ano : list[index].ano		      
 		    }, function(results) {
 		      if (results.status == "success") { 	
 				$.get("../ajax/searchList/likesUpdate.do", { 
-					asso: document.getElementById("asso"+index).innerHTML			      
+					ano : list[index].ano			      
 			    }, function(results) {
 			      if (results.status == "success") {			    	  
 			    	  console.log("좋아요++");
@@ -599,16 +618,18 @@ function likePlus(index) {
                     });
 		    	}},"json" 
 		    );}
-	 );
+	 );});
 	}
 function hatePlus(index) {	
-	$(document).ready(function () {		
+	$(document).ready(function () {
+		$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
+			var list = result.list;
 		 $.get("../ajax/searchList/likeOrHate.do", { 
-			asso: document.getElementById("asso"+index).innerHTML		      
+			 ano : list[index].ano	      
 		    }, function(results) {
 		      if (results.status == "success") { 	
 				$.get("../ajax/searchList/hatesUpdate.do", {
-			      asso: document.getElementById("asso"+index).innerHTML			      
+					ano : list[index].ano		      
 			    }, function(results) {
 			      if (results.status == "success") {			    	  
 			    	  console.log("싫어요++");
@@ -659,7 +680,7 @@ function hatePlus(index) {
                     });
 		    	}},"json" 
 		    );}
-	 );
+	 );});
 	}	
 	
 	
@@ -702,11 +723,13 @@ function loadAsso(word) {
 			},
 		  success: function(result) {
 			  var ul = $("#list");
+			  var memberNick = $("#memberNick").text();
 				var list = result.list;
 				if (list[0] == null) {
 					$("<div id='noword' align='center'>").html("<font face='나눔스퀘어'><h3>해당하는 연상법이 없습니다.</h3></font></div>").appendTo(ul);
 				} else {
 					  for (var i in list) {
+						  if (list[i].nick == memberNick) {
 						  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
 							"<span class='date'>" + list[i].date + "</span>" +
 							"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
@@ -719,9 +742,25 @@ function loadAsso(word) {
 							"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 							"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 							"<span class='hate'><img onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+							"<span class='assoDelete'><img onclick='assoDelete(" + i + ")' src='../images/delete.png' alt='delete' width='30px'/></span>" +
 							"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 							.appendTo(ul);
-			
+						  } else {
+							  $("<li>").html("<span class='nic' align='left'><strong>" + list[i].nick + "</strong></span>" +
+										"<span class='date'>" + list[i].date + "</span>" +
+										"<span class='word'><h3><strong>" + list[i].word + "</strong></h3></span>" +
+										"<span class='mean'>" + list[i].mean + "</span>" +
+										"<span class='weeks'><h4><strong id='asso" + i + "'>" + list[i].asso + "</strong></h4></span>" +
+										"<span class='num'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
+										"<span class='num2'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span>" +
+										"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
+										"<span class='profile'><img src='" + list[i].prophotPath + "' alt='profile' width='85px' style='border-radius:100%;'/></span>" +
+										"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
+										"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
+										"<span class='hate'><img onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+										"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
+										.appendTo(ul);  
+						  }
 						  setFavor(i);
 					  }
 				}
@@ -730,6 +769,7 @@ function loadAsso(word) {
 		  async:false
 		});
 }
+
 function setFavor(index) {
 	$(document).ready(function () {
  		$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
