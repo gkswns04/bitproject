@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import wordstudy.dao.LearnDao;
 import wordstudy.service.LearnService;
 import wordstudy.vo.Learn;
-import wordstudy.vo.Member;
 
 @Service
 public class DefaultLearnService implements LearnService {
@@ -35,6 +34,15 @@ public class DefaultLearnService implements LearnService {
   @Override
   public List<Learn> learnmeanResult(String mean) {
     return learnDao.learnmeanResult(mean);
+  }
+  
+  @Override
+  public boolean existInAll(String word) {
+    if (learnDao.existInAll(word) > 0) {
+      return true;
+    }
+    
+    return false;
   }
 
   @Override

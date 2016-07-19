@@ -12,4 +12,5 @@ public interface LearnService {
   List<Learn> otherHint(int meno);
   List<Learn> mywordotherHint(int meno, int mno);
   List<Learn> learnmeanResult(String mean);
+  boolean existInAll(String word);
 }

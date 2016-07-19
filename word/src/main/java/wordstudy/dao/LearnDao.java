@@ -15,6 +15,7 @@ public interface LearnDao {
   List<Learn> otherHint(int meno);
   List<Learn> mywordotherHint(Map<String, Object> paramMap);
   List<Learn> learnmeanResult(String mean);
+  int existInAll(String word);
 }
 
 

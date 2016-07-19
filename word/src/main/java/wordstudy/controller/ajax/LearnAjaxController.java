@@ -87,6 +87,7 @@ public class LearnAjaxController {
       learn.setHint(hintList.get(i).getHint());
       learn.setAsso(hintList.get(i).getAsso());
       learn.setWord(correct.get(0).getWord());
+      learn.setMean(hintList.get(i).getMean());
       
       list.add(learn);
       
@@ -108,6 +109,7 @@ public class LearnAjaxController {
     List<Learn> mywordotherHint = null;
     List<Learn> correct = null;
     ArrayList<String> mywordotherHintList = null;
+    ArrayList<String> mywordotherAssoList = null;
     ArrayList<String> otherAtPaths = null;
     ArrayList<String> examples = null;
     ArrayList<String> resultExamples = null;
@@ -120,6 +122,7 @@ public class LearnAjaxController {
       learn = new Learn();
       resultExamples = new ArrayList<>();
       mywordotherHintList = new ArrayList<>();
+      mywordotherAssoList = new ArrayList<>();
       otherAtPaths = new ArrayList<>();
       
       learn.setAssothumPath(mywordhintList.get(i).getAssothumPath());
@@ -129,9 +132,13 @@ public class LearnAjaxController {
         if(mywordotherHint.get(l).getHint().equals(mywordhintList.get(i).getHint()))
           continue;
         mywordotherHintList.add(mywordotherHint.get(l).getHint());
+        mywordotherAssoList.add(mywordotherHint.get(l).getAsso());
         otherAtPaths.add(mywordotherHint.get(l).getAssothumPath());
       }
+     
+      
       learn.setOtherhints((String[])mywordotherHintList.toArray(new String[mywordotherHintList.size()]));
+      learn.setOtherassos((String[])mywordotherAssoList.toArray(new String[mywordotherAssoList.size()]));
       learn.setOtherAtPath((String[])otherAtPaths.toArray(new String[otherAtPaths.size()]));
       
       randExam = learnService.selectList(mywordhintList.get(i).getMeno());
@@ -151,6 +158,7 @@ public class LearnAjaxController {
       }
       learn.setExamples((String[])resultExamples.toArray(new String[resultExamples.size()]));
       learn.setHint(mywordhintList.get(i).getHint());
+      learn.setAsso(mywordhintList.get(i).getAsso());
       learn.setWord(correct.get(0).getWord());
       
       list.add(learn);
@@ -188,7 +196,36 @@ public class LearnAjaxController {
     
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(value="learnSpellResult", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String learnResult(String word, int num)
+      throws ServletException, IOException {
+    
+    boolean matchSpellword = learnService.existInAll(word);
+    HashMap<String, Object> result = new HashMap<>();
+    
+      if (matchSpellword) {
+      	if(!word.equals("")) {
+      		result.put("status", "correct");
+      	} 
+      } else {
+      	result.put("status","wrong");
+      }
+      
+    if (num < 10) {
+      if (result.get("status").equals("correct")) {
+        correctCount += 1;
+        result.put("correctCount", correctCount);
+      }
+    } else {
+      correctCount = 0;
+    }
+    
+    return new Gson().toJson(result);
+  }
 
+  
   
   
   public int getCorrectCount() {

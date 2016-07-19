@@ -325,10 +325,13 @@ background-color: transparent;
 }
 blue {
 	color: blue;
+	
 }
 red {
 	color: red;
 }
+.correct {z-index: 999999999999;	background: url("../images/circle.png") no-repeat 50% 50%;}
+ .wrong {z-index: 999999999999; background: url("../images/wrong.png") no-repeat 50% 50%;}
 
 </style>
 </head>
@@ -398,50 +401,131 @@ function loadPhoto() {
 </script>	
 	
 <script>
+var getParameter = function (param) {
+	var returnValue;
+	var url = location.href;
+	var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+	for (var i = 0; i < parameters.length; i++) {
+		var varName = parameters[i].split('=')[0];
+		if (varName.toUpperCase() == param.toUpperCase()) {
+			returnValue = parameters[i].split('=')[1];
+			return decodeURIComponent(returnValue);
+		}
+	}
+};
+</script>	
+
+<script>
 	  
 loadQuestion();
 function loadQuestion() {
-	$.ajax({
-		  type: 'POST',
-		  url: "../ajax/learn/list.do",
-		  success: function(result) {
-			  var ptmain = $("#pt-main");
-				var list = result.list;
-					  for (i = 0; i < 10; i++) {
-						  $("<div class='pt-page'>").html(
-									"<div id='bodydiv'><div id='bodywrapper'>" +
-									"<div id='hintdiv'>" +
-									"<div id='assodiv'>" +
-									"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
-									"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
-									"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
-									"</div>" +
-									"</div>" +
-									"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; font-size: 43px; width: 500px; letter-spacing: 8px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
-									"<div class='lm_word length" + i + "' align='center'>"+
-									"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
-									
-									"<div id='submitdiv'>" +
-									"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='clickotherbutton()'><i class='glyphicon glyphicon-ok'></i></button></div>" +
-									"</div>" +
-									"<input type='hidden' name='word' value=" + list[i].word + "/>" +
-									"</div>").appendTo(ptmain);
-						  
-						  	PageTransition();
-					  }
-					  /* <input style=\"text-align: center; border:0px;  outline: none !important; enableViewSate=true\" type='text' placeholder='" +  */
-			},
-		  dataType: "json",
-		  async:false
-		});
+	
+	
+	if (getParameter('range') == "all") {
+		$.ajax({
+			  type: 'POST',
+			  url: "../ajax/learn/list.do",
+			  success: function(result) {
+				  var ptmain = $("#pt-main");
+					var list = result.list;
+						  for (i = 0; i < 10; i++) {
+							  $("<div class='pt-page'>").html(
+										"<div id='bodydiv' class='result" + i + "'><div id='bodywrapper'>" +
+										"<div id='hintdiv'>" +
+										"<div id='assodiv'>" +
+										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
+										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
+										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
+										"</div>" +
+										"</div>" +
+										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
+										"<div class='lm_word length" + i + "' align='center'>"+
+										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
+										
+										"<div id='submitdiv'>" +
+										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
+										"</div>" +
+										"<input type='hidden' name='word' value='" + list[i].word + "'/>" +
+										"</div>").appendTo(ptmain);
+							  
+							  	PageTransition();
+						  }
+						  /* <input style=\"text-align: center; border:0px;  outline: none !important; enableViewSate=true\" type='text' placeholder='" +  */
+				},
+			  dataType: "json",
+			  async:false
+			});
+		} else if (getParameter('range') == "myword") {
+			$.ajax({
+				  type: 'POST',
+				  url: "../ajax/learn/mywordlist.do",
+				  success: function(result) {
+					  var ptmain = $("#pt-main");
+						var list = result.list;
+						  for (i = 0; i < 10; i++) {
+							  $("<div class='pt-page'>").html(
+										"<div id='bodydiv' class='result" + i + "'><div id='bodywrapper'>" +
+										"<div id='hintdiv'>" +
+										"<div id='assodiv'>" +
+										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
+										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
+										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
+										"</div>" +
+										"</div>" +
+										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
+										"<div class='lm_word length" + i + "' align='center'>"+
+										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font>" +
+										"<font size='3'><strong>" + list[i].mean + "</strong></font>"+
+										"<div id='submitdiv'>" +
+										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
+										"</div>" +
+										"<input type='hidden' name='word' value='" + list[i].word + "'/>" +
+										"</div>").appendTo(ptmain);
+							  
+							  	PageTransition();
+						  }
+					},
+				  dataType: "json",
+				  async:false
+				});
+		}
+
 }
+
+
+function submitResult(i) {
+	$.get("../ajax/learn/learnSpellResult.do", {
+				word: $(".inputlength" + i).val(),
+				num: i
+	    }, function(result) {
+	    	console.log(result.status);
+	  		if (result.status == "correct") {
+	  			$(".result" + i).addClass("correct");
+	  			setTimeout(function () {
+	  				$(".result" + i).removeClass("correct");
+	  				clickotherbutton();
+	  			}, 1000);
+	  		} else if (result.status == "wrong") {
+	  			$(".result" + i).addClass("wrong");
+	  			setTimeout(function () {
+	  				$(".result" + i).removeClass("wrong");
+		  			clickotherbutton();
+	  			}, 1500);
+	  		}
+	    }, "json"	  
+	  );
+}
+
+
+
 </script>	
+
+
 	
 <script>
 function length (i) {
 	var leng = $(".length" + i).text().replace(/[ ]/gi, '').length;
 	 $(".inputlength" + i).attr('maxlength', leng);
-	console.log(leng);
 }
 </script>	
 	
