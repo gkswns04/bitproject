@@ -19,6 +19,10 @@ public class DefaultSearchListService implements SearchListService {
     searchListDao.insert(searchList);
   }
   
+  public void assoUpdate(SearchList searchList) {
+    searchListDao.assoUpdate(searchList);
+  }
+  
   public void hatesUpdate(SearchList searchList) {
     searchListDao.hatesUpdate(searchList);
   }

@@ -27,4 +27,5 @@ public interface SearchListService {
   void assoDelete(SearchList searchList);
   void assoListDelete(SearchList searchList);
   int findAsso(SearchList searchList);
+  void assoUpdate(SearchList searchList);
 }

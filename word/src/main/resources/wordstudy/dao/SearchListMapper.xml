@@ -25,6 +25,16 @@
     values((select MENO from MEANS where mean=#{mean} and word=#{word}), #{mno}, #{asso}, #{assophotPath}, #{hint}, now(), 'N', 0, 0, 'N', #{assothumPath});    
   </insert>
   
+  <update id="assoUpdate" parameterType="SearchList">
+  	update assos set  
+  		  ASSO=#{asso}, 
+  	      A_PHOT=#{assophotPath}, 
+  	      HINT=#{hint}, 
+  	      DATE=now(), 
+  	      A_THUM=#{assothumPath}
+  	      where ANO=#{ano};
+  </update>
+  
   <insert id="wordAdd" parameterType="SearchList">
     insert into WORDS(word) 
     values(#{word});
@@ -89,7 +99,7 @@
   </delete> -->
  
   <select id="selectList" resultMap="SearchListMap" parameterType="map">
-    SELECT W.WORD, M.MEAN, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM, A.ANO 
+    SELECT W.WORD, M.MEAN, A.ANO, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM, A.ANO 
 		FROM WORDS W, MEANS M, ASSOS A, MEMBERS R
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO

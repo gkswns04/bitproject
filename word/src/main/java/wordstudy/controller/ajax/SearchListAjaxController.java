@@ -169,6 +169,97 @@ public class SearchListAjaxController {
     
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(value="assoUpdate", method=RequestMethod.POST)
+  @ResponseBody
+  public String assoUpdate(HttpSession session, MultipartHttpServletRequest request, int ano, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    System.out.println("member:" + member.getNo());
+    System.out.println("member:" + member.getEmail());
+    //asso 태그 변환하여 DB저장
+    String outputAssos = "";
+    asso = asso.replaceAll("id=\"text\\d{1,4}\" onclick=\"changeValue\\d{1,4}\\(\\d{1,4}\\)\"","")
+    .replaceAll("data-index=\"\\d{1,4}\"","")
+    .replaceAll("span  class=\"assohint\" ","red")
+    .replaceAll("span  class=\"assomean\" ","blue")
+    .replaceAll("<span  class=\"assotext\" >","");
+    String assos[] = asso.split("</span>");
+    for (String assoList : assos) {
+      if(assoList.startsWith("<red>")) {
+        assoList += "</red>";
+      } else if (assoList.startsWith("<blue>")) {
+        assoList += "</blue>";
+      }
+      outputAssos += assoList;
+    }
+    System.out.println(outputAssos);
+    //hint 변환하여 DB로 저장
+    hint = hint.replaceAll("id=\"text\\d{1,4}\" onclick=\"changeValue\\d{1,4}\\(\\d{1,4}\\)\"","")
+    .replaceAll("data-index=\"\\d{1,4}\"","")
+    .replaceAll("</span>","")
+    .replaceAll("<span  class=\"assohint\" >","")
+    .replaceAll("<span  class=\"assomean\" >.","__")
+    .replaceAll("<span  class=\"assotext\" >","");
+    System.out.println("넘어온 ANO 값 =>" + ano);
+    SearchList searchList = new SearchList();
+    searchList.setAno(ano);
+    searchList.setWord(word);
+    searchList.setMean(mean);
+    searchList.setAsso(outputAssos);
+    searchList.setHint(hint);
+    searchList.setMno(member.getNo());
+    
+    System.out.println("--------------------------------------------------------------");
+    System.out.println(mean);
+    System.out.println(hint);
+    System.out.println(outputAssos);
+    System.out.println("--------------------------------------------------------------");
+    
+    Map<String, MultipartFile> files = request.getFileMap();
+    CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("photo");
+    System.out.println(cmf.getOriginalFilename());
+    
+    int extPoint = cmf.getOriginalFilename().lastIndexOf(".");
+    if (extPoint > 0) {
+      String filename = System.currentTimeMillis() + "-" + count()
+                         + cmf.getOriginalFilename().substring(extPoint);
+      System.out.printf("새파일명=%s\n", filename);
+      String realPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + filename;
+      /* 양모 upload 경로 C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/ */
+      /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
+      System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
+      try {
+        File realFile = new File(realPath);
+        cmf.transferTo(realFile);
+        String subs = filename.substring(filename.lastIndexOf("."));
+        String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
+        String realThumbnailPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + thumbnailFileNm;
+        File thumbnailFile = new File(realThumbnailPath);
+   
+        int width = 160;
+        int height = 110;
+        // 썸네일 이미지 생성
+        BufferedImage originalImg = ImageIO.read(realFile);
+        BufferedImage thumbnailImg = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+        // 썸네일 그리기 
+        Graphics2D g = thumbnailImg.createGraphics();
+        g.drawImage(originalImg, 0, 0, width, height, null);
+        // 파일생성
+        ImageIO.write(thumbnailImg, "jpg", thumbnailFile);  
+        
+        searchList.setAssophotPath("../upload/" + filename);
+        searchList.setAssothumPath("../upload/" + thumbnailFileNm);
+        
+        searchListService.assoUpdate(searchList);
+        
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    
+    return "redirect:../list/list.html?word=" + word;
+  }
+  
   @RequestMapping(value="add", method=RequestMethod.POST)
   @ResponseBody
   public String add(HttpSession session, MultipartHttpServletRequest request, String word, String mean, String asso, String assophotPath, String hint, HttpServletResponse response) throws ServletException, IOException {
@@ -215,7 +306,7 @@ public class SearchListAjaxController {
       String filename = System.currentTimeMillis() + "-" + count()
                          + cmf.getOriginalFilename().substring(extPoint);
       System.out.printf("새파일명=%s\n", filename);
-      String realPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + filename;
+      String realPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + filename;
       /* 양모 upload 경로 C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/ */
       /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
       System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
@@ -224,7 +315,7 @@ public class SearchListAjaxController {
         cmf.transferTo(realFile);
         String subs = filename.substring(filename.lastIndexOf("."));
         String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
-        String realThumbnailPath = "/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + thumbnailFileNm;
+        String realThumbnailPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + thumbnailFileNm;
         File thumbnailFile = new File(realThumbnailPath);
    
         int width = 160;

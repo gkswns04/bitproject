@@ -27,6 +27,7 @@ public interface SearchListDao {
   void hatesUpdate(SearchList searchList);
   void hatesUpdateAdd(SearchList searchList);
   void assoDelete(SearchList searchList);
+  void assoUpdate(SearchList searchList);
   void assoListDelete(SearchList searchList);
   int findAsso(SearchList searchList);
 }
