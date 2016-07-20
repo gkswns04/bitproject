@@ -225,6 +225,7 @@ public class SearchListAjaxController {
                          + cmf.getOriginalFilename().substring(extPoint);
       System.out.printf("새파일명=%s\n", filename);
       String realPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + filename;
+      /* 현지: C:/Users/bit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/word/upload */
       /* 양모 upload 경로 C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/ */
       /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
       System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
