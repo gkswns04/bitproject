@@ -441,7 +441,7 @@ function loadQuestion() {
 										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
 										"<div class='lm_word length" + i + "' align='center'>"+
 										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
-										
+										"<div class='meandiv' style=\" position: absolute; margin-top: -6%; margin-left: 47%;\"><font size='3'><strong>" + list[i].mean + "</strong></font></div>"+
 										"<div id='submitdiv'>" +
 										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 										"</div>" +
@@ -474,8 +474,8 @@ function loadQuestion() {
 										"</div>" +
 										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
 										"<div class='lm_word length" + i + "' align='center'>"+
-										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font>" +
-										"<font size='3'><strong>" + list[i].mean + "</strong></font>"+
+										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
+										"<div class='meandiv' style=\" position: absolute; margin-top: -6%; margin-left: 46%;\"><font size='3'><strong>" + list[i].mean + "</strong></font></div>"+
 										"<div id='submitdiv'>" +
 										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 										"</div>" +

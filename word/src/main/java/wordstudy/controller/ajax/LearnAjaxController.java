@@ -87,7 +87,7 @@ public class LearnAjaxController {
       learn.setHint(hintList.get(i).getHint());
       learn.setAsso(hintList.get(i).getAsso());
       learn.setWord(correct.get(0).getWord());
-      learn.setMean(hintList.get(i).getMean());
+      learn.setMean(correct.get(0).getMean());
       
       list.add(learn);
       
@@ -126,7 +126,7 @@ public class LearnAjaxController {
       otherAtPaths = new ArrayList<>();
       
       learn.setAssothumPath(mywordhintList.get(i).getAssothumPath());
-      
+     
       mywordotherHint = learnService.mywordotherHint(mywordhintList.get(i).getMeno(), member.getNo());
       for (int l = 0; l < mywordotherHint.size(); l++) {
         if(mywordotherHint.get(l).getHint().equals(mywordhintList.get(i).getHint()))
@@ -160,6 +160,7 @@ public class LearnAjaxController {
       learn.setHint(mywordhintList.get(i).getHint());
       learn.setAsso(mywordhintList.get(i).getAsso());
       learn.setWord(correct.get(0).getWord());
+      learn.setMean(correct.get(0).getMean());
       
       list.add(learn);
       
