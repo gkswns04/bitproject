@@ -910,8 +910,8 @@ function loadAsso(word) {
 							"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 							"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 							"<span class='hate'><img onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
-							"<span class='assoDelete'><img onclick='assoDelete(" + i + ")' src='../images/delete.png' alt='delete' width='30px'/></span>" +
-							"<span class='assoEdit'><img data-toggle='modal' href='#EditAsso-myModal' onclick='assoEdit(" +  i + ")' src='../images/assoEdit.png' alt='assoEdit' width='30px'/></span>" +
+							"<span class='assoDelete'><img data-toggle='tooltip' title='삭제' onclick='assoDelete(" + i + ")' src='../images/delete.png' alt='delete' width='30px'/></span>" +
+							"<span class='assoEdit'><img data-toggle='modal' data-toggle='tooltip' title='수정' href='#EditAsso-myModal' onclick='assoEdit(" +  i + ")' src='../images/assoEdit.png' alt='assoEdit' width='30px'/></span>" +
 							"<div class='line2' align='center'><img  src='../images/line.jpg' alt='line' /></div>")
 							.appendTo(ul);
 						  } else {
