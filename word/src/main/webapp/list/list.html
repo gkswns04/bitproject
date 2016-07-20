@@ -498,11 +498,13 @@ function assoEdit(i) {
 		  success: function(result) {
 			  var editAsso = document.getElementById("EditAsso-message-text");
    			  var list = result.list;
+   			  var word = getParameter("word");
    			  console.log("ano => "+list[i].ano);
    			  console.log(list[i].assothumPath);
    			  editAsso.innerHTML = strip_tag(list[i].asso);
    			  document.getElementById("EditAsso-as_imgPreview").setAttribute( 'src', list[i].assothumPath);
-   			$("<input type='hidden' name='ano' value='" + list[i].ano + "'>").html("").appendTo("#EditAsso-message-text");
+   			  $("<input type='hidden' name='word' value='" + word + "'>").html("").appendTo("#EditAsso-message-text");
+   			  $("<input type='hidden' name='ano' value='" + list[i].ano + "'>").html("").appendTo("#EditAsso-message-text");
 			},
 		  dataType: "json",
 		  async:false
