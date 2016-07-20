@@ -26,13 +26,24 @@
   </insert>
   
   <update id="assoUpdate" parameterType="SearchList">
-  	update assos set  
-  		  ASSO=#{asso}, 
-  	      A_PHOT=#{assophotPath}, 
-  	      HINT=#{hint}, 
-  	      DATE=now(), 
-  	      A_THUM=#{assothumPath}
-  	      where ANO=#{ano};
+  	<if test = "assophotPath == null">
+  	update assos set
+  	  MENO=(select MENO from MEANS where mean=#{mean} and word=#{word}),  
+  	  ASSO=#{asso}, 
+  	  HINT=#{hint}, 
+  	  DATE=now() 
+  	  where ANO=#{ano};
+  	</if>
+  	<if test = "assophotPath != null">  
+  	update assos set
+  	  MENO=(select MENO from MEANS where mean=#{mean} and word=#{word}),  
+  	  ASSO=#{asso}, 
+  	  A_PHOT=#{assophotPath}, 
+  	  HINT=#{hint}, 
+  	  DATE=now(), 
+  	  A_THUM=#{assothumPath}
+  	  where ANO=#{ano};
+  	</if>
   </update>
   
   <insert id="wordAdd" parameterType="SearchList">
