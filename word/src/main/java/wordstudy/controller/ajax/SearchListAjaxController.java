@@ -251,12 +251,12 @@ public class SearchListAjaxController {
         searchList.setAssophotPath("../upload/" + filename);
         searchList.setAssothumPath("../upload/" + thumbnailFileNm);
         
-        searchListService.assoUpdate(searchList);
         
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
+    searchListService.assoUpdate(searchList);
     
     return "redirect:../list/list.html?word=" + word;
   }
