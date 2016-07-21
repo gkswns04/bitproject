@@ -333,6 +333,204 @@ red {
 .correct {z-index: 999999999999;	background: url("../images/circle.png") no-repeat 50% 50%;}
  .wrong {z-index: 999999999999; background: url("../images/wrong.png") no-repeat 50% 50%;}
 
+
+/*resultpage*/
+.pt-page-10 {
+	height: 491px;
+  color: black;
+}
+
+.resultWord {
+	color: black;
+	font-size: 15px;
+}
+
+#wrongdiv {
+    float: right;
+    margin-top: 40px;
+    margin-right: 120px;
+    width: 300px;
+}
+
+#wrongcount p {
+    width: 300px;
+    top: -460px;
+    font-size: 54px;
+    font-weight: 900;
+    text-align: center;
+}
+
+#wrongwordul {
+	text-align: left;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Lato:700);
+@track-color: #ffffff;
+@thumb-color: #e1e1e1;
+ 
+@thumb-radius: 5px;
+@thumb-height: 30px;
+@thumb-width: 20px;
+ 
+@thumb-border-width: 1px;
+@thumb-border-color: #d6d6d6;
+ 
+@track-width: 100%;
+@track-height: 20px;
+ 
+@track-border-width: 1px;
+@track-border-color: #e6e6e6;
+ 
+@track-radius: 0px;
+@contrast: 5%;
+html,body{
+  height: 100%;
+  width: 100%;
+}
+html,
+button,
+input,
+select,
+textarea {
+  color: #5e5e5e;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: #f0f1f1;
+  font: 14px/24px Lato, Helvetica, Helvetica Neue, Arial;
+  line-height: 1.4;
+}
+#percentdiv{
+width: 275px;
+margin-top: 40px;
+margin-left: 120px;
+float: left;
+}
+
+
+.progress-bar-1{
+  display: inline-block;
+  width: 275px;
+  height: 275px;
+  margin: 7px;
+  padding: 0;
+}
+.progress-bar-1 .progress-active{
+  position: relative;
+  top: -279px;
+}
+.progress-bar-1 p{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 275px;
+  top: -460px;
+  font-size: 54px;
+  font-weight: 900;
+  text-align: center;
+}
+ 
+.track() {
+  width: @track-width;
+  height: @track-height;
+  cursor: pointer;
+  animate: 0.2s;
+}
+ 
+.thumb() {
+  border: @thumb-border-width solid @thumb-border-color;
+  height: @thumb-height;
+  width: @thumb-width;
+  border-radius: @thumb-radius;
+  background: @thumb-color;
+  cursor: pointer;
+}
+ 
+input[type=range] {
+  -webkit-appearance: none;
+  margin: @thumb-height/2 0;
+  width: @track-width;
+ 
+  &:focus {
+    outline: none;
+  }
+ 
+  &::-webkit-slider-runnable-track {
+    .track();
+    background: @track-color;
+    border-radius: @track-radius;
+    border: @track-border-width solid @track-border-color;
+  }
+  
+  &::-webkit-slider-thumb {
+    .thumb();
+    -webkit-appearance: none;
+    margin-top: ((-@track-border-width * 2 + @track-height) / 2) - (@thumb-height / 2);
+  }
+ 
+  &:focus::-webkit-slider-runnable-track {
+    background: lighten(@track-color, @contrast);
+  }
+ 
+  &::-moz-range-track {
+    .track();
+    background: @track-color;
+    border-radius: @track-radius;
+     border: @track-border-width solid @track-border-color;
+  }
+  &::-moz-range-thumb {
+     .thumb();
+  }
+ 
+  &::-ms-track {
+    .track(); 
+    background: transparent;
+    border-color: transparent;
+    border-width: @thumb-width 0;
+    color: transparent;
+  }
+ 
+  &::-ms-fill-lower {
+    background: darken(@track-color, @contrast);
+    border: @track-border-width solid @track-border-color;
+    border-radius: @track-radius*2;
+  }
+  &::-ms-fill-upper {
+    background: @track-color;
+    border: @track-border-width solid @track-border-color;
+    border-radius: @track-radius*2;
+  }
+  &::-ms-thumb {
+    .thumb();
+  }
+  &:focus::-ms-fill-lower {
+    background: @track-color;
+  }
+  &:focus::-ms-fill-upper {
+    background: lighten(@track-color, @contrast);
+  }
+}
+
+.pttext1 a {
+  color: red;
+  position: absolute;
+  bottom: 50px;
+  right: 55%;
+  text-decoration: none;
+}
+
+
+.pttext2 a {
+  color: red;
+  position: absolute;
+  bottom: 50px;
+  left: 52%;
+  text-decoration: none;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -415,6 +613,82 @@ var getParameter = function (param) {
 };
 </script>	
 
+<script> 
+/* $(document).on("ready", function(){ */
+ function progressControll() { 
+    var $pc = $('#progressController');
+    var $pCaption = $('.progress-bar-1 p');
+    var iProgress = document.getElementById('inactiveProgress');
+    var aProgress = document.getElementById('activeProgress');
+    var iProgressCTX = iProgress.getContext('2d');
+ 
+    
+    drawInactive(iProgressCTX);
+    
+    $pc.on('change', function(){
+      var percentage = $(this).val() / 100;
+      console.log(percentage + '%');
+      drawProgress(aProgress, percentage, $pCaption);
+    });
+ 
+    function drawInactive(iProgressCTX){
+      iProgressCTX.lineCap = 'square';
+ 
+      //outer ring
+      iProgressCTX.beginPath();
+      iProgressCTX.lineWidth = 15;
+      iProgressCTX.strokeStyle = '#e1e1e1';
+      iProgressCTX.arc(137.5,137.5,129,0,2*Math.PI);
+      iProgressCTX.stroke();
+ 
+      //progress bar
+      iProgressCTX.beginPath();
+      iProgressCTX.lineWidth = 0;
+      iProgressCTX.fillStyle = '#e6e6e6';
+      iProgressCTX.arc(137.5,137.5,121,0,2*Math.PI);
+      iProgressCTX.fill();
+ 
+      //progressbar caption
+      iProgressCTX.beginPath();
+      iProgressCTX.lineWidth = 0;
+      iProgressCTX.fillStyle = '#fff';
+      iProgressCTX.arc(137.5,137.5,100,0,2*Math.PI);
+      iProgressCTX.fill();
+ 
+    }
+    function drawProgress(bar, percentage, $pCaption){
+      var barCTX = bar.getContext("2d");
+      var quarterTurn = Math.PI / 2;
+      var endingAngle = ((2*percentage) * Math.PI) - quarterTurn;
+      var startingAngle = 0 - quarterTurn;
+ 
+      bar.width = bar.width;
+      barCTX.lineCap = 'square';
+ 
+      barCTX.beginPath();
+      barCTX.lineWidth = 20;
+      barCTX.strokeStyle = '#76e1e5';
+      barCTX.arc(137.5,137.5,111,startingAngle, endingAngle);
+      barCTX.stroke();
+ 
+      $pCaption.text( (parseInt(percentage * 100, 10)) + '%');
+    }
+ 
+      var percentage = $pc.val() / 100;
+      drawProgress(aProgress, percentage, $pCaption);
+ 
+    
+  }
+ 
+
+$(document).on('click', '#iterateEffects', function () {
+	$("#progressController").attr('value', window.resultCount * 10);
+	progressControll();
+});
+
+
+</script>	
+
 <script>
 	  
 loadQuestion();
@@ -445,12 +719,40 @@ function loadQuestion() {
 										"<div id='submitdiv'>" +
 										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 										"</div>" +
-										"<input type='hidden' name='word' value='" + list[i].word + "'/>" +
+										"<input type='hidden' id='quesWord" + i + "' name='word' value='" + list[i].word + "'/>" +
 										"</div>").appendTo(ptmain);
 							  
-							  	PageTransition();
 						  }
 						  /* <input style=\"text-align: center; border:0px;  outline: none !important; enableViewSate=true\" type='text' placeholder='" +  */
+						  
+						  $("<div class='pt-page pt-page-10'>").html(
+								  "<div id='resultbody'>" +
+									"<div id='percentdiv'>" +
+								  "<div class='progress-bar-1'>" +
+								  "<canvas id='inactiveProgress' class='progress-inactive' height='275px' width='275px'></canvas>" + 
+								  "<canvas id='activeProgress' class='progress-active'  height='275px' width='275px'></canvas>" + 
+								  "<p>0%</p>" +
+								  "</div>" +
+								  "<div id='progressControllerContainer'>" +
+								  "<input type='hidden' id='progressController' min='0' max='100' value='0' />" +
+								  "</div></div>" +
+								  "<div id='wrongdiv'>" +
+								  "<div id='wrongcount'>" +
+								  "</div>" + 
+								  "<div id='wrongword'>" +
+								  "<div id='watitle' align='center'><h3><strong>Wrong Answers</h3></strong></li>" +
+								  "<hr>" +
+								  "<ul id='wrongwordul'>" +
+								  "</ul>" +
+								  "</div>" +
+								  "</div>" +
+								  "</div>" + 
+								  "<div id='resultfooter'>" +
+								  "<span class='pttext1'><a href='learnspelling.html?range=all'><font size='4'> &#187; PLAY AGAIN &#171; </font></a></span>" +
+								  "<span class='pttext2'><a href='learnchoice.html'><font size='4'> &#187; BACK TO ALL GAMES &#171; </font></a></span>" +
+								  "</div>").appendTo(ptmain);
+						  
+							  PageTransition();
 				},
 			  dataType: "json",
 			  async:false
@@ -482,8 +784,35 @@ function loadQuestion() {
 										"<input type='hidden' name='word' value='" + list[i].word + "'/>" +
 										"</div>").appendTo(ptmain);
 							  
-							  	PageTransition();
 						  }
+						  $("<div class='pt-page pt-page-10'>").html(
+								  "<div id='resultbody'>" +
+									"<div id='percentdiv'>" +
+								  "<div class='progress-bar-1'>" +
+								  "<canvas id='inactiveProgress' class='progress-inactive' height='275px' width='275px'></canvas>" + 
+								  "<canvas id='activeProgress' class='progress-active'  height='275px' width='275px'></canvas>" + 
+								  "<p>0%</p>" +
+								  "</div>" +
+								  "<div id='progressControllerContainer'>" +
+								  "<input type='hidden' id='progressController' min='0' max='100' value='0' />" +
+								  "</div></div>" +
+								  "<div id='wrongdiv'>" +
+								  "<div id='wrongcount'>" +
+								  "</div>" + 
+								  "<div id='wrongword'>" +
+								  "<div id='watitle' align='center'><h3><strong>Wrong Answers</h3></strong></li>" +
+								  "<hr>" +
+								  "<ul id='wrongwordul'>" +
+								  "</ul>" +
+								  "</div>" +
+								  "</div>" +
+								  "</div>" + 
+								  "<div id='resultfooter'>" +
+								  "<span class='pttext1'><a href='learnspelling.html?range=myword'><font size='4'> &#187; PLAY AGAIN &#171; </font></a></span>" +
+								  "<span class='pttext2'><a href='learnchoice.html'><font size='4'> &#187; BACK TO ALL GAMES &#171; </font></a></span>" +
+								  "</div>").appendTo(ptmain);
+						  
+							  PageTransition();
 					},
 				  dataType: "json",
 				  async:false
@@ -492,6 +821,7 @@ function loadQuestion() {
 
 }
 
+window.wrongCount = 0;
 
 function submitResult(i) {
 	$.get("../ajax/learn/learnSpellResult.do", {
@@ -506,11 +836,19 @@ function submitResult(i) {
 	  				clickotherbutton();
 	  			}, 1000);
 	  		} else if (result.status == "wrong") {
+	  			$("<li class='resultWord'>").html($('#quesWord' + i).val()).appendTo($('#wrongwordul'));
+	  			window.wrongCount = window.wrongCount + 1;
+	  			window.resultCount = 10 - window.wrongCount;
 	  			$(".result" + i).addClass("wrong");
 	  			setTimeout(function () {
 	  				$(".result" + i).removeClass("wrong");
 		  			clickotherbutton();
 	  			}, 1500);
+	  		}
+	  		
+	  		if (i == 9) {
+	  			$("<p>").html(window.resultCount + " / 10").appendTo($('#wrongcount'));
+	  			
 	  		}
 	    }, "json"	  
 	  );

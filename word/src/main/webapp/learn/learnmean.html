@@ -734,7 +734,11 @@ function loadQuestion() {
 									"</div>" +
 									"<input type='hidden' id='quesWord" + i + "' name='word' value='" + list[i].word + "'/>" +
 									"</div>").appendTo(ptmain);
-						  
+						  		
+						  		/* for (j = 0; j < list[i].otherhints.length; j++) {
+						  			"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>"
+						  			"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>"
+						  		} */
 					  }
 					  $("<div class='pt-page pt-page-10'>").html(
 							  "<div id='resultbody'>" +

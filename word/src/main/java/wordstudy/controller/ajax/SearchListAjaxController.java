@@ -224,7 +224,7 @@ public class SearchListAjaxController {
       String filename = System.currentTimeMillis() + "-" + count()
                          + cmf.getOriginalFilename().substring(extPoint);
       System.out.printf("새파일명=%s\n", filename);
-      String realPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + filename;
+      String realPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + filename;
       /* 현지: C:/Users/bit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/word/upload */
       /* 양모 upload 경로 C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/ */
       /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
@@ -234,7 +234,7 @@ public class SearchListAjaxController {
         cmf.transferTo(realFile);
         String subs = filename.substring(filename.lastIndexOf("."));
         String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
-        String realThumbnailPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + thumbnailFileNm;
+        String realThumbnailPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + thumbnailFileNm;
         File thumbnailFile = new File(realThumbnailPath);
    
         int width = 160;
@@ -307,7 +307,7 @@ public class SearchListAjaxController {
       String filename = System.currentTimeMillis() + "-" + count()
                          + cmf.getOriginalFilename().substring(extPoint);
       System.out.printf("새파일명=%s\n", filename);
-      String realPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + filename;
+      String realPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + filename;
       /* 양모 upload 경로 C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/ */
       /* /Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/ */
       System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
@@ -316,7 +316,7 @@ public class SearchListAjaxController {
         cmf.transferTo(realFile);
         String subs = filename.substring(filename.lastIndexOf("."));
         String thumbnailFileNm = filename.replace(subs, "") + "-" + "t" + subs;
-        String realThumbnailPath = "C:/bitcamp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/word2/upload/" + thumbnailFileNm;
+        String realThumbnailPath = "C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/word/upload/" + thumbnailFileNm;
         File thumbnailFile = new File(realThumbnailPath);
    
         int width = 160;
