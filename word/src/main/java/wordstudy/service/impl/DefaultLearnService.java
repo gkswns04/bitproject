@@ -1,6 +1,5 @@
 package wordstudy.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,7 @@ public class DefaultLearnService implements LearnService {
     return learnDao.correctMean(meno);
   }
 
-  public List<Learn> otherHint(int meno) {
-    return learnDao.otherHint(meno);
-  }
+
 
   @Override
   public List<Learn> learnmeanResult(String mean) {
@@ -48,14 +45,6 @@ public class DefaultLearnService implements LearnService {
   @Override
   public List<Learn> mywordhintList(int mno) {
     return learnDao.mywordhintList(mno);
-  }
-
-  @Override
-  public List<Learn> mywordotherHint(int meno, int mno) {
-    HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("meno", meno);
-    paramMap.put("mno", mno);
-    return learnDao.mywordotherHint(paramMap);
   }
 
   

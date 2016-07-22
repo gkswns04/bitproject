@@ -587,27 +587,7 @@ function clickotherbutton() {
 }
 </script>
 
-	
-<script>
-loadPhoto();
-function loadPhoto() {	
-	$.getJSON("../ajax/member/list.do", function(result) {
-		var headerdiv = $('#headerdiv');
-		var pAndndiv = $('#pAndndiv');
-		var list = result.list;
-		
-		$("<div class='menubar'>").html("<ul>" + 
-				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
-				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
-				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
-				"</li></ul>").appendTo(headerdiv);
-		$('#sign').css("display", "none");
-		
-		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
-			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
-	})
-}
-</script>	
+
 	
 <script>
 var getParameter = function (param) {
@@ -700,6 +680,10 @@ $(document).on('click', '#iterateEffects', function () {
 
 </script>	
 	
+<script>
+/* $(document).on('click',) */
+
+</script>
 	
 <script>
 	  
@@ -720,7 +704,6 @@ function loadQuestion() {
 									"<div id='assodiv'>" +
 									"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
 									"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>" +
-									"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 									"</div>" +
 									"</div>" +
 									"<div id='answerdiv'>" +
@@ -735,10 +718,6 @@ function loadQuestion() {
 									"<input type='hidden' id='quesWord" + i + "' name='word' value='" + list[i].word + "'/>" +
 									"</div>").appendTo(ptmain);
 						  		
-						  		/* for (j = 0; j < list[i].otherhints.length; j++) {
-						  			"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>"
-						  			"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>"
-						  		} */
 					  }
 					  $("<div class='pt-page pt-page-10'>").html(
 							  "<div id='resultbody'>" +
@@ -787,7 +766,6 @@ function loadQuestion() {
 										"<div id='assodiv'>" +
 										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
 										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].hint + "</h4></div></div>" +
-										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 										"</div>" +
 										"</div>" +
 										"<div id='answerdiv'>" +
@@ -846,6 +824,7 @@ function submitResult(i) {
 				num: i
 	    }, function(result) {
 	  		if (result.status == "correct") {
+	  			window.resultCount = 10 - window.wrongCount;
 	  			$(".result" + i).addClass("correct");
 	  			setTimeout(function () {
 	  				$(".result" + i).removeClass("correct");

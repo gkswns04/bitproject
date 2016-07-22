@@ -16,9 +16,12 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script src="../js/authcheck.js"></script>
+
+
 <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href='../css/txtProgress.css' rel='stylesheet' type='text/css'>
+
 <style>
 /*-----------------------------*/
 .loadingEffect{
@@ -206,6 +209,12 @@ background-color: transparent;
 	height: 180px;
 	margin: 25px 20px auto;
 }
+.meandiv {
+	position: relative;
+}
+.mean {
+	display: inline-block;
+}
 #answerdiv {
 	position: relative;
 	width: 940px;
@@ -226,7 +235,6 @@ background-color: transparent;
 	position: relative;
 	width: 940px;
 	height: 90px;
-	margin-bottom : 50px;
 }
 .lm_word {
 	padding: 0 15px;
@@ -565,6 +573,8 @@ input[type=range] {
 </div>
 </div>
 
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/jquery.dlmenu.js"></script>
 <script src="../js/pagetransitions2.js"></script>
@@ -576,27 +586,6 @@ function clickotherbutton() {
 }
 </script>
 
-	
-<script>
-loadPhoto();
-function loadPhoto() {	
-	$.getJSON("../ajax/member/list.do", function(result) {
-		var headerdiv = $('#headerdiv');
-		var pAndndiv = $('#pAndndiv');
-		var list = result.list;
-		
-		$("<div class='menubar'>").html("<ul>" + 
-				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
-				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
-				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
-				"</li></ul>").appendTo(headerdiv);
-		$('#sign').css("display", "none");
-		
-		$("<img src='" + list[0].photo + "' id='imgPreview' class='settingpro' width='100' height='100'>" +
-			"<h3 align='center'>" + list[0].nick + "<input id='inputfiles' type='file' name='photo'></input><img class='cameraimg' src='../images/cameraicon.png' width='30' height='30'></h3><br>").appendTo(pAndndiv);
-	})
-}
-</script>	
 	
 <script>
 var getParameter = function (param) {
@@ -709,13 +698,12 @@ function loadQuestion() {
 										"<div id='assodiv'>" +
 										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
 										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
-										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 										"</div>" +
 										"</div>" +
 										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
 										"<div class='lm_word length" + i + "' align='center'>"+
 										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
-										"<div class='meandiv' style=\" position: absolute; margin-top: -6%; margin-left: 47%;\"><font size='3'><strong>" + list[i].mean + "</strong></font></div>"+
+										"<div class='meandiv' align='center'><div class='mean'><font size='3'><strong>" + list[i].mean + "</strong></font></div></div>"+
 										"<div id='submitdiv'>" +
 										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 										"</div>" +
@@ -771,13 +759,12 @@ function loadQuestion() {
 										"<div id='assodiv'>" +
 										"<div id='lm_asimgdiv'><div id='lm_asimg'><img src='" + list[i].assothumPath + "'/></div></div>" +
 										"<div id='lm_assodiv'><div id='lm_asso'><h4 style='line-height: 1.5;'>" + list[i].asso + "</h4></div></div>" +
-										"<div id='lm_nhdiv'><div id='lm_nh'><h5>다음 힌트 ></h5></div></div>" +
 										"</div>" +
 										"</div>" +
 										"<div id='worddiv'><input class='inputlength"+ i +"' maxlength='10' style=\"text-align: center; border: none; outline: none !important; position: absolute; float: right; margin-top: -10px; margin-left: 223px; background-color: transparent; font-size: 43px; width: 500px; letter-spacing: 7px;  white-space: nowrap; overflow: hidden;\" type='text' onclick='length(" + i + ")'> "+ 
 										"<div class='lm_word length" + i + "' align='center'>"+
 										"<font size='7'><strong>" + list[i].word.replace(/[a-z]/gi, ' _ ') + "</strong></font></div></div>" +
-										"<div class='meandiv' style=\" position: absolute; margin-top: -6%; margin-left: 46%;\"><font size='3'><strong>" + list[i].mean + "</strong></font></div>"+
+										"<div class='meandiv' align='center'><div class='mean'><font size='3'><strong>" + list[i].mean + "</strong></font></div></div>"+
 										"<div id='submitdiv'>" +
 										"<div id='submit_btn'><button type='button' class='btn btn-info btn-circle btn-xl' onclick='submitResult(" + i + ")'><i class='glyphicon glyphicon-ok'></i></button></div>" +
 										"</div>" +
@@ -830,6 +817,7 @@ function submitResult(i) {
 	    }, function(result) {
 	    	console.log(result.status);
 	  		if (result.status == "correct") {
+	  			window.resultCount = 10 - window.wrongCount;
 	  			$(".result" + i).addClass("correct");
 	  			setTimeout(function () {
 	  				$(".result" + i).removeClass("correct");

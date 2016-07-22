@@ -37,11 +37,8 @@ public class LearnAjaxController {
     
     List<Learn> hintList = learnService.hintList();
     List<Learn> randExam = null;
-    List<Learn> otherHint = null;
     List<Learn> correct = null;
-    ArrayList<String> otherHintList = null;
-    ArrayList<String> otherAssoList = null;
-    ArrayList<String> otherAtPaths = null;
+
     ArrayList<String> examples = null;
     ArrayList<String> resultExamples = null;
     HashMap<String,Object> result = new HashMap<>();
@@ -52,21 +49,7 @@ public class LearnAjaxController {
       examples = new ArrayList<>();
       learn = new Learn();
       resultExamples = new ArrayList<>();
-      otherHintList = new ArrayList<>();
-      otherAtPaths = new ArrayList<>();
-      otherAssoList = new ArrayList<>();
       
-      learn.setAssothumPath(hintList.get(i).getAssothumPath());
-      
-      otherHint = learnService.otherHint(hintList.get(i).getMeno());
-      for (int l = 0; l < otherHint.size(); l++) {
-        otherHintList.add(otherHint.get(l).getHint());
-        otherAssoList.add(otherHint.get(l).getAsso());
-        otherAtPaths.add(otherHint.get(l).getAssothumPath());
-      }
-      learn.setOtherhints((String[])otherHintList.toArray(new String[otherHintList.size()]));
-      learn.setOtherassos((String[])otherAssoList.toArray(new String[otherAssoList.size()]));
-      learn.setOtherAtPath((String[])otherAtPaths.toArray(new String[otherAtPaths.size()]));
       
       randExam = learnService.selectList(hintList.get(i).getMeno());
       for (int j= 0; j < 3; j++) {
@@ -83,7 +66,9 @@ public class LearnAjaxController {
         resultExamples.add(examples.get(rv));
         examples.remove(rv);
       }
+      
       learn.setExamples((String[])resultExamples.toArray(new String[resultExamples.size()]));
+      learn.setAssothumPath(hintList.get(i).getAssothumPath());
       learn.setHint(hintList.get(i).getHint());
       learn.setAsso(hintList.get(i).getAsso());
       learn.setWord(correct.get(0).getWord());
@@ -106,11 +91,7 @@ public class LearnAjaxController {
     
     List<Learn> mywordhintList = learnService.mywordhintList(member.getNo());
     List<Learn> randExam = null;
-    List<Learn> mywordotherHint = null;
     List<Learn> correct = null;
-    ArrayList<String> mywordotherHintList = null;
-    ArrayList<String> mywordotherAssoList = null;
-    ArrayList<String> otherAtPaths = null;
     ArrayList<String> examples = null;
     ArrayList<String> resultExamples = null;
     HashMap<String,Object> result = new HashMap<>();
@@ -121,26 +102,9 @@ public class LearnAjaxController {
       examples = new ArrayList<>();
       learn = new Learn();
       resultExamples = new ArrayList<>();
-      mywordotherHintList = new ArrayList<>();
-      mywordotherAssoList = new ArrayList<>();
-      otherAtPaths = new ArrayList<>();
-      
+
       learn.setAssothumPath(mywordhintList.get(i).getAssothumPath());
      
-      mywordotherHint = learnService.mywordotherHint(mywordhintList.get(i).getMeno(), member.getNo());
-      for (int l = 0; l < mywordotherHint.size(); l++) {
-        if(mywordotherHint.get(l).getHint().equals(mywordhintList.get(i).getHint()))
-          continue;
-        mywordotherHintList.add(mywordotherHint.get(l).getHint());
-        mywordotherAssoList.add(mywordotherHint.get(l).getAsso());
-        otherAtPaths.add(mywordotherHint.get(l).getAssothumPath());
-      }
-     
-      
-      learn.setOtherhints((String[])mywordotherHintList.toArray(new String[mywordotherHintList.size()]));
-      learn.setOtherassos((String[])mywordotherAssoList.toArray(new String[mywordotherAssoList.size()]));
-      learn.setOtherAtPath((String[])otherAtPaths.toArray(new String[otherAtPaths.size()]));
-      
       randExam = learnService.selectList(mywordhintList.get(i).getMeno());
       for (int j= 0; j < 3; j++) {
         examples.add(randExam.get(j).getMean());

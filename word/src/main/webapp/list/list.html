@@ -29,6 +29,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/popupsettings.js"></script>
 <script src="../js/dialog.js"></script>
+
 <style>
 #wrapper {
   position: absolute;
@@ -139,6 +140,11 @@ position: absolute;
 margin-left: 18px;
 }
 
+.style2 {
+margin-left: 20px;
+color: black;
+}
+
 </style>
 
 
@@ -247,7 +253,7 @@ margin-left: 18px;
                <p class="infor"  align="justify">
 	              	<font color="red">red : 발음</font> 부분<br>
 	              	<font color="blue">blue  : 뜻</font> 부분<br>
-	                <img src="../images/question.png" width="30px" height="30px">
+	                <img src="../images/question.png" id="repopup" width="30px" height="30px">
 	              	</p>
 	              <p class="login button addbutton">
 	              	<input type="submit" class="submitbtn" id="assoaddbtn" value="확인"/>
@@ -429,6 +435,108 @@ margin-left: 18px;
 			</div>
 		</span>
 	</div>
+
+<!-- gif 팝업 -->
+<script>
+function eventShow() {
+$('#gif_wrapper').append( // div팝업내용 wrapper라는 이름의 div에 아래 div팝업을 넣어줍니다.
+
+'<div id="event-pop-up" style="position:absolute; left:50%;margin-left:-247px; top:265px; z-index:99999;">'+
+'<form name="notice_form">'+
+'<div style="position:relative"><table border="0" cellPadding="0" cellSpacing="0">'+
+'<tr>'+
+'<td><img src="../images/assoexgif.gif"></td>'+
+'</tr>'+
+'</TABLE></div>'+
+'<div style="position:absolute;bottom:10px;left:25px;"><table width="487" border="0" cellpadding="0" cellspacing="0" align="center">'+
+'<tr>'+
+'<td height="30px" valign="center" style="border:padding-left:20px;">'+
+'<input type="checkbox" id="today-close" name="chkbox" onclick="eventTodayHide()" />' +
+'<label for="today-close"><span class="style1"> 오늘 하루 이 창을 열지 않음</span>' + 
+'<a href="javascript:eventHide();" class="style2">[닫기]</a></label></td>' +
+'</tr>'+
+'</table></div>'+
+'</form>'+
+'</div>'
+);
+}
+
+
+//eventHide() 는 닫기버튼을 눌를때 Div를 제거합니다.
+function eventHide() {
+$('#event-pop-up').remove();
+}
+
+//쿠키 설정 및 체크부분입니다.
+function setCookie2( name, value, expiredays ) {
+var todayDate = new Date();
+todayDate.setDate( todayDate.getDate() + expiredays );
+document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function getCookie2( name ) {
+var nameOfCookie = name + "=";
+var x = 0;
+while ( x <= document.cookie.length )
+{
+var y = (x+nameOfCookie.length);
+if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+endOfCookie = document.cookie.length;
+return unescape( document.cookie.substring( y, endOfCookie ) );
+}
+x = document.cookie.indexOf( " ", x ) + 1;
+if ( x == 0 )
+break;
+}
+return "";
+}
+//쿠키 설정여부체크
+function eventCookieChk(){
+if ( getCookie2("eventDiv") != "checked" ) {
+eventShow();
+}else{
+eventHide();
+}
+}
+//오늘하루 보지 않음 체크여부에 따라 쿠키를 설정할것인지 아닌지를 결정합니다.
+function eventTodayHide() {
+if ( $('#today-close:checked') ){
+setCookie2( "eventDiv", "checked" , 1 );
+}
+eventHide();
+}
+function MM_openBrWindow(theURL,winName,features) {
+window.open(theURL,winName,features);
+}
+/* eventPopUp End */
+/////////////////////////// 추가 디자인 팝업 -_- 끝
+
+
+
+</script>
+
+
+
+
+<div id="gif_wrapper">
+
+<script>
+$("#btn_submit").click(function() {
+eventCookieChk();
+});
+</script>
+
+</div>
+
+
+<script>
+$("#repopup").click(function() {
+	eventShow();
+})
+
+</script>
+
+<!-- gif팝업 여기까지 -->
 
 
 <script>
