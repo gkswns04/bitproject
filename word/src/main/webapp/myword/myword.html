@@ -500,6 +500,7 @@ font {
     <div class="mywordtext" style="text-align:center;">
       <font size="6">나의 단어장</font><br>
       <span class='countspan'>
+      <input id="pageNo" type="hidden" value="1"/>
       <select id="assosCount" onchange="loadPaging()">
         <option selected='selected' value='3'>3개씩 보기</option>
         <option value='5'>5개씩 보기</option>
@@ -659,11 +660,11 @@ function loadPhoto() {
             "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
             .appendTo(ul);
         }
-        $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀     </a></li>").appendTo(pagingTag);
+        $("<li class='pagingBlock'>").html("<a href='javascript:goPagePrev()' class='first'>◀     </a></li>").appendTo(pagingTag);
   for (var i = 1; i <= paging.finalPageNo; i++) {
   	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
   }
-  $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>  ▶</a></li>").appendTo(pagingTag);
+  $("<li class='pagingBlock'>").html("<a href='javascript:goPageNext()' class='last'>  ▶</a></li>").appendTo(pagingTag);
         
         new AnimOnScroll( document.getElementById('grid'), {
             minDuration : 0.4,
@@ -674,8 +675,19 @@ function loadPhoto() {
    }   
    
    </script>
+   <script>
+  function goPagePrev() {
+	  if ($("#pageNo").val() == 1) {
+		  goPage(1);
+	  } else {
+		  goPage($("#pageNo").val() - 1)
+	  }
+	  console.log("현재 page 번호 :" + $("#pageNo").val());
+   }              
+</script>
 <script>
   function goPage(i) {
+	  document.getElementById('pageNo').setAttribute('value', i);
     $(document).ready(function () {       
     // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
        $.ajax({
@@ -718,6 +730,12 @@ function loadPhoto() {
                });
               }});});
    }              
+</script>
+<script>
+  function goPageNext() {
+	  console.log("현재 page 번호 :" + $("#pageNo").val());
+	  goPage($("#pageNo").val()*1 + 1);
+  }
 </script>   
 <script>
   function loadPaging() {
@@ -749,12 +767,12 @@ function loadPhoto() {
                    "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
                    .appendTo(ul);
                }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀</a></li>").appendTo(pagingTag);
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPagePrev()' class='first'>◀</a></li>").appendTo(pagingTag);
                for (var i = 1; i <= paging.finalPageNo; i++) {
                	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
                }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>▶</a></li>").appendTo(pagingTag);
-               new AnimOnScroll(document.getElementById('grid'), {
+               $("<li class='pagingBlock'>").html("<a href='javascript:goPageNext()' class='last'>▶</a></li>").appendTo(pagingTag);
+               new AnimOnScroll(document.getElementById('grid'), 
                    minDuration : 0.4,
                    maxDuration : 0.7,
                    viewportFactor : 0.2
