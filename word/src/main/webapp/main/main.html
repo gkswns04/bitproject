@@ -300,8 +300,8 @@ body {
 			<span id="threediv">
 				<nav>
 					<ul>
-						<li><a id='newfile-btn' href="../add/addasso.html" class="newfile-btn"><i></i><img
-								src="../images/newfile.png" width="70" /><br></br>연상법 등록</a></li>
+						<li><a id='newfile-btn' href="../wordlist/wordlist.html" class="newfile-btn"><i></i><img
+								src="../images/newfile.png" width="70" /><br></br>추천 연상법</a></li>
 						<li><a id='study-btn' href="../learn/learnchoice.html" class="study-btn"><i></i><img
 								src="../images/pencil.png" width="70" /><br></br>연상법 학습</a></li>
 						<li><a id='profile-btn' href="../myword/myword.html" class="profile-btn"><i></i><img
@@ -598,7 +598,7 @@ $('#newfile-btn').click(function(event) {
 		if (result.status == "success") {
 			console.log(result);	
 		
-			location.href = "../add/addasso.html";
+			location.href = "../wordlist/wordlist.html";
 		} else {
 		  alert('로그인이 필요합니다.');
 		}

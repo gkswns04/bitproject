@@ -52,6 +52,12 @@ margin: 0 auto;
 	border-radius: 100%;
 }
 
+red {
+   color: red;
+}
+blue {
+   color: blue;
+}
 
 /**/
 
@@ -365,6 +371,77 @@ font {
     margin: -418px 0 0 -444px;
 }
 
+.slh {
+ position : relative;
+ width : 304.77px;
+ height: 50px;
+}     
+
+.star2 {
+	width: 50px;
+	height: 50px;
+	float : left;
+	margin-left: 8%;
+}
+	
+.like2 {
+    
+	float : left;
+	margin-left: 20px;
+   }
+.hate2 { 
+     float : left;
+     margin-left: 20px;
+     }
+     
+.likenum {
+    
+	float : left;
+	margin-left: 8px;
+   }
+.hatenum { 
+     float : left;
+     margin-left: 8px;
+     }
+     
+ img.likeimg {
+    width: 30px;
+    height: 30px;
+    margin: 4px auto;
+    border-radius: 0%;
+  }
+   img.hateimg {
+    width: 30px;
+    height: 30px;
+    margin: 4px auto;
+    border-radius: 0%;
+  }
+   
+.favorOn {
+	display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px!important;
+  margin: -1px 0 1px;
+  background: url("../images/favorite.jpg") no-repeat -210px -42px;
+  font-size: 0;
+  line-height: 0!important;
+  text-indent: -9000px;
+}
+
+.favorOff {
+	display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px!important;
+  margin: -1px 0 1px;
+  background: url("../images/favorite.jpg") no-repeat -290px -42px;
+  font-size: 0;
+  line-height: 0!important;
+  text-indent: -9000px;
+}   
+      
+      
 </style>
 
 </head>
@@ -498,12 +575,11 @@ font {
 
    <div class="textbox">
     <div class="mywordtext" style="text-align:center;">
-      <font size="6">나의 단어장</font><br>
+      <font size="6">추천 리스트</font><br>
       <span class='countspan'>
       <select id="assosCount" onchange="loadPaging()">
-        <option selected='selected' value='3'>3개씩 보기</option>
-        <option value='5'>5개씩 보기</option>
-        <option value='10'>10개씩 보기</option>
+        <option selected='selected' value='100'>인기순 정렬</option>
+        <option value='100'>최신순 정렬</option>
        </select>
        </span>
     </div>
@@ -656,15 +732,19 @@ function loadPhoto() {
             "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
             "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
             "<hr class='animate-in-03'>" +
-            "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
+            "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
+            "<div class='slh' align='center'>" +
+            "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
+            "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
+			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
+			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
+			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
+			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
+            ) 
             .appendTo(ul);
+           setFavor(i);
         }
-        $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀     </a></li>").appendTo(pagingTag);
-  for (var i = 1; i <= paging.finalPageNo; i++) {
-  	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
-  }
-  $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>  ▶</a></li>").appendTo(pagingTag);
-        
         new AnimOnScroll( document.getElementById('grid'), {
             minDuration : 0.4,
             maxDuration : 0.7,
@@ -674,7 +754,7 @@ function loadPhoto() {
    }   
    
    </script>
-<script>
+ <script>
   function goPage(i) {
     $(document).ready(function () {       
     // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
@@ -701,15 +781,25 @@ function loadPhoto() {
                 console.log("pageNo  : " + paging.pageNo);
                 console.log("nextPageNo  : " + paging.nextPageNo);
                 console.log("finalPageNo  : " + paging.finalPageNo);
-               for (var i in list) {
-                  $("<li>").html("<div class='material-contact animate-in-card'>" + 
-                   "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
-                   "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
-                   "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
-                   "<hr class='animate-in-03'>" +
-                   "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
-                   .appendTo(ul);
-               }
+                for (var i in list) {
+                    $("<li>").html("<div class='material-contact animate-in-card'>" + 
+                     "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
+                     "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
+                     "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
+                     "<hr class='animate-in-03'>" +
+                     "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
+                     "<div class='slh' align='center'>" +
+                     "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
+                     "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
+         			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
+         			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+         			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
+         			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
+         			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
+                     ) 
+                     .appendTo(ul);
+                    setFavor(i);
+                 }
                new AnimOnScroll(document.getElementById('grid'), {
                    minDuration : 0.4,
                    maxDuration : 0.7,
@@ -740,20 +830,25 @@ function loadPhoto() {
               var pagingTag = $(".pagination");  
                 var list = result.list;
                 var paging = result.paging;                
-               for (var i in list) {
-                  $("<li>").html("<div class='material-contact animate-in-card'>" + 
-                   "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
-                   "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
-                   "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
-                   "<hr class='animate-in-03'>" +
-                   "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p></div>")
-                   .appendTo(ul);
-               }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.firstPageNo + ")' class='first'>◀</a></li>").appendTo(pagingTag);
-               for (var i = 1; i <= paging.finalPageNo; i++) {
-               	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
-               }
-               $("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + paging.finalPageNo + ")' class='last'>▶</a></li>").appendTo(pagingTag);
+                for (var i in list) {
+                    $("<li>").html("<div class='material-contact animate-in-card'>" + 
+                     "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
+                     "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
+                     "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
+                     "<hr class='animate-in-03'>" +
+                     "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
+                     "<div class='slh' align='center'>" +
+                     "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
+                     "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
+         			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
+         			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+         			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
+         			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
+         			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
+                     ) 
+                     .appendTo(ul);
+                    setFavor(i);
+                 }
                new AnimOnScroll(document.getElementById('grid'), {
                    minDuration : 0.4,
                    maxDuration : 0.7,
@@ -762,6 +857,177 @@ function loadPhoto() {
                });
               }});});
    }              
+
+  
+  function setFavor(index) {
+		$(document).ready(function () {
+				console.log($("#favorAno"+index).val());
+				$.post("../ajax/myWord/exist.do", {
+					ano : $("#favorAno"+index).val()
+				}, function(result) {
+					if (result.exist) {
+						$("a.favor" + index).addClass("favorOn");
+					} else {
+						$("a.favor" + index).addClass("favorOff");
+					}
+				});
+		});
+	}
+	function favorChange(index) {
+		$(document).ready(function () {
+			$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo"+index).val(), function (result) {
+				var list = result.list;
+				console.log("즐겨찾기 추가")
+		 		if($("a.favor" + index).hasClass("favorOff")) {
+					$.post("../ajax/myWord/add.do", {
+						ano : list[index].ano
+					}, function(result) {
+						$("a.favor" + index).removeClass("favorOff");
+						$("a.favor" + index).addClass("favorOn");
+					});
+				
+				} else {
+					$.post("../ajax/myWord/delete.do", {
+						ano : list[index].ano
+					}, function(result) {
+						$("a.favor" + index).removeClass("favorOn");
+						$("a.favor" + index).addClass("favorOff");
+					});
+				}
+		 	});
+		});
+	}
+	
+	
+	function likePlus(index) {	
+		$(document).ready(function () {	
+			$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
+				var list = result.list;
+			 $.get("../ajax/searchList/likeOrHate.do", { 
+				 ano : list[index].ano		      
+			    }, function(results) {
+			      if (results.status == "success") { 	
+					$.get("../ajax/searchList/likesUpdate.do", { 
+						ano : list[index].ano			      
+				    }, function(results) {
+				      if (results.status == "success") {			    	  
+				    	  console.log("좋아요++");
+				    	  var like = $("#likeNo"+index);
+				    	  like.html($("#likeNo"+index).text() * 1  + 1).appendTo(like); 
+				    	  
+				      } else {
+				    	  console.log("실패다");
+				      }
+				    }, "json"	  
+			      );
+					 }		      
+			    else {
+			    	  $.dialog({
+
+	                      // 'alert', 'confirm', 'info' or 'tips'
+	                      type : 'alert',     
+	                      titleText : '이미 "좋아요 혹은 싫어요" 하신 연상법 입니다.',
+	                      showTitle : true,
+	                      contentHtml : '',
+	                      dialogClass : '',
+	                      autoClose : 0,
+	                      overlayClose : false,
+	                      drag : false,
+
+	                      buttonText : {
+	                          ok : 'OK',
+	                          cancel : 'Cancel',
+	                          delete : 'Delete'
+	                      },
+	                      buttonClass : {
+	                          ok : '',
+	                          cancel : '',
+	                          delete : ''
+	                      },
+	                      infoText : '',      // working in info type
+	                      infoIcon : '',      // working in info type
+
+	                      onClickOk : function(){},
+	                      onClickCancel : function(){},
+	                      onClickClose : function(){},
+
+	                      onBeforeShow : function(){},
+	                      onShow : function(){},
+	                      onBeforeClosed : function(){},
+	                      onClosed : function(){}
+	                      
+	                    });
+			    	}},"json" 
+			    );}
+		 );});
+		}
+	function hatePlus(index) {	
+		$(document).ready(function () {
+			$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
+				var list = result.list;
+			 $.get("../ajax/searchList/likeOrHate.do", { 
+				 ano : list[index].ano	      
+			    }, function(results) {
+			      if (results.status == "success") { 	
+					$.get("../ajax/searchList/hatesUpdate.do", {
+						ano : list[index].ano		      
+				    }, function(results) {
+				      if (results.status == "success") {			    	  
+				    	  console.log("싫어요++");
+				    	  var hate = $("#hateNo"+index);
+				    	  hate.html($("#hateNo"+index).text() * 1  + 1).appendTo(hate);
+				      } else {
+				    	  console.log("실패다");
+				      }
+				    }, "json"	  
+			      );
+					 }		      
+			    else {
+			    	  $.dialog({
+
+	                      // 'alert', 'confirm', 'info' or 'tips'
+	                      type : 'alert',     
+	                      titleText : '이미 "좋아요 혹은 싫어요" 하신 연상법 입니다.',
+	                      showTitle : true,
+	                      contentHtml : '',
+	                      dialogClass : '',
+	                      autoClose : 0,
+	                      overlayClose : false,
+	                      drag : false,
+
+	                      buttonText : {
+	                          ok : 'OK',
+	                          cancel : 'Cancel',
+	                          delete : 'Delete'
+	                      },
+	                      buttonClass : {
+	                          ok : '',
+	                          cancel : '',
+	                          delete : ''
+	                      },
+
+	                      infoText : '',      // working in info type
+	                      infoIcon : '',      // working in info type
+
+	                      onClickOk : function(){},
+	                      onClickCancel : function(){},
+	                      onClickClose : function(){},
+
+	                      onBeforeShow : function(){},
+	                      onShow : function(){},
+	                      onBeforeClosed : function(){},
+	                      onClosed : function(){}
+	                      
+	                    });
+			    	}},"json" 
+			    );}
+		 );});
+		}	
+	
+	
+	
+  
+  
 </script> 
 </body>
 </html>
