@@ -105,8 +105,12 @@ public class MemberAjaxController {
     try {
 
 			    	 Member member = new Member();
+			    	 Member loginMember = (Member)session.getAttribute("loginUser");
+			    	 member.setNo(loginMember.getNo());
 			     	 member.setEmail(email);
 			       member.setNick(nick);
+			       member.setPassword(loginMember.getPassword());
+			       member.setPhoto(loginMember.getPhoto());
 		       
 			       Member resultMember = memberService.retrieveByEmail(email);
 			      
@@ -214,11 +218,7 @@ public class MemberAjaxController {
     
     HashMap<String,Object> result = new HashMap<>();
     
-  
-    System.out.println("멤버");
-    
     int totLikes = memberService.mylikes(member);
-    
     
     result.put("totLikes", totLikes);
     result.put("list", list);
