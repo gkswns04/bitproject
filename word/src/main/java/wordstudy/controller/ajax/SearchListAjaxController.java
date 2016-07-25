@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,6 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +40,9 @@ public class SearchListAjaxController {
   @Autowired SearchListService searchListService;
   @Autowired MyWordService myWordService;
   @Autowired ServletContext servletContext;
-    
+  List<SearchList> todayList = new ArrayList<>();
+  
+  
   @RequestMapping(value="assoDelete", produces="application/json;charset=UTF-8")
   @ResponseBody
   public String assoDelete(HttpSession session, int ano) throws ServletException, IOException {
@@ -386,6 +388,17 @@ public class SearchListAjaxController {
       throws ServletException, IOException {
     
     List<SearchList> list = searchListService.list(word);
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="todaylist", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String todaylist()
+      throws ServletException, IOException {
+    
+    List<SearchList> list = searchListService.todaylist();
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
     return new Gson().toJson(result);

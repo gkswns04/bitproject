@@ -10,6 +10,7 @@ public interface SearchListService {
   void delete(int no);
   
   List<SearchList> list(String word);
+  List<SearchList> todaylist();
   void change(SearchList searchList);
   int countPage(int pageSize);
   void wordMeanAdd(SearchList searchList);

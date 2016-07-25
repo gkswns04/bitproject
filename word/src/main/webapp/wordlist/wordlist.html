@@ -720,10 +720,9 @@ function loadPhoto() {
    <script>
    loadAsso();
    function loadAsso() {
-      $.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
+      $.getJSON("../ajax/searchList/todaylist.do", function (result) {
          var ul = $("#grid");
-         var pagingTag = $(".pagination");   
-         var paging = result.paging;
+      
          var list = result.list;
         
         for (var i in list) {
@@ -754,110 +753,9 @@ function loadPhoto() {
    }   
    
    </script>
- <script>
-  function goPage(i) {
-    $(document).ready(function () {       
-    // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
-       $.ajax({
-           // type을 설정합니다.
-           type: 'POST',
-           url: "../ajax/myWord/list.do",
-           data: {
-            pageNo : i,              
-              pageSize : $("#assosCount").val()
-              },
-           // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
-           success: function (data) {
-              $.getJSON("../ajax/myWord/list.do", {pageNo : i, pageSize:$("#assosCount").val()}, function (result) {
-              $("#grid").empty();
-              var ul = $("#grid");
-                var list = result.list;
-                var paging = result.paging;
-                console.log($("#assosCount").val());
-                console.log("firstPageNo : " + paging.firstPageNo);
-                console.log("prevPageNo  : " + paging.prevPageNo);
-                console.log("startPageNo  : " + paging.startPageNo);
-                console.log("endPageNo  : " + paging.endPageNo);
-                console.log("pageNo  : " + paging.pageNo);
-                console.log("nextPageNo  : " + paging.nextPageNo);
-                console.log("finalPageNo  : " + paging.finalPageNo);
-                for (var i in list) {
-                    $("<li>").html("<div class='material-contact animate-in-card'>" + 
-                     "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
-                     "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
-                     "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
-                     "<hr class='animate-in-03'>" +
-                     "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
-                     "<div class='slh' align='center'>" +
-                     "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
-                     "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
-         			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
-         			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
-         			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
-         			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
-         			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
-                     ) 
-                     .appendTo(ul);
-                    setFavor(i);
-                 }
-               new AnimOnScroll(document.getElementById('grid'), {
-                   minDuration : 0.4,
-                   maxDuration : 0.7,
-                   viewportFactor : 0.2
-             });
-               });
-              }});});
-   }              
-</script>   
-<script>
-  function loadPaging() {
-    $(document).ready(function () {       
-    // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
-       $.ajax({
-           // type을 설정합니다.
-           type: 'POST',
-           url: "../ajax/myWord/list.do",
-           data: {
-            pageNo : 1,              
-              pageSize : $("#assosCount").val()
-              },
-           // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
-           success: function (data) {
-              $.getJSON("../ajax/myWord/list.do", {pageNo : 1, pageSize:$("#assosCount").val()}, function (result) {
-              $("#grid").empty();
-              $(".pagination").empty();
-              var ul = $("#grid");
-              var pagingTag = $(".pagination");  
-                var list = result.list;
-                var paging = result.paging;                
-                for (var i in list) {
-                    $("<li>").html("<div class='material-contact animate-in-card'>" + 
-                     "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
-                     "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
-                     "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
-                     "<hr class='animate-in-03'>" +
-                     "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
-                     "<div class='slh' align='center'>" +
-                     "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
-                     "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
-         			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
-         			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
-         			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
-         			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
-         			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
-                     ) 
-                     .appendTo(ul);
-                    setFavor(i);
-                 }
-               new AnimOnScroll(document.getElementById('grid'), {
-                   minDuration : 0.4,
-                   maxDuration : 0.7,
-                   viewportFactor : 0.2
-             });
-               });
-              }});});
-   }              
 
+<script>
+  
   
   function setFavor(index) {
 		$(document).ready(function () {

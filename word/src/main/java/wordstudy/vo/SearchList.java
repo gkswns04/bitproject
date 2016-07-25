@@ -17,7 +17,7 @@ public class SearchList {
   String assophotPath;
   String assothumPath;
   String hint;
-  int best;
+  String best;
   boolean favor;
   int likes;
   int hates;
@@ -26,7 +26,7 @@ public class SearchList {
     // TODO Auto-generated constructor stub
   }
   public SearchList(int ano, int mno, int meno, String nick, Date date, String word, String mean, String asso,
-      int likeNo, int hateNo, String prophotPath, String assophotPath, String assothumPath, String hint, int best,
+      int likeNo, int hateNo, String prophotPath, String assophotPath, String assothumPath, String hint, String best,
       boolean favor, int likes, int hates) {
     super();
     this.ano = ano;
@@ -132,10 +132,10 @@ public class SearchList {
   public void setHint(String hint) {
     this.hint = hint;
   }
-  public int getBest() {
+  public String getBest() {
     return best;
   }
-  public void setBest(int best) {
+  public void setBest(String best) {
     this.best = best;
   }
   public boolean isFavor() {
@@ -163,6 +163,6 @@ public class SearchList {
         + ", prophotPath=" + prophotPath + ", assophotPath=" + assophotPath + ", assothumPath=" + assothumPath
         + ", hint=" + hint + ", best=" + best + ", favor=" + favor + ", likes=" + likes + ", hates=" + hates + "]";
   }
-      
+
   
 }
