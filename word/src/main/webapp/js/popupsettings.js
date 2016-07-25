@@ -34,7 +34,7 @@ $(function(){
       });
 
     if(member.nick != "") {   
-          $("#nickCheck").val("1");
+         $("#nickCheck").val("1");
          $('font[name=ncheck]').html("중복된 닉네임 입니다.");
          $('font[name=ncheck]').css("color","red");
    } else if (member.nick == "") {
@@ -82,7 +82,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                   infoText : '',      // working in info type
                   infoIcon : '',      // working in info type
 
-                  onClickOk : function(){},
+                  onClickOk : function(){
+                	  document.mysetting.setnick.focus();
+                  },
                   onClickCancel : function(){},
                   onClickClose : function(){},
 
@@ -92,7 +94,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                   onClosed : function(){}
                   
                 });
-            document.mysetting.setnick.focus();
+           
          }else if((checkValue == "0") && (nickBefore != $("#setnick").val())){
             
             $.ajax({
@@ -109,7 +111,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                         $("#nickBefore").val("result.nick");
                         //member.nick = result.nick;
                         if(!($("#setpassword").val() != "" && $("#setpassword_confirm").val() != "" && $("#localpassword").val() != "")){
-                        	/*  $.dialog({
+                        	  $.dialog({
 
                                   // 'alert', 'confirm', 'info' or 'tips'
                                   type : 'alert',     
@@ -135,7 +137,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                                   infoText : '',      // working in info type
                                   infoIcon : '',      // working in info type
 
-                                  onClickOk : function(){},
+                                  onClickOk : function(){
+                                	  window.location.reload();
+                                  },
                                   onClickCancel : function(){},
                                   onClickClose : function(){},
 
@@ -144,9 +148,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                                   onBeforeClosed : function(){},
                                   onClosed : function(){}
                                   
-                                });*/
-                        	window.alert("ok");
-                        	
+                                });
                         }
                      }else if(result.status == "failure"){
                     	  $.dialog({
@@ -175,7 +177,10 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                               infoText : '',      // working in info type
                               infoIcon : '',      // working in info type
 
-                              onClickOk : function(){},
+                              onClickOk : function(){
+                            	  $("#setnick").val(result.nick);
+                                  document.mysetting.setnick.focus();
+                              },
                               onClickCancel : function(){},
                               onClickClose : function(){},
 
@@ -185,7 +190,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                               onClosed : function(){}
                               
                             });
-                        $("#setnick").val(result.nick);
+                       
                      }
                      
                   if(result.nick != "") {   
@@ -211,7 +216,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
 
                    // 'alert', 'confirm', 'info' or 'tips'
                    type : 'alert',     
-                   titleText : '비밀번호가 일치하지 않습니다. 다시 입력해주세요.',
+                   titleText : '기존 비밀번호를 확인해 주세요.',
                    showTitle : true,
                    contentHtml : '',
                    dialogClass : '',
@@ -233,7 +238,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                    infoText : '',      // working in info type
                    infoIcon : '',      // working in info type
 
-                   onClickOk : function(){},
+                   onClickOk : function(){
+                	   document.mysetting.setpassword_confirm.focus();
+                   },
                    onClickCancel : function(){},
                    onClickClose : function(){},
 
@@ -243,7 +250,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                    onClosed : function(){}
                    
                  });
-            document.mysetting.setpassword_confirm.focus();
+          
          }else if(!$('#setpassword').val().match(regexPassword)) {
         	  $.dialog({
 
@@ -271,7 +278,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                   infoText : '',      // working in info type
                   infoIcon : '',      // working in info type
 
-                  onClickOk : function(){},
+                  onClickOk : function(){
+                	  document.mysetting.setpassword.focus();
+                  },
                   onClickCancel : function(){},
                   onClickClose : function(){},
 
@@ -281,7 +290,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                   onClosed : function(){}
                   
                 });
-            document.mysetting.setpassword.focus();
+            
          }else{
              $.ajax({
                  type: 'POST',
@@ -322,7 +331,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                             infoText : '',      // working in info type
                             infoIcon : '',      // working in info type
 
-                            onClickOk : function(){},
+                            onClickOk : function(){
+                            	window.location.reload();
+                            },
                             onClickCancel : function(){},
                             onClickClose : function(){},
 
@@ -362,7 +373,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                             infoText : '',      // working in info type
                             infoIcon : '',      // working in info type
 
-                            onClickOk : function(){},
+                            onClickOk : function(){
+                            	 document.mysetting.setpassword_confirm.focus();
+                            },
                             onClickCancel : function(){},
                             onClickClose : function(){},
 
@@ -372,7 +385,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                             onClosed : function(){}
                             
                           }); 
-                        document.mysetting.setpassword_confirm.focus();
+                       
                      }
                      
                   if(result.password != "") {   
@@ -429,7 +442,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                        infoText : '',      // working in info type
                        infoIcon : '',      // working in info type
 
-                       onClickOk : function(){},
+                       onClickOk : function(){
+                    	   document.mysetting.setnick.focus();
+                       },
                        onClickCancel : function(){},
                        onClickClose : function(){},
 
@@ -439,12 +454,50 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                        onClosed : function(){}
                        
                      });
-                  window.location.reload();
-               } else if (result.status == "noChange") {
-                 window.location.reload();
+               }else if (result.status == "noChange") {
+                
                }
          }
        });
+/*
+     $.dialog({
+
+         // 'alert', 'confirm', 'info' or 'tips'
+         type : 'alert',     
+         titleText : '변경 사항이 없습니다.',
+         showTitle : true,
+         contentHtml : '',
+         dialogClass : '',
+         autoClose : 0,
+         overlayClose : false,
+         drag : false,
+
+         buttonText : {
+             ok : 'OK',
+             cancel : 'Cancel',
+             delete : 'Delete'
+         },
+         buttonClass : {
+             ok : '',
+             cancel : '',
+             delete : ''
+         },
+
+         infoText : '',      // working in info type
+         infoIcon : '',      // working in info type
+
+         onClickOk : function(){
+         },
+         onClickCancel : function(){},
+         onClickClose : function(){},
+
+         onBeforeShow : function(){},
+         onShow : function(){},
+         onBeforeClosed : function(){},
+         onClosed : function(){}
+         
+       });
+     */
    });
    
    $("#deletebtn").click(function(event) {
@@ -522,7 +575,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                        infoText : '',      // working in info type
                        infoIcon : '',      // working in info type
 
-                       onClickOk : function(){},
+                       onClickOk : function(){
+                       document.deletecheck.deletepassword.focus();
+                       },
                        onClickCancel : function(){},
                        onClickClose : function(){},
 
@@ -533,8 +588,9 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                        
                      });
                   $("#deletepassword").val("");
-                  document.deletecheck.deletepassword.focus();
+                  
                }
+               
             },
               
            dataType: "json",
