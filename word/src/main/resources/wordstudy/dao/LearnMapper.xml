@@ -14,7 +14,7 @@
   </resultMap>
  
   <select id="hintList" resultMap="LearnMap">
-    select distinct A.hint,A.meno,A.A_THUM,A.Asso,M.MEAN from assos A, means M order by rand() limit 10;
+    select A.hint,A.meno,A.A_THUM,A.Asso,M.MEAN from assos A, means M order by rand() limit 10;
   </select>
   
   <select id="correctMean" parameterType="int" resultMap="LearnMap">
@@ -22,14 +22,14 @@
   </select>
   
 	<select id="selectList" resultMap="LearnMap">
-    select distinct(mean) from means 
+    select mean from means 
     where word not in(select WORD from MEANS where MENO=#{meno}) 
     order by rand() 
     limit 3;  
   </select>
   
   <select id="mywordhintList" parameterType="int" resultMap="LearnMap">
-    select distinct hint,meno,A_THUM,Asso from assos A, my_word M where M.mno=#{mno} and M.ano=A.ano order by rand() limit 10;
+    select hint,meno,A_THUM,Asso from assos A, my_word M where M.mno=#{mno} and M.ano=A.ano order by rand() limit 10;
   </select>
   
   <select id="learnmeanResult" parameterType="String" resultMap="LearnMap">

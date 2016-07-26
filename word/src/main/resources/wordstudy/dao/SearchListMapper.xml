@@ -125,6 +125,16 @@
 		WHERE W.WORD = M.WORD
 		AND M.MENO = A.MENO
 		AND A.MNO = R.MNO
+		order by A.LIKES desc
+  </select>
+  
+  <select id="todayListlt" resultMap="SearchListMap">
+  SELECT W.WORD, M.MEAN, A.ANO, A.ASSO, A.LIKES, A.HATES, A.A_PHOT, R.PHOT, A.FAVOR, R.NIC, A.DATE, A.A_THUM, A.ANO 
+		FROM WORDS W, MEANS M, today A, MEMBERS R
+		WHERE W.WORD = M.WORD
+		AND M.MENO = A.MENO
+		AND A.MNO = R.MNO
+		order by A.DATE desc
   </select>
     
   <select id="findAsso" resultType="int" parameterType="SearchList">

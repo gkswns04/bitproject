@@ -126,6 +126,11 @@ public class DefaultSearchListService implements SearchListService {
   public List<SearchList> todaylist() {
     return searchListDao.todayList();
   }
+
+  @Override
+  public List<SearchList> todaylistlt() {
+    return searchListDao.todayListlt();
+  }
   
   /*public void change(SearchList searchList) {
     searchListDao.update(searchList);

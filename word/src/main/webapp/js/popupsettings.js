@@ -94,7 +94,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                   onClosed : function(){}
                   
                 });
-           
+
          }else if((checkValue == "0") && (nickBefore != $("#setnick").val())){
             
             $.ajax({
@@ -150,6 +150,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                                   
                                 });
                         }
+                        return;
                      }else if(result.status == "failure"){
                     	  $.dialog({
 
@@ -414,7 +415,44 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
             processData:false,
          success: function(result) {
                if (result.status == "success") {
-                  window.location.reload(); 
+            	   $.dialog({
+
+                       // 'alert', 'confirm', 'info' or 'tips'
+                       type : 'alert',     
+                       titleText : '설정을 변경했습니다.',
+                       showTitle : true,
+                       contentHtml : '',
+                       dialogClass : '',
+                       autoClose : 0,
+                       overlayClose : false,
+                       drag : false,
+
+                       buttonText : {
+                           ok : 'OK',
+                           cancel : 'Cancel',
+                           delete : 'Delete'
+                       },
+                       buttonClass : {
+                           ok : '',
+                           cancel : '',
+                           delete : ''
+                       },
+
+                       infoText : '',      // working in info type
+                       infoIcon : '',      // working in info type
+
+                       onClickOk : function(){
+                    	   window.location.reload();
+                       },
+                       onClickCancel : function(){},
+                       onClickClose : function(){},
+
+                       onBeforeShow : function(){},
+                       onShow : function(){},
+                       onBeforeClosed : function(){},
+                       onClosed : function(){}
+                       
+                     }); 
                } else if (result.status == "failure") {
             	   $.dialog({
 
@@ -454,13 +492,53 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
                        onClosed : function(){}
                        
                      });
-               }else if (result.status == "noChange") {
-                
+               } else if (result.status == "noChange") {
+            	   if ($("#setpassword").val() == "" && $("#setpassword_confirm").val() == "" && $("#localpassword").val() == "" && nickBefore == $("#setnick").val()) {
+
+            		   $.dialog({
+
+            		         // 'alert', 'confirm', 'info' or 'tips'
+            		         type : 'alert',     
+            		         titleText : '변경 사항이 없습니다.',
+            		         showTitle : true,
+            		         contentHtml : '',
+            		         dialogClass : '',
+            		         autoClose : 0,
+            		         overlayClose : false,
+            		         drag : false,
+
+            		         buttonText : {
+            		             ok : 'OK',
+            		             cancel : 'Cancel',
+            		             delete : 'Delete'
+            		         },
+            		         buttonClass : {
+            		             ok : '',
+            		             cancel : '',
+            		             delete : ''
+            		         },
+
+            		         infoText : '',      // working in info type
+            		         infoIcon : '',      // working in info type
+
+            		         onClickOk : function(){
+            		        	 document.mysetting.setnick.focus();
+            		         },
+            		         onClickCancel : function(){},
+            		         onClickClose : function(){},
+
+            		         onBeforeShow : function(){},
+            		         onShow : function(){},
+            		         onBeforeClosed : function(){},
+            		         onClosed : function(){}
+            		         
+            		       });
+            	   }
                }
          }
        });
-/*
-     $.dialog({
+
+     /*$.dialog({
 
          // 'alert', 'confirm', 'info' or 'tips'
          type : 'alert',     
@@ -487,6 +565,7 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
          infoIcon : '',      // working in info type
 
          onClickOk : function(){
+        	 document.mysetting.setnick.focus();
          },
          onClickCancel : function(){},
          onClickClose : function(){},
@@ -496,8 +575,8 @@ var regexPassword =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}$/;
          onBeforeClosed : function(){},
          onClosed : function(){}
          
-       });
-     */
+       });*/
+
    });
    
    $("#deletebtn").click(function(event) {

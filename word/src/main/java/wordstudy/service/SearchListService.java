@@ -11,6 +11,7 @@ public interface SearchListService {
   
   List<SearchList> list(String word);
   List<SearchList> todaylist();
+  List<SearchList> todaylistlt();
   void change(SearchList searchList);
   int countPage(int pageSize);
   void wordMeanAdd(SearchList searchList);

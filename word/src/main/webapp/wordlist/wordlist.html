@@ -17,20 +17,34 @@
 	 	<meta name="author" content="Codrops" /> 
 
 <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
-
+<link rel="stylesheet" type="text/css" href="../css/dialog.css">
 <script src="../js/modernizr.custom.js"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../js/authcheck.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../js/popupsettings.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<script src="../js/popupsettings.js"></script>
+<script src="../js/dialog.js"></script>
 
 
 
 
 <style>
+strong {
+	font-weight: bold;
+}
+
+h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    font-size: 18px;
+}
+
 .pagination {
 margin: 0 auto;
 }
@@ -373,7 +387,7 @@ font {
 
 .slh {
  position : relative;
- width : 304.77px;
+ width : 255px;
  height: 50px;
 }     
 
@@ -381,7 +395,7 @@ font {
 	width: 50px;
 	height: 50px;
 	float : left;
-	margin-left: 8%;
+	margin-left: 10%;
 }
 	
 .like2 {
@@ -578,8 +592,8 @@ font {
       <font size="6">오늘의 단어</font><br>
       <span class='countspan'>
       <select id="assosCount" onchange="loadPaging()">
-        <option selected='selected' value='100'>인기순 정렬</option>
-        <option value='100'>최신순 정렬</option>
+        <option selected='selected' value='1'>인기순 정렬</option>
+        <option value='2'>최신순 정렬</option>
        </select>
        </span>
     </div>
@@ -702,7 +716,7 @@ function loadPhoto() {
 		
 		$("<div class='menubar'>").html("<ul>" + 
 				"<li><a href='#' id='current'><div class='mypage'><div class='imgdiv'><img class='thumbnail' src='" + list[0].photo + "' width='45' height='45'></div><div class='name'><font size='3'>" + list[0].nick + "</font></div></div></a>" + 
-				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;110</font></a></li>" + 
+				"<ul><li><a href='location:;'>받은좋아요 <img src='../images/mainlikewhite.png' width='20px' height='20px'><font align='right'> &nbsp;&nbsp;&nbsp;&nbsp;" + result.totLikes + "</font></a></li>" + 
 				"<li><a data-toggle=\"modal\" href='#setting'>설정</a></li><li><a href='../auth/logout.do'>로그아웃</a></li></ul>" +
 				"</li></ul>").appendTo(headerdiv);
 		$('#sign').css("display", "none");
@@ -720,7 +734,7 @@ function loadPhoto() {
    <script>
    loadAsso();
    function loadAsso() {
-      $.getJSON("../ajax/searchList/todaylist.do", function (result) {
+      $.getJSON("../ajax/searchList/todaylist.do", {type:$("#assosCount").val()}, function (result) {
          var ul = $("#grid");
       
          var list = result.list;
@@ -755,6 +769,43 @@ function loadPhoto() {
    </script>
 
 <script>
+  function loadPaging() {
+    $(document).ready(function () {       
+        $.getJSON("../ajax/searchList/todaylist.do", {type:$("#assosCount").val()}, function (result) {
+        $("#grid").empty();
+        var ul = $("#grid");
+        var list = result.list;          
+        for (var i in list) {
+            $("<li>").html("<div class='material-contact animate-in-card'>" + 
+             "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
+             "<h1 class='animate-in-01'><font size=4><strong>" + list[i].word + "</strong></font></h1>" +
+             "<h2 class='animate-in-02'><font size=3 color='black'>" + list[i].mean + "</font></h2>" + 
+             "<hr class='animate-in-03'>" +
+             "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
+             "<div class='slh' align='center'>" +
+             "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
+             "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
+ 			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
+ 			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+ 			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
+ 			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
+ 			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
+             ) 
+             .appendTo(ul);
+            setFavor(i);
+         }
+         
+         new AnimOnScroll(document.getElementById('grid'), {
+             minDuration : 0.4,
+             maxDuration : 0.7,
+             viewportFactor : 0.2
+       });
+     });
+    });
+   }              
+</script> 
+
+<script>
   
   
   function setFavor(index) {
@@ -778,7 +829,7 @@ function loadPhoto() {
 				console.log("즐겨찾기 추가")
 		 		if($("a.favor" + index).hasClass("favorOff")) {
 					$.post("../ajax/myWord/add.do", {
-						ano : list[index].ano
+						ano : $("#favorAno"+index).val()
 					}, function(result) {
 						$("a.favor" + index).removeClass("favorOff");
 						$("a.favor" + index).addClass("favorOn");
@@ -786,7 +837,7 @@ function loadPhoto() {
 				
 				} else {
 					$.post("../ajax/myWord/delete.do", {
-						ano : list[index].ano
+						ano : $("#favorAno"+index).val()
 					}, function(result) {
 						$("a.favor" + index).removeClass("favorOn");
 						$("a.favor" + index).addClass("favorOff");
@@ -802,11 +853,11 @@ function loadPhoto() {
 			$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
 				var list = result.list;
 			 $.get("../ajax/searchList/likeOrHate.do", { 
-				 ano : list[index].ano		      
+				 ano : $("#favorAno"+index).val()		      
 			    }, function(results) {
 			      if (results.status == "success") { 	
 					$.get("../ajax/searchList/likesUpdate.do", { 
-						ano : list[index].ano			      
+						ano : $("#favorAno"+index).val()			      
 				    }, function(results) {
 				      if (results.status == "success") {			    	  
 				    	  console.log("좋아요++");
@@ -864,11 +915,11 @@ function loadPhoto() {
 			$.getJSON("../ajax/searchList/list.do?word=" + $("#wordTo").val(), function (result) {
 				var list = result.list;
 			 $.get("../ajax/searchList/likeOrHate.do", { 
-				 ano : list[index].ano	      
+				 ano : $("#favorAno"+index).val()	      
 			    }, function(results) {
 			      if (results.status == "success") { 	
 					$.get("../ajax/searchList/hatesUpdate.do", {
-						ano : list[index].ano		      
+						ano : $("#favorAno"+index).val()      
 				    }, function(results) {
 				      if (results.status == "success") {			    	  
 				    	  console.log("싫어요++");

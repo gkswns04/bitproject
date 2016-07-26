@@ -10,6 +10,7 @@ import wordstudy.vo.SearchList;
 public interface SearchListDao {
   List<SearchList> selectList(Map<String,Object> paramMap);
   List<SearchList> todayList();
+  List<SearchList> todayListlt();
   SearchList selectOne(Map<String, Object> paramMap);
   int insert(SearchList searchList);  
   int update(SearchList searchList);
