@@ -170,19 +170,19 @@ video#bgvid {
       left: 50%;
       margin: 0 0 0 -240px;
     }
-    .assoEdit {
+    .assoEdit {    
     cursor: pointer;
-	 position: absolute;
-      top: 75px;
-      right: 50%;
-      margin: 0 -340px 0 0;
+    position: absolute;
+    top: 41px;
+    right: 42%;
+    margin: 0 -340px 0 0;
     }
     
     .assoDelete {
 	cursor: pointer;
 	 position: absolute;
-      top: 75px;
-      right: 50%;
+      top: 38px;
+      right: 44%;
       margin: 0 -410px 0 0 ;
 }
     .word {
