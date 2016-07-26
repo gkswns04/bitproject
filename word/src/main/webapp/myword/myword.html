@@ -683,10 +683,10 @@ function loadPhoto() {
         }
         $("<li class='pagingBlock'>").html("<a href='javascript:goPagePrev()' class='first'>◀     </a></li>").appendTo(pagingTag);
   for (var i = 1; i <= paging.finalPageNo; i++) {
-  	$("<li class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
+  	$("<li id='activePage" + i + "' class='pagingBlock'>").html("<a href='javascript:goPage(" + i + ")' class='pageNoArray " + i + "'> " + i + " </a></li>").appendTo(pagingTag);
   }
   $("<li class='pagingBlock'>").html("<a href='javascript:goPageNext()' class='last'>  ▶</a></li>").appendTo(pagingTag);
-        
+        document.getElementById('activePage1').setAttribute("class","active");
         new AnimOnScroll( document.getElementById('grid'), {
             minDuration : 0.4,
             maxDuration : 0.7,
@@ -698,17 +698,34 @@ function loadPhoto() {
    </script>
    <script>
   function goPagePrev() {
-	  if ($("#pageNo").val() == 1) {
+	  var page = $("#pageNo").val()*1
+	  var prevPage = $("#pageNo").val()*1 -1
+	  if (page == 1) {
 		  goPage(1);
 	  } else {
-		  goPage($("#pageNo").val() - 1)
+		  goPage(prevPage)
+		  document.getElementById('activePage' + page).setAttribute("class","pagingBlock");
+		  document.getElementById('activePage' + prevPage).setAttribute("class","active");
 	  }
 	  console.log("현재 page 번호 :" + $("#pageNo").val());
-   }              
+   }
+
+  function goPageNext() {
+	  var page = $("#pageNo").val()*1
+	  var nextPage = $("#pageNo").val()*1 + 1
+	  goPage(nextPage);
+	  document.getElementById('activePage' + page).setAttribute("class","pagingBlock");
+	  document.getElementById('activePage'+ nextPage).setAttribute("class","active");
+  }
+
 </script>
+
 <script>
   function goPage(i) {
+	  var page = $("#pageNo").val()*1
 	  document.getElementById('pageNo').setAttribute('value', i);
+	  document.getElementById('activePage' + page).setAttribute("class","pagingBlock");
+      document.getElementById('activePage'+ i).setAttribute("class","active");
     $(document).ready(function () {       
     // Ajax 통신으로 서버에 Data를 전송하고 Return 받습니다.
        $.ajax({
@@ -726,14 +743,6 @@ function loadPhoto() {
               var ul = $("#grid");
                 var list = result.list;
                 var paging = result.paging;
-                console.log($("#assosCount").val());
-                console.log("firstPageNo : " + paging.firstPageNo);
-                console.log("prevPageNo  : " + paging.prevPageNo);
-                console.log("startPageNo  : " + paging.startPageNo);
-                console.log("endPageNo  : " + paging.endPageNo);
-                console.log("pageNo  : " + paging.pageNo);
-                console.log("nextPageNo  : " + paging.nextPageNo);
-                console.log("finalPageNo  : " + paging.finalPageNo);
                for (var i in list) {
                   $("<li>").html("<div class='material-contact animate-in-card'>" + 
                    "<img class='animate-in-image' src='" + list[i].assophotPath + "'>" +
@@ -752,12 +761,7 @@ function loadPhoto() {
               }});});
    }              
 </script>
-<script>
-  function goPageNext() {
-	  console.log("현재 page 번호 :" + $("#pageNo").val());
-	  goPage($("#pageNo").val()*1 + 1);
-  }
-</script>   
+
 <script>
   function loadPaging() {
     $(document).ready(function () {       
