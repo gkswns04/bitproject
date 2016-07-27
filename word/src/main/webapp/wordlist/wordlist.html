@@ -748,9 +748,9 @@ function loadPhoto() {
             "<p class='animate-in-04'><font size=3><strong>" + list[i].asso + "</strong></font></p>" +
             "<div class='slh' align='center'>" +
             "<span class='star2'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
-            "<span class='like2'><img onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
+            "<span class='like2'><img style=\"cursor:pointer;\" onclick='likePlus(" + i + ")' class='likeimg' src='../images/like.png' alt='like' width='30px'/></span>" +
 			"<span class='likenum'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
-			"<span class='hate2'><img onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
+			"<span class='hate2'><img style=\"cursor:pointer;\" onclick='hatePlus(" + i + ")' class='hateimg' src='../images/hate.png' alt='hate' width='30px' /></span>" +
 			"<span class='hatenum'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span></div></div>" +
 			"<input type='hidden' id='wordTo" + i + "' name='word' value='" + list[i].word + "'>" +
 			"<input type='hidden' id='favorAno" + i + "' name='word' value='" + list[i].ano + "'>"
