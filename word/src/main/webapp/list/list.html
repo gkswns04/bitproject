@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/style6.css" />
 <!-- <link href="../css/style.css" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="../css/common.css">
-<link rel="stylesheet" type="text/css" href="../css/list17.css">
+<link rel="stylesheet" type="text/css" href="../css/list18.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/dialog.css">
@@ -31,6 +31,7 @@
 <script src="../js/dialog.js"></script>
 
 <style>
+
 #wrapper {
   position: absolute;
   width: 500px !important;
@@ -145,6 +146,15 @@ margin-left: 20px;
 color: black;
 }
 
+#popupx {
+    position: absolute;
+    top: 18px;
+    left: 575px;
+}
+
+.sec-modal-lg {
+    top: 23% !important;
+}
 </style>
 
 
@@ -236,7 +246,7 @@ color: black;
     <!-- second modal -->
     <div class="modal" id="myModal2" aria-hidden="true" style="display: none; z-index: 1060;">
        <div class="popup addpopup">
-       <div class="modal-dialog modal-lg">
+       <div class="modal-dialog modal-lg sec-modal-lg">
           <div class="modal-content second-content add-second-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -312,11 +322,11 @@ color: black;
     <!-- second modal -->
     <div class="modal" id="EditAsso-myModal2" aria-hidden="true" style="display: none; z-index: 1060;">
        <div class="popup addpopup">
-       <div class="modal-dialog modal-lg">
+       <div class="modal-dialog modal-lg sec-modal-lg">
           <div class="modal-content second-content add-second-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title" id="exampleModalLabel"><font size="6">힌트가 되는 뜻 부분 체크</font></h4>
+              <h4 class="modal-title" id="exampleModalLabel"><font size="6">발음과 뜻 부분 체크</font></h4>
             </div><div class="container"></div>
             <div class="modal-body">
             <div id="EditAsso-assos">
@@ -441,11 +451,11 @@ color: black;
 function eventShow() {
 $('#gif_wrapper').append( // div팝업내용 wrapper라는 이름의 div에 아래 div팝업을 넣어줍니다.
 
-'<div id="event-pop-up" style="position:absolute; left:50%;margin-left:-247px; top:265px; z-index:99999;">'+
+'<div id="event-pop-up" style="position:absolute; left:50%; margin: 0px 0 0 -350px; top:200px; z-index:99999;">'+
 '<form name="notice_form">'+
 '<div style="position:relative"><table border="0" cellPadding="0" cellSpacing="0">'+
 '<tr>'+
-'<td><img src="../images/assoexgif.gif"></td>'+
+'<td><img src="../images/popup3.gif"><div id="popupx"><button type="button" class="close" onclick="eventHide()">×</button></div></td>'+
 '</tr>'+
 '</TABLE></div>'+
 '<div style="position:absolute;bottom:10px;left:25px;"><table width="487" border="0" cellpadding="0" cellspacing="0" align="center">'+
@@ -453,7 +463,7 @@ $('#gif_wrapper').append( // div팝업내용 wrapper라는 이름의 div에 아�
 '<td height="30px" valign="center" style="border:padding-left:20px;">'+
 '<input type="checkbox" id="today-close" name="chkbox" onclick="eventTodayHide()" />' +
 '<label for="today-close"><span class="style1"> 오늘 하루 이 창을 열지 않음</span>' + 
-'<a href="javascript:eventHide();" class="style2">[닫기]</a></label></td>' +
+'</label></td>' +
 '</tr>'+
 '</table></div>'+
 '</form>'+
@@ -535,6 +545,8 @@ $("#repopup").click(function() {
 })
 
 </script>
+
+
 
 <!-- gif팝업 여기까지 -->
 
@@ -731,7 +743,7 @@ var getParameter = function (param) {
 <script>
 loadMean();
 function loadMean() {
-	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
 
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
@@ -785,7 +797,7 @@ function wordAdd(word) {
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+		$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
 		if (result.length == 2) { 
 			for (i=1; i < result.length; i++) {			
 				 $.get("../ajax/searchList/wordMeanAdd.do", {
@@ -1075,6 +1087,42 @@ function favorChange(index) {
 				}, function(result) {
 					$("a.favor" + index).removeClass("favorOff");
 					$("a.favor" + index).addClass("favorOn");
+					
+					$.dialog({
+
+	                      // 'alert', 'confirm', 'info' or 'tips'
+	                      type : 'alert',     
+	                      titleText : '즐겨찾기에 추가하였습니다.',
+	                      showTitle : true,
+	                      contentHtml : '',
+	                      dialogClass : '',
+	                      autoClose : 0,
+	                      overlayClose : false,
+	                      drag : false,
+
+	                      buttonText : {
+	                          ok : 'OK',
+	                          cancel : 'Cancel',
+	                          delete : 'Delete'
+	                      },
+	                      buttonClass : {
+	                          ok : '',
+	                          cancel : '',
+	                          delete : ''
+	                      },
+	                      infoText : '',      // working in info type
+	                      infoIcon : '',      // working in info type
+
+	                      onClickOk : function(){},
+	                      onClickCancel : function(){},
+	                      onClickClose : function(){},
+
+	                      onBeforeShow : function(){},
+	                      onShow : function(){},
+	                      onBeforeClosed : function(){},
+	                      onClosed : function(){}
+	                      
+	                    });
 				});
 			
 			} else {
