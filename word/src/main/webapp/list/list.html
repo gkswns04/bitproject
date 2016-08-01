@@ -604,7 +604,6 @@ function loadPhoto() {
   $("#modalForm").submit(function(event) {   
 	   event.preventDefault();
 	   var tagAssos = document.getElementById("assos").innerHTML;
-	   tagAssos.replace("\'\g","\\'");
 	   $("<input type='hidden' name='asso' value='" + tagAssos + "'>").html("").appendTo("#assos");
 	   $("<input type='hidden' name='hint' value='" + tagAssos + "'>").html("").appendTo("#assos");	  
 	   var fd = new FormData($(this)[0]);
@@ -686,7 +685,8 @@ function assoEdit(i) {
 <script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
-         var divAssos2 = document.getElementById("message-text").value.split("");
+         var divAssos2 = document.getElementById("message-text").value.replace("\'\g","\\'").split("");
+         console.log(divAssos2);
          var asso = ""; 
          for (var i = 0; i < divAssos2.length; i++) {
            asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='assotext' data-index='" + i + "'>";
