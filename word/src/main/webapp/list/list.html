@@ -604,7 +604,7 @@ function loadPhoto() {
   $("#modalForm").submit(function(event) {   
 	   event.preventDefault();
 	   var tagAssos = document.getElementById("assos").innerHTML;
-	   tagAssos.replace("\'\g","\\'")
+	   tagAssos.replace("\'\g","\\'");
 	   console.log(tagAssos);
 	   $("<input type='hidden' name='asso' value='" + tagAssos + "'>").html("").appendTo("#assos");
 	   $("<input type='hidden' name='hint' value='" + tagAssos + "'>").html("").appendTo("#assos");	  
