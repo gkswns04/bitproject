@@ -604,10 +604,10 @@ function loadPhoto() {
   $("#modalForm").submit(function(event) {   
 	   event.preventDefault();
 	   var tagAssos = document.getElementById("assos").innerHTML;
-	   tagAssos.replace("\'\g","\\'");
-	   console.log(tagAssos);
-	   $("<input type='hidden' name='asso' value='" + tagAssos + "'>").html("").appendTo("#assos");
-	   $("<input type='hidden' name='hint' value='" + tagAssos + "'>").html("").appendTo("#assos");	  
+	   $("<input id='assosTag' type='hidden' name='asso' value=''>").html("").appendTo("#assos");
+	   $("<input id='hintsTag' type='hidden' name='hint' value=''>").html("").appendTo("#assos");
+	   document.getElementById("assosTag").setAttribute("value", tagAssos);
+	   document.getElementById("hintsTag").setAttribute("value", tagAssos);
 	   var fd = new FormData($(this)[0]);
      $.ajax({
     	 	 url:"../ajax/searchList/add.do",
@@ -687,8 +687,7 @@ function assoEdit(i) {
 <script type= "text/javascript">
        function changeValue(){
          var divAssos = document.getElementById("assos");
-         var divAssos2 = document.getElementById("message-text").value.replace("\'\g","\\'").split("");
-         console.log(divAssos2);
+         var divAssos2 = document.getElementById("message-text").value.split("");
          var asso = ""; 
          for (var i = 0; i < divAssos2.length; i++) {
            asso += "<span id='text" + i + "' onClick='changeValue2(" + i + ")' class='assotext' data-index='" + i + "'>";
