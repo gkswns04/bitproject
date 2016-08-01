@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/style6.css" />
 <!-- <link href="../css/style.css" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="../css/common.css">
-<link rel="stylesheet" type="text/css" href="../css/list18.css">
+<link rel="stylesheet" type="text/css" href="../css/list19.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
 <link rel="stylesheet" type="text/css" href="../css/dialog.css">
@@ -743,7 +743,7 @@ var getParameter = function (param) {
 <script>
 loadMean();
 function loadMean() {
-	$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
 
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
@@ -797,7 +797,7 @@ function wordAdd(word) {
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
+		$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
 		if (result.length == 2) { 
 			for (i=1; i < result.length; i++) {			
 				 $.get("../ajax/searchList/wordMeanAdd.do", {
