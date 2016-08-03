@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>main</title>
 
-<link rel="stylesheet" type="text/css" href="../css/dialog.css">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css"
@@ -18,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 
+<link rel="stylesheet" type="text/css" href="../css/dialog.css">
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -600,7 +600,7 @@ $('#newfile-btn').click(function(event) {
 		
 			location.href = "../wordlist/wordlist.html";
 		} else {
-			$.dialog({
+			 $.dialog({
 
 	            // 'alert', 'confirm', 'info' or 'tips'
 	            type : 'alert',     
@@ -638,7 +638,7 @@ $('#newfile-btn').click(function(event) {
 	          });
 		  
 		}
-	});
+	}); 
 });
 	
 $('#study-btn').click(function(event) {
@@ -687,6 +687,7 @@ $('#study-btn').click(function(event) {
 	          });
 		}
 	});
+	
 });
 
 $('#profile-btn').click(function(event) {
