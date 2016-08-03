@@ -148,8 +148,8 @@ color: black;
 
 #popupx {
     position: absolute;
-    top: 18px;
-    left: 575px;
+    top: 15px;
+    left: 573px;
 }
 
 .sec-modal-lg {
@@ -451,7 +451,7 @@ color: black;
 function eventShow() {
 $('#gif_wrapper').append( // div팝업내용 wrapper라는 이름의 div에 아래 div팝업을 넣어줍니다.
 
-'<div id="event-pop-up" style="position:absolute; left:50%; margin: 0px 0 0 -350px; top:200px; z-index:99999;">'+
+'<div id="event-pop-up" style="position:fixed; left:50%; margin: 0px 0 0 -350px; top:200px; z-index:99999;">'+
 '<form name="notice_form">'+
 '<div style="position:relative"><table border="0" cellPadding="0" cellSpacing="0">'+
 '<tr>'+
@@ -751,7 +751,7 @@ var getParameter = function (param) {
 <script>
 loadMean();
 function loadMean() {
-	$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
 
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
@@ -805,7 +805,7 @@ function wordAdd(word) {
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://localhost:3000/parseword?word=" + getParameter('word'), function (result) {
+		$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
 		if (result.length == 2) { 
 			for (i=1; i < result.length; i++) {			
 				 $.get("../ajax/searchList/wordMeanAdd.do", {
@@ -1008,7 +1008,7 @@ function loadAsso(word) {
 							"<span class='num'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
 							"<span class='num2'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span>" +
 							"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
-							"<span class='profile'><img src='" + list[i].prophotPath + "' alt='profile' width='85px' style='border-radius:100%;'/></span>" +
+							"<span class='profile'><img src='" + list[i].prophotPath + "' alt='profile' width='85px' height='85px' style='border-radius:100%;'/></span>" +
 							"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 							"<span class='like'><img style=\"cursor:pointer;\" onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 							"<span class='hate'><img style=\"cursor:pointer;\" onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
@@ -1025,7 +1025,7 @@ function loadAsso(word) {
 										"<span class='num'><h4 id='likeNo" + i + "'>" + list[i].likeNo + "</h4></span>" +
 										"<span class='num2'><h4 id='hateNo" + i + "'>" + list[i].hateNo + "</h4></span>" +
 										"<span class='cracker'><img src='" + list[i].assothumPath + "' alt='' width='165px'/></span>" +
-										"<span class='profile'><img src='" + list[i].prophotPath + "' alt='profile' width='85px' style='border-radius:100%;'/></span>" +
+										"<span class='profile'><img src='" + list[i].prophotPath + "' alt='profile' width='85px' height='85px' style='border-radius:100%;'/></span>" +
 										"<span class='star'><a href='javascript:;' class='favor" + i + "' onclick='favorChange(" + i + ")'></a></span>" +
 										"<span class='like'><img onclick='likePlus(" + i + ")' src='../images/like.png' alt='like' width='30px'/></span>" +
 										"<span class='hate'><img onclick='hatePlus(" + i + ")' src='../images/hate.png' alt='hate' width='30px' /></span>" +
