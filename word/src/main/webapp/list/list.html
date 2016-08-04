@@ -752,7 +752,7 @@ var getParameter = function (param) {
 <script>
 loadMean();
 function loadMean() {
-	$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
+	$.getJSON("http://121.166.177.112:3000/parseword?word=" + getParameter('word'), function (result) {
 
 	$("<font size='15'>").html(result[0].word).appendTo("#resultword");
      var divMeans1 = document.getElementById("Means");
@@ -806,7 +806,7 @@ function wordAdd(word) {
 </script>
 <script>
 function wordMeanAdd(word) {
-		$.getJSON("http://192.168.0.6:3000/parseword?word=" + getParameter('word'), function (result) {
+		$.getJSON("http://121.166.177.112:3000/parseword?word=" + getParameter('word'), function (result) {
 		if (result.length == 2) { 
 			for (i=1; i < result.length; i++) {			
 				 $.get("../ajax/searchList/wordMeanAdd.do", {
